@@ -26,7 +26,8 @@ export const FooterLogo = styled.img`
   height: 320px;
   opacity: 0.2;
   @media (min-width: 340px) and (max-width: 767px) {
-    display: none;
+    margin-top: 100px;
+    left: -150px;
   }
 `;
 
@@ -41,17 +42,14 @@ export const FooterBox = styled.div`
   }
 `;
 
-// export const FooterItem = styled.div`
-//   margin: 10px 0px 70px 60px;
-//   width: 100%;
-//   max-width: 280px;
-//   color: white;
-//   border: 1px solid white;
-// `;
-
 export const FooterLogoTitle = styled.img`
   margin-top: 40px;
   margin-left: 20px;
+  @media (min-width: 340px) and (max-width: 767px) {
+    margin-top: 0px;
+    margin-left: 0px;
+    margin-bottom: 70px;
+  }
 `;
 
 export const FooterItem1 = styled.div`
@@ -89,6 +87,16 @@ export const Icons = styled.img`
   margin-top: 30px;
   height: 63px;
   width: 63px;
+  @media (min-width: 340px) and (max-width: 767px) {
+    text-align: center;
+    margin-top: 0px;
+    height: 45px;
+    width: 45px;
+  }
+`;
+
+export const FooterVisa = styled.img`
+  margin-left: 20px;
 `;
 
 export const FooterP = styled.p`
@@ -97,14 +105,58 @@ export const FooterP = styled.p`
   font-size: 14px;
   line-height: 17px;
   margin-left: 20px;
+  @media (min-width: 340px) and (max-width: 767px) {
+    font-style: normal;
+    font-weight: 700;
+    font-size: 14px;
+    line-height: 17px;
+  }
 `;
 
 export const FooterEmail = styled.p`
   font-style: normal;
   font-weight: 700;
-  font-size: 20px;
-  line-height: 24px;
+  font-size: 17px;
+  line-height: 20px;
 
   margin-top: 10px;
   margin-left: 20px;
+  @media (min-width: 340px) and (max-width: 767px) {
+  }
+`;
+
+export const FooterBoxM = styled.div`
+  display: none;
+  @media (min-width: 340px) and (max-width: 767px) {
+    height: 100%;
+    color: white;
+    background: linear-gradient(180deg, #1a1a1a 0%, rgba(26, 26, 26, 0) 100%);
+    display: flex;
+    justify-content: center;
+  }
+`;
+
+export const FooterItem1M = styled.div`
+  width: 100%;
+`;
+export const FooterItem2M = styled.div`
+  width: 100%;
+`;
+
+export const FooterItem3M = styled.div`
+  display: none;
+  @media (min-width: 340px) and (max-width: 767px) {
+    display: block;
+    width: 100%;
+    background: #ff4700;
+    height: 295px;
+    text-align: center;
+  }
+`;
+
+export const FooterItem4M = styled.div`
+  display: none;
+  @media (min-width: 340px) and (max-width: 767px) {
+    display: block;
+  }
 `;
