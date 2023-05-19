@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/sushi_frontend/static/css/main.a8c228c9.css",
-    "main.js": "/sushi_frontend/static/js/main.48ab1e77.js",
+    "main.js": "/sushi_frontend/static/js/main.79ad2afe.js",
     "static/js/787.de2e223a.chunk.js": "/sushi_frontend/static/js/787.de2e223a.chunk.js",
     "static/media/bg.svg": "/sushi_frontend/static/media/bg.badbd4238d38760f1e6d0f491ab4ea1f.svg",
     "static/media/sushi-logo.svg": "/sushi_frontend/static/media/sushi-logo.d527dabc43c513327dbc4be759763254.svg",
@@ -17,11 +17,11 @@
     "static/media/inst.svg": "/sushi_frontend/static/media/inst.8a37566ff5da9710249cb2a409f6b39e.svg",
     "index.html": "/sushi_frontend/index.html",
     "main.a8c228c9.css.map": "/sushi_frontend/static/css/main.a8c228c9.css.map",
-    "main.48ab1e77.js.map": "/sushi_frontend/static/js/main.48ab1e77.js.map",
+    "main.79ad2afe.js.map": "/sushi_frontend/static/js/main.79ad2afe.js.map",
     "787.de2e223a.chunk.js.map": "/sushi_frontend/static/js/787.de2e223a.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.a8c228c9.css",
-    "static/js/main.48ab1e77.js"
+    "static/js/main.79ad2afe.js"
   ]
 }
