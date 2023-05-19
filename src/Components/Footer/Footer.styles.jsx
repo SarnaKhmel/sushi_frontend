@@ -24,7 +24,7 @@ export const FooterLogo = styled.img`
   position: absolute;
   left: 0px;
   height: 320px;
-  opacity: 0.3;
+  opacity: 0.2;
   @media (min-width: 340px) and (max-width: 767px) {
     display: none;
   }
@@ -49,25 +49,62 @@ export const FooterBox = styled.div`
 //   border: 1px solid white;
 // `;
 
-export const FooterLogoTitle = styled.img``;
+export const FooterLogoTitle = styled.img`
+  margin-top: 40px;
+  margin-left: 20px;
+`;
 
 export const FooterItem1 = styled.div`
   width: 100%;
   max-width: 280px;
-  border: 1px solid white;
 `;
 export const FooterItem2 = styled.div`
   width: 100%;
   max-width: 280px;
-  border: 1px solid white;
 `;
 export const FooterItem3 = styled.div`
   width: 100%;
   max-width: 280px;
-  border: 1px solid white;
 `;
 export const FooterItem4 = styled.div`
   width: 100%;
   max-width: 280px;
-  border: 1px solid white;
+  display: flex;
+  flex-direction: column;
+  padding-top: 30px;
+  justify-content: flex-start;
+`;
+export const FooterTitle = styled.div`
+  margin-top: 80px;
+  margin-bottom: 50px;
+  font-style: normal;
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 17px;
+  margin-left: 20px;
+`;
+
+export const Icons = styled.img`
+  text-align: center;
+  margin-top: 30px;
+  height: 63px;
+  width: 63px;
+`;
+
+export const FooterP = styled.p`
+  font-style: normal;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 17px;
+  margin-left: 20px;
+`;
+
+export const FooterEmail = styled.p`
+  font-style: normal;
+  font-weight: 700;
+  font-size: 20px;
+  line-height: 24px;
+
+  margin-top: 10px;
+  margin-left: 20px;
 `;
