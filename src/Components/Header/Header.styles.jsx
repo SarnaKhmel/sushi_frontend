@@ -65,6 +65,7 @@ export const LinkBlock = styled.div`
   }
 `;
 export const ContactsBlock = styled.div`
+  order: 1;
   @media (min-width: 340px) and (max-width: 767px) {
     order: 1;
     font-style: normal;
@@ -73,7 +74,7 @@ export const ContactsBlock = styled.div`
     line-height: 12px;
   }
   @media (min-width: 768px) and (max-width: 1023px) {
-    order: 1;
+    order: 2;
     margin-right: 20px;
   }
 `;
