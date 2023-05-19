@@ -12,6 +12,7 @@ export const BottomMenuBlock = styled.div`
     align-items: center;
     justify-content: space-around;
     text-decoration: none;
+    z-index: 1000;
   }
   @media (min-width: 768px) and (max-width: 1023px) {
     height: 85px;
@@ -19,15 +20,11 @@ export const BottomMenuBlock = styled.div`
     align-items: center;
     justify-content: space-around;
     text-decoration: none;
+    z-index: 1000;
   }
 `;
 
-export const LinkIcon = styled.img`
-  &:hover {
-    text-decoration: underline;
-    color: #ccc;
-  }
-`;
+export const LinkIcon = styled.img``;
 
 export const LinkIconTitle = styled.div`
   display: none;
