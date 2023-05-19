@@ -22,14 +22,16 @@ export const BottomMenuBlock = styled.div`
   }
 `;
 
-export const LinkIcon = styled.img``;
+export const LinkIcon = styled.img`
+  &:hover {
+    text-decoration: underline;
+    color: #ccc;
+  }
+`;
 
 export const LinkIconTitle = styled.div`
   display: none;
 
-  &:hover {
-    background-color: #ccc;
-  }
   @media (min-width: 768px) and (max-width: 1023px) {
     display: block;
     text-decoration: none;

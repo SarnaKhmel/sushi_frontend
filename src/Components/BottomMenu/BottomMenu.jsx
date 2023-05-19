@@ -9,35 +9,30 @@ import p5 from "../../Images/bottomMenu/p5.svg";
 import styled from "styled-components";
 
 const BottomMenu = () => {
-  const StyledLink = styled(Link)`
-    &:hover {
-      text-decoration: underline;
-      background-color: #ccc;
-    }
-  `;
+  const StyledLink = styled(Link)``;
 
   return (
     <BottomMenuBlock>
-      <Link>
+      <StyledLink>
         <LinkIcon src={p1} />
         <LinkIconTitle>Суші</LinkIconTitle>
-      </Link>
-      <Link>
+      </StyledLink>
+      <StyledLink>
         <LinkIcon src={p2} />
         <LinkIconTitle>Сети</LinkIconTitle>
-      </Link>
-      <Link>
+      </StyledLink>
+      <StyledLink>
         <LinkIcon src={p3} />
         <LinkIconTitle>Супи</LinkIconTitle>
-      </Link>
-      <Link>
+      </StyledLink>
+      <StyledLink>
         <LinkIcon src={p4} />
         <LinkIconTitle>Напої</LinkIconTitle>
-      </Link>
-      <Link>
+      </StyledLink>
+      <StyledLink>
         <LinkIcon src={p5} />
         <LinkIconTitle>Додатки</LinkIconTitle>
-      </Link>
+      </StyledLink>
     </BottomMenuBlock>
   );
 };
