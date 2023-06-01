@@ -101,6 +101,7 @@ export const OrderBlock = styled.div`
 
   position: relative;
   @media (min-width: 340px) and (max-width: 767px) {
+    z-index: 1000;
     position: fixed;
     top: 200px;
     right: 10px;
@@ -115,6 +116,7 @@ export const OrderBlock = styled.div`
     height: 69px;
   }
   @media (min-width: 768px) and (max-width: 1023px) {
+    z-index: 1000;
     position: fixed;
     top: 400px;
     right: 20px;

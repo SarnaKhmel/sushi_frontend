@@ -9,7 +9,9 @@ import p5 from "../../Images/bottomMenu/p5.svg";
 import styled from "styled-components";
 
 const BottomMenu = () => {
-  const StyledLink = styled(Link)``;
+  const StyledLink = styled(Link)`
+    text-align: center;
+  `;
 
   return (
     <BottomMenuBlock>

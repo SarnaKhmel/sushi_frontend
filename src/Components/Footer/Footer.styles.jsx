@@ -97,6 +97,9 @@ export const Icons = styled.img`
 
 export const FooterVisa = styled.img`
   margin-left: 20px;
+  @media (min-width: 768px) and (max-width: 1023px) {
+    margin-bottom: 20px;
+  }
 `;
 
 export const FooterP = styled.p`

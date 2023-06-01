@@ -1,6 +1,6 @@
 {
   "name": "sushi",
-  "version": "0.1.0",
+  "version": "2.1.0",
   "homepage": "https://sarnakhmel.github.io/sushi_frontend",
   "private": true,
   "dependencies": {
