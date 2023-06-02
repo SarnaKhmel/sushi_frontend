@@ -15,10 +15,15 @@ import Products from "../Components/Products/Products";
 import { useState } from "react";
 const HomePage = () => {
   const [filter, setFilter] = useState("");
+  const [sort, setSort] = useState("");
   const setFilterOption = (type) => {
     setFilter(type);
   };
-  console.log(selectOptions);
+
+  const handleSelectedOption = (value) => {
+    setSort(value);
+  };
+
   return (
     <div>
       <Layout>
@@ -28,8 +33,11 @@ const HomePage = () => {
           options={options}
           setFilterOption={setFilterOption}
         />
-        <SelectBlock selectOptions={selectOptions} />
-        <Products categories={filter} />
+        <SelectBlock
+          selectOptions={selectOptions}
+          handleSelectedOption={handleSelectedOption}
+        />
+        <Products categories={filter} sorting={sort} />
       </Layout>
     </div>
   );
