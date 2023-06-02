@@ -1,0 +1,22 @@
+[
+  {
+    "label": "за популярністю",
+    "value": "popular-up"
+  },
+  {
+    "label": "за зростанням ціни",
+    "value": "price-up"
+  },
+  {
+    "label": "за спаданням ціни",
+    "value": "price-down"
+  },
+  {
+    "label": "за зростанням ваги",
+    "value": "weight-up"
+  },
+  {
+    "label": "за спаданням ваги",
+    "value": "weight-down"
+  }
+]

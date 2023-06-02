@@ -227,3 +227,24 @@ export const ContactsBlockTitle = styled.div`
   @media (min-width: 1920px) {
   }
 `;
+
+export const LinkToElement = styled.a`
+  color: blue;
+  text-decoration: none;
+  color: white;
+  margin-right: 50px;
+
+  &:hover {
+    text-decoration: underline;
+  }
+
+  @media (min-width: 340px) and (max-width: 767px) {
+    margin-right: 30px;
+  }
+  @media (min-width: 768px) and (max-width: 1023px) {
+    margin-right: 20px;
+  }
+  @media (min-width: 1024px) and (max-width: 1919px) {
+    margin-right: 30px;
+  }
+`;

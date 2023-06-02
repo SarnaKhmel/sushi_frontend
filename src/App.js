@@ -6,10 +6,11 @@ function App() {
   return (
     <>
       <Routes>
-        <Route index path="/" element={<HomePage />} />
-        <Route index path="/about" element={<AboutPage />} />
-        <Route index path="/delivery" element={<HomePage />} />
-        <Route index path="/politics" element={<HomePage />} />
+        <Route path="/" element={<HomePage />} />
+        <Route path="/about" element={<AboutPage />} />
+        <Route path="/delivery" element={<HomePage />} />
+        <Route path="/politics" element={<HomePage />} />
+        <Route path="*" element={<HomePage />} />
       </Routes>
     </>
   );

@@ -1,0 +1,34 @@
+[
+  {
+    "name": "Всі",
+    "type": "all"
+  },
+  {
+    "name": "Сети",
+    "type": "sets"
+  },
+  {
+    "name": "Роли",
+    "type": "rolls"
+  },
+  {
+    "name": "Cупи",
+    "type": "soups"
+  },
+  {
+    "name": "Теплі",
+    "type": "hot"
+  },
+  {
+    "name": "Закуски",
+    "type": "appetizer"
+  },
+  {
+    "name": "Напої",
+    "type": "drinks"
+  },
+  {
+    "name": "Додатки",
+    "type": "adds"
+  }
+]
