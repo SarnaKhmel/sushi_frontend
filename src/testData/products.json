@@ -1,0 +1,80 @@
+[
+  {
+    "_id": "647a20582f07475a5567a3eb",
+    "name": "Elisabeth",
+    "text": "ut eiusmod ex elit sunt est eu id do ea fugiat esse sunt voluptate consequat occaecat tempor labore esse consequat",
+    "type": "sushis",
+    "sale": true,
+    "weight": 1000,
+    "price": 123,
+    "week_sale": false,
+    "old_price": 1200,
+    "viewsCount": 8,
+    "imageUrl": "https://loremflickr.com/500/250"
+  },
+  {
+    "_id": "647a205806dfb7b4b46c08f8",
+    "name": "Dennis",
+    "text": "dolore ipsum in ad nostrud mollit labore aliqua esse duis occaecat nisi tempor ullamco deserunt officia nisi anim aliqua reprehenderit",
+    "type": "suts",
+    "sale": true,
+    "weight": 1000,
+    "price": 50023,
+    "week_sale": false,
+    "old_price": 1200,
+    "viewsCount": 6,
+    "imageUrl": "https://loremflickr.com/500/250"
+  },
+  {
+    "_id": "647a2058640f0a7f61eb10bc",
+    "name": "Gayle",
+    "text": "quis laboris fugiat in exercitation exercitation minim ut eiusmod culpa nulla pariatur ut quis non enim amet non officia culpa",
+    "type": "suts",
+    "sale": true,
+    "weight": 1000,
+    "price": 12123,
+    "week_sale": false,
+    "old_price": 1200,
+    "viewsCount": 4,
+    "imageUrl": "https://loremflickr.com/500/250"
+  },
+  {
+    "_id": "647a205878a1343df3cca98b",
+    "name": "Good",
+    "text": "sunt qui duis consequat et quis in elit est officia exercitation nostrud proident veniam sint ad in laboris voluptate laboris",
+    "type": "suts",
+    "sale": true,
+    "weight": 1000,
+    "price": 123,
+    "week_sale": false,
+    "old_price": 1200,
+    "viewsCount": 1,
+    "imageUrl": "https://loremflickr.com/500/250"
+  },
+  {
+    "_id": "647a20586a03aecb1e8aa381",
+    "name": "Delaney",
+    "text": "labore reprehenderit veniam Lorem pariatur reprehenderit eiusmod nulla labore quis aliquip proident do occaecat irure elit sint qui sunt esse",
+    "type": "soup",
+    "sale": true,
+    "weight": 1000,
+    "price": 5023,
+    "week_sale": false,
+    "old_price": 1200,
+    "viewsCount": 5,
+    "imageUrl": "https://loremflickr.com/500/250"
+  },
+  {
+    "_id": "647a2058fe4a843c7c9379d8",
+    "name": "Mckay",
+    "text": "eu ad nulla aliqua elit labore ea voluptate officia cupidatat sunt non minim cupidatat eiusmod culpa sit cupidatat ex laboris",
+    "type": "suts",
+    "sale": true,
+    "weight": 1000,
+    "price": 523,
+    "week_sale": false,
+    "old_price": 1200,
+    "viewsCount": 4,
+    "imageUrl": "https://loremflickr.com/500/250"
+  }
+]

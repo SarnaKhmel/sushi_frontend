@@ -1,0 +1,17 @@
+import styled from "styled-components";
+
+export const ProductsBlock = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 20px;
+`;
+
+export const ProductsList = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  width: 90vw;
+  margin-bottom: 20px;
+`;
