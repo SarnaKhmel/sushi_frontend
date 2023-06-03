@@ -39,9 +39,11 @@ export const HeaderItem = styled.div`
   @media (min-width: 1024px) and (max-width: 1919px) {
     height: 105px;
     margin: 0 0px;
+    padding: 0 10vw;
   }
   @media (min-width: 1920px) {
     height: 116px;
+    padding: 0 3vw;
   }
 `;
 

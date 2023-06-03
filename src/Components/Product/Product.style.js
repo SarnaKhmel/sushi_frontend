@@ -135,6 +135,7 @@ export const Title = styled.div`
   color: #ffffff;
 `;
 export const PriceBlock = styled.div`
+  display: flex;
   @media (max-width: 500px) {
     display: flex;
   }
