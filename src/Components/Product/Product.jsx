@@ -18,12 +18,15 @@ import {
   FakePrice,
   Basket,
 } from "./Product.style";
+import { Link } from "react-router-dom";
 
 const Product = ({ product }) => {
   return (
     <ProductBlock>
       <ImageBlock>
-        <ProductImage src={product.imageUrl} />
+        <Link to={`/order/${product._id}`}>
+          <ProductImage src={product.imageUrl} />
+        </Link>
       </ImageBlock>
       <TitleBlock>
         <Label1>
