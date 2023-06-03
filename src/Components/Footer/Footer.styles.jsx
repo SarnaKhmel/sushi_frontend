@@ -152,7 +152,7 @@ export const FooterItem3M = styled.div`
     display: block;
     width: 100%;
     background: #ff4700;
-    height: 295px;
+    height: 355px;
     text-align: center;
   }
 `;

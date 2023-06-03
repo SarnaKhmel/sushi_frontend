@@ -5,7 +5,7 @@ import products from "../../testData/products.json";
 import Product from "../Product/Product";
 const Products = ({ categories }) => {
   const [type, setType] = useState(null);
-  console.log(products);
+  // console.log(products);
 
   return (
     <ProductsBlock>
