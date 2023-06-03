@@ -6,11 +6,25 @@ export const ProductBlock = styled.div`
   margin: 20px;
   border-radius: 10px 10px 0px 0px;
   color: #fff;
+  @media (max-width: 500px) {
+    display: flex;
+    margin: 5px;
+    width: 90vw;
+    max-height: 160px;
+    margin-top: 20px;
+  }
 `;
 
 export const ImageBlock = styled.div`
   border-radius: 10px 10px 0px 0px;
   overflow: hidden;
+  @media (max-width: 500px) {
+    border-radius: 10px;
+    height: 132px;
+    width: 191px;
+    min-height: 131px;
+    min-width: 190px;
+  }
 `;
 
 export const TitleBlock = styled.div`
@@ -19,6 +33,12 @@ export const TitleBlock = styled.div`
   background: linear-gradient(104.51deg, #161515 0.89%, #313131 98.21%);
   box-shadow: -10px 100px 4px rgba(0, 0, 0, 0.25);
   border-radius: 0px 0px 10px 10px;
+
+  @media (max-width: 500px) {
+    background: transparent;
+    display: flex;
+    flex-direction: column;
+  }
 `;
 
 export const ProductImage = styled.img`
@@ -33,13 +53,53 @@ export const ProductImage = styled.img`
     transform: scale(1.2);
     cursor: pointer;
   }
+
+  @media (max-width: 500px) {
+    border-radius: 10px;
+  }
 `;
 
-export const Label = styled.div`
+export const Label1 = styled.div`
   display: flex;
   margin-top: 5px;
   align-items: center;
   justify-content: space-between;
+  @media (max-width: 500px) {
+    order: 2;
+    margin-top: 10px;
+  }
+`;
+export const Label2 = styled.div`
+  display: flex;
+  margin-top: 5px;
+  align-items: center;
+  justify-content: space-between;
+  @media (max-width: 500px) {
+    order: 1;
+    margin-top: 0px;
+  }
+`;
+export const Label3 = styled.div`
+  display: flex;
+  margin-top: 5px;
+  align-items: center;
+  justify-content: space-between;
+  @media (max-width: 500px) {
+    display: none;
+  }
+`;
+export const Label4 = styled.div`
+  display: flex;
+  margin-top: 5px;
+  align-items: center;
+  justify-content: space-between;
+  @media (max-width: 500px) {
+    order: 3;
+    margin-top: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+  }
 `;
 export const Weight = styled.div`
   font-style: normal;
@@ -74,6 +134,12 @@ export const Title = styled.div`
 
   color: #ffffff;
 `;
+export const PriceBlock = styled.div`
+  @media (max-width: 500px) {
+    display: flex;
+  }
+`;
+
 export const Price = styled.div`
   font-style: normal;
   font-weight: 600;
@@ -105,4 +171,9 @@ export const Basket = styled.button`
   line-height: 17px;
 
   color: #ffffff;
+  @media (max-width: 500px) {
+    margin-top: 10px;
+    width: 120px;
+    height: 33px;
+  }
 `;

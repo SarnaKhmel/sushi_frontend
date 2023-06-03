@@ -4,12 +4,16 @@ import {
   ImageBlock,
   TitleBlock,
   ProductImage,
-  Label,
+  Label1,
+  Label2,
+  Label3,
+  Label4,
   Weight,
   SaleBlock,
   Sale,
   Name,
   Title,
+  PriceBlock,
   Price,
   FakePrice,
   Basket,
@@ -22,25 +26,28 @@ const Product = ({ product }) => {
         <ProductImage src={product.imageUrl} />
       </ImageBlock>
       <TitleBlock>
-        <Label>
+        <Label1>
           <Weight>{product.weight}</Weight>
           <SaleBlock>
             {product.sale ? <Sale>Акція</Sale> : <Sale></Sale>}
           </SaleBlock>
-        </Label>
-        <Label>
+        </Label1>
+        <Label2>
           <Name>{product.name}</Name>
-        </Label>
-        <Label>
+        </Label2>
+        <Label3>
           <Title>{product.text}</Title>
-        </Label>
-        <Label>
-          <Price>{product.price}</Price>
-          <FakePrice>
-            {product.sale ? <>{product.old_price}</> : <></>}
-          </FakePrice>
+        </Label3>
+        <Label4>
+          <PriceBlock>
+            <Price>{product.price}грн</Price>
+            <FakePrice>
+              {product.sale ? <>{product.old_price}грн</> : <></>}
+            </FakePrice>
+          </PriceBlock>
+
           <Basket>В КОШИК</Basket>
-        </Label>
+        </Label4>
       </TitleBlock>
     </ProductBlock>
   );
