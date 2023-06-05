@@ -1,10 +1,16 @@
 import React, { useState } from "react";
 import styled from "styled-components";
+import { fetchAuth, selectIsAuth } from "../../Redux/slices/auth";
+import { useDispatch, useSelector } from "react-redux";
+import { Navigate } from "react-router-dom";
 
 const LoginAdmin = () => {
+  const dispatch = useDispatch();
+
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [errors, setErrors] = useState({});
+  const isAuth = useSelector(selectIsAuth);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -13,8 +19,7 @@ const LoginAdmin = () => {
       email,
       password,
     };
-
-    console.log(formData);
+    dispatch(fetchAuth(formData));
   };
 
   const handleEmailChange = (e) => {
@@ -26,6 +31,9 @@ const LoginAdmin = () => {
     setPassword(e.target.value);
     setErrors({ ...errors, password: "" });
   };
+  if (isAuth) {
+    return <Navigate to="/admin/home" />;
+  }
 
   return (
     <FormContainer>

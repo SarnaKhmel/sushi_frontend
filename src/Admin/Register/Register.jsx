@@ -1,8 +1,13 @@
 import React, { useState } from "react";
 import styled from "styled-components";
+import { fetchRegister, selectIsAuth } from "../../Redux/slices/auth";
+import { Navigate } from "react-router-dom";
 
+import { useDispatch, useSelector } from "react-redux";
 const Register = () => {
-  const [nickname, setNickname] = useState("");
+  const dispatch = useDispatch();
+  const isAuth = useSelector(selectIsAuth);
+  const [fullName, setfullName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [errors, setErrors] = useState({});
@@ -10,16 +15,15 @@ const Register = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     const formData = {
-      nickname,
+      fullName,
       email,
       password,
     };
-
-    console.log(formData);
+    dispatch(fetchRegister(formData));
   };
 
   const handleNicknameChange = (e) => {
-    setNickname(e.target.value);
+    setfullName(e.target.value);
     setErrors({ ...errors, nickname: "" });
   };
 
@@ -33,6 +37,10 @@ const Register = () => {
     setErrors({ ...errors, password: "" });
   };
 
+  if (isAuth) {
+    return <Navigate to="/admin/home" />;
+  }
+
   return (
     <FormContainer>
       <FormTitle>Реєстрація користувача</FormTitle>
@@ -42,7 +50,7 @@ const Register = () => {
           <input
             type="text"
             id="nickname"
-            value={nickname}
+            value={fullName}
             onChange={handleNicknameChange}
           />
           {errors.nickname && <ErrorMessage>{errors.nickname}</ErrorMessage>}

@@ -8,6 +8,7 @@ import { Routes, Route } from "react-router";
 import RegisterPage from "./Admin/Pages/RegisterPage";
 import LoginAdmin from "./Admin/Login/LoginAdmin";
 // import OrderPageA from "./Admin/Pages/OrderPageA";
+import HomeAdminPage from "./Admin/Pages/HomeAdminPage";
 function App() {
   return (
     <>
@@ -23,6 +24,7 @@ function App() {
         <Route path="/admin/register" element={<RegisterPage />} />
         <Route path="/admin/login" element={<LoginAdmin />} />
 
+        <Route path="/admin/home" element={<HomeAdminPage />} />
         <Route path="/admin/admins" element={<RegisterPage />} />
         <Route path="/admin/products" element={<RegisterPage />} />
         <Route path="/admin/posts" element={<RegisterPage />} />
