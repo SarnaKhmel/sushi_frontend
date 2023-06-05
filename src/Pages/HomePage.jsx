@@ -12,10 +12,25 @@ import SelectBlock from "../Components/Select/Select";
 
 import Products from "../Components/Products/Products";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
+
+import { fetchProducts } from "../Redux/slices/products";
+import { useDispatch, useSelector } from "react-redux";
 const HomePage = () => {
   const [filter, setFilter] = useState("");
   const [sort, setSort] = useState("");
+
+  const [prodRedux, setprodRedux] = useState([]);
+
+  const dispatch = useDispatch();
+  const { status, error } = useSelector((state) => state.products);
+  const stateTest = useSelector((state) => state.products.products);
+  useEffect(() => {
+    dispatch(fetchProducts());
+  }, [dispatch]);
+
+  console.log(stateTest);
+
   const setFilterOption = (type) => {
     setFilter(type);
   };

@@ -1,20 +1,26 @@
 import React, { useState } from "react";
 import styled from "styled-components";
 
-const LoginAdmin = () => {
+const Register = () => {
+  const [nickname, setNickname] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [errors, setErrors] = useState({});
 
   const handleSubmit = (e) => {
     e.preventDefault();
-
     const formData = {
+      nickname,
       email,
       password,
     };
 
     console.log(formData);
+  };
+
+  const handleNicknameChange = (e) => {
+    setNickname(e.target.value);
+    setErrors({ ...errors, nickname: "" });
   };
 
   const handleEmailChange = (e) => {
@@ -29,8 +35,18 @@ const LoginAdmin = () => {
 
   return (
     <FormContainer>
-      <FormTitle>Авторизація користувача</FormTitle>
+      <FormTitle>Реєстрація користувача</FormTitle>
       <Form onSubmit={handleSubmit}>
+        <FormField>
+          <label htmlFor="nickname">Ім'я</label>
+          <input
+            type="text"
+            id="nickname"
+            value={nickname}
+            onChange={handleNicknameChange}
+          />
+          {errors.nickname && <ErrorMessage>{errors.nickname}</ErrorMessage>}
+        </FormField>
         <FormField>
           <label htmlFor="email">Email</label>
           <input
@@ -51,7 +67,7 @@ const LoginAdmin = () => {
           />
           {errors.password && <ErrorMessage>{errors.password}</ErrorMessage>}
         </FormField>
-        <SubmitButton type="submit">Увійти</SubmitButton>
+        <SubmitButton type="submit">Зареєструватися</SubmitButton>
       </Form>
     </FormContainer>
   );
@@ -104,4 +120,4 @@ const SubmitButton = styled.button`
   }
 `;
 
-export default LoginAdmin;
+export default Register;

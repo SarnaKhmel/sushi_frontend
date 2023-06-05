@@ -24,7 +24,7 @@ const Product = ({ product }) => {
   return (
     <ProductBlock>
       <ImageBlock>
-        <Link to={`/order/${product._id}`}>
+        <Link to={`/product/${product._id}`}>
           <ProductImage src={product.imageUrl} />
         </Link>
       </ImageBlock>
