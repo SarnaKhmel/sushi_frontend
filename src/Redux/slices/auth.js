@@ -14,10 +14,13 @@ export const fetchRegister = createAsyncThunk(
   }
 );
 
-export const fetchAuthMe = createAsyncThunk("auth/fetchAuthMe", async () => {
-  const { data } = await axios.get("/auth/me");
-  return data;
-});
+export const fetchAuthMe = createAsyncThunk(
+  "auth/fetchAuthMe",
+  async (params) => {
+    const { data } = await axios.get("/auth/me", params);
+    return data;
+  }
+);
 
 const initialState = {
   data: null,
@@ -73,6 +76,10 @@ const authSlice = createSlice({
 });
 
 export const selectIsAuth = (state) => Boolean(state.auth.data);
+
+// export const checkIsAuth = (state) => {
+//   return state.auth.data;
+// };
 
 export const authReducer = authSlice.reducer;
 

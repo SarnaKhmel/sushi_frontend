@@ -12,14 +12,20 @@ const LoginAdmin = () => {
   const [errors, setErrors] = useState({});
   const isAuth = useSelector(selectIsAuth);
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
     const formData = {
       email,
       password,
     };
-    dispatch(fetchAuth(formData));
+
+    const response = await dispatch(fetchAuth(formData));
+    const data = await response;
+    if ("token" in data.payload) {
+      window.localStorage.setItem("token", data.payload.token);
+    }
+    console.log(data.payload.token);
   };
 
   const handleEmailChange = (e) => {

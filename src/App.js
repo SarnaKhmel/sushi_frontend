@@ -9,6 +9,8 @@ import RegisterPage from "./Admin/Pages/RegisterPage";
 import LoginAdmin from "./Admin/Login/LoginAdmin";
 // import OrderPageA from "./Admin/Pages/OrderPageA";
 import HomeAdminPage from "./Admin/Pages/HomeAdminPage";
+import AdminProductsPage from "./Admin/Pages/AdminProductsPage";
+import AdminUserPage from "./Admin/Pages/AdminUserPage";
 function App() {
   return (
     <>
@@ -25,12 +27,12 @@ function App() {
         <Route path="/admin/login" element={<LoginAdmin />} />
 
         <Route path="/admin/home" element={<HomeAdminPage />} />
-        <Route path="/admin/admins" element={<RegisterPage />} />
-        <Route path="/admin/products" element={<RegisterPage />} />
+        {/* <Route path="/admin/admins" element={<RegisterPage />} /> */}
+        <Route path="/admin/products" element={<AdminProductsPage />} />
         <Route path="/admin/posts" element={<RegisterPage />} />
         <Route path="/admin/orders" element={<RegisterPage />} />
-        <Route path="/admin/statistics" element={<RegisterPage />} />
-        <Route path="/admin/me" element={<RegisterPage />} />
+        {/* <Route path="/admin/statistics" element={<RegisterPage />} /> */}
+        <Route path="/admin/me" element={<AdminUserPage />} />
 
         <Route path="*" element={<HomePage />} />
       </Routes>
