@@ -2,7 +2,10 @@ import React from "react";
 import styled, { css } from "styled-components";
 import { useState } from "react";
 import AddProduct from "../AddProduct/AddProduct";
+import menuOptions from "../../testData/menuOptions.json";
+import ProductsTable from "../ProductsTable/ProductsTable";
 
+import Exel from "../Exel/Exel";
 const Products = ({ products }) => {
   const [activeBlocks, setActiveBlocks] = useState([false, false, false]);
 
@@ -13,11 +16,20 @@ const Products = ({ products }) => {
       return newActiveBlocks;
     });
   };
+
+  // const handleUpdateTable = () => {
+  //   updateTable();
+  // };
   return (
     <Container>
       <LabelBlock>
         <Label onClick={() => toggleBlock(0)}>Додати товар</Label>
-        <Label onClick={() => toggleBlock(1)}>Всі товари</Label>
+        <Label
+          onClick={() => {
+            toggleBlock(1);
+          }}>
+          Всі товари
+        </Label>
       </LabelBlock>
 
       {activeBlocks[0] && (
@@ -28,10 +40,7 @@ const Products = ({ products }) => {
 
       {activeBlocks[1] && (
         <Block $active={activeBlocks[1]}>
-          <table></table>
-          {products.map((product, index) => (
-            <div key={index}>{product.name}</div>
-          ))}
+          <ProductsTable options={menuOptions} products={products} />
         </Block>
       )}
     </Container>
@@ -97,4 +106,5 @@ const Label = styled.button`
 //     color: #007bff;
 //   }
 // `;
+
 export default Products;

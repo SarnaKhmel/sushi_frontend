@@ -21,6 +21,35 @@ const initialState = {
   },
 };
 
+// export const uploadProductImG = createAsyncThunk(
+//   "products/uploadProductImG",
+//   async (params) => {
+//     const { data } = await axios
+//       .post("/upload/products", params)
+//       .then((response) => {
+//         console.log(response);
+//       })
+//       .catch((error) => {
+//         console.log(error);
+//       });
+//     return data;
+//   }
+// );
+
+// export const createProduct = createAsyncThunk(
+//   "products/createProduct",
+//   async (params) =>
+//     axios
+//       .post("/auth/products", params)
+//       .then((response) => {
+//         console.log(response);
+//         return response;
+//       })
+//       .catch((error) => {
+//         console.log(error);
+//       })
+// );
+
 const productsSlice = createSlice({
   name: "products",
   initialState,
@@ -38,6 +67,9 @@ const productsSlice = createSlice({
       state.products.items = [];
       state.products.status = "error";
     },
+    // [uploadProductImG.pending]: (state) => {},
+    // [uploadProductImG.fulfilled]: (state, action) => {},
+    // [uploadProductImG.rejected]: (state) => {},
 
     [fetchRemoveProduct.pending]: (state, action) => {
       state.products.items = state.products.items.filter(
