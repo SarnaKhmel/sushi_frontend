@@ -9,25 +9,32 @@ export const fetchProducts = createAsyncThunk(
   }
 );
 
-// export const fetchOneProduct = createAsyncThunk(
-//   "products/fetchOneProduct",
-//   async (id) => {
-//     const data = axios.get(`/products/${id}`);
-//     return data;
-//   }
-// );
 export const fetchOneProduct = createAsyncThunk(
   "products/fetchOneProduct",
   async (id) => {
     const response = await axios.get(`/products/${id}`);
     const data = response.data;
-    // console.log("data", data);
     return data;
   }
 );
+
+// export const fetchRemoveProduct = createAsyncThunk(
+//   "products/fetchRemoveProduct",
+//   async (id) => axios.delete(`/auth/products/${id}`)
+// );
 export const fetchRemoveProduct = createAsyncThunk(
   "products/fetchRemoveProduct",
-  async (id) => axios.delete(`/products/${id}`)
+  async (id) => {
+    await axios.delete(`/auth/products/${id}`);
+    return id; // Return the id as the fulfilled payload
+  }
+);
+
+export const fetchRemoveProductImage = createAsyncThunk(
+  "products/fetchRemoveProductImage",
+  async (name) => {
+    await axios.delete(`/upload/products/${name}`);
+  }
 );
 
 const initialState = {
@@ -106,6 +113,12 @@ const productsSlice = createSlice({
     [fetchRemoveProduct.pending]: (state, action) => {
       state.products.items = state.products.items.filter(
         (obj) => obj._id !== action.meta.arg
+      );
+    },
+    [fetchRemoveProduct.fulfilled]: (state, action) => {
+      const id = action.payload;
+      state.products.items = state.products.items.filter(
+        (obj) => obj._id !== id
       );
     },
   },

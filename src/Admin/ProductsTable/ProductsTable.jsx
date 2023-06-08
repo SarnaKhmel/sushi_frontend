@@ -2,23 +2,26 @@ import React from "react";
 import styled, { css } from "styled-components";
 import { baseUrl } from "../../Utils/baseUrl";
 import Exel from "../Exel/Exel";
-import { fetchRemoveProduct } from "../../Redux/slices/products";
+import {
+  fetchRemoveProduct,
+  fetchRemoveProductImage,
+} from "../../Redux/slices/products";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 const ProductsTable = ({ options, products }) => {
   const dispatch = useDispatch();
 
   const onHandleDeleteProduct = (id, url) => {
-    console.log(url);
-
-    // const confirmed = window.confirm(
-    //   `Are you sure you want to delete this product?`
-    // );
-    // if (confirmed) {
-    //   const result = dispatch(fetchRemoveProduct(id));
-    //   // dispatch(fetchRemoveProduct(id));
-    //   console.log(result);
-    //  }
+    const imageName = url.split("/").pop();
+    const confirmed = window.confirm(
+      `Are you sure you want to delete this product?`
+    );
+    if (confirmed) {
+      const result = dispatch(fetchRemoveProduct(id));
+      dispatch(fetchRemoveProductImage(imageName));
+      // dispatch(fetchRemoveProduct(id));
+      console.log(result);
+    }
   };
 
   const handleSetOption = (type) => {};

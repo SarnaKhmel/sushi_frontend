@@ -4,7 +4,7 @@ import { useState } from "react";
 import { useDispatch } from "react-redux";
 import axios from "../../../src/Utils/axios";
 import toast, { Toaster } from "react-hot-toast";
-
+import { baseUrl } from "../../Utils/baseUrl";
 const Product = ({ product }) => {
   const [selectedFile, setSelectedFile] = useState(null);
   const [imageUrl, setImageUrl] = useState(null);
@@ -125,6 +125,7 @@ const Product = ({ product }) => {
       <AddProductImage>
         <h3>Крок 1 завантажити зображення:</h3>
         <MiniBlock>
+          <ProductImage src={`${baseUrl}${imageUrl}`} alt="product-image" />
           <input type="file" onChange={handleFileSelect} />
           {imageUrl && <ProductImage src={imageUrl} alt="Uploaded" />}
         </MiniBlock>
