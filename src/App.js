@@ -11,6 +11,7 @@ import LoginAdmin from "./Admin/Login/LoginAdmin";
 import HomeAdminPage from "./Admin/Pages/HomeAdminPage";
 import AdminProductsPage from "./Admin/Pages/AdminProductsPage";
 import AdminUserPage from "./Admin/Pages/AdminUserPage";
+import AdminProductEditPage from "./Admin/Pages/AdminProductEditPage";
 function App() {
   return (
     <>
@@ -29,6 +30,7 @@ function App() {
         <Route path="/admin/home" element={<HomeAdminPage />} />
         {/* <Route path="/admin/admins" element={<RegisterPage />} /> */}
         <Route path="/admin/products" element={<AdminProductsPage />} />
+        <Route path="/admin/products/:id" element={<AdminProductEditPage />} />
         <Route path="/admin/posts" element={<RegisterPage />} />
         <Route path="/admin/orders" element={<RegisterPage />} />
         {/* <Route path="/admin/statistics" element={<RegisterPage />} /> */}

@@ -9,6 +9,22 @@ export const fetchProducts = createAsyncThunk(
   }
 );
 
+// export const fetchOneProduct = createAsyncThunk(
+//   "products/fetchOneProduct",
+//   async (id) => {
+//     const data = axios.get(`/products/${id}`);
+//     return data;
+//   }
+// );
+export const fetchOneProduct = createAsyncThunk(
+  "products/fetchOneProduct",
+  async (id) => {
+    const response = await axios.get(`/products/${id}`);
+    const data = response.data;
+    // console.log("data", data);
+    return data;
+  }
+);
 export const fetchRemoveProduct = createAsyncThunk(
   "products/fetchRemoveProduct",
   async (id) => axios.delete(`/products/${id}`)
@@ -16,6 +32,10 @@ export const fetchRemoveProduct = createAsyncThunk(
 
 const initialState = {
   products: {
+    items: [],
+    status: "loading",
+  },
+  product: {
     items: [],
     status: "loading",
   },
@@ -66,6 +86,18 @@ const productsSlice = createSlice({
     [fetchProducts.rejected]: (state) => {
       state.products.items = [];
       state.products.status = "error";
+    },
+    [fetchOneProduct.pending]: (state) => {
+      state.product = [];
+      state.product.status = "loading";
+    },
+    [fetchOneProduct.fulfilled]: (state, action) => {
+      state.product = action.payload;
+      state.product.status = "loaded";
+    },
+    [fetchOneProduct.rejected]: (state) => {
+      state.product = [];
+      state.product.status = "error";
     },
     // [uploadProductImG.pending]: (state) => {},
     // [uploadProductImG.fulfilled]: (state, action) => {},
