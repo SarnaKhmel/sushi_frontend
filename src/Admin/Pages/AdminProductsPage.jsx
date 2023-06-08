@@ -9,14 +9,9 @@ import { fetchProducts } from "../../Redux/slices/products";
 const AdminProductsPage = () => {
   const dispatch = useDispatch();
   let products = useSelector((state) => state.products.products);
-  // const [update, setUpdate] = useState(false);
   useEffect(() => {
     dispatch(fetchProducts());
   }, [dispatch]);
-
-  // const updateTable = () => {
-  //   setUpdate(!update);
-  // };
 
   return (
     <>

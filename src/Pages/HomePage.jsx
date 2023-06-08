@@ -20,16 +20,26 @@ const HomePage = () => {
   const [filter, setFilter] = useState("");
   const [sort, setSort] = useState("");
 
-  const [prodRedux, setprodRedux] = useState([]);
+  // const [prodRedux, setprodRedux] = useState([]);
+
+  // let productsAPI = useSelector((state) => state.products.products);
+  // console.log(productsAPI);
+  // const dispatch = useDispatch();
+  // const { status, error } = useSelector((state) => state.products);
+  // const stateTest = useSelector((state) => state.products.products);
+  // useEffect(() => {
+  //   dispatch(fetchProducts());
+  // }, [dispatch]);
+
+  //console.log("stateTest", stateTest);
 
   const dispatch = useDispatch();
-  const { status, error } = useSelector((state) => state.products);
-  const stateTest = useSelector((state) => state.products.products);
+  let products = useSelector((state) => state.products.products);
   useEffect(() => {
     dispatch(fetchProducts());
   }, [dispatch]);
 
-  console.log(stateTest);
+  console.log(products.items);
 
   const setFilterOption = (type) => {
     setFilter(type);
@@ -52,7 +62,14 @@ const HomePage = () => {
           selectOptions={selectOptions}
           handleSelectedOption={handleSelectedOption}
         />
-        <Products categories={filter} sorting={sort} />
+        {products.status === "loading" && <>Loading...</>}
+        {products.status === "loaded" && (
+          <Products
+            categories={filter}
+            sorting={sort}
+            products={products.items}
+          />
+        )}
       </Layout>
     </div>
   );

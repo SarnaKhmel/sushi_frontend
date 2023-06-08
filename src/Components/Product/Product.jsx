@@ -20,12 +20,14 @@ import {
 } from "./Product.style";
 import { Link } from "react-router-dom";
 
+import { baseUrl } from "../../Utils/baseUrl";
+
 const Product = ({ product }) => {
   return (
     <ProductBlock>
       <ImageBlock>
         <Link to={`/product/${product._id}`}>
-          <ProductImage src={product.imageUrl} />
+          <ProductImage src={`${baseUrl}${product.imageUrl}`} />
         </Link>
       </ImageBlock>
       <TitleBlock>

@@ -17,7 +17,11 @@ export const ProductBlock = styled.div`
 
 export const ImageBlock = styled.div`
   border-radius: 10px 10px 0px 0px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   overflow: hidden;
+  background: linear-gradient(104.51deg, #161515 0.89%, #313131 98.21%);
   @media (max-width: 500px) {
     border-radius: 10px;
     height: 132px;
@@ -45,6 +49,8 @@ export const ProductImage = styled.img`
   border-radius: 10px 10px 0px 0px;
   width: 400px;
   height: 200px;
+  object-fit: cover;
+  object-position: center;
   transition: transform 0.5s;
   cursor: zoom-in;
   max-width: 100%;
