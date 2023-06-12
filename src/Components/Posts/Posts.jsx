@@ -6,12 +6,12 @@ import {
   SlideContainer,
 } from "./Posts.styled";
 import { useState } from "react";
-
+import { Link } from "react-router-dom";
 const Dot = ({ active, onClick }) => (
   <DotElement active={active} onClick={onClick} />
 );
 
-const Posts = ({ images }) => {
+const Posts = ({ posts }) => {
   const [activeIndex, setActiveIndex] = useState(0);
 
   const handleDotClick = (index) => {
@@ -19,19 +19,21 @@ const Posts = ({ images }) => {
   };
   return (
     <CarouselContainer>
-      {images.map((image, index) => (
-        <SlideContainer key={index} active={index === activeIndex}>
-          <Slide
-            src={image.picture}
-            alt={`Slide ${index}`}
-            onClick={() => handleDotClick(index)}
-            style={{ display: index === activeIndex ? "block" : "none" }}
-          />
+      {posts.map((post, index) => (
+        <SlideContainer key={post._id} active={index === activeIndex}>
+          <Link to={`/post/${post._id}`}>
+            <Slide
+              src={post.picture}
+              alt={`Slide ${index}`}
+              onClick={() => handleDotClick(index)}
+              style={{ display: index === activeIndex ? "block" : "none" }}
+            />
+          </Link>
         </SlideContainer>
       ))}
 
       <DotContainer>
-        {images.map((_, index) => (
+        {posts.map((_, index) => (
           <Dot
             key={index}
             active={index === activeIndex}

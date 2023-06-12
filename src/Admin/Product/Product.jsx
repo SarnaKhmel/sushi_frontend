@@ -5,25 +5,27 @@ import { useDispatch } from "react-redux";
 import axios from "../../../src/Utils/axios";
 import toast, { Toaster } from "react-hot-toast";
 import { baseUrl } from "../../Utils/baseUrl";
+
+import { updateProduct } from "../../Redux/slices/products";
+
 const Product = ({ product }) => {
   const [selectedFile, setSelectedFile] = useState(null);
-  const [imageUrl, setImageUrl] = useState(null);
+  const [imageUrl, setImageUrl] = useState(product.imageUrl);
   const [imageProductUrl, setImageProductUrl] = useState(null);
   const [checkUpload, setCheckUpload] = useState(false);
-  const [checkUploadPost, setCheckUploadPost] = useState(false);
   const dispatch = useDispatch();
   const notify = (text) => toast(text);
-
   const {
     name = "",
     text = "",
-    type = "set",
+    type = "",
     sale = false,
     weight = "",
     price = "",
     old_price = "",
   } = product || {};
 
+  console.log("_id", product._id);
   const handleFileSelect = (event) => {
     const file = event.target.files[0];
     if (file && /\.(png|jpe?g)$/i.test(file.name)) {
@@ -53,14 +55,17 @@ const Product = ({ product }) => {
         setCheckUpload(false);
       });
   };
+
   const [formFields, setFormFields] = useState({
-    name: "",
-    text: "",
-    type: "set",
-    sale: false,
-    weight: "",
-    price: "",
-    old_price: "",
+    _id: product._id,
+    name: product.name,
+    text: product.text,
+    type: product.type,
+    sale: product.sale,
+    weight: product.weight,
+    price: product.price,
+    old_price: product.old_price,
+    week_sale: product.week_sale,
   });
   const handleFormFieldChange = (event) => {
     const fieldName = event.target.name;
@@ -70,34 +75,42 @@ const Product = ({ product }) => {
       [fieldName]: fieldValue,
     }));
   };
-  const handleFormSubmit = (event) => {
+  const handleFormSubmit = (event, id) => {
     event.preventDefault();
-    if (imageProductUrl === null) {
-      return notify("‼ Завантажте зображення!");
-    } else {
-      const productData = {
-        imageUrl: imageProductUrl,
-        name: formFields.name,
-        price: formFields.price,
-        old_price: formFields.old_price,
-        sale: formFields.sale,
-        text: formFields.text,
-        type: formFields.type,
-        weight: formFields.weight,
-        week_sale: false,
-      };
-      console.log(productData);
 
-      axios
-        .post("/auth/products", productData)
-        .then((response) => {
-          console.log(response);
-          notify("👍 Товар додано!");
-        })
-        .catch((error) => {
-          console.log(error);
-        });
-    }
+    const productData = {
+      _id: product._id,
+      imageUrl: product.imageUrl,
+      name: formFields.name,
+      price: formFields.price,
+      old_price: formFields.old_price,
+      sale: formFields.sale,
+      text: formFields.text,
+      type: formFields.type,
+      weight: formFields.weight,
+      week_sale: false,
+    };
+    console.log({ id: product._id, productData: productData });
+
+    dispatch(updateProduct({ id: productData._id, productData: productData }))
+      .then((data) => {
+        notify("👍 Продукт оновлено!");
+        window.location.reload();
+      })
+      .catch((error) => {
+        console.log(error);
+        notify("❌ Помилка при оновленні продукту");
+      });
+
+    // axios
+    //   .post("/auth/products", productData)
+    //   .then((response) => {
+    //     console.log(response);
+    //     notify("👍 Товар додано!");
+    //   })
+    //   .catch((error) => {
+    //     console.log(error);
+    //   });
   };
   const handleClearImage = () => {
     setSelectedFile(null);
@@ -141,9 +154,10 @@ const Product = ({ product }) => {
           <Input
             type="text"
             name="name"
+            placeholder="Назва продукту"
             value={formFields.name}
             onChange={handleFormFieldChange}
-            placeholder={name}
+            required
           />
         </MiniBlock>
 
@@ -152,15 +166,19 @@ const Product = ({ product }) => {
           <Input
             type="text"
             name="text"
-            placeholder={text}
+            placeholder="Опис продукту"
             value={formFields.text}
             onChange={handleFormFieldChange}
+            required
           />
         </MiniBlock>
 
         <MiniBlock>
           <Label htmlFor="type">3. Тип селектор зроби продукту:</Label>
-          <Select name="type" value={type} onChange={handleFormFieldChange}>
+          <Select
+            name="type"
+            value={formFields.type}
+            onChange={handleFormFieldChange}>
             <option value="set">Cет</option> <option value="rolls">Рол</option>
             <option value="sushi">Суші</option>{" "}
             <option value="soup">Суп</option>
@@ -177,7 +195,7 @@ const Product = ({ product }) => {
             name="weight"
             value={formFields.weight}
             onChange={handleFormFieldChange}
-            placeholder={weight}
+            placeholder="Вага продукту"
           />
         </MiniBlock>
 
@@ -188,7 +206,7 @@ const Product = ({ product }) => {
             name="price"
             value={formFields.price}
             onChange={handleFormFieldChange}
-            placeholder={price}
+            placeholder="Ціна продукту"
           />
         </MiniBlock>
         <br />
@@ -216,27 +234,24 @@ const Product = ({ product }) => {
         </MiniBlock>
         <MiniBlock>
           <Btn className="btn-create">Створити</Btn>
-          <Btn className="btn-del" type="reset" onClick={handleClearForm}>
-            Очистити
-          </Btn>
         </MiniBlock>
+        <br />
+        <br />
+        <br />
+        <MiniBlockRed>
+          <Label htmlFor="week_sale">8. Товар тижня:</Label>
+          <Input
+            type="checkbox"
+            name="week_sale"
+            value={formFields.sale}
+            onChange={handleFormFieldChange}
+          />
+        </MiniBlockRed>
       </AddProductForm>
       <Toaster position="bottom-right" reverseOrder={false} />
     </AddProductBlock>
   );
 };
-
-const Th = styled.th`
-  border: 1px solid violet;
-  margin: 20px;
-  &:hover {
-    color: #007bff;
-  }
-`;
-
-const Td = styled.td`
-  width: 150px;
-`;
 
 const Btn = styled.button`
   &:hover {
@@ -268,6 +283,16 @@ const MiniBlock = styled.div`
   align-items: flex-start;
   justify-content: flex-start;
   width: 80vw;
+`;
+
+const MiniBlockRed = styled.div`
+  display: flex;
+  margin: 10px 50px;
+  padding: 10px;
+  align-items: flex-start;
+  justify-content: flex-start;
+  width: 80vw;
+  border: 1px solid red;
 `;
 
 const ProductImage = styled.img`

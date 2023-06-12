@@ -52,7 +52,7 @@ const HomePage = () => {
   return (
     <div>
       <Layout>
-        <Posts images={images} />
+        <Posts posts={images} />
         <Menu
           title="Меню"
           options={options}

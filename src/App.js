@@ -12,6 +12,7 @@ import HomeAdminPage from "./Admin/Pages/HomeAdminPage";
 import AdminProductsPage from "./Admin/Pages/AdminProductsPage";
 import AdminUserPage from "./Admin/Pages/AdminUserPage";
 import AdminProductEditPage from "./Admin/Pages/AdminProductEditPage";
+import PostPage from "./Pages/PostPage";
 function App() {
   return (
     <>
@@ -22,6 +23,7 @@ function App() {
         <Route path="/delivery" element={<HomePage />} />
         <Route path="/politics" element={<HomePage />} />
         <Route path="/error" element={<ErrorPage />} />
+        <Route path="/post/:id" element={<PostPage />} />
 
         {/* Admins routes */}
         <Route path="/admin/register" element={<RegisterPage />} />

@@ -1,11 +1,6 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "../../Utils/axios";
 
-// export const fetchProducts = createAsyncThunk(
-//   "products/fetchProducts",
-//   async () => await axios.get("/products")
-// );
-
 export const fetchProducts = createAsyncThunk(
   "products/fetchProducts",
   async () => {
@@ -23,10 +18,15 @@ export const fetchOneProduct = createAsyncThunk(
   }
 );
 
-// export const fetchRemoveProduct = createAsyncThunk(
-//   "products/fetchRemoveProduct",
-//   async (id) => axios.delete(`/auth/products/${id}`)
-// );
+export const updateProduct = createAsyncThunk(
+  "products/updateProduct",
+  async ({ id, productData }) => {
+    const response = await axios.patch(`/auth/products/${id}`, productData);
+    console.log(response.data);
+    return response.data;
+  }
+);
+
 export const fetchRemoveProduct = createAsyncThunk(
   "products/fetchRemoveProduct",
   async (id) => {
@@ -120,6 +120,18 @@ const productsSlice = createSlice({
       state.product.status = "loaded";
     },
     [fetchOneProduct.rejected]: (state) => {
+      state.product = [];
+      state.product.status = "error";
+    },
+    [updateProduct.pending]: (state) => {
+      state.product = [];
+      state.product.status = "loading";
+    },
+    [updateProduct.fulfilled]: (state, action) => {
+      state.product = action.payload;
+      state.product.status = "loaded";
+    },
+    [updateProduct.rejected]: (state) => {
       state.product = [];
       state.product.status = "error";
     },
