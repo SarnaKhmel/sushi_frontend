@@ -16,6 +16,7 @@ import { useState, useEffect } from "react";
 
 import { fetchProducts } from "../Redux/slices/products";
 import { useDispatch, useSelector } from "react-redux";
+
 const HomePage = () => {
   const [filter, setFilter] = useState("");
   const [sort, setSort] = useState("");
@@ -35,11 +36,19 @@ const HomePage = () => {
 
   const dispatch = useDispatch();
   let products = useSelector((state) => state.products.products);
+  const [testData, setTestData] = useState([]);
   useEffect(() => {
     dispatch(fetchProducts());
+
+    // axios
+    //   .get("https://sushiwithlove-1-h4703717.deta.app/products")
+    //   .then((response) => setTestData(response.data))
+    //   .catch((error) => console.log(error));
   }, [dispatch]);
 
-  console.log(products.items);
+  console.log(products);
+
+  // console.log(products.items);
 
   const setFilterOption = (type) => {
     setFilter(type);
