@@ -15,40 +15,24 @@ import Products from "../Components/Products/Products";
 import { useState, useEffect } from "react";
 
 import { fetchProducts } from "../Redux/slices/products";
+import { fetchPosts } from "../Redux/slices/posts";
+
 import { useDispatch, useSelector } from "react-redux";
 
 const HomePage = () => {
   const [filter, setFilter] = useState("");
   const [sort, setSort] = useState("");
 
-  // const [prodRedux, setprodRedux] = useState([]);
-
-  // let productsAPI = useSelector((state) => state.products.products);
-  // console.log(productsAPI);
-  // const dispatch = useDispatch();
-  // const { status, error } = useSelector((state) => state.products);
-  // const stateTest = useSelector((state) => state.products.products);
-  // useEffect(() => {
-  //   dispatch(fetchProducts());
-  // }, [dispatch]);
-
-  //console.log("stateTest", stateTest);
-
   const dispatch = useDispatch();
   let products = useSelector((state) => state.products.products);
-  const [testData, setTestData] = useState([]);
-  useEffect(() => {
-    dispatch(fetchProducts());
+  let posts = useSelector((state) => state.posts.posts);
 
-    // axios
-    //   .get("https://sushiwithlove-1-h4703717.deta.app/products")
-    //   .then((response) => setTestData(response.data))
-    //   .catch((error) => console.log(error));
+  useEffect(() => {
+    dispatch(fetchPosts());
+    dispatch(fetchProducts());
   }, [dispatch]);
 
-  console.log(products);
-
-  // console.log(products.items);
+  console.log(posts);
 
   const setFilterOption = (type) => {
     setFilter(type);
@@ -61,7 +45,7 @@ const HomePage = () => {
   return (
     <div>
       <Layout>
-        <Posts posts={images} />
+        <Posts posts={posts.items} />
         <Menu
           title="Меню"
           options={options}

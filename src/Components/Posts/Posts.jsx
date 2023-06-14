@@ -23,7 +23,7 @@ const Posts = ({ posts }) => {
         <SlideContainer key={post._id} active={index === activeIndex}>
           <Link to={`/post/${post._id}`}>
             <Slide
-              src={post.picture}
+              src={post.imageUrl}
               alt={`Slide ${index}`}
               onClick={() => handleDotClick(index)}
               style={{ display: index === activeIndex ? "block" : "none" }}
