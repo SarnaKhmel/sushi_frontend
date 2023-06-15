@@ -5,7 +5,7 @@ import { useDispatch, useSelector } from "react-redux";
 import AddPost from "../AddPost/AddPost";
 import styled, { css } from "styled-components";
 import { fetchPosts } from "../../Redux/slices/posts";
-
+import PostTable from "../PostTable/PostTable";
 const AdminPostPage = () => {
   const dispatch = useDispatch();
   let posts = useSelector((state) => state.posts.posts);
@@ -49,7 +49,7 @@ const AdminPostPage = () => {
 
               {activeBlocks[1] && (
                 <Block $active={activeBlocks[1]}>
-                  {/* <ProductsTable options={menuOptions} products={products} /> */}
+                  <PostTable posts={posts} />
                 </Block>
               )}
             </Container>

@@ -15,9 +15,24 @@ export const fetchOnePosts = createAsyncThunk(
   }
 );
 
+// export const fetchRemovePost = createAsyncThunk(
+//   "posts/fetchRemovePost",
+//   async (id) => axios.delete(`/posts/${id}`)
+// );
+
 export const fetchRemovePost = createAsyncThunk(
-  "posts/fetchRemovePost",
-  async (id) => axios.delete(`/posts/${id}`)
+  "products/fetchRemovePost",
+  async (id) => {
+    await axios.delete(`/auth/posts/${id}`);
+    return id;
+  }
+);
+
+export const fetchRemovePostImage = createAsyncThunk(
+  "products/fetchRemovePostImage",
+  async (name) => {
+    await axios.delete(`/upload/posts/${name}`);
+  }
 );
 
 const initialState = {
@@ -65,6 +80,10 @@ const postsSlice = createSlice({
       state.posts.items = state.posts.items.filter(
         (obj) => obj._id !== action.meta.arg
       );
+    },
+    [fetchRemovePost.fulfilled]: (state, action) => {
+      const id = action.payload;
+      state.posts.items = state.posts.items.filter((obj) => obj._id !== id);
     },
   },
 });
