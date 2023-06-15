@@ -32,7 +32,7 @@ const HomePage = () => {
     dispatch(fetchProducts());
   }, [dispatch]);
 
-  console.log(posts);
+  // console.log(posts);
 
   const setFilterOption = (type) => {
     setFilter(type);

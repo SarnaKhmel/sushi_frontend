@@ -1,57 +1,21 @@
-import React from "react";
-import styled from "styled-components";
 import { useState } from "react";
 import { useDispatch } from "react-redux";
 import axios from "../../../src/Utils/axios";
 import toast, { Toaster } from "react-hot-toast";
-import { baseUrl } from "../../Utils/baseUrl";
+import styled, { css } from "styled-components";
 
-import { updateProduct } from "../../Redux/slices/products";
-
-const Product = ({ product }) => {
+import { uploadProductImG, createProduct } from "../../Redux/slices/products";
+const AddPost = () => {
   const [selectedFile, setSelectedFile] = useState(null);
-  const [imageUrl, setImageUrl] = useState(product.imageUrl);
+  const [imageUrl, setImageUrl] = useState(null);
   const [imageProductUrl, setImageProductUrl] = useState(null);
   const [checkUpload, setCheckUpload] = useState(false);
-
-  //test
-
-  const [currentImage, setCurrentImage] = useState(product.imageUrl);
-  const [newImage, setNewImage] = useState("");
-
-  const handleNewImageChangeA = (event) => {
-    // Виконується при зміні значення в полі вибору нового зображення
-    const file = event.target.files[0];
-    const reader = new FileReader();
-
-    reader.onloadend = () => {
-      // Оновлюємо стан компонента з новим зображенням
-      setNewImage(reader.result);
-    };
-
-    if (file) {
-      // Зчитуємо вибране зображення
-      reader.readAsDataURL(file);
-    }
-    handleFileSelect(file);
-  };
-
-  //
+  const [checkUploadPost, setCheckUploadPost] = useState(false);
   const dispatch = useDispatch();
   const notify = (text) => toast(text);
-  const {
-    name = "",
-    text = "",
-    type = "",
-    sale = false,
-    weight = "",
-    price = "",
-    old_price = "",
-  } = product || {};
 
-  // console.log("_id", product._id);
-  const handleFileSelect = (file) => {
-    //const file = event.target.files[0];
+  const handleFileSelect = (event) => {
+    const file = event.target.files[0];
     if (file && /\.(png|jpe?g)$/i.test(file.name)) {
       const newName = `${Date.now()}_${file.name}`;
       const renamedFile = new File([file], newName, { type: file.type });
@@ -65,13 +29,13 @@ const Product = ({ product }) => {
   const handleFileUpload = () => {
     const formData = new FormData();
     formData.append("image", selectedFile);
+
     axios
       .post("/upload/products", formData)
       .then((response) => {
-        console.log(response);
+        // console.log(response);
         setImageUrl(response.data.imageUrl);
         setImageProductUrl(response.data.url);
-        notify("Зображення звантажено");
         setCheckUpload(true);
       })
       .catch((error) => {
@@ -79,17 +43,14 @@ const Product = ({ product }) => {
         setCheckUpload(false);
       });
   };
-
   const [formFields, setFormFields] = useState({
-    _id: product._id,
-    name: product.name,
-    text: product.text,
-    type: product.type,
-    sale: product.sale,
-    weight: product.weight,
-    price: product.price,
-    old_price: product.old_price,
-    week_sale: product.week_sale,
+    name: "",
+    text: "",
+    type: "set",
+    sale: false,
+    weight: "",
+    price: "",
+    old_price: "",
   });
   const handleFormFieldChange = (event) => {
     const fieldName = event.target.name;
@@ -99,42 +60,34 @@ const Product = ({ product }) => {
       [fieldName]: fieldValue,
     }));
   };
-  const handleFormSubmit = (event, id) => {
+  const handleFormSubmit = (event) => {
     event.preventDefault();
+    if (imageProductUrl === null) {
+      return notify("‼ Завантажте зображення!");
+    } else {
+      const productData = {
+        imageUrl: imageProductUrl,
+        name: formFields.name,
+        price: formFields.price,
+        old_price: formFields.old_price,
+        sale: formFields.sale,
+        text: formFields.text,
+        type: formFields.type,
+        weight: formFields.weight,
+        week_sale: false,
+      };
+      console.log(productData);
 
-    const productData = {
-      _id: product._id,
-      imageUrl: product.imageUrl,
-      name: formFields.name,
-      price: formFields.price,
-      old_price: formFields.old_price,
-      sale: formFields.sale,
-      text: formFields.text,
-      type: formFields.type,
-      weight: formFields.weight,
-      week_sale: false,
-    };
-    // console.log({ id: product._id, productData: productData });
-
-    dispatch(updateProduct({ id: productData._id, productData: productData }))
-      .then((data) => {
-        notify("👍 Продукт оновлено!");
-        window.location.reload();
-      })
-      .catch((error) => {
-        console.log(error);
-        notify("❌ Помилка при оновленні продукту");
-      });
-
-    // axios
-    //   .post("/auth/products", productData)
-    //   .then((response) => {
-    //     console.log(response);
-    //     notify("👍 Товар додано!");
-    //   })
-    //   .catch((error) => {
-    //     console.log(error);
-    //   });
+      axios
+        .post("/auth/products", productData)
+        .then((response) => {
+          console.log(response);
+          notify("👍 Товар додано!");
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+    }
   };
   const handleClearImage = () => {
     setSelectedFile(null);
@@ -155,43 +108,18 @@ const Product = ({ product }) => {
     formFields.old_price = "";
     notify("Форму очищено");
   };
-
-  // console.log(product);
   return (
     <AddProductBlock>
       <AddProductImage>
         <h3>Крок 1 завантажити зображення:</h3>
-        <MiniBlockImage>
-          <ImageAddBlock>
-            {!checkUpload && (
-              <>
-                <ProductImage
-                  src={`${baseUrl}${currentImage}`}
-                  alt="Зображення"
-                />
-
-                <input
-                  type="file"
-                  accept="image/*"
-                  onChange={handleNewImageChangeA}
-                />
-              </>
-            )}
-          </ImageAddBlock>
-
-          {newImage && (
-            <ImageAddBlock>
-              <ProductImage src={newImage} alt="Нове зображення" />
-
-              {!checkUpload && (
-                <button onClick={handleFileUpload}>
-                  Завантажити нове зображення
-                </button>
-              )}
-            </ImageAddBlock>
-          )}
-        </MiniBlockImage>
-        <MiniBlock></MiniBlock>
+        <MiniBlock>
+          <input type="file" onChange={handleFileSelect} />
+          {imageUrl && <ProductImage src={imageUrl} alt="Uploaded" />}
+        </MiniBlock>
+        <MiniBlock>
+          {!checkUpload && <Btn onClick={handleFileUpload}>Upload</Btn>}
+          {imageUrl && <Btn onClick={handleClearImage}>Clear</Btn>}
+        </MiniBlock>
       </AddProductImage>
       <AddProductForm onSubmit={handleFormSubmit}>
         <h3>Крок 2 завантажити поля:</h3>
@@ -242,6 +170,7 @@ const Product = ({ product }) => {
             value={formFields.weight}
             onChange={handleFormFieldChange}
             placeholder="Вага продукту"
+            required
           />
         </MiniBlock>
 
@@ -253,6 +182,7 @@ const Product = ({ product }) => {
             value={formFields.price}
             onChange={handleFormFieldChange}
             placeholder="Ціна продукту"
+            required
           />
         </MiniBlock>
         <br />
@@ -263,7 +193,7 @@ const Product = ({ product }) => {
           <Input
             type="checkbox"
             name="sale"
-            value={sale}
+            value={formFields.sale}
             onChange={handleFormFieldChange}
           />
         </MiniBlock>
@@ -280,30 +210,15 @@ const Product = ({ product }) => {
         </MiniBlock>
         <MiniBlock>
           <Btn className="btn-create">Створити</Btn>
+          <Btn className="btn-del" type="reset" onClick={handleClearForm}>
+            Очистити
+          </Btn>
         </MiniBlock>
-        <br />
-        <br />
-        <br />
-        <MiniBlockRed>
-          <Label htmlFor="week_sale">8. Товар тижня:</Label>
-          <Input
-            type="checkbox"
-            name="week_sale"
-            value={formFields.sale}
-            onChange={handleFormFieldChange}
-          />
-        </MiniBlockRed>
       </AddProductForm>
       <Toaster position="bottom-right" reverseOrder={false} />
     </AddProductBlock>
   );
 };
-
-const Btn = styled.button`
-  &:hover {
-    color: #007bff;
-  }
-`;
 
 const AddProductBlock = styled.div`
   margin: 20px 50px;
@@ -331,32 +246,6 @@ const MiniBlock = styled.div`
   width: 80vw;
 `;
 
-const MiniBlockImage = styled.div`
-  display: flex;
-  margin: 10px 50px;
-  align-items: center;
-  justify-content: center;
-  width: 80vw;
-`;
-const ImageAddBlock = styled.div`
-  display: inline-block;
-  margin: 10px 50px;
-  display: inline-flex;
-  align-items: center;
-  justify-content: space-around;
-  width: 30vw;
-`;
-
-const MiniBlockRed = styled.div`
-  display: flex;
-  margin: 10px 50px;
-  padding: 10px;
-  align-items: flex-start;
-  justify-content: flex-start;
-  width: 80vw;
-  border: 1px solid red;
-`;
-
 const ProductImage = styled.img`
   height: 200px;
   width: 200px;
@@ -376,5 +265,10 @@ const Select = styled.select`
 `;
 
 const Text = styled.p``;
+const Btn = styled.button`
+  &:hover {
+    color: #007bff;
+  }
+`;
 
-export default Product;
+export default AddPost;
