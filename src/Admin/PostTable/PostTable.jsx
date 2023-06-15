@@ -49,18 +49,12 @@ const PostTable = ({ posts }) => {
             <Tr key={index}>
               <Td>{index + 1}.</Td>
               <Td>
-                <Image src={`${item.imageUrl}`} alt={item.name} />
+                <Image src={`${baseUrl}${item.imageUrl}`} alt={item.title} />
               </Td>
-
+              {/* {baseUrl}${item.imageUrl} */}
               <Td>{item.title}</Td>
-              <Td>
-                {item.text} Lorem, ipsum dolor sit amet consectetur adipisicing
-                elit. Laudantium rem ab est iure, quibusdam, perferendis dolore
-                molestias nulla dolores facilis deleniti quae reprehenderit
-                facere amet, fugit tenetur sunt cupiditate voluptate.
-              </Td>
+              <Td>{item.text}</Td>
               <Td>{item.viewsCount}</Td>
-
               <Td>
                 <button
                   onClick={() => {

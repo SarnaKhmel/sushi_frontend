@@ -9,13 +9,14 @@ import PostTable from "../PostTable/PostTable";
 const AdminPostPage = () => {
   const dispatch = useDispatch();
   let posts = useSelector((state) => state.posts.posts);
+  const [update, setUpdate] = useState(false);
+
   useEffect(() => {
     // dispatch(fetchProducts());
     dispatch(fetchPosts());
-  }, [dispatch]);
+  }, [dispatch, update]);
 
   const [activeBlocks, setActiveBlocks] = useState([false, false, false]);
-
   const toggleBlock = (blockNumber) => {
     setActiveBlocks((prevActiveBlocks) => {
       const newActiveBlocks = [...prevActiveBlocks];
@@ -24,7 +25,7 @@ const AdminPostPage = () => {
     });
   };
 
-  console.log(posts);
+  // console.log(posts);
   return (
     <>
       <LayoutAdmin>
@@ -36,6 +37,7 @@ const AdminPostPage = () => {
                 <Label
                   onClick={() => {
                     toggleBlock(1);
+                    setUpdate(!update);
                   }}>
                   Всі пости
                 </Label>

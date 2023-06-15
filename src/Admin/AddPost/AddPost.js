@@ -31,7 +31,7 @@ const AddPost = () => {
     formData.append("image", selectedFile);
 
     axios
-      .post("/upload/products", formData)
+      .post("/upload/posts", formData)
       .then((response) => {
         // console.log(response);
         setImageUrl(response.data.imageUrl);
@@ -44,13 +44,8 @@ const AddPost = () => {
       });
   };
   const [formFields, setFormFields] = useState({
-    name: "",
+    title: "",
     text: "",
-    type: "set",
-    sale: false,
-    weight: "",
-    price: "",
-    old_price: "",
   });
   const handleFormFieldChange = (event) => {
     const fieldName = event.target.name;
@@ -67,22 +62,16 @@ const AddPost = () => {
     } else {
       const productData = {
         imageUrl: imageProductUrl,
-        name: formFields.name,
-        price: formFields.price,
-        old_price: formFields.old_price,
-        sale: formFields.sale,
+        title: formFields.title,
         text: formFields.text,
-        type: formFields.type,
-        weight: formFields.weight,
-        week_sale: false,
       };
-      console.log(productData);
+      //  console.log(productData);
 
       axios
-        .post("/auth/products", productData)
+        .post("/auth/posts", productData)
         .then((response) => {
           console.log(response);
-          notify("👍 Товар додано!");
+          notify("👍 Пост додано!");
         })
         .catch((error) => {
           console.log(error);
@@ -99,13 +88,9 @@ const AddPost = () => {
       handleClearImage();
     }
     formFields.imageUrl = "";
-    formFields.name = "";
+    formFields.title = "";
     formFields.text = "";
-    formFields.type = "set";
-    formFields.sale = false;
-    formFields.weight = "";
-    formFields.price = "";
-    formFields.old_price = "";
+
     notify("Форму очищено");
   };
   return (
@@ -124,11 +109,11 @@ const AddPost = () => {
       <AddProductForm onSubmit={handleFormSubmit}>
         <h3>Крок 2 завантажити поля:</h3>
         <MiniBlock>
-          <Label htmlFor="name">1. Назва продукту:</Label>
+          <Label htmlFor="name">1. Назва поста:</Label>
           <Input
             type="text"
-            name="name"
-            placeholder="Назва продукту"
+            name="title"
+            placeholder="Назва поста"
             value={formFields.name}
             onChange={handleFormFieldChange}
             required
@@ -136,76 +121,14 @@ const AddPost = () => {
         </MiniBlock>
 
         <MiniBlock>
-          <Label htmlFor="text">2. Опис продукту:</Label>
+          <Label htmlFor="text">2. Текст поста:</Label>
           <Input
             type="text"
             name="text"
-            placeholder="Опис продукту"
+            placeholder="Опис поста"
             value={formFields.text}
             onChange={handleFormFieldChange}
             required
-          />
-        </MiniBlock>
-
-        <MiniBlock>
-          <Label htmlFor="type">3. Тип селектор зроби продукту:</Label>
-          <Select
-            name="type"
-            value={formFields.type}
-            onChange={handleFormFieldChange}>
-            <option value="set">Cет</option> <option value="rolls">Рол</option>
-            <option value="sushi">Суші</option>{" "}
-            <option value="soup">Суп</option>
-            <option value="hot">Гарячий</option>
-            <option value="drinks">Напій</option>
-            <option value="adds">Додаток</option>
-          </Select>
-        </MiniBlock>
-
-        <MiniBlock>
-          <Label htmlFor="weight">4. Вага продукту:</Label>
-          <Input
-            type="number"
-            name="weight"
-            value={formFields.weight}
-            onChange={handleFormFieldChange}
-            placeholder="Вага продукту"
-            required
-          />
-        </MiniBlock>
-
-        <MiniBlock>
-          <Label htmlFor="price">5. Ціна продукту:</Label>
-          <Input
-            type="number"
-            name="price"
-            value={formFields.price}
-            onChange={handleFormFieldChange}
-            placeholder="Ціна продукту"
-            required
-          />
-        </MiniBlock>
-        <br />
-        <br />
-        <br />
-        <MiniBlock>
-          <Label htmlFor="sale">6. Акція на продукт:</Label>
-          <Input
-            type="checkbox"
-            name="sale"
-            value={formFields.sale}
-            onChange={handleFormFieldChange}
-          />
-        </MiniBlock>
-
-        <MiniBlock>
-          <Label htmlFor="old_price">7. Акційна ціна продукту:</Label>
-          <Input
-            type="number"
-            name="old_price"
-            value={formFields.old_price}
-            onChange={handleFormFieldChange}
-            placeholder="Акційна ціна продукту"
           />
         </MiniBlock>
         <MiniBlock>
