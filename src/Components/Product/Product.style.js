@@ -33,10 +33,14 @@ export const ImageBlock = styled.div`
 
 export const TitleBlock = styled.div`
   height: 200px;
-  padding: 10px;
+  padding: 10px 20px;
+
   background: linear-gradient(104.51deg, #161515 0.89%, #313131 98.21%);
   box-shadow: -10px 100px 4px rgba(0, 0, 0, 0.25);
   border-radius: 0px 0px 10px 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 
   @media (max-width: 500px) {
     background: transparent;
@@ -126,8 +130,8 @@ export const Sale = styled.div`
 `;
 export const Name = styled.div`
   font-style: normal;
-  font-weight: 600;
-  font-size: 14px;
+  font-weight: 700;
+  font-size: 16px;
   line-height: 17px;
 
   color: #ffffff;

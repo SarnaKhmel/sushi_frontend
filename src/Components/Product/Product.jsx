@@ -33,11 +33,10 @@ const Product = ({ product }) => {
       </ImageBlock>
       <TitleBlock>
         <Label1>
-          <Weight>{product.weight}</Weight>
+          <Weight>{product.weight}г.</Weight>
 
           <SaleBlock>
             {product.sale === true ? <Sale>Акція</Sale> : <></>}
-            <p> {product.sale === true ? "true" : "false"}</p>
           </SaleBlock>
         </Label1>
         <Label2>

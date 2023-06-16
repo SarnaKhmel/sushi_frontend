@@ -59,7 +59,7 @@ const AddProduct = () => {
   const handleFormFieldChange = (event) => {
     const fieldName = event.target.name;
     const fieldValue = event.target.value;
-    if (fieldName === "sale") console.log(fieldValue);
+    // if (fieldName === "sale") console.log(fieldValue);
     setFormFields((prevFormFields) => ({
       ...prevFormFields,
       [fieldName]: fieldValue,
@@ -81,12 +81,12 @@ const AddProduct = () => {
         weight: formFields.weight,
         week_sale: false,
       };
-      console.log(productData);
+      // console.log(productData);
 
       axios
         .post("/auth/products", productData)
         .then((response) => {
-          console.log(response);
+          // console.log(response);
           notify("👍 Товар додано!");
         })
         .catch((error) => {
