@@ -28,7 +28,29 @@ import basket from "../../Images/basket.svg";
 import BottomMenu from "../BottomMenu/BottomMenu";
 import ContactModal from "../Modals/ContactsModal/ContactModal";
 
+import { Link as ScrollLink } from "react-scroll";
+
 const StyledLink = styled(Link)`
+  color: blue;
+  text-decoration: none;
+  color: white;
+  margin-right: 50px;
+
+  &:hover {
+    text-decoration: underline;
+  }
+
+  @media (min-width: 340px) and (max-width: 767px) {
+    margin-right: 30px;
+  }
+  @media (min-width: 768px) and (max-width: 1023px) {
+    margin-right: 20px;
+  }
+  @media (min-width: 1024px) and (max-width: 1919px) {
+    margin-right: 30px;
+  }
+`;
+const StyledScrollLink = styled(ScrollLink)`
   color: blue;
   text-decoration: none;
   color: white;
@@ -74,7 +96,9 @@ const Header = () => {
           <LinkBlock>
             <StyledLink to="/about">Про нас</StyledLink>
             <StyledLink>Доставка</StyledLink>
-            <LinkToElement>Меню</LinkToElement>
+            <StyledScrollLink to="menu" smooth={true} duration={700}>
+              Меню
+            </StyledScrollLink>
             <LinkToElement onClick={handleOpenContactsModal}>
               Контакти
             </LinkToElement>

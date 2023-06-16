@@ -15,7 +15,7 @@ const Menu = ({ title, options, setFilterOption }) => {
     setFilterOption("all");
   }, []);
   return (
-    <MenuBlock>
+    <MenuBlock id="menu">
       {title}
       <Items>
         {options.map((option, index) => (
