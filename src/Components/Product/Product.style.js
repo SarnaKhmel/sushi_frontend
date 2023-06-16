@@ -46,6 +46,7 @@ export const TitleBlock = styled.div`
     background: transparent;
     display: flex;
     flex-direction: column;
+    padding: 10px 0px;
   }
 `;
 

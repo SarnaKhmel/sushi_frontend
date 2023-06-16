@@ -156,8 +156,8 @@ export const OrderPrice = styled.div`
 
 export const ImageLogo = styled.img`
   @media (min-width: 340px) and (max-width: 767px) {
-    height: 60px;
-    width: 80px;
+    height: 40px;
+    width: 60px;
   }
   @media (min-width: 768px) and (max-width: 1023px) {
     height: 60px;
@@ -170,8 +170,8 @@ export const ImageLogo = styled.img`
 `;
 export const ImageTitle = styled.img`
   @media (min-width: 340px) and (max-width: 767px) {
-    height: 60px;
-    width: 80px;
+    height: 40px;
+    width: 60px;
   }
   @media (min-width: 768px) and (max-width: 1023px) {
     height: 60px;
