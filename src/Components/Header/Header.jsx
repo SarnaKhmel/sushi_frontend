@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import {
   HeaderBlock,
   HeaderItem,
@@ -26,6 +26,7 @@ import styled from "styled-components";
 import basket from "../../Images/basket.svg";
 
 import BottomMenu from "../BottomMenu/BottomMenu";
+import ContactModal from "../Modals/ContactsModal/ContactModal";
 
 const StyledLink = styled(Link)`
   color: blue;
@@ -49,6 +50,16 @@ const StyledLink = styled(Link)`
 `;
 
 const Header = () => {
+  const [openContactsModal, setOpenContactsModal] = useState(false);
+
+  const handleOpenContactsModal = () => {
+    setOpenContactsModal(!openContactsModal);
+  };
+
+  const handleCloseContactsModal = () => {
+    setOpenContactsModal(false);
+  };
+
   return (
     <>
       <HeaderBlock>
@@ -64,7 +75,9 @@ const Header = () => {
             <StyledLink to="/about">Про нас</StyledLink>
             <StyledLink>Доставка</StyledLink>
             <LinkToElement>Меню</LinkToElement>
-            <LinkToElement>Контакти</LinkToElement>
+            <LinkToElement onClick={handleOpenContactsModal}>
+              Контакти
+            </LinkToElement>
           </LinkBlock>
           <LinkBlockModal>
             <IoMenu size={24} />
@@ -88,6 +101,13 @@ const Header = () => {
       </HeaderBlock>
 
       <BottomMenu />
+
+      {openContactsModal === true ? (
+        <ContactModal
+          isOpen={openContactsModal}
+          onClose={handleCloseContactsModal}
+        />
+      ) : null}
     </>
   );
 };
