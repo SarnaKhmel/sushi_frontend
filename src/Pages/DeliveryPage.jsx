@@ -36,15 +36,13 @@ const PageBlock = styled.div`
   align-items: flex-start;
   margin-top: 50px;
   margin-bottom: 50px;
-  width: 1140px;
+  width: 80vw;
+  max-width: 1140px;
 `;
 const Label = styled.label`
   width: 400px;
-  min-width: 300px;
+  min-width: 150px;
   margin-left: 50px;
-
-  width: 401px;
-  height: 39px;
 
   font-style: normal;
   font-weight: 600;
@@ -52,10 +50,19 @@ const Label = styled.label`
   line-height: 39px;
 
   color: #ffffff;
+
+  @media (max-width: 500px) {
+    margin-left: 0px;
+    font-size: 32px;
+    line-height: 39px;
+    width: 80vw;
+    max-width: 500px;
+  }
 `;
 const Text = styled.p`
   width: 80vw;
   height: 95px;
+  max-width: 1140px;
 
   font-family: "Montserrat";
   font-style: normal;
@@ -64,6 +71,7 @@ const Text = styled.p`
   line-height: 29px;
 
   color: #ffffff;
+  margin-bottom: 70px;
 `;
 
 export default DeliveryPage;

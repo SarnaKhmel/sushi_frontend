@@ -9,6 +9,7 @@ import {
   GreenBlock,
   YellowBlock,
   Info,
+  Iframe,
 } from "./Delivery.styles";
 const Delivery = () => {
   return (
@@ -30,10 +31,7 @@ const Delivery = () => {
           </Line>
         </InfoBlock>
         <MapBlock>
-          <iframe
-            src="https://www.google.com/maps/d/u/0/embed?mid=1stv2s4gZ0HnC7rfZz2FqxZxtB9fh0DE&ehbc=2E312F"
-            width="100%"
-            height="100%"></iframe>
+          <Iframe src="https://www.google.com/maps/d/u/0/embed?mid=1stv2s4gZ0HnC7rfZz2FqxZxtB9fh0DE&ehbc=2E312F"></Iframe>
         </MapBlock>
       </Block>
     </DeliveryBlock>

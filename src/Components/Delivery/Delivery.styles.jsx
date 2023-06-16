@@ -6,19 +6,13 @@ export const DeliveryBlock = styled.div`
   align-items: center;
   justify-content: center;
   margin-bottom: 50px;
-  @media (max-width: 500px) {
-    width: 100vw;
-    margin-top: 50px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-  }
 `;
 
 export const Block = styled.div`
   width: 80vw;
-  height: 60vh;
+  max-width: 1140px;
+
+  height: 570px;
   color: white;
 
   display: flex;
@@ -28,14 +22,15 @@ export const Block = styled.div`
   background: #151515;
   box-shadow: 0px 1px 7px rgba(255, 255, 255, 0.25);
   border-radius: 10px;
-
   @media (max-width: 500px) {
-    width: 80vw;
-    height: 60vh;
+    margin-top: 150px;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    background: transparent;
+    box-shadow: none;
+    height: 100%;
   }
 `;
 
@@ -51,20 +46,31 @@ export const InfoBlock = styled.div`
   flex-direction: column;
 
   padding-left: 50px;
+  @media (max-width: 500px) {
+    padding-left: none;
+    width: 100%;
+  }
 `;
 
 export const MapBlock = styled.div`
-  border: 1px solid red;
-
   display: flex;
   align-items: center;
   justify-content: center;
 
   height: 95%;
   width: 55%;
+  @media (max-width: 500px) {
+    margin-top: 30px;
+    height: 275px;
+    width: 98vw;
+    border-radius: 10px;
+  }
 `;
 
-export const Header = styled.h2``;
+export const Header = styled.h2`
+  @media (max-width: 500px) {
+  }
+`;
 
 export const Line = styled.div`
   display: inline-flex;
@@ -112,4 +118,13 @@ export const Info = styled.div`
   color: #ffffff;
 
   margin-left: 20px;
+`;
+
+export const Iframe = styled.iframe`
+  border-radius: 10px;
+
+  @media (max-width: 500px) {
+    width: 100%;
+    height: 100%;
+  }
 `;
