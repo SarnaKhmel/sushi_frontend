@@ -11,6 +11,11 @@ const AddProduct = () => {
   const [imageProductUrl, setImageProductUrl] = useState(null);
   const [checkUpload, setCheckUpload] = useState(false);
   const [checkUploadPost, setCheckUploadPost] = useState(false);
+
+  const [isCheckedSale, setIsCheckedSale] = useState(false);
+  const handleInputChange = () => {
+    setIsCheckedSale(!isCheckedSale);
+  };
   const dispatch = useDispatch();
   const notify = (text) => toast(text);
 
@@ -33,7 +38,6 @@ const AddProduct = () => {
     axios
       .post("/upload/products", formData)
       .then((response) => {
-        // console.log(response);
         setImageUrl(response.data.imageUrl);
         setImageProductUrl(response.data.url);
         setCheckUpload(true);
@@ -47,7 +51,7 @@ const AddProduct = () => {
     name: "",
     text: "",
     type: "set",
-    sale: false,
+    sale: isCheckedSale,
     weight: "",
     price: "",
     old_price: "",
@@ -55,6 +59,7 @@ const AddProduct = () => {
   const handleFormFieldChange = (event) => {
     const fieldName = event.target.name;
     const fieldValue = event.target.value;
+    if (fieldName === "sale") console.log(fieldValue);
     setFormFields((prevFormFields) => ({
       ...prevFormFields,
       [fieldName]: fieldValue,
@@ -70,7 +75,7 @@ const AddProduct = () => {
         name: formFields.name,
         price: formFields.price,
         old_price: formFields.old_price,
-        sale: formFields.sale,
+        sale: isCheckedSale,
         text: formFields.text,
         type: formFields.type,
         weight: formFields.weight,
@@ -102,7 +107,7 @@ const AddProduct = () => {
     formFields.name = "";
     formFields.text = "";
     formFields.type = "set";
-    formFields.sale = false;
+    formFields.sale = setIsCheckedSale(false);
     formFields.weight = "";
     formFields.price = "";
     formFields.old_price = "";
@@ -190,10 +195,19 @@ const AddProduct = () => {
         <br />
         <MiniBlock>
           <Label htmlFor="sale">6. Акція на продукт:</Label>
+          {/* <Input
+            type="checkbox"
+            name="sale"
+            checked={formFields.sale}
+            value={formFields.sale}
+            onChange={handleFormFieldChange}
+          /> */}
           <Input
             type="checkbox"
             name="sale"
-            value={formFields.sale}
+            checked={isCheckedSale}
+            value={isCheckedSale}
+            onClick={handleInputChange}
             onChange={handleFormFieldChange}
           />
         </MiniBlock>
