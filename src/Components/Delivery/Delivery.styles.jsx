@@ -6,11 +6,19 @@ export const DeliveryBlock = styled.div`
   align-items: center;
   justify-content: center;
   margin-bottom: 50px;
+  @media (max-width: 500px) {
+    width: 100vw;
+    margin-top: 50px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
 `;
 
 export const Block = styled.div`
-  width: 1140px;
-  height: 570px;
+  width: 80vw;
+  height: 60vh;
   color: white;
 
   display: flex;
@@ -20,6 +28,15 @@ export const Block = styled.div`
   background: #151515;
   box-shadow: 0px 1px 7px rgba(255, 255, 255, 0.25);
   border-radius: 10px;
+
+  @media (max-width: 500px) {
+    width: 80vw;
+    height: 60vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
 `;
 
 export const InfoBlock = styled.div`

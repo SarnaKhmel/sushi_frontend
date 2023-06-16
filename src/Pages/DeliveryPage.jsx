@@ -54,7 +54,7 @@ const Label = styled.label`
   color: #ffffff;
 `;
 const Text = styled.p`
-  width: 1159px;
+  width: 80vw;
   height: 95px;
 
   font-family: "Montserrat";
