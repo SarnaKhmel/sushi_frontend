@@ -36,6 +36,9 @@ export const Item = styled.div`
 
   color: rgba(255, 255, 255, 0.8);
   text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  &:nth-child(1) {
+    color: #ff4700;
+  }
 
   ${(props) =>
     props.isUnderlined &&

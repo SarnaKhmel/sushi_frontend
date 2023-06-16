@@ -12,6 +12,7 @@ export const ProductBlock = styled.div`
     width: 90vw;
     max-height: 160px;
     margin-top: 20px;
+    margin-bottom: 20px;
   }
 `;
 
@@ -46,7 +47,11 @@ export const TitleBlock = styled.div`
     background: transparent;
     display: flex;
     flex-direction: column;
-    padding: 10px 0px;
+    padding: 0px 0px;
+    padding-left: 10px;
+    ${"" /* justify-content: center; */}
+    ${"" /* border: 1px solid blue; */}
+    height: 132px;
   }
 `;
 
@@ -77,7 +82,7 @@ export const Label1 = styled.div`
   justify-content: space-between;
   @media (max-width: 500px) {
     order: 2;
-    margin-top: 10px;
+    margin-top: 0px;
   }
 `;
 export const Label2 = styled.div`
@@ -106,7 +111,7 @@ export const Label4 = styled.div`
   justify-content: space-between;
   @media (max-width: 500px) {
     order: 3;
-    margin-top: 10px;
+    margin-top: 0px;
     display: flex;
     flex-direction: column;
     align-items: flex-start;

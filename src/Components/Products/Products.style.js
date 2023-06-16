@@ -20,7 +20,7 @@ export const ProductsList = styled.div`
     width: 100vw;
     margin: 20px;
     display: flex;
-    align-items: center;
-    justify-content: center;
+    ${"" /* align-items: center; */}
+    ${"" /* justify-content: center; */}
   }
 `;
