@@ -122,7 +122,8 @@ export const Info = styled.div`
 
 export const Iframe = styled.iframe`
   border-radius: 10px;
-
+  width: 100%;
+  height: 100%;
   @media (max-width: 500px) {
     width: 100%;
     height: 100%;
