@@ -30,6 +30,9 @@ const LayoutAdmin = ({ children }) => {
               <StyledLink to="/admin/orders">Замовлення</StyledLink>
               {/* <StyledLink to="/admin/statistics">Статистика</StyledLink> */}
               <StyledLink to="/admin/me">Про мене</StyledLink>
+              <StyledLink to="https://www.google.com/maps/d/u/0/viewer?mid=1stv2s4gZ0HnC7rfZz2FqxZxtB9fh0DE&ll=49.8184077019921%2C23.938815850000026&z=12">
+                Мапа
+              </StyledLink>
               <Button onClick={onClickLogout} variant="contained" color="error">
                 Выйти
               </Button>

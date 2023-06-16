@@ -19,6 +19,7 @@ import { fetchPosts } from "../Redux/slices/posts";
 
 import { useDispatch, useSelector } from "react-redux";
 
+import Delivery from "../Components/Delivery/Delivery";
 const HomePage = () => {
   const [filter, setFilter] = useState("");
   const [sort, setSort] = useState("");
@@ -63,6 +64,7 @@ const HomePage = () => {
             products={products.items}
           />
         )}
+        <Delivery></Delivery>
       </Layout>
     </div>
   );
