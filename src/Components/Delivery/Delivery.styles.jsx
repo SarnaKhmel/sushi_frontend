@@ -76,17 +76,14 @@ export const Line = styled.div`
   display: inline-flex;
   align-items: center;
   justify-content: flex-start;
-  margin-bottom: 10px;
+  margin-bottom: 20px;
 
-  width: 297px;
-  height: 72px;
-  left: 69px;
-  top: 344px;
+  max-width: 400px;
 
   font-style: normal;
   font-weight: 300;
   font-size: 20px;
-  line-height: 24px;
+  line-height: 36px;
 
   color: #ffffff;
 `;
@@ -95,6 +92,8 @@ export const GreenBlock = styled.div`
   box-sizing: border-box;
   width: 61px;
   height: 37px;
+  min-width: 61px;
+  min-height: 37px;
 
   background: rgba(0, 253, 10, 0.4);
   border: 3px solid rgba(36, 255, 0, 0.6);
@@ -104,9 +103,22 @@ export const YellowBlock = styled.div`
   box-sizing: border-box;
   width: 61px;
   height: 37px;
+  min-width: 61px;
+  min-height: 37px;
 
   background: rgba(255, 153, 0, 0.4);
   border: 3px solid rgba(255, 153, 0, 0.6);
+`;
+
+export const RedBlock = styled.div`
+  box-sizing: border-box;
+  width: 61px;
+  height: 37px;
+  min-width: 61px;
+  min-height: 37px;
+
+  background: rgba(255, 30, 30, 0.4);
+  border: 3px solid rgba(255, 0, 0, 0.6);
 `;
 
 export const Info = styled.div`
