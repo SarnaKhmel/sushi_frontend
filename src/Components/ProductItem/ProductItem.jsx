@@ -1,9 +1,14 @@
 import React from "react";
-import { fetchProducts } from "../../Redux/slices/products";
 import { useDispatch, useSelector } from "react-redux";
-const ProductItem = () => {
+import { useEffect } from "react";
+import { fetchOneProduct } from "../../Redux/slices/products";
+
+import { ProductItemBlock } from "./ProductItem.styles";
+const ProductItem = ({ product }) => {
   //const product
-  return <div>ProductItem</div>;
+  console.log(product);
+
+  return <ProductItemBlock></ProductItemBlock>;
 };
 
 export default ProductItem;
