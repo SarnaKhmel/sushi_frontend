@@ -28,6 +28,7 @@ import basket from "../../Images/basket.svg";
 import BottomMenu from "../BottomMenu/BottomMenu";
 import ContactModal from "../Modals/ContactsModal/ContactModal";
 
+import MobileHeaderModal from "../MobileHeaderModal/MobileHeaderModal";
 import { Link as ScrollLink } from "react-scroll";
 
 const StyledLink = styled(Link)`
@@ -82,6 +83,15 @@ const Header = () => {
     setOpenContactsModal(false);
   };
 
+  const [openMobileModal, setMobileModal] = useState(false);
+  const handleOpenMobileModal = () => {
+    setMobileModal(!openMobileModal);
+  };
+
+  const handleCloseMobileModal = () => {
+    setMobileModal(false);
+  };
+
   return (
     <>
       <HeaderBlock>
@@ -105,7 +115,7 @@ const Header = () => {
               Контакти
             </LinkToElement>
           </LinkBlock>
-          <LinkBlockModal>
+          <LinkBlockModal onClick={handleOpenMobileModal}>
             <IoMenu size={24} />
           </LinkBlockModal>
           <ContactsBlock>
@@ -132,6 +142,14 @@ const Header = () => {
         <ContactModal
           isOpen={openContactsModal}
           onClose={handleCloseContactsModal}
+        />
+      ) : null}
+
+      {openMobileModal === true ? (
+        <MobileHeaderModal
+          isOpen={openMobileModal}
+          onClose={handleCloseMobileModal}
+          handleOpenContactsModal={handleOpenContactsModal}
         />
       ) : null}
     </>

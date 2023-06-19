@@ -1,19 +1,29 @@
 import styled, { css } from "styled-components";
 
 export const ContactModalBlock = styled.div`
-  position: absolute;
-  top: 130px;
-  right: 39vw;
-  width: 350px;
-  height: 250px;
+  position: fixed;
+  width: 218px;
+  height: 355px;
+  right: 10px;
+  top: 75px;
   display: flex;
-  flex-direction: column;
   justify-content: center;
   align-items: center;
-  z-index: 1000;
-  @media (max-width: 768px) {
-    right: 0;
-  }
+  z-index: 2000;
+  background: linear-gradient(
+    160.24deg,
+    rgba(10, 10, 10, 0.6) 0.78%,
+    rgba(40, 38, 38, 0.6) 98.97%
+  );
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  backdrop-filter: blur(2px);
+  /* Note: backdrop-filter has minimal browser support */
+  border-radius: 10px;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
 `;
 
 export const Diamond = styled.div`
@@ -66,5 +76,16 @@ export const CloseBlock = styled.div`
   cursor: pointer;
   &:hover {
     color: #ff4700;
+  }
+`;
+
+export const LinkToElement = styled.a`
+  text-decoration: none;
+  color: white;
+  white-space: nowrap;
+  margin-left: 50px;
+  margin-bottom: 10px;
+  &:hover {
+    text-decoration: underline;
   }
 `;
