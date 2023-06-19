@@ -229,7 +229,7 @@ export const Title = styled.div`
   @media (max-width: 768px) {
     text-align: left;
     font-style: normal;
-    font-weight: 600;
+    font-weight: 400;
     font-size: 14px;
     line-height: 17px;
   }
