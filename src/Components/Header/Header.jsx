@@ -35,7 +35,7 @@ const StyledLink = styled(Link)`
   text-decoration: none;
   color: white;
   margin-right: 50px;
-
+  white-space: nowrap;
   &:hover {
     text-decoration: underline;
   }
@@ -55,7 +55,7 @@ const StyledScrollLink = styled(ScrollLink)`
   text-decoration: none;
   color: white;
   margin-right: 50px;
-
+  white-space: nowrap;
   &:hover {
     text-decoration: underline;
   }

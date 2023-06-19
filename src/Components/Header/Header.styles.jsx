@@ -49,6 +49,23 @@ export const HeaderItem = styled.div`
 
 export const LogoBlock = styled.div`
   order: 0;
+
+  display: inline-flex;
+  @media (min-width: 340px) and (max-width: 767px) {
+    height: 74px;
+    width: 160px;
+  }
+  @media (min-width: 768px) and (max-width: 1023px) {
+    height: 95px;
+    width: 160px;
+  }
+  @media (min-width: 1024px) and (max-width: 1919px) {
+    height: 95px;
+    width: 140px;
+  }
+  @media (min-width: 1919px) {
+    height: 116px;
+  }
 `;
 export const LinkBlock = styled.div`
   color: white;
@@ -155,7 +172,9 @@ export const OrderPrice = styled.div`
 `;
 
 export const ImageLogo = styled.img`
-  @media (min-width: 340px) and (max-width: 767px) {
+  width: 50%;
+  ${
+    "" /* @media (min-width: 340px) and (max-width: 767px) {
     height: 40px;
     width: 60px;
   }
@@ -164,12 +183,15 @@ export const ImageLogo = styled.img`
     width: 80px;
   }
   @media (min-width: 1024px) and (max-width: 1919px) {
-    height: 80px;
-    width: 120px;
+    height: 60px;
+    width: 80px;
+  } */
   }
 `;
 export const ImageTitle = styled.img`
-  @media (min-width: 340px) and (max-width: 767px) {
+  width: 50%;
+  ${
+    "" /* @media (min-width: 340px) and (max-width: 767px) {
     height: 40px;
     width: 60px;
   }
@@ -178,8 +200,9 @@ export const ImageTitle = styled.img`
     width: 80px;
   }
   @media (min-width: 1024px) and (max-width: 1919px) {
-    height: 70px;
-    width: 90px;
+    height: 60px;
+    width: 80px;
+  } */
   }
 `;
 
@@ -218,6 +241,7 @@ export const LinkBlockModal = styled.div`
 `;
 
 export const ContactsBlockTitle = styled.div`
+  white-space: nowrap;
   @media (min-width: 340px) and (max-width: 767px) {
     display: none;
   }
@@ -235,7 +259,7 @@ export const LinkToElement = styled.a`
   text-decoration: none;
   color: white;
   margin-right: 50px;
-
+  white-space: nowrap;
   &:hover {
     text-decoration: underline;
   }
