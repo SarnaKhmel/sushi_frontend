@@ -5,15 +5,19 @@
   },
   {
     "name": "Сети",
-    "type": "sets"
+    "type": "set"
   },
   {
     "name": "Роли",
     "type": "rolls"
   },
   {
+    "name": "Суші",
+    "type": "sushi"
+  },
+  {
     "name": "Cупи",
-    "type": "soups"
+    "type": "soup"
   },
   {
     "name": "Теплі",
@@ -25,10 +29,10 @@
   },
   {
     "name": "Напої",
-    "type": "drinks"
+    "type": "drink"
   },
   {
     "name": "Додатки",
-    "type": "adds"
+    "type": "add"
   }
 ]

@@ -20,6 +20,7 @@ import { fetchPosts } from "../Redux/slices/posts";
 import { useDispatch, useSelector } from "react-redux";
 
 import Delivery from "../Components/Delivery/Delivery";
+
 const HomePage = () => {
   const [filter, setFilter] = useState("");
   const [sort, setSort] = useState("");
@@ -28,19 +29,68 @@ const HomePage = () => {
   let products = useSelector((state) => state.products.products);
   let posts = useSelector((state) => state.posts.posts);
 
+  const [filteredProducts, setFilteredProducts] = useState([]);
+
   useEffect(() => {
     dispatch(fetchPosts());
     dispatch(fetchProducts());
   }, [dispatch]);
 
-  // console.log(posts);
+  useEffect(() => {
+    if (filter === "sale") {
+      const filteredItems = products.items.filter((item) => item.sale === true);
+      setFilteredProducts(filteredItems);
+    } else if (filter !== "sale" && filter !== "") {
+      const filteredItems = products.items.filter(
+        (item) => item.type === filter
+      );
+      setFilteredProducts(filteredItems);
+    } else {
+      setFilteredProducts(products.items);
+    }
+  }, [products, filter]);
+
+  useEffect(() => {
+    switch (sort) {
+      case "price-up":
+        setFilteredProducts(
+          [...filteredProducts].sort((a, b) => a.price - b.price)
+        );
+        break;
+      case "price-down":
+        setFilteredProducts(
+          [...filteredProducts].sort((a, b) => b.price - a.price)
+        );
+        break;
+      case "popular-up":
+        setFilteredProducts(
+          [...filteredProducts].sort((a, b) => b.viewsCount - a.viewsCount)
+        );
+        break;
+      case "weight-up":
+        setFilteredProducts(
+          [...filteredProducts].sort((a, b) => a.weight - b.weight)
+        );
+        break;
+      case "weight-down":
+        setFilteredProducts(
+          [...filteredProducts].sort((a, b) => b.weight - a.weight)
+        );
+        break;
+      default:
+        setFilteredProducts(filteredProducts);
+        break;
+    }
+  }, [sort]);
 
   const setFilterOption = (type) => {
     setFilter(type);
+    // console.log(type);
   };
 
   const handleSelectedOption = (value) => {
     setSort(value);
+    // console.log(value);
   };
 
   return (
@@ -61,7 +111,7 @@ const HomePage = () => {
           <Products
             categories={filter}
             sorting={sort}
-            products={products.items}
+            products={filteredProducts}
           />
         )}
         <Delivery></Delivery>

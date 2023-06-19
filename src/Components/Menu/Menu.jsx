@@ -12,7 +12,7 @@ const Menu = ({ title, options, setFilterOption }) => {
 
   useEffect(() => {
     setUnderlined(0);
-    setFilterOption("all");
+    setFilterOption("sale");
   }, []);
   return (
     <MenuBlock id="menu">

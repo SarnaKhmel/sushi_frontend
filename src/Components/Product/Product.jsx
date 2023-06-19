@@ -23,7 +23,7 @@ import { Link } from "react-router-dom";
 import { baseUrl } from "../../Utils/baseUrl";
 
 const Product = ({ product }) => {
-  console.log(product);
+  // console.log(product);
   return (
     <ProductBlock>
       <ImageBlock>
@@ -49,7 +49,11 @@ const Product = ({ product }) => {
           <PriceBlock>
             <Price>{product.price}грн</Price>
             <FakePrice>
-              {product.sale === true ? <>{product.old_price}грн</> : <></>}
+              {product.sale === true && product.old_price !== "" ? (
+                <>{product.old_price}грн</>
+              ) : (
+                <></>
+              )}
             </FakePrice>
           </PriceBlock>
 

@@ -12,7 +12,7 @@ import { useLocation } from "react-router-dom";
 const BottomMenu = () => {
   const location = useLocation();
   const currentPath = location.pathname;
-  console.log(currentPath);
+  // console.log(currentPath);
   const StyledLink = styled(Link)`
     text-align: center;
   `;
