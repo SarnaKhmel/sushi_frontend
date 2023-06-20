@@ -30,7 +30,8 @@ export const addOrderItem = createAsyncThunk(
     const state = getState();
 
     const orderList = state.orders.order;
-    console.log(state.orders.order);
+    // console.log(state.orders.order);
+    console.log(orderList);
     const updatedItems = [...orderList.items, product];
     const updatedSum = parseFloat(orderList.sum) + parseFloat(product.price);
     const updatedWeight =
@@ -49,8 +50,18 @@ export const addOrderItem = createAsyncThunk(
 export const setStateFromJSON = createAsyncThunk(
   "order/setStateFromJSON",
   async (orderState) => {
-    const newOrderList = orderState; // замість [...orderList, orderState]
+    const newOrderList = orderState;
     return { newOrderList };
+  }
+);
+
+export const clearOrderState = createAsyncThunk(
+  "order/clearOrderState",
+  async () => {
+    localStorage.removeItem("orderState");
+    return {
+      newOrderList: { items: {}, sum: 0, weight: 0, status: "loading" },
+    };
   }
 );
 const ordersSlice = createSlice({
@@ -80,6 +91,16 @@ const ordersSlice = createSlice({
       state.order = action.payload.newOrderList;
     },
     [setStateFromJSON.rejected]: (state) => {
+      state.order.status = "error";
+    },
+    [clearOrderState.pending]: (state) => {
+      state.order.status = "loading";
+    },
+    [clearOrderState.fulfilled]: (state, action) => {
+      state.order.status = "loaded";
+      state.order = action.payload.newOrderList;
+    },
+    [clearOrderState.rejected]: (state) => {
       state.order.status = "error";
     },
   },
