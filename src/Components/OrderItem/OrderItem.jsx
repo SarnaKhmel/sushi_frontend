@@ -6,8 +6,20 @@ import { addOrderItem } from "../../Redux/slices/orders";
 import basket from "../../Images/basket.svg";
 import OrderModal from "../OrderModal/OrderModal";
 
+import { setStateFromJSON } from "../../Redux/slices/orders";
+
 const OrderItem = () => {
   const order = useSelector((state) => state.orders.order);
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    const stateJSON = localStorage.getItem("orderState");
+    const orderState = JSON.parse(stateJSON);
+    if (orderState !== null) {
+      dispatch(setStateFromJSON(orderState));
+    }
+    console.log(orderState);
+  }, []);
 
   const [openOrderModal, setOpenOrderModal] = useState(false);
   const handleOpenOrderModal = () => {
