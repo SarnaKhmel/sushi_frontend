@@ -104,7 +104,7 @@ const Header = () => {
           </StyledLink>
 
           <LinkBlock>
-            <StyledLink to="/">Головна</StyledLink>
+            <StyledLink to="/about">Про нас</StyledLink>
             <StyledScrollLink to="delivery" smooth={true} duration={1200}>
               Доставка
             </StyledScrollLink>

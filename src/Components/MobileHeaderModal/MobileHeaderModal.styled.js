@@ -68,12 +68,13 @@ export const Text = styled.p`
 `;
 
 export const CloseBlock = styled.div`
-  width: 20px;
-  height: 20px;
-  margin-left: 90%;
+  width: 35px;
+  height: 35px;
+  ${"" /* margin-left: 90%; */}
   background: rgba(255, 255, 255, 0.1);
   border-radius: 5px;
   cursor: pointer;
+  text-align: center;
   &:hover {
     color: #ff4700;
   }
@@ -85,7 +86,52 @@ export const LinkToElement = styled.a`
   white-space: nowrap;
   margin-left: 50px;
   margin-bottom: 10px;
+  padding: 7px;
+  ${"" /* border: 1px solid #ff4700; */}
+  border-radius: 10px;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 17px;
   &:hover {
     text-decoration: underline;
+  }
+`;
+
+export const Line = styled.div`
+  display: inline-flex;
+  justify-content: space-between;
+  align-items: space-around;
+  margin-left: 30px;
+  margin-right: 30px;
+  width: 80%;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.5);
+  margin-bottom: 30px;
+`;
+
+export const FooterItem4M = styled.div`
+  display: none;
+  @media (min-width: 340px) and (max-width: 767px) {
+    display: block;
+    display: flex;
+
+    margin: 10px;
+    margin-left: 20px;
+  }
+`;
+
+export const Icons = styled.img`
+  text-align: center;
+  margin-top: 30px;
+  margin-right: 10px;
+  height: 52px;
+  width: 52px;
+  ${"" /* border: 1px solid #ff4700; */}
+  border-radius: 10px;
+  @media (min-width: 340px) and (max-width: 767px) {
+    text-align: center;
+    margin-top: 0px;
+    height: 52px;
+    width: 52px;
   }
 `;
