@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 
 export const HeaderBlock = styled.div`
   background: linear-gradient(
@@ -100,6 +100,10 @@ export const ContactsBlock = styled.div`
 
 export const OrderItem = styled.div`
   position: relative;
+
+  &:hover {
+    cursor: pointer;
+  }
 
   @media (min-width: 340px) and (max-width: 767px) {
   }
@@ -262,6 +266,7 @@ export const LinkToElement = styled.a`
   white-space: nowrap;
   &:hover {
     text-decoration: underline;
+    cursor: pointer;
   }
 
   @media (min-width: 340px) and (max-width: 767px) {

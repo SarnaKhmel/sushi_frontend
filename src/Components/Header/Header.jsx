@@ -31,6 +31,8 @@ import ContactModal from "../Modals/ContactsModal/ContactModal";
 import MobileHeaderModal from "../MobileHeaderModal/MobileHeaderModal";
 import { Link as ScrollLink } from "react-scroll";
 
+import OrderModal from "../OrderModal/OrderModal";
+
 const StyledLink = styled(Link)`
   color: blue;
   text-decoration: none;
@@ -39,6 +41,7 @@ const StyledLink = styled(Link)`
   white-space: nowrap;
   &:hover {
     text-decoration: underline;
+    cursor: pointer;
   }
 
   @media (min-width: 340px) and (max-width: 767px) {
@@ -59,6 +62,7 @@ const StyledScrollLink = styled(ScrollLink)`
   white-space: nowrap;
   &:hover {
     text-decoration: underline;
+    cursor: pointer;
   }
 
   @media (min-width: 340px) and (max-width: 767px) {
@@ -83,6 +87,7 @@ const Header = () => {
     setOpenContactsModal(false);
   };
 
+  // header for mobile device
   const [openMobileModal, setMobileModal] = useState(false);
   const handleOpenMobileModal = () => {
     setMobileModal(!openMobileModal);
@@ -90,6 +95,16 @@ const Header = () => {
 
   const handleCloseMobileModal = () => {
     setMobileModal(false);
+  };
+
+  //Order modal
+  const [openOrderModal, setOpenOrderModal] = useState(false);
+  const handleOpenOrderModal = () => {
+    setOpenOrderModal(!openOrderModal);
+  };
+
+  const handleCloseOrderModal = () => {
+    setOpenOrderModal(false);
   };
 
   return (
@@ -124,7 +139,7 @@ const Header = () => {
             <br />
             пн-нд: 11:00 - 21:00
           </ContactsBlock>
-          <OrderItem>
+          <OrderItem onClick={handleOpenOrderModal}>
             <OrderBlock>
               <OrderCount>99</OrderCount>
               <OrderPrice>
@@ -150,6 +165,14 @@ const Header = () => {
           isOpen={openMobileModal}
           onClose={handleCloseMobileModal}
           handleOpenContactsModal={handleOpenContactsModal}
+        />
+      ) : null}
+
+      {openOrderModal === true ? (
+        <OrderModal
+          isOpen={openOrderModal}
+          onClose={handleCloseOrderModal}
+          handleOpenContactsModal={handleOpenOrderModal}
         />
       ) : null}
     </>
