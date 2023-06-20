@@ -61,9 +61,9 @@ export const ProductImage = styled.img`
   height: 200px;
   object-fit: cover;
   object-position: center;
-  transition: transform 0.5s;
   cursor: zoom-in;
   max-width: 100%;
+  transition: transform 0.5s;
 
   &:hover {
     transform: scale(1.2);
@@ -173,24 +173,4 @@ export const FakePrice = styled.div`
   text-decoration-line: line-through;
 
   color: #ffffff;
-`;
-export const Basket = styled.button`
-  width: 130px;
-  height: 43px;
-
-  background: #ff4700;
-  border-radius: 10px;
-  border: none;
-
-  font-style: normal;
-  font-weight: 600;
-  font-size: 14px;
-  line-height: 17px;
-
-  color: #ffffff;
-  @media (max-width: 500px) {
-    margin-top: 10px;
-    width: 120px;
-    height: 33px;
-  }
 `;

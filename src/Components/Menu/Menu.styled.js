@@ -39,6 +39,9 @@ export const Item = styled.div`
   &:nth-child(1) {
     color: #ff4700;
   }
+  &:hover {
+    cursor: pointer;
+  }
 
   ${(props) =>
     props.isUnderlined &&

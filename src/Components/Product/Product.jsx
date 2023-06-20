@@ -22,6 +22,8 @@ import { Link } from "react-router-dom";
 
 import { baseUrl } from "../../Utils/baseUrl";
 
+import InBasket from "../InBasket/InBasket";
+
 const Product = ({ product }) => {
   // console.log(product);
   return (
@@ -57,7 +59,7 @@ const Product = ({ product }) => {
             </FakePrice>
           </PriceBlock>
 
-          <Basket>В КОШИК</Basket>
+          <InBasket product={product}>В КОШИК</InBasket>
         </Label4>
       </TitleBlock>
     </ProductBlock>

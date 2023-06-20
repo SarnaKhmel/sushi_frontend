@@ -9,7 +9,8 @@ export const OrderModalBlock = styled.div`
 
   background: linear-gradient(180deg, #100f0f 0%, rgba(49, 49, 49, 0.8) 100%);
   box-shadow: 0px 0px 5px 5px rgba(255, 255, 255, 0.3);
-  border-radius: 5px;
+  border-radius: 10px;
+  z-index: 1000;
 `;
 
 export const CloseBlock = styled.div`
@@ -21,6 +22,7 @@ export const CloseBlock = styled.div`
   cursor: pointer;
   text-align: center;
   color: #fff;
+
   &:hover {
     color: #ff4700;
   }
@@ -56,6 +58,7 @@ export const ClearBtn = styled.button`
   &:hover {
     color: #c74716;
     text-decoration-line: underline;
+    cursor: pointer;
   }
 `;
 
@@ -77,5 +80,5 @@ export const OrderBottom = styled.div`
   height: 100px;
 
   background: #c74716;
-  border-radius: 0 0 5px 5px;
+  border-radius: 0 0 10px 10px;
 `;

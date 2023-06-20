@@ -1,45 +1,63 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "../../Utils/axios";
 
-export const fetchPosts = createAsyncThunk("orders/fetchPosts", async () => {
-  const { data } = await axios.get("/orders");
-  return data;
-});
+// export const fetchOrders = createAsyncThunk("orders/fetchPosts", async () => {
+//   const { data } = await axios.get("/orders");
+//   return data;
+// });
 
-export const fetchRemovePost = createAsyncThunk(
-  "orders/fetchRemovePost",
-  async (id) => axios.delete(`/orders/${id}`)
-);
+// export const fetchRemovePost = createAsyncThunk(
+//   "orders/fetchRemovePost",
+//   async (id) => axios.delete(`/orders/${id}`)
+// );
 
 const initialState = {
-  posts: {
+  orders: {
     items: [],
+    status: "loading",
+  },
+  order: {
+    items: [],
+    sum: 0,
+    weight: 0,
     status: "loading",
   },
 };
 
+export const addOrderItem = createAsyncThunk(
+  "order/addOrderItem",
+  async (product, { getState }) => {
+    const state = getState();
+
+    const orderList = state.orders.order;
+    console.log(state.orders.order);
+    const updatedItems = [...orderList.items, product];
+    const updatedSum = parseFloat(orderList.sum) + parseFloat(product.price);
+    const updatedWeight =
+      parseFloat(orderList.weight) + parseFloat(product.weight);
+
+    return { items: updatedItems, sum: updatedSum, weight: updatedWeight };
+  }
+);
+
 const ordersSlice = createSlice({
   name: "orders",
   initialState,
-  reducers: {},
+  reducers: {
+    addOrderItem,
+  },
   extraReducers: {
-    [fetchPosts.pending]: (state) => {
-      state.posts.items = [];
-      state.posts.status = "loading";
+    [addOrderItem.pending]: (state) => {
+      state.order.status = "loading";
     },
-    [fetchPosts.fulfilled]: (state, action) => {
-      state.posts.items = action.payload;
-      state.posts.status = "loaded";
+    [addOrderItem.fulfilled]: (state, action) => {
+      state.order.status = "loaded";
+      state.order.items = action.payload.items;
+      state.order.sum = action.payload.sum;
+      state.order.weight = action.payload.weight;
     },
-    [fetchPosts.rejected]: (state) => {
-      state.posts.items = [];
-      state.posts.status = "error";
-    },
-
-    [fetchRemovePost.pending]: (state, action) => {
-      state.posts.items = state.posts.items.filter(
-        (obj) => obj._id !== action.meta.arg
-      );
+    [addOrderItem.rejected]: (state) => {
+      state.order.status = "error";
     },
   },
 });

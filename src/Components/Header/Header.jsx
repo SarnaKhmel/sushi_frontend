@@ -2,16 +2,11 @@ import React, { useState } from "react";
 import {
   HeaderBlock,
   HeaderItem,
-  OrderBlock,
   ContactsBlock,
   LinkBlock,
   LogoBlock,
   ImageLogo,
   ImageTitle,
-  OrderCount,
-  OrderPrice,
-  OrderItem,
-  Basket,
   LinkBlockModal,
   ContactsBlockTitle,
   LinkToElement,
@@ -23,7 +18,6 @@ import sushiTitle from "../../Images/sushi-title.svg";
 import sushiLogo from "../../Images/sushi-logo.svg";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
-import basket from "../../Images/basket.svg";
 
 import BottomMenu from "../BottomMenu/BottomMenu";
 import ContactModal from "../Modals/ContactsModal/ContactModal";
@@ -31,8 +25,7 @@ import ContactModal from "../Modals/ContactsModal/ContactModal";
 import MobileHeaderModal from "../MobileHeaderModal/MobileHeaderModal";
 import { Link as ScrollLink } from "react-scroll";
 
-import OrderModal from "../OrderModal/OrderModal";
-
+import OrderItem from "../OrderItem/OrderItem";
 const StyledLink = styled(Link)`
   color: blue;
   text-decoration: none;
@@ -97,16 +90,6 @@ const Header = () => {
     setMobileModal(false);
   };
 
-  //Order modal
-  const [openOrderModal, setOpenOrderModal] = useState(false);
-  const handleOpenOrderModal = () => {
-    setOpenOrderModal(!openOrderModal);
-  };
-
-  const handleCloseOrderModal = () => {
-    setOpenOrderModal(false);
-  };
-
   return (
     <>
       <HeaderBlock>
@@ -139,15 +122,7 @@ const Header = () => {
             <br />
             пн-нд: 11:00 - 21:00
           </ContactsBlock>
-          <OrderItem onClick={handleOpenOrderModal}>
-            <OrderBlock>
-              <OrderCount>99</OrderCount>
-              <OrderPrice>
-                9999грн
-                <Basket src={basket} />
-              </OrderPrice>
-            </OrderBlock>
-          </OrderItem>
+          <OrderItem></OrderItem>
         </HeaderItem>
       </HeaderBlock>
 
@@ -165,14 +140,6 @@ const Header = () => {
           isOpen={openMobileModal}
           onClose={handleCloseMobileModal}
           handleOpenContactsModal={handleOpenContactsModal}
-        />
-      ) : null}
-
-      {openOrderModal === true ? (
-        <OrderModal
-          isOpen={openOrderModal}
-          onClose={handleCloseOrderModal}
-          handleOpenContactsModal={handleOpenOrderModal}
         />
       ) : null}
     </>
