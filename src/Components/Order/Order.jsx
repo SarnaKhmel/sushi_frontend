@@ -1,7 +1,7 @@
 import React from "react";
 import { OrderBox } from "./Order.styled";
 
-const Order = ({ product }) => {
+const Order = () => {
   return (
     <OrderBox>
       Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quam sit dolorum

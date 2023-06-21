@@ -49,12 +49,12 @@ const OrderModalList = () => {
                     onClick={() => {
                       incrementItem(item);
                     }}>
-                    <BsFillPlusCircleFill size={12} />
+                    <BsFillPlusCircleFill size={20} />
                   </Icon>
 
                   <InctrmenValue>{item.quantity}</InctrmenValue>
                   <Icon onClick={() => decrementItem(item._id)}>
-                    <AiFillMinusCircle size={14} />
+                    <AiFillMinusCircle size={22} />
                   </Icon>
                 </IncrementBlock>
                 <PriceBlock>
@@ -79,6 +79,7 @@ const List = styled.div`
 `;
 
 export const Block = styled.div`
+  margin-top: 10px;
   margin-bottom: 20px;
   width: 100%;
   height: 90px;
@@ -127,7 +128,7 @@ export const InfoBlock = styled.button`
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  margin-top: 100px;
+  margin-top: 110px;
   width: 100%;
   height: 100%;
   margin-bottom: 100px;
@@ -152,28 +153,28 @@ export const Label2 = styled.div`
 
 export const Weight = styled.div`
   font-style: normal;
-  font-weight: 400;
-  font-size: 12px;
-  line-height: 14px;
+  font-weight: 300;
+  font-size: 20px;
+  line-height: 24px;
 
   color: #ffffff;
-  @media (max-width: 768px) {
-    font-style: normal;
-    font-weight: 400;
-    font-size: 14px;
-    line-height: 17px;
-  }
+
+  width: 148px;
+  height: 30px;
 `;
 
 export const Name = styled.div`
-  height: 14px;
-
   font-style: normal;
   font-weight: 600;
-  font-size: 12px;
-  line-height: 14px;
+  font-size: 20px;
+  line-height: 24px;
 
+  width: 148px;
+  height: 30px;
   color: #ffffff;
+
+  overflow: hidden;
+  white-space: nowrap;
 `;
 
 export const PriceBlock = styled.div`
@@ -182,16 +183,16 @@ export const PriceBlock = styled.div`
 
 export const Price = styled.div`
   font-style: normal;
-  font-weight: 500;
-  font-size: 12px;
-  line-height: 14px;
+  font-weight: 400;
+  font-size: 20px;
+  line-height: 24px;
 
   color: #ffffff;
 `;
 
 export const IncrementBlock = styled.div`
-  width: 87.73px;
-  height: 17.78px;
+  width: 148px;
+  height: 30px;
 
   display: flex;
   align-items: center;
@@ -206,16 +207,13 @@ export const IncrementBlock = styled.div`
 `;
 
 export const InctrmenValue = styled.div`
-  width: 13px;
-  height: 14px;
-
   font-style: normal;
   font-weight: 600;
-  font-size: 11.856px;
-  line-height: 14px;
+  font-size: 20px;
+  line-height: 24px;
 
   color: #ffffff;
-  margin: 0 5px;
+  margin: 0 15px;
 `;
 
 export const Icon = styled.div``;
