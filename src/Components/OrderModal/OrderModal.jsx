@@ -51,10 +51,6 @@ const OrderModal = ({ isOpen, onClose, order }) => {
     onClose();
   };
 
-  console.log(order);
-  console.log(order.sum);
-  console.log(order.weight);
-
   return (
     <OrderModalBlock>
       <Line>
