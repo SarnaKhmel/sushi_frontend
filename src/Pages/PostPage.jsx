@@ -14,8 +14,9 @@ const PostPage = () => {
   useEffect(() => {
     const currentURL = window.location.href;
     const id = currentURL.split("/").pop();
-    // dispatch(fetchOnePosts(id));
-    dispatch(fetchOnePosts("645e6b5d97af508141f677b1"));
+    dispatch(fetchOnePosts(id));
+    // dispatch(fetchOnePosts("645e6b5d97af508141f677b1"));
+    // dispatch(fetchPosts());
   }, [dispatch]);
 
   //const post = filterPostsById(posts, id);
@@ -25,7 +26,6 @@ const PostPage = () => {
     <Layout>
       {status === "loading" && <>Loading...</>}
       {status === "loaded" && <Post post={post} />}
-      {/* <Post post={post} /> */}
     </Layout>
   );
 };

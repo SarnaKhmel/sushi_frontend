@@ -1,12 +1,13 @@
 import React from "react";
 import { Block, PostBlock, TitleBlock, Image } from "./Post.styled";
+import { baseUrl } from "../../Utils/baseUrl";
 const Post = ({ post }) => {
   console.log(post);
   const { title, text, imageUrl } = post;
   return (
     <Block>
       <PostBlock>
-        <Image src={imageUrl} alt={title} />
+        <Image src={`${baseUrl}${imageUrl}`} alt={title} />
         <TitleBlock>
           <h2>{title}</h2>
           <p>{text}</p>

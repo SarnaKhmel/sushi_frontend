@@ -7,6 +7,8 @@ import {
 } from "./Posts.styled";
 import { useState } from "react";
 import { Link } from "react-router-dom";
+
+import { baseUrl } from "../../Utils/baseUrl";
 const Dot = ({ active, onClick }) => (
   <DotElement active={active} onClick={onClick} />
 );
@@ -23,7 +25,7 @@ const Posts = ({ posts }) => {
         <SlideContainer key={post._id} active={index === activeIndex}>
           <Link to={`/post/${post._id}`}>
             <Slide
-              src={post.imageUrl}
+              src={`${baseUrl}${post.imageUrl}`}
               alt={`Slide ${index}`}
               onClick={() => handleDotClick(index)}
               style={{ display: index === activeIndex ? "block" : "none" }}
