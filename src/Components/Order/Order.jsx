@@ -1,12 +1,28 @@
 import React from "react";
-import { OrderBox } from "./Order.styled";
+import {
+  OrderBox,
+  Block,
+  FormBlock,
+  ListBlock,
+  Label,
+  Form,
+} from "./Order.styled";
 
 const Order = () => {
   return (
     <OrderBox>
-      Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quam sit dolorum
-      sint ad, exercitationem labore aspernatur soluta, autem alias id officiis
-      illo voluptatum blanditiis! Delectus eligendi error odio voluptas ducimus!
+      <Block>
+        <FormBlock>
+          <Form>
+            <Label>Оформити замовлення</Label>
+            <Label>Кур’єрська доставка</Label>
+            <Label>Деталі доставки</Label>
+          </Form>
+        </FormBlock>
+        <ListBlock>
+          <Label>Оформити замовлення</Label>
+        </ListBlock>
+      </Block>
     </OrderBox>
   );
 };
