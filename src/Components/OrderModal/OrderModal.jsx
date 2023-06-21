@@ -1,4 +1,6 @@
 import React from "react";
+import { Link } from "react-router-dom";
+import styled from "styled-components";
 
 import {
   OrderModalBlock,
@@ -6,18 +8,53 @@ import {
   CloseBlock,
   ClearBtn,
   Header,
-  List,
   OrderBottom,
+  InfoBlock,
+  OrderBtn,
+  Info,
 } from "./OrderModal.styles";
 import { AiOutlineClose } from "react-icons/ai";
 
 import { clearOrderState } from "../../Redux/slices/orders";
 import { useDispatch } from "react-redux";
-const OrderModal = ({ isOpen, onClose }) => {
+
+import OrderModalList from "../OrderModalList/OrderModalList";
+
+const StyledLink = styled(Link)`
+  width: 193.82px;
+  height: 44.05px;
+
+  background: #ffffff;
+  text-decoration: none;
+  text-align: center;
+
+  border-radius: 8.80999px;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 20px;
+  line-height: 44px;
+  /* identical to box height */
+
+  border: none;
+  color: #000000;
+  &:hover {
+    color: #c74716;
+    text-decoration-line: underline;
+    cursor: pointer;
+  }
+`;
+
+const OrderModal = ({ isOpen, onClose, order }) => {
   const dispatch = useDispatch();
   const handleClearOrderList = () => {
     dispatch(clearOrderState());
+    onClose();
   };
+
+  console.log(order);
+  console.log(order.sum);
+  console.log(order.weight);
+
   return (
     <OrderModalBlock>
       <Line>
@@ -29,8 +66,20 @@ const OrderModal = ({ isOpen, onClose }) => {
           <AiOutlineClose size={30} />
         </CloseBlock>
       </Line>
-      <List></List>
-      <OrderBottom></OrderBottom>
+      <OrderModalList />
+      <OrderBottom>
+        <InfoBlock>
+          <Info>Всього: {order.sum}грн.</Info>
+          <Info>Вага: {order.weight}г.</Info>
+        </InfoBlock>
+        {order.items.length > 0 ? (
+          <>
+            <StyledLink to="/order">ОФОРМИТИ</StyledLink>
+          </>
+        ) : (
+          <OrderBtn disabled>ОФОРМИТИ</OrderBtn>
+        )}
+      </OrderBottom>
     </OrderModalBlock>
   );
 };

@@ -62,23 +62,52 @@ export const ClearBtn = styled.button`
   }
 `;
 
-export const List = styled.div`
-  border: 1px solid green;
-  min-height: 60%;
-  margin: 0px 30px;
-  width: 90%;
-  .element {
-    overflow-y: auto;
-  }
-`;
-
 export const OrderBottom = styled.div`
   position: absolute;
   bottom: 0;
-  border: 1px solid yellow;
   width: 100%;
   height: 100px;
 
   background: #c74716;
   border-radius: 0 0 10px 10px;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+`;
+
+export const InfoBlock = styled.div`
+  font-style: normal;
+  font-weight: 600;
+  font-size: 11.856px;
+  line-height: 14px;
+
+  color: #ffffff;
+`;
+
+export const OrderBtn = styled.button`
+  width: 193.82px;
+  height: 44.05px;
+
+  background: #ffffff;
+
+  border-radius: 8.80999px;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 20px;
+  line-height: 24px;
+  /* identical to box height */
+  border: none;
+`;
+
+export const Info = styled.div`
+  height: 14px;
+
+  font-style: normal;
+  font-weight: 600;
+  font-size: 14.2271px;
+  line-height: 17px;
+
+  color: #ffffff;
+  margin-bottom: 10px;
 `;

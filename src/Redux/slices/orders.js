@@ -60,7 +60,12 @@ export const clearOrderState = createAsyncThunk(
   async () => {
     localStorage.removeItem("orderState");
     return {
-      newOrderList: { items: {}, sum: 0, weight: 0, status: "loading" },
+      newOrderList: {
+        items: [],
+        sum: 0,
+        weight: 0,
+        status: "loading",
+      },
     };
   }
 );

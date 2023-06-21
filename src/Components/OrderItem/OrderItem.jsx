@@ -18,7 +18,6 @@ const OrderItem = () => {
     if (orderState !== null) {
       dispatch(setStateFromJSON(orderState));
     }
-    console.log(orderState);
   }, []);
 
   const [openOrderModal, setOpenOrderModal] = useState(false);
@@ -41,7 +40,11 @@ const OrderItem = () => {
         </OrderBlock>
       </OrderItemBlock>
       {openOrderModal === true ? (
-        <OrderModal isOpen={openOrderModal} onClose={handleCloseOrderModal} />
+        <OrderModal
+          isOpen={openOrderModal}
+          onClose={handleCloseOrderModal}
+          order={order}
+        />
       ) : null}
     </>
   );
