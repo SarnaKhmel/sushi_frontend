@@ -41,6 +41,7 @@ const AddProduct = () => {
         setImageUrl(response.data.imageUrl);
         setImageProductUrl(response.data.url);
         setCheckUpload(true);
+        notify("Зображення завантажено");
       })
       .catch((error) => {
         console.log(error);
@@ -55,6 +56,7 @@ const AddProduct = () => {
     weight: "",
     price: "",
     old_price: "",
+    week_sale: false,
   });
   const handleFormFieldChange = (event) => {
     const fieldName = event.target.name;
@@ -111,6 +113,8 @@ const AddProduct = () => {
     formFields.weight = "";
     formFields.price = "";
     formFields.old_price = "";
+    formFields.week_sale = false;
+
     notify("Форму очищено");
   };
   return (
@@ -197,13 +201,6 @@ const AddProduct = () => {
         <br />
         <MiniBlock>
           <Label htmlFor="sale">6. Акція на продукт:</Label>
-          {/* <Input
-            type="checkbox"
-            name="sale"
-            checked={formFields.sale}
-            value={formFields.sale}
-            onChange={handleFormFieldChange}
-          /> */}
           <Input
             type="checkbox"
             name="sale"

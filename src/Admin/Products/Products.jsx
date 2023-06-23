@@ -7,12 +7,16 @@ import ProductsTable from "../ProductsTable/ProductsTable";
 import Exel from "../Exel/Exel";
 
 import { useDispatch } from "react-redux";
-
+import SelectBlock from "../Select/Select";
+import selectOptions from "../../testData/selectOptions.json";
 const Products = ({ products }) => {
   const [activeBlocks, setActiveBlocks] = useState([false, false, false]);
 
   const [filter, setFilter] = useState("all");
   const [sort, setSort] = useState("");
+
+  const [underlined, setUnderlined] = useState(0);
+  const [exelName, setExelName] = useState("Всі");
 
   const toggleBlock = (blockNumber) => {
     setActiveBlocks((prevActiveBlocks) => {
@@ -22,17 +26,11 @@ const Products = ({ products }) => {
     });
   };
 
-  const [underlined, setUnderlined] = useState(0);
-
   const handlerUnderlined = (index, option) => {
-    console.log(option);
     setUnderlined(index);
-    setFilter(option);
+    setFilter(option.type);
+    setExelName(option.name);
   };
-
-  // ----------------------------------------------------------------------------
-
-  const dispatch = useDispatch();
 
   const [filteredProducts, setFilteredProducts] = useState(products);
 
@@ -41,14 +39,10 @@ const Products = ({ products }) => {
     if (filter === "all") {
       setFilteredProducts(products);
     } else if (filter === "sale") {
-      console.log("sale");
       const filteredItems = products.filter((item) => item.sale === true);
       setFilteredProducts(filteredItems);
     } else if (filter === "week_sale") {
-      const filteredItems = products.filter(
-        (item) => item.week_sale === "true"
-      );
-      console.log(filteredItems);
+      const filteredItems = products.filter((item) => item.week_sale === true);
       setFilteredProducts(filteredItems);
     } else if (filter !== "") {
       const filteredItems = products.filter((item) => item.type === filter);
@@ -91,10 +85,6 @@ const Products = ({ products }) => {
     }
   }, [sort]);
 
-  const setFilterOption = (type) => {
-    setFilter(type);
-  };
-
   const handleSelectedOption = (value) => {
     setSort(value);
     // console.log(value);
@@ -121,7 +111,11 @@ const Products = ({ products }) => {
 
       {activeBlocks[1] && (
         <Block $active={activeBlocks[1]}>
-          <Exel products={products} />
+          <Exel products={filteredProducts} name={exelName} />
+          <SelectBlock
+            selectOptions={selectOptions}
+            handleSelectedOption={handleSelectedOption}
+          />
           <Table>
             <TableHeader>
               <tr>
@@ -130,7 +124,7 @@ const Products = ({ products }) => {
                     key={index}
                     isUnderlined={index === underlined}
                     onClick={() => {
-                      handlerUnderlined(index, option.type);
+                      handlerUnderlined(index, option);
                     }}>
                     {option.name} |
                   </Th>

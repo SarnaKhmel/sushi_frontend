@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import Product from "../Product/Product";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchOneProduct } from "../../Redux/slices/products";
@@ -9,17 +9,20 @@ import styled from "styled-components";
 const AdminProductEditPage = () => {
   const dispatch = useDispatch();
   const product = useSelector((state) => state.products.product);
+  const [update, setUpdate] = useState(true);
   useEffect(() => {
     const currentURL = window.location.href;
     const id = currentURL.split("/").pop();
     dispatch(fetchOneProduct(id));
-  }, [dispatch]);
+  }, [dispatch, update]);
   const status = product.status;
   return (
     <LayoutAdmin>
       <Container>
         {status === "loading" && <>Loading...</>}
-        {status === "loaded" && <Product product={product} />}
+        {status === "loaded" && (
+          <Product product={product} update={update} setUpdate={setUpdate} />
+        )}
       </Container>
     </LayoutAdmin>
   );

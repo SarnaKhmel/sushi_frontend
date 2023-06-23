@@ -8,7 +8,7 @@ import { baseUrl } from "../../Utils/baseUrl";
 
 import { updateProduct } from "../../Redux/slices/products";
 
-const Product = ({ product }) => {
+const Product = ({ product, setUpdate, update }) => {
   const [selectedFile, setSelectedFile] = useState(null);
   const [imageUrl, setImageUrl] = useState(product.imageUrl);
   const [imageProductUrl, setImageProductUrl] = useState(null);
@@ -39,16 +39,8 @@ const Product = ({ product }) => {
   //
   const dispatch = useDispatch();
   const notify = (text) => toast(text);
-  const {
-    name = "",
-    text = "",
-    type = "",
-    sale = false,
-    weight = "",
-    price = "",
-    old_price = "",
-  } = product || {};
 
+  // console.log(weekSale);
   // console.log("_id", product._id);
   const handleFileSelect = (file) => {
     //const file = event.target.files[0];
@@ -93,7 +85,25 @@ const Product = ({ product }) => {
   });
   const handleFormFieldChange = (event) => {
     const fieldName = event.target.name;
-    const fieldValue = event.target.value;
+    const fieldValue =
+      event.target.type === "checkbox"
+        ? event.target.checked
+        : event.target.value;
+    // if (fieldName === "sale") {
+    //   setFormFields((prevFormFields) => ({
+    //     ...prevFormFields,
+    //     sale: !prevFormFields.sale,
+    //   }));
+    // }
+    // if (fieldName === "week_sale") {
+    //   setFormFields((prevFormFields) => ({
+    //     ...prevFormFields,
+    //     week_sale: !prevFormFields.week_sale,
+    //   }));
+    // }
+
+    console.log(fieldName, fieldValue);
+
     setFormFields((prevFormFields) => ({
       ...prevFormFields,
       [fieldName]: fieldValue,
@@ -112,14 +122,14 @@ const Product = ({ product }) => {
       text: formFields.text,
       type: formFields.type,
       weight: formFields.weight,
-      week_sale: false,
+      week_sale: formFields.week_sale,
     };
     // console.log({ id: product._id, productData: productData });
 
     dispatch(updateProduct({ id: productData._id, productData: productData }))
       .then((data) => {
         notify("👍 Продукт оновлено!");
-        window.location.reload();
+        setUpdate(!update);
       })
       .catch((error) => {
         console.log(error);
@@ -149,7 +159,6 @@ const Product = ({ product }) => {
     formFields.name = "";
     formFields.text = "";
     formFields.type = "set";
-    formFields.sale = false;
     formFields.weight = "";
     formFields.price = "";
     formFields.old_price = "";
@@ -260,10 +269,11 @@ const Product = ({ product }) => {
         <br />
         <MiniBlock>
           <Label htmlFor="sale">6. Акція на продукт:</Label>
+
           <Input
             type="checkbox"
             name="sale"
-            value={sale}
+            checked={formFields.sale}
             onChange={handleFormFieldChange}
           />
         </MiniBlock>
@@ -279,17 +289,18 @@ const Product = ({ product }) => {
           />
         </MiniBlock>
         <MiniBlock>
-          <Btn className="btn-create">Створити</Btn>
+          <Btn className="btn-create">Оновити</Btn>
         </MiniBlock>
         <br />
         <br />
         <br />
         <MiniBlockRed>
           <Label htmlFor="week_sale">8. Товар тижня:</Label>
+
           <Input
             type="checkbox"
             name="week_sale"
-            value={formFields.sale}
+            checked={formFields.week_sale}
             onChange={handleFormFieldChange}
           />
         </MiniBlockRed>

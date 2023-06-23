@@ -2,7 +2,7 @@ import React from "react";
 import * as XLSX from "xlsx";
 import styled from "styled-components";
 
-const Exel = ({ products }) => {
+const Exel = ({ products, name }) => {
   const handleDownload = () => {
     const data = products;
 
@@ -28,12 +28,14 @@ const Exel = ({ products }) => {
 
   return (
     <>
-      <Btn onClick={handleDownload}>Завантажити таблицю товарів</Btn>
+      <Btn onClick={handleDownload}>Завантажити таблицю товарів - {name}</Btn>
     </>
   );
 };
 
 const Btn = styled.button`
+  width: 260px;
   height: 50px;
+  margin-bottom: 50px;
 `;
 export default Exel;
