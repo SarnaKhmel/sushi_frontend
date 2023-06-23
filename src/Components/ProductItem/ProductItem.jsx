@@ -7,8 +7,6 @@ import {
   Block,
   ImageBlock,
   InfoBlock,
-  ProductBlock,
-  TitleBlock,
   ProductImage,
   Label1,
   Label2,
@@ -22,11 +20,11 @@ import {
   PriceBlock,
   Price,
   FakePrice,
-  Basket,
   MobileInfoBlock,
 } from "./ProductItem.styles";
 import { baseUrl } from "../../Utils/baseUrl";
 
+import InBasket from "../InBasket/InBasket";
 const ProductItem = ({ product }) => {
   //const product
   console.log(product);
@@ -58,7 +56,7 @@ const ProductItem = ({ product }) => {
                 )}
               </FakePrice>
             </PriceBlock>
-            <Basket>В КОШИК</Basket>
+            <InBasket product={product}>В КОШИК</InBasket>
           </Label3>
           <Label4>
             <Title>
@@ -95,7 +93,7 @@ const ProductItem = ({ product }) => {
             </Title>
           </Label3>
           <Label4>
-            <Basket>В КОШИК</Basket>
+            <InBasket product={product}>В КОШИК</InBasket>
           </Label4>
         </MobileInfoBlock>
       </Block>

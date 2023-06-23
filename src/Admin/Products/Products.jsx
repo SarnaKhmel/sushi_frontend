@@ -1,13 +1,18 @@
-import React from "react";
 import styled, { css } from "styled-components";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import AddProduct from "../AddProduct/AddProduct";
-import menuOptions from "../../testData/menuOptions.json";
+import adminMenuOptions from "../../testData/adminMenuOption.json";
 import ProductsTable from "../ProductsTable/ProductsTable";
 
 import Exel from "../Exel/Exel";
+
+import { useDispatch } from "react-redux";
+
 const Products = ({ products }) => {
   const [activeBlocks, setActiveBlocks] = useState([false, false, false]);
+
+  const [filter, setFilter] = useState("all");
+  const [sort, setSort] = useState("");
 
   const toggleBlock = (blockNumber) => {
     setActiveBlocks((prevActiveBlocks) => {
@@ -17,9 +22,85 @@ const Products = ({ products }) => {
     });
   };
 
-  // const handleUpdateTable = () => {
-  //   updateTable();
-  // };
+  const [underlined, setUnderlined] = useState(0);
+
+  const handlerUnderlined = (index, option) => {
+    console.log(option);
+    setUnderlined(index);
+    setFilter(option);
+  };
+
+  // ----------------------------------------------------------------------------
+
+  const dispatch = useDispatch();
+
+  const [filteredProducts, setFilteredProducts] = useState(products);
+
+  useEffect(() => {
+    console.log(filter);
+    if (filter === "all") {
+      setFilteredProducts(products);
+    } else if (filter === "sale") {
+      console.log("sale");
+      const filteredItems = products.filter((item) => item.sale === true);
+      setFilteredProducts(filteredItems);
+    } else if (filter === "week_sale") {
+      const filteredItems = products.filter(
+        (item) => item.week_sale === "true"
+      );
+      console.log(filteredItems);
+      setFilteredProducts(filteredItems);
+    } else if (filter !== "") {
+      const filteredItems = products.filter((item) => item.type === filter);
+      setFilteredProducts(filteredItems);
+    } else {
+      setFilteredProducts(products);
+    }
+  }, [filter]);
+
+  useEffect(() => {
+    switch (sort) {
+      case "price-up":
+        setFilteredProducts(
+          [...filteredProducts].sort((a, b) => a.price - b.price)
+        );
+        break;
+      case "price-down":
+        setFilteredProducts(
+          [...filteredProducts].sort((a, b) => b.price - a.price)
+        );
+        break;
+      case "popular-up":
+        setFilteredProducts(
+          [...filteredProducts].sort((a, b) => b.viewsCount - a.viewsCount)
+        );
+        break;
+      case "weight-up":
+        setFilteredProducts(
+          [...filteredProducts].sort((a, b) => a.weight - b.weight)
+        );
+        break;
+      case "weight-down":
+        setFilteredProducts(
+          [...filteredProducts].sort((a, b) => b.weight - a.weight)
+        );
+        break;
+      default:
+        setFilteredProducts(filteredProducts);
+        break;
+    }
+  }, [sort]);
+
+  const setFilterOption = (type) => {
+    setFilter(type);
+  };
+
+  const handleSelectedOption = (value) => {
+    setSort(value);
+    // console.log(value);
+  };
+  // ----------------------------------------------------------------------------
+
   return (
     <Container>
       <LabelBlock>
@@ -40,7 +121,28 @@ const Products = ({ products }) => {
 
       {activeBlocks[1] && (
         <Block $active={activeBlocks[1]}>
-          <ProductsTable options={menuOptions} products={products} />
+          <Exel products={products} />
+          <Table>
+            <TableHeader>
+              <tr>
+                {adminMenuOptions.map((option, index) => (
+                  <Th
+                    key={index}
+                    isUnderlined={index === underlined}
+                    onClick={() => {
+                      handlerUnderlined(index, option.type);
+                    }}>
+                    {option.name} |
+                  </Th>
+                ))}
+              </tr>
+            </TableHeader>
+
+            <ProductsTable
+              options={adminMenuOptions}
+              products={filteredProducts}
+            />
+          </Table>
         </Block>
       )}
     </Container>
@@ -106,5 +208,33 @@ const Label = styled.button`
 //     color: #007bff;
 //   }
 // `;
+
+const Table = styled.table`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: lightGray;
+`;
+
+const TableHeader = styled.thead`
+  margin: 20px 0px;
+`;
+
+const Th = styled.th`
+  margin: 30px;
+
+  &:hover {
+    color: #007bff;
+  }
+
+  ${(props) =>
+    props.isUnderlined &&
+    `
+    font-weight: 800;
+    text-decoration: underline;
+    color: red;
+  `}
+`;
 
 export default Products;

@@ -1,5 +1,6 @@
 import React from "react";
 import * as XLSX from "xlsx";
+import styled from "styled-components";
 
 const Exel = ({ products }) => {
   const handleDownload = () => {
@@ -27,11 +28,12 @@ const Exel = ({ products }) => {
 
   return (
     <>
-      <button disabled onClick={handleDownload}>
-        Завантажити таблицю товарів
-      </button>
+      <Btn onClick={handleDownload}>Завантажити таблицю товарів</Btn>
     </>
   );
 };
 
+const Btn = styled.button`
+  height: 50px;
+`;
 export default Exel;

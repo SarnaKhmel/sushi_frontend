@@ -1,0 +1,46 @@
+[
+  {
+    "name": "Всі",
+    "type": "all"
+  },
+  {
+    "name": "Aкція",
+    "type": "sale"
+  },
+  {
+    "name": "Сети",
+    "type": "set"
+  },
+  {
+    "name": "Роли",
+    "type": "rolls"
+  },
+  {
+    "name": "Суші",
+    "type": "sushi"
+  },
+  {
+    "name": "Cупи",
+    "type": "soup"
+  },
+  {
+    "name": "Теплі",
+    "type": "hot"
+  },
+  {
+    "name": "Закуски",
+    "type": "appetizer"
+  },
+  {
+    "name": "Напої",
+    "type": "drink"
+  },
+  {
+    "name": "Додатки",
+    "type": "add"
+  },
+  {
+    "name": "Акція тижня",
+    "type": "week_sale"
+  }
+]
