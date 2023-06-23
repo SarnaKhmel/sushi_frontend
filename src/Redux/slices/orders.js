@@ -47,6 +47,22 @@ const initialState = {
 //   }
 // );
 
+export const createOrder = createAsyncThunk(
+  "auth/createOrder",
+  async (order) => {
+    await axios.post("/order", order);
+
+    return {
+      newOrderList: {
+        items: [],
+        sum: 0,
+        weight: 0,
+        status: "loading",
+      },
+    };
+  }
+);
+
 export const addOrderItem = createAsyncThunk(
   "order/addOrderItem",
   async (product, { getState }) => {
@@ -58,7 +74,6 @@ export const addOrderItem = createAsyncThunk(
     );
 
     if (existingItem) {
-      // If the item already exists, update its quantity
       const updatedItems = orderList.items.map((item) =>
         item._id === product._id
           ? { ...item, quantity: item.quantity + 1 }
@@ -77,7 +92,6 @@ export const addOrderItem = createAsyncThunk(
 
       return { items: updatedItems, sum: updatedSum, weight: updatedWeight };
     } else {
-      // If the item doesn't exist, add it to the order
       const updatedItems = [...orderList.items, { ...product, quantity: 1 }];
       const updatedSum = orderList.sum + parseFloat(product.price);
       const updatedWeight = orderList.weight + parseFloat(product.weight);
@@ -228,6 +242,16 @@ const ordersSlice = createSlice({
     },
     [clearOrderState.rejected]: (state) => {
       state.order.status = "error";
+    },
+    [createOrder.pending]: (state) => {
+      state.status = "loading";
+    },
+    [createOrder.fulfilled]: (state, action) => {
+      state.status = "loaded";
+      state.order = action.payload.newOrderList;
+    },
+    [createOrder.rejected]: (state) => {
+      state.status = "error";
     },
   },
 });

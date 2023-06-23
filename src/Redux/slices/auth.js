@@ -22,6 +22,20 @@ export const fetchAuthMe = createAsyncThunk(
   }
 );
 
+// apartment: "2";
+// changeAmount: "40000";
+// city: "lviv";
+// comment: "";
+// deliveryType: "quick";
+// email: "olsarnat@gmail.com";
+// entrance: "1";
+// floor: "1";
+// house: "62";
+// name: "qwe";
+// paymentMethod: "cash";
+// phone: "0932607352";
+// street: "Khmelnitskogo";
+
 const initialState = {
   data: null,
   status: "loading",

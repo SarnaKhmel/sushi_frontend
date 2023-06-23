@@ -30,7 +30,7 @@ const OrderModalList = () => {
   const decrementItem = (itemId) => {
     dispatch(removeOrderItem(itemId));
   };
-  console.log(order);
+  // console.log(order);
   return (
     <List>
       {order.items.map((item) => (

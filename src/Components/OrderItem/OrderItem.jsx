@@ -34,7 +34,7 @@ const OrderItem = () => {
         <OrderBlock>
           <OrderCount>{order.items.length}</OrderCount>
           <OrderPrice>
-            {order.sum}
+            {order.sum}грн.
             <Basket src={basket} />
           </OrderPrice>
         </OrderBlock>
@@ -126,14 +126,14 @@ const OrderCount = styled.div`
 export const OrderPrice = styled.div`
   position: absolute;
   width: 65px;
-  height: 20px;
-  top: 35px;
-  left: 5px;
+  height: 25px;
+  top: 40px;
+  left: 10px;
 
   font-style: normal;
   font-weight: 700;
-  font-size: 16px;
-  line-height: 20px;
+  font-size: 14px;
+  line-height: 18px;
   color: #ffffff;
   display: flex;
   flex-direction: column;
