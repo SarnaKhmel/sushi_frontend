@@ -19,12 +19,14 @@ const OrderModalList = () => {
     const stateJSON = localStorage.getItem("orderState");
     const orderState = JSON.parse(stateJSON);
     if (orderState !== null) {
-      // dispatch(setStateFromJSON(orderState));
+      dispatch(setStateFromJSON(orderState));
     }
   }, []);
 
   const incrementItem = (item) => {
-    dispatch(addOrderItem(item));
+    if (item.quantity < 10) {
+      dispatch(addOrderItem(item));
+    }
   };
 
   const decrementItem = (itemId) => {
@@ -49,12 +51,12 @@ const OrderModalList = () => {
                     onClick={() => {
                       incrementItem(item);
                     }}>
-                    <BsFillPlusCircleFill size={20} />
+                    <BsFillPlusCircleFill size={18} />
                   </Icon>
 
                   <InctrmenValue>{item.quantity}</InctrmenValue>
                   <Icon onClick={() => decrementItem(item._id)}>
-                    <AiFillMinusCircle size={22} />
+                    <AiFillMinusCircle size={20} />
                   </Icon>
                 </IncrementBlock>
                 <PriceBlock>
@@ -72,10 +74,13 @@ const OrderModalList = () => {
 const List = styled.div`
   height: 350px;
   margin: 0px 30px;
-  width: 90%;
   display: flex;
   flex-direction: column;
   overflow-y: scroll;
+  overflow-x: hidden;
+  @media (max-width: 768px) {
+    width: 95%;
+  }
 `;
 
 export const Block = styled.div`
@@ -93,6 +98,11 @@ export const Block = styled.div`
     rgba(47, 47, 47, 0.75) 99.8%
   );
   border-radius: 6px;
+  overflow: hidden;
+  @media (max-width: 768px) {
+    width: 350px;
+    height: 90px;
+  }
 `;
 
 export const ImageBlock = styled.div`
@@ -100,6 +110,10 @@ export const ImageBlock = styled.div`
   height: 75px;
   margin-left: 10px;
   margin-top: 5px;
+  @media (max-width: 768px) {
+    margin-left: 0px;
+    margin-top: 0px;
+  }
 `;
 
 export const ProductImage = styled.img`
@@ -119,7 +133,14 @@ export const ProductImage = styled.img`
 
   &:hover {
     transform: scale(1.1);
-    cursor: pointer;
+  }
+  &:hover {
+    transform: scale(1);
+  }
+  @media (max-width: 768px) {
+    width: 144.64px;
+    height: 72.32px;
+    transform: scale(1);
   }
 `;
 
@@ -134,6 +155,9 @@ export const InfoBlock = styled.button`
   margin-bottom: 100px;
   background: transparent;
   border: none;
+  @media (max-width: 768px) {
+    width: 50%;
+  }
 `;
 
 export const Label1 = styled.div`
@@ -142,6 +166,10 @@ export const Label1 = styled.div`
   align-items: center;
   margin: 5px 5px 10px 5px;
   width: 100%;
+  @media (max-width: 768px) {
+    justify-content: space-between;
+    align-items: space-around;
+  }
 `;
 export const Label2 = styled.div`
   display: flex;
@@ -149,6 +177,10 @@ export const Label2 = styled.div`
   align-items: center;
   margin: 5px 5px 10px 5px;
   width: 100%;
+  @media (max-width: 768px) {
+    justify-content: space-between;
+    align-items: center;
+  }
 `;
 
 export const Weight = styled.div`
@@ -161,6 +193,12 @@ export const Weight = styled.div`
 
   width: 148px;
   height: 30px;
+  @media (max-width: 768px) {
+    font-size: 12px;
+    line-height: 16px;
+    font-weight: 300;
+    text-align: right;
+  }
 `;
 
 export const Name = styled.div`
@@ -175,6 +213,11 @@ export const Name = styled.div`
 
   overflow: hidden;
   white-space: nowrap;
+  @media (max-width: 768px) {
+    font-size: 16px;
+    line-height: 16px;
+    font-weight: 600;
+  }
 `;
 
 export const PriceBlock = styled.div`
@@ -188,6 +231,12 @@ export const Price = styled.div`
   line-height: 24px;
 
   color: #ffffff;
+  @media (max-width: 768px) {
+    font-size: 12px;
+    line-height: 16px;
+    font-weight: 300;
+    text-align: right;
+  }
 `;
 
 export const IncrementBlock = styled.div`
@@ -204,6 +253,13 @@ export const IncrementBlock = styled.div`
     #8d8d8d 55.21%,
     rgba(141, 141, 141, 0) 99.94%
   );
+  @media (max-width: 768px) {
+    margin: 0 10px;
+    font-size: 14px;
+    line-height: 16px;
+    width: 78px;
+    height: 30px;
+  }
 `;
 
 export const InctrmenValue = styled.div`
@@ -214,6 +270,11 @@ export const InctrmenValue = styled.div`
 
   color: #ffffff;
   margin: 0 15px;
+  @media (max-width: 768px) {
+    margin: 0 10px;
+    font-size: 14px;
+    line-height: 16px;
+  }
 `;
 
 export const Icon = styled.div``;

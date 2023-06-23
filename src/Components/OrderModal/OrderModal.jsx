@@ -28,15 +28,28 @@ const StyledLink = styled(Link)`
   text-decoration: none;
   text-align: center;
 
-  border-radius: 8.80999px;
+  border-radius: 9px;
   font-style: normal;
   font-weight: 600;
   font-size: 20px;
   line-height: 44px;
-  /* identical to box height */
 
   border: none;
   color: #000000;
+
+  @media (max-width: 768px) {
+    padding: 10px 30px 10px 30px;
+
+    width: 132px;
+    height: 24px;
+    font-size: 20px;
+    line-height: 20px;
+    border-radius: 9px;
+    font-family: Montserrat;
+    font-weight: 600;
+    text-decoration: none;
+    text-align: center;
+  }
   &:hover {
     color: #c74716;
     text-decoration-line: underline;

@@ -11,6 +11,14 @@ export const OrderModalBlock = styled.div`
   box-shadow: 0px 0px 5px 5px rgba(255, 255, 255, 0.3);
   border-radius: 10px;
   z-index: 1000;
+  @media (max-width: 768px) {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    top: 100px;
+    width: 95vw;
+    right: 10px;
+  }
 `;
 
 export const CloseBlock = styled.div`
@@ -74,6 +82,8 @@ export const OrderBottom = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-around;
+  @media (max-width: 768px) {
+  }
 `;
 
 export const InfoBlock = styled.div`
@@ -83,6 +93,10 @@ export const InfoBlock = styled.div`
   line-height: 14px;
 
   color: #ffffff;
+
+  @media (max-width: 768px) {
+    margin-left: 10px;
+  }
 `;
 
 export const OrderBtn = styled.button`
@@ -96,8 +110,18 @@ export const OrderBtn = styled.button`
   font-weight: 600;
   font-size: 20px;
   line-height: 24px;
-  /* identical to box height */
   border: none;
+
+  ${
+    "" /* @media (max-width: 768px) {
+    margin-right: 10px;
+    width: 132px;
+    height: 24px;
+    font-size: 12px;
+    font-family: Montserrat;
+    font-weight: 600;
+  } */
+  }
 `;
 
 export const Info = styled.div`
