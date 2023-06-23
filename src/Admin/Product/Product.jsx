@@ -14,36 +14,27 @@ const Product = ({ product, setUpdate, update }) => {
   const [imageProductUrl, setImageProductUrl] = useState(null);
   const [checkUpload, setCheckUpload] = useState(false);
 
-  //test
-
   const [currentImage, setCurrentImage] = useState(product.imageUrl);
   const [newImage, setNewImage] = useState("");
 
   const handleNewImageChangeA = (event) => {
-    // Виконується при зміні значення в полі вибору нового зображення
     const file = event.target.files[0];
     const reader = new FileReader();
 
     reader.onloadend = () => {
-      // Оновлюємо стан компонента з новим зображенням
       setNewImage(reader.result);
     };
 
     if (file) {
-      // Зчитуємо вибране зображення
       reader.readAsDataURL(file);
     }
     handleFileSelect(file);
   };
 
-  //
   const dispatch = useDispatch();
   const notify = (text) => toast(text);
 
-  // console.log(weekSale);
-  // console.log("_id", product._id);
   const handleFileSelect = (file) => {
-    //const file = event.target.files[0];
     if (file && /\.(png|jpe?g)$/i.test(file.name)) {
       const newName = `${Date.now()}_${file.name}`;
       const renamedFile = new File([file], newName, { type: file.type });
@@ -89,21 +80,6 @@ const Product = ({ product, setUpdate, update }) => {
       event.target.type === "checkbox"
         ? event.target.checked
         : event.target.value;
-    // if (fieldName === "sale") {
-    //   setFormFields((prevFormFields) => ({
-    //     ...prevFormFields,
-    //     sale: !prevFormFields.sale,
-    //   }));
-    // }
-    // if (fieldName === "week_sale") {
-    //   setFormFields((prevFormFields) => ({
-    //     ...prevFormFields,
-    //     week_sale: !prevFormFields.week_sale,
-    //   }));
-    // }
-
-    console.log(fieldName, fieldValue);
-
     setFormFields((prevFormFields) => ({
       ...prevFormFields,
       [fieldName]: fieldValue,
@@ -135,37 +111,13 @@ const Product = ({ product, setUpdate, update }) => {
         console.log(error);
         notify("❌ Помилка при оновленні продукту");
       });
-
-    // axios
-    //   .post("/auth/products", productData)
-    //   .then((response) => {
-    //     console.log(response);
-    //     notify("👍 Товар додано!");
-    //   })
-    //   .catch((error) => {
-    //     console.log(error);
-    //   });
   };
   const handleClearImage = () => {
     setSelectedFile(null);
     setImageUrl(null);
     notify("Зображення відкріплено");
   };
-  const handleClearForm = (e) => {
-    if (selectedFile !== null) {
-      handleClearImage();
-    }
-    formFields.imageUrl = "";
-    formFields.name = "";
-    formFields.text = "";
-    formFields.type = "set";
-    formFields.weight = "";
-    formFields.price = "";
-    formFields.old_price = "";
-    notify("Форму очищено");
-  };
 
-  // console.log(product);
   return (
     <AddProductBlock>
       <AddProductImage>
