@@ -19,6 +19,7 @@ import PostPage from "./Pages/PostPage";
 import DeliveryPage from "./Pages/DeliveryPage";
 import PoliticsPage from "./Pages/PoliticsPage";
 import OrderPage from "./Pages/OrderPage";
+import OfertaPage from "./Pages/OfertaPage";
 
 function App() {
   return (
@@ -29,6 +30,8 @@ function App() {
         <Route path="/product/:id" element={<ProductPage />} />
         <Route path="/delivery" element={<DeliveryPage />} />
         <Route path="/politics" element={<PoliticsPage />} />
+        <Route path="/ofer" element={<OfertaPage />} />
+
         <Route path="/error" element={<ErrorPage />} />
         <Route path="/order" element={<OrderPage />} />
         <Route path="/post/:id" element={<PostPage />} />

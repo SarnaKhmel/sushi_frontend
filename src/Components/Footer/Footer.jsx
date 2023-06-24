@@ -37,27 +37,35 @@ const Footer = () => {
         <FooterBox>
           <FooterItem1>
             <FooterLogoTitle src={sushiLogoTitle} alt="title" />
-            <FooterP>Про нас</FooterP>
-            <FooterP>Акції</FooterP>
+            <FooterP>
+              <Link to="/about">Про нас</Link>
+            </FooterP>
+            <FooterP></FooterP>
             <FooterVisa src={visa} />
           </FooterItem1>
           <FooterItem2>
             <FooterTitle>Наші ресторани</FooterTitle>
-            <FooterP>Довставка і оплата</FooterP>
-            <FooterP>Наші заклади</FooterP>
-            <FooterP>Політика конфеденційності</FooterP>
+            <FooterP>
+              <Link to="/delivery">Доставка та оплата</Link>
+            </FooterP>
+            <FooterP>
+              <Link to="/order">Договір оферти</Link>
+            </FooterP>
+            <FooterP>
+              <Link to="/politics">Політика конфеденційності</Link>
+            </FooterP>
           </FooterItem2>
           <FooterItem3>
-            <FooterTitle>Констакти та підтримка</FooterTitle>
-            <FooterP>+ 38 (063) 555 - 55-55</FooterP>
-            <FooterP>+ 38 (063) 555 - 55-55</FooterP>
-            <FooterEmail>qwe@qwe.com</FooterEmail>
+            <FooterTitle>Контакти та підтримка</FooterTitle>
+            <FooterP>+38 (098) 952-03-01</FooterP>
+            <FooterP>+38 (067) 159-88-15</FooterP>
+            <FooterEmail>ushizlyubovyu@gmail.com</FooterEmail>
           </FooterItem3>
           <FooterItem4>
-            <Link>
+            <Link to="https://www.facebook.com/sushizlyubovyu">
               <Icons src={fb} alt="fb" />
             </Link>
-            <Link>
+            <Link to="https://www.instagram.com/sushizlyubovyu/?igshid=MTIzZWQxMDU%3D">
               <Icons src={inst} alt="insagram" />
             </Link>
           </FooterItem4>
@@ -65,24 +73,31 @@ const Footer = () => {
         <div>
           <FooterBoxM>
             <FooterItem1M>
-              <Link to="/admin/login">Admin 1</Link>
-              <FooterP>Про нас</FooterP>
-              <FooterP>Акції</FooterP>
-              <FooterP>Доставка та оплата</FooterP>
-              <FooterP>Наші заклади</FooterP>
-              <FooterP>Політика конфеденційності</FooterP>
+              <FooterP>
+                <Link to="/about">Про нас</Link>
+              </FooterP>
+              <FooterP></FooterP>
+              <FooterP>
+                <Link to="/delivery">Доставка та оплата</Link>
+              </FooterP>
+              <FooterP>
+                <Link to="/order">Договір оферти</Link>
+              </FooterP>
+              <FooterP>
+                <Link to="/politics">Політика конфеденційності</Link>
+              </FooterP>
               <FooterVisa src={visa} alt="visa-logo" />
             </FooterItem1M>
             <FooterItem2M>
-              <FooterP>Констакти та підтримка</FooterP>
-              <FooterP>+ 38 (063) 555 - 55-55</FooterP>
-              <FooterP>+ 38 (063) 555 - 55-55</FooterP>
-              <FooterEmail>qwe@qwe.com</FooterEmail>
+              <FooterP>Контакти та підтримка</FooterP>
+              <FooterP>+38 (098) 952-03-01</FooterP>
+              <FooterP>+38 (067) 159-88-15</FooterP>
+              <FooterEmail>sushizlyubovyu@gmail.com</FooterEmail>
               <FooterItem4M>
-                <Link>
+                <Link to="https://www.facebook.com/sushizlyubovyu">
                   <Icons src={fb} alt="fb" />
                 </Link>
-                <Link>
+                <Link to="https://www.instagram.com/sushizlyubovyu/?igshid=MTIzZWQxMDU%3D">
                   <Icons src={inst} alt="insagram" />
                 </Link>
               </FooterItem4M>
@@ -90,13 +105,12 @@ const Footer = () => {
           </FooterBoxM>
           <FooterItem3M>
             <br />
-            <FooterP>@ 2022 - 2023 “суші з любов’ю” </FooterP>
-            <FooterP>Політика використання cookies</FooterP>
-            <FooterP>Договір публічної афери </FooterP>
+            <FooterP>@ 2022 - 2023 “Cуші з любов’ю” </FooterP>
+            <FooterP></FooterP>
+            <FooterP> </FooterP>
             <FooterP>Розробка та дизайн сайтів </FooterP>
             <FooterLogoTitle src={sushiLogoTitle} alt="title" />
           </FooterItem3M>
-          <Link to="admin/login">Admin</Link>
         </div>
       </FooterBlock>
     </>

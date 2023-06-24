@@ -1,7 +1,7 @@
 import React from "react";
 import Layout from "../Layout/Layout";
 import styled from "styled-components";
-const PoliticsPage = () => {
+const OfertaPage = () => {
   return (
     <Layout>
       <PoliticsBlock>
@@ -192,4 +192,4 @@ const H6 = styled.h6`
   line-height: 24px;
 `;
 
-export default PoliticsPage;
+export default OfertaPage;

@@ -25,16 +25,19 @@ const ContactModal = ({ isOpen, onClose }) => {
           <>
             <Header>Ресторани:</Header>
             <Block>
-              <Text>м.Львів, вул. Сихівська 999б</Text>
-              <Text>+38 (063) 333-33-33</Text>
+              <Text>м.Львів, вул. Сихівська, 19</Text>
+              <Text>+38 (098) 952-03-01</Text>
             </Block>
             <Block>
-              <Text>Зимна Вода, вул. Сихівська 999б</Text>
-              <Text>+38 (063) 333-33-33</Text>
+              <Text>
+                Зимна Вода, <br />
+                вул. М.Заньковецької. 8б
+              </Text>
+              <Text>+38 (098) 952-03-01</Text>
             </Block>
             <Header>Скарги та пропозиції:</Header>
             <Block>
-              <Text>sushiwithlove@gmail.com</Text>
+              <Text>sushizlyubovyu@gmail.com</Text>
             </Block>
           </>
         </ContactModalBody>

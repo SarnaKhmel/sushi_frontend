@@ -133,7 +133,6 @@ const Header = () => {
                 <StyledLink to="/">Меню</StyledLink>
               </>
             )}
-
             <LinkToElement onClick={handleOpenContactsModal}>
               Контакти
             </LinkToElement>
@@ -143,23 +142,20 @@ const Header = () => {
           </LinkBlockModal>
           <ContactsBlock>
             <ContactsBlockTitle>Замовлення за телефоном:</ContactsBlockTitle>
-            +38 (063) 333-33-33
+            +38 (098) 952-03-01
             <br />
-            пн-нд: 11:00 - 21:00
+            пн-нд: 10:00 - 21:00
           </ContactsBlock>
           <OrderItem></OrderItem>
         </HeaderItem>
       </HeaderBlock>
-
       <BottomMenu />
-
       {openContactsModal === true ? (
         <ContactModal
           isOpen={openContactsModal}
           onClose={handleCloseContactsModal}
         />
       ) : null}
-
       {openMobileModal === true ? (
         <MobileHeaderModal
           isOpen={openMobileModal}
