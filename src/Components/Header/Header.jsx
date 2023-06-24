@@ -26,6 +26,9 @@ import MobileHeaderModal from "../MobileHeaderModal/MobileHeaderModal";
 import { Link as ScrollLink } from "react-scroll";
 
 import OrderItem from "../OrderItem/OrderItem";
+
+import WeekSaleModal from "../Modals/WeekSaleModal/WeekSaleModal";
+
 const StyledLink = styled(Link)`
   color: blue;
   text-decoration: none;
@@ -96,6 +99,10 @@ const Header = () => {
     setMobileModal(false);
   };
 
+  //weekSaleModal
+
+  const [showWeekModal, setShowWeekModal] = useState(false);
+
   return (
     <>
       <HeaderBlock>
@@ -161,6 +168,13 @@ const Header = () => {
           isOpen={openMobileModal}
           onClose={handleCloseMobileModal}
           handleOpenContactsModal={handleOpenContactsModal}
+        />
+      ) : null}
+
+      {showWeekModal === true ? (
+        <WeekSaleModal
+          showModal={showWeekModal}
+          setShowModal={setShowWeekModal}
         />
       ) : null}
     </>
