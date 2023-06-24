@@ -31,6 +31,7 @@ import visa from "../../Images/visa.svg";
 import styled from "styled-components";
 
 const StyledLink = styled(Link)`
+  color: #fff;
   text-decoration: none;
   font-style: normal;
   font-weight: 500;
@@ -42,6 +43,7 @@ const StyledLink = styled(Link)`
     font-weight: 700;
     font-size: 14px;
     line-height: 17px;
+    text-align: center;
   }
 `;
 const Footer = () => {
@@ -64,7 +66,7 @@ const Footer = () => {
               <StyledLink to="/delivery">Доставка та оплата</StyledLink>
             </FooterP>
             <FooterP>
-              <StyledLink to="/order">Договір оферти</StyledLink>
+              <StyledLink to="/ofer">Договір оферти</StyledLink>
             </FooterP>
             <FooterP>
               <StyledLink to="/politics">Політика конфеденційності</StyledLink>
@@ -96,7 +98,7 @@ const Footer = () => {
                 <StyledLink to="/delivery">Доставка та оплата</StyledLink>
               </FooterP>
               <FooterP>
-                <StyledLink to="/order">Договір оферти</StyledLink>
+                <StyledLink to="/ofer">Договір оферти</StyledLink>
               </FooterP>
               <FooterP>
                 <StyledLink to="/politics">
