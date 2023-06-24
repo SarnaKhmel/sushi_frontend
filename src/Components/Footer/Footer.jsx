@@ -28,7 +28,22 @@ import sushiLogoTitle from "../../Images/sushi-title.svg";
 import inst from "../../Images/social/fb.svg";
 import fb from "../../Images/social/inst.svg";
 import visa from "../../Images/visa.svg";
+import styled from "styled-components";
 
+const StyledLink = styled(Link)`
+  text-decoration: none;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 17px;
+  margin-left: 20px;
+  @media (min-width: 340px) and (max-width: 767px) {
+    font-style: normal;
+    font-weight: 700;
+    font-size: 14px;
+    line-height: 17px;
+  }
+`;
 const Footer = () => {
   return (
     <>
@@ -38,7 +53,7 @@ const Footer = () => {
           <FooterItem1>
             <FooterLogoTitle src={sushiLogoTitle} alt="title" />
             <FooterP>
-              <Link to="/about">Про нас</Link>
+              <StyledLink to="/about">Про нас</StyledLink>
             </FooterP>
             <FooterP></FooterP>
             <FooterVisa src={visa} />
@@ -46,13 +61,13 @@ const Footer = () => {
           <FooterItem2>
             <FooterTitle>Наші ресторани</FooterTitle>
             <FooterP>
-              <Link to="/delivery">Доставка та оплата</Link>
+              <StyledLink to="/delivery">Доставка та оплата</StyledLink>
             </FooterP>
             <FooterP>
-              <Link to="/order">Договір оферти</Link>
+              <StyledLink to="/order">Договір оферти</StyledLink>
             </FooterP>
             <FooterP>
-              <Link to="/politics">Політика конфеденційності</Link>
+              <StyledLink to="/politics">Політика конфеденційності</StyledLink>
             </FooterP>
           </FooterItem2>
           <FooterItem3>
@@ -62,29 +77,31 @@ const Footer = () => {
             <FooterEmail>ushizlyubovyu@gmail.com</FooterEmail>
           </FooterItem3>
           <FooterItem4>
-            <Link to="https://www.facebook.com/sushizlyubovyu">
+            <StyledLink to="https://www.facebook.com/sushizlyubovyu">
               <Icons src={fb} alt="fb" />
-            </Link>
-            <Link to="https://www.instagram.com/sushizlyubovyu/?igshid=MTIzZWQxMDU%3D">
+            </StyledLink>
+            <StyledLink to="https://www.instagram.com/sushizlyubovyu/?igshid=MTIzZWQxMDU%3D">
               <Icons src={inst} alt="insagram" />
-            </Link>
+            </StyledLink>
           </FooterItem4>
         </FooterBox>
         <div>
           <FooterBoxM>
             <FooterItem1M>
               <FooterP>
-                <Link to="/about">Про нас</Link>
+                <StyledLink to="/about">Про нас</StyledLink>
               </FooterP>
               <FooterP></FooterP>
               <FooterP>
-                <Link to="/delivery">Доставка та оплата</Link>
+                <StyledLink to="/delivery">Доставка та оплата</StyledLink>
               </FooterP>
               <FooterP>
-                <Link to="/order">Договір оферти</Link>
+                <StyledLink to="/order">Договір оферти</StyledLink>
               </FooterP>
               <FooterP>
-                <Link to="/politics">Політика конфеденційності</Link>
+                <StyledLink to="/politics">
+                  Політика конфеденційності
+                </StyledLink>
               </FooterP>
               <FooterVisa src={visa} alt="visa-logo" />
             </FooterItem1M>
@@ -94,12 +111,12 @@ const Footer = () => {
               <FooterP>+38 (067) 159-88-15</FooterP>
               <FooterEmail>sushizlyubovyu@gmail.com</FooterEmail>
               <FooterItem4M>
-                <Link to="https://www.facebook.com/sushizlyubovyu">
+                <StyledLink to="https://www.facebook.com/sushizlyubovyu">
                   <Icons src={fb} alt="fb" />
-                </Link>
-                <Link to="https://www.instagram.com/sushizlyubovyu/?igshid=MTIzZWQxMDU%3D">
+                </StyledLink>
+                <StyledLink to="https://www.instagram.com/sushizlyubovyu/?igshid=MTIzZWQxMDU%3D">
                   <Icons src={inst} alt="insagram" />
-                </Link>
+                </StyledLink>
               </FooterItem4M>
             </FooterItem2M>
           </FooterBoxM>
