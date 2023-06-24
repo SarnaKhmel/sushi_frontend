@@ -273,14 +273,13 @@ const AddProductBlock = styled.div`
 `;
 const AddProductImage = styled.div`
   display: flex;
-
   align-items: center;
   justify-content: center;
   flex-direction: column;
 `;
+
 const AddProductForm = styled.form`
   display: flex;
-
   align-items: center;
   justify-content: center;
   flex-direction: column;
@@ -301,6 +300,7 @@ const MiniBlockImage = styled.div`
   justify-content: center;
   width: 80vw;
 `;
+
 const ImageAddBlock = styled.div`
   display: inline-block;
   margin: 10px 50px;

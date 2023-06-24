@@ -37,86 +37,108 @@ const OrderRow = ({ item }) => {
 
   return (
     <React.Fragment>
-      <Tr>
-        <Td>{item.orderNumber}.</Td>
-        <Td>{item.name}</Td>
-        <Td>{item.phone}</Td>
-        <Td>
-          {item.city === "lviv" && <>Львів</>}
-          {item.city === "z-voda" && <>З. Вода</>}
-          {item.city === "operator" && <>Інше</>}
-        </Td>
-        <Td>{item.street}</Td>
-        <Td>{item.house}</Td>
-        <Td>
-          <Button onClick={() => handleViewOrder(item.orderNumber)}>
-            Переглянути
-          </Button>
-        </Td>
-      </Tr>
+      <Table>
+        <TableHeader>
+          <TrHead>
+            <Th>Номер замовлення</Th>
+            <Th>Ім'я</Th>
+            <Th>Телефон</Th>
+            <Th>Місто</Th>
+            <Th>Вулиця</Th>
+            <Th>Будинок</Th>
+            <Th>Дії</Th>
+          </TrHead>
+        </TableHeader>
+        <tbody>
+          <Tr>
+            <Td>{item.orderNumber}.</Td>
+            <Td>{item.name}</Td>
+            <Td>{item.phone}</Td>
+            <Td>
+              {item.city === "lviv" && <>Львів</>}
+              {item.city === "z-voda" && <>З. Вода</>}
+              {item.city === "operator" && <>Інше</>}
+            </Td>
+            <Td>{item.street}</Td>
+            <Td>{item.house}</Td>
+            <Td>
+              <Button onClick={() => handleViewOrder(item.orderNumber)}>
+                Переглянути
+              </Button>
+            </Td>
+          </Tr>
+        </tbody>
+      </Table>
+
       {selectedOrder === item.orderNumber && (
         <>
-          <TrDetails>
-            <Td>Тип доставки</Td>
-            <Td>Ел. пошта</Td>
-            <Td>Метод оплати</Td>
-            <Td>Решта</Td>
-            <Td>Підїзд</Td>
-            <Td>Поверх</Td>
-            <Td>Квартира</Td>
-          </TrDetails>
-          <TrDetails>
-            <Td>
-              {item.deliveryType === "quick" && <>до 59хв.</>}
-              {item.deliveryType === "slow" && <>до 1:30год.</>}
-              {item.deliveryType === "operator" && <>уточнити</>}
-            </Td>
-            <Td>{item.email}</Td>
-            <Td>
-              {item.paymentMethod === "card" && <>Карткою</>}
-              {item.paymentMethod === "cash" && <>Готівкою</>}
-            </Td>
-            <Td>{item.changeAmount}</Td>
-            <Td>{item.entrance}</Td>
-            <Td>{item.floor}</Td>
-            <Td>{item.apartment}</Td>
-          </TrDetails>
+          <Table>
+            <tbody>
+              <TrDetails>
+                <Td>Тип доставки</Td>
+                <Td>Ел. пошта</Td>
+                <Td>Метод оплати</Td>
+                <Td>Решта</Td>
+                <Td>Підїзд</Td>
+                <Td>Поверх</Td>
+                <Td>Квартира</Td>
+              </TrDetails>
+              <TrDetails>
+                <Td>
+                  {item.deliveryType === "quick" && <>до 59хв.</>}
+                  {item.deliveryType === "slow" && <>до 1:30год.</>}
+                  {item.deliveryType === "operator" && <>уточнити</>}
+                </Td>
+                <Td>{item.email}</Td>
+                <Td>
+                  {item.paymentMethod === "card" && <>Карткою</>}
+                  {item.paymentMethod === "cash" && <>Готівкою</>}
+                </Td>
+                <Td>{item.changeAmount}</Td>
+                <Td>{item.entrance}</Td>
+                <Td>{item.floor}</Td>
+                <Td>{item.apartment}</Td>
+              </TrDetails>
 
-          <TrDetails>
-            <Td> №</Td>
-            <Td>Зображення</Td>
-            <Td>Назва</Td>
-            <Td>Вага</Td>
-            <Td>Ціна</Td>
-            <Td>Кількість</Td>
-          </TrDetails>
-          {item.orderList.items.map((product, index) => (
-            <TrDetails key={index}>
-              <Td>{index + 1}</Td>
-              <Td>
-                <Image src={`${baseUrl}${product.imageUrl}`} />
-              </Td>
-              <Td>{product.name}</Td>
-              <Td>{product.weight}</Td>
-              <Td>{product.price}</Td>
-              <Td>{product.quantity}</Td>
-            </TrDetails>
-          ))}
-          <TrDetails>
-            <Td>
-              <b>Сума:</b>
-            </Td>
-            <Td>
-              <b>{item.orderList.sum}</b>
-            </Td>
-            <Td></Td>
-            <Td></Td>
-            <Td></Td>
-            <Td></Td>
-            <Td>
-              <Button onClick={handleFinishOrder}>Закрити замовлення</Button>
-            </Td>
-          </TrDetails>
+              <TrDetails>
+                <Td>№</Td>
+                <Td>Зображення</Td>
+                <Td>Назва</Td>
+                <Td>Вага</Td>
+                <Td>Ціна</Td>
+                <Td>Кількість</Td>
+              </TrDetails>
+              {item.orderList.items.map((product, index) => (
+                <TrDetails key={index}>
+                  <Td>{index + 1}</Td>
+                  <Td>
+                    <Image src={`${baseUrl}${product.imageUrl}`} />
+                  </Td>
+                  <Td>{product.name}</Td>
+                  <Td>{product.weight}</Td>
+                  <Td>{product.price}</Td>
+                  <Td>{product.quantity}</Td>
+                </TrDetails>
+              ))}
+              <TrDetails>
+                <Td>
+                  <b>Сума:</b>
+                </Td>
+                <Td>
+                  <b>{item.orderList.sum}</b>
+                </Td>
+                <Td></Td>
+                <Td></Td>
+                <Td></Td>
+                <Td></Td>
+                <Td>
+                  <Button onClick={handleFinishOrder}>
+                    Закрити замовлення
+                  </Button>
+                </Td>
+              </TrDetails>
+            </tbody>
+          </Table>
         </>
       )}
       <Toaster position="bottom-right" reverseOrder={false} />
@@ -130,6 +152,11 @@ const Table = styled.table`
   align-items: center;
   justify-content: center;
   background: lightGray;
+
+  @media (max-width: 768px) {
+    width: 100%;
+    padding: 10px;
+  }
 `;
 
 const TableHeader = styled.thead`
@@ -175,6 +202,11 @@ const Th = styled.th`
   display: flex;
   align-items: center;
   justify-content: center;
+
+  @media (max-width: 768px) {
+    width: 100px;
+    font-size: 1rem;
+  }
 `;
 
 const Td = styled.td`
@@ -185,6 +217,11 @@ const Td = styled.td`
   display: flex;
   align-items: center;
   justify-content: center;
+
+  @media (max-width: 768px) {
+    width: 100px;
+    font-size: 1rem;
+  }
 `;
 
 const Button = styled.button`

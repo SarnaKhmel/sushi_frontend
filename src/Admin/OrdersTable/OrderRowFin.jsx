@@ -84,7 +84,7 @@ const OrderRowFin = ({ item }) => {
           </TrDetails>
 
           <TrDetails>
-            <Td> №</Td>
+            <Td>№</Td>
             <Td>Зображення</Td>
             <Td>Назва</Td>
             <Td>Вага</Td>
@@ -213,4 +213,52 @@ const ButtonRed = styled.button`
     color: #007bff;
   }
 `;
+
+// Media queries for mobile devices
+const mediaQuery = "@media (max-width: 767px)";
+
+const TrResponsive = styled(Tr)`
+  flex-direction: column;
+
+  ${mediaQuery} {
+    align-items: flex-start;
+    padding: 10px;
+  }
+`;
+
+const TdResponsive = styled(Td)`
+  ${mediaQuery} {
+    height: auto;
+    font-size: 1rem;
+  }
+`;
+
+const TrDetailsResponsive = styled(TrDetails)`
+  flex-direction: column;
+
+  ${mediaQuery} {
+    align-items: flex-start;
+    padding: 10px;
+  }
+`;
+
+const TdDetailsResponsive = styled(Td)`
+  ${mediaQuery} {
+    height: auto;
+    font-size: 1rem;
+  }
+`;
+
+const ThResponsive = styled(Th)`
+  ${mediaQuery} {
+    font-size: 1rem;
+  }
+`;
+
+const TdButtonResponsive = styled(Td)`
+  ${mediaQuery} {
+    flex-basis: 100%;
+  }
+`;
+
 export default OrderRowFin;

@@ -6,6 +6,7 @@ import AddPost from "../AddPost/AddPost";
 import styled, { css } from "styled-components";
 import { fetchPosts } from "../../Redux/slices/posts";
 import PostTable from "../PostTable/PostTable";
+
 const AdminPostPage = () => {
   const dispatch = useDispatch();
   let posts = useSelector((state) => state.posts.posts);
@@ -24,7 +25,6 @@ const AdminPostPage = () => {
     });
   };
 
-  // console.log(posts);
   return (
     <>
       <LayoutAdmin>
@@ -73,6 +73,7 @@ const Container = styled.div`
   background: grey;
   min-height: 100vh;
 `;
+
 const Block = styled.div`
   display: flex;
   flex-direction: column;
@@ -99,8 +100,8 @@ const LabelBlock = styled.div`
   margin-top: 10px;
   font-size: 24px;
 `;
+
 const Label = styled.button`
-  color: white;
   color: black;
   font-size: 24px;
   &:hover {
@@ -108,20 +109,4 @@ const Label = styled.button`
   }
 `;
 
-// const Text = styled.p`
-//   color: black;
-//   text-decoration: none;
-//   display: block;
-//   &:hover {
-//     color: #007bff;
-//   }
-// `;
-
-// const Btn = styled.button`
-//   color: red;
-//   text-decoration: none;
-//   &:hover {
-//     color: #007bff;
-//   }
-// `;
 export default AdminPostPage;

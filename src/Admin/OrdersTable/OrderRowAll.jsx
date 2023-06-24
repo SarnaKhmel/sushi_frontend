@@ -130,6 +130,11 @@ const Table = styled.table`
   align-items: center;
   justify-content: center;
   background: lightGray;
+
+  @media (max-width: 768px) {
+    width: 100%;
+    padding: 10px;
+  }
 `;
 
 const TableHeader = styled.thead`
@@ -175,6 +180,11 @@ const Th = styled.th`
   display: flex;
   align-items: center;
   justify-content: center;
+
+  @media (max-width: 768px) {
+    width: 100px;
+    font-size: 1rem;
+  }
 `;
 
 const Td = styled.td`
@@ -185,6 +195,11 @@ const Td = styled.td`
   display: flex;
   align-items: center;
   justify-content: center;
+
+  @media (max-width: 768px) {
+    width: 100px;
+    font-size: 1rem;
+  }
 `;
 
 const Button = styled.button`

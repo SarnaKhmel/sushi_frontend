@@ -102,4 +102,44 @@ const Button = styled.button`
   }
 `;
 
+// Media queries for mobile devices
+const mediaQuery = "@media (max-width: 767px)";
+
+const TrResponsive = styled(Tr)`
+  flex-direction: column;
+
+  ${mediaQuery} {
+    align-items: flex-start;
+    padding: 10px;
+  }
+`;
+
+const TdResponsive = styled(Td)`
+  ${mediaQuery} {
+    height: auto;
+    font-size: 1rem;
+  }
+`;
+
+const TrDetailsResponsive = styled(TrDetails)`
+  flex-direction: column;
+
+  ${mediaQuery} {
+    align-items: flex-start;
+    padding: 10px;
+  }
+`;
+
+const ThResponsive = styled(Th)`
+  ${mediaQuery} {
+    font-size: 1rem;
+  }
+`;
+
+const TdButtonResponsive = styled(Td)`
+  ${mediaQuery} {
+    flex-basis: 100%;
+  }
+`;
+
 export default OrdersTableAll;

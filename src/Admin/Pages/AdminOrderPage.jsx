@@ -14,6 +14,7 @@ import OrdersTableAll from "../OrdersTable/OrdersTableAll";
 import OrdersTableFin from "../OrdersTable/OrdersTableFin";
 
 import ExelOrders from "../Exel/ExelOrders";
+
 const AdminOrderPage = () => {
   const [isActive, setIsActive] = useState(false);
   const [seconds, setSeconds] = useState(0);
@@ -172,6 +173,7 @@ const Container = styled.div`
   min-height: 100vh;
   top: 300px;
 `;
+
 const Block = styled.div`
   display: flex;
   flex-direction: column;
@@ -198,8 +200,8 @@ const LabelBlock = styled.div`
   margin-top: 10px;
   font-size: 24px;
 `;
+
 const Label = styled.button`
-  color: white;
   color: black;
   font-size: 24px;
   &:hover {

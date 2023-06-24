@@ -11,12 +11,14 @@ const LayoutAdmin = ({ children }) => {
   useEffect(() => {
     setToken(localStorage.getItem("token"));
   }, []);
+
   const onClickLogout = () => {
     if (window.confirm("Ви дійсно хочете вийти?")) {
       dispatch(logout());
       window.localStorage.removeItem("token");
     }
   };
+
   return (
     <Container>
       <Header>
@@ -30,11 +32,15 @@ const LayoutAdmin = ({ children }) => {
               <StyledLink to="/admin/orders">Замовлення</StyledLink>
               {/* <StyledLink to="/admin/statistics">Статистика</StyledLink> */}
               <StyledLink to="/admin/me">Про мене</StyledLink>
-              <StyledLink to="https://www.google.com/maps/d/u/0/viewer?mid=1stv2s4gZ0HnC7rfZz2FqxZxtB9fh0DE&ll=49.8184077019921%2C23.938815850000026&z=12">
+              <StyledLink
+                as="a"
+                href="https://www.google.com/maps/d/u/0/viewer?mid=1stv2s4gZ0HnC7rfZz2FqxZxtB9fh0DE&ll=49.8184077019921%2C23.938815850000026&z=12"
+                target="_blank"
+                rel="noopener noreferrer">
                 Мапа
               </StyledLink>
               <Button onClick={onClickLogout} variant="contained" color="error">
-                Выйти
+                Вийти
               </Button>
             </Links>
           </>
@@ -61,24 +67,43 @@ const Header = styled.header`
   align-items: center;
   justify-content: space-around;
   padding: 0 20px;
+
+  @media (max-width: 768px) {
+    flex-direction: column;
+    height: auto;
+    padding: 10px;
+  }
 `;
 
 const Logo = styled.h1`
   font-size: 24px;
   font-weight: bold;
+
+  @media (max-width: 768px) {
+    margin-bottom: 10px;
+  }
 `;
 
 const Links = styled.nav`
   display: flex;
   align-items: center;
+
+  @media (max-width: 768px) {
+    flex-direction: column;
+  }
 `;
 
 const StyledLink = styled(Link)`
   color: #000;
   text-decoration: none;
   margin-right: 10px;
+
   &:hover {
     color: #007bff;
+  }
+
+  @media (max-width: 768px) {
+    margin-bottom: 10px;
   }
 `;
 
@@ -92,10 +117,15 @@ const Button = styled.button`
     color: #fff;
     font-weight: bold;
   }
+
+  @media (max-width: 768px) {
+    width: 100%;
+  }
 `;
 
 const Content = styled.div`
   margin-top: 80px;
   min-height: 90vh;
 `;
+
 export default LayoutAdmin;

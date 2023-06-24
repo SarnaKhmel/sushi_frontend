@@ -147,20 +147,32 @@ const AddPost = () => {
 
 const AddProductBlock = styled.div`
   margin: 20px 50px;
+
+  @media (max-width: 768px) {
+    margin: 20px;
+  }
 `;
+
 const AddProductImage = styled.div`
   display: flex;
-
   align-items: center;
   justify-content: center;
   flex-direction: column;
+
+  @media (max-width: 768px) {
+    margin-bottom: 20px;
+  }
 `;
+
 const AddProductForm = styled.form`
   display: flex;
-
   align-items: center;
   justify-content: center;
   flex-direction: column;
+
+  @media (max-width: 768px) {
+    margin-top: 20px;
+  }
 `;
 
 const MiniBlock = styled.div`
@@ -169,6 +181,12 @@ const MiniBlock = styled.div`
   align-items: flex-start;
   justify-content: flex-start;
   width: 80vw;
+
+  @media (max-width: 768px) {
+    flex-direction: column;
+    margin: 10px;
+    width: 100%;
+  }
 `;
 
 const ProductImage = styled.img`

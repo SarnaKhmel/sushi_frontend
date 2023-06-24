@@ -122,6 +122,11 @@ const Container = styled.div`
   align-items: center;
   justify-content: center;
   margin-top: 500px;
+
+  /* Mobile styles */
+  @media (max-width: 768px) {
+    margin-top: 200px;
+  }
 `;
 
 const Label = styled.p`

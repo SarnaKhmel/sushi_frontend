@@ -3,18 +3,15 @@ import { useState, useEffect } from "react";
 import AddProduct from "../AddProduct/AddProduct";
 import adminMenuOptions from "../../testData/adminMenuOption.json";
 import ProductsTable from "../ProductsTable/ProductsTable";
-
 import Exel from "../Exel/Exel";
-
 import { useDispatch } from "react-redux";
 import SelectBlock from "../Select/Select";
 import selectOptions from "../../testData/selectOptions.json";
+
 const Products = ({ products }) => {
   const [activeBlocks, setActiveBlocks] = useState([false, false, false]);
-
   const [filter, setFilter] = useState("all");
   const [sort, setSort] = useState("");
-
   const [underlined, setUnderlined] = useState(0);
   const [exelName, setExelName] = useState("Всі");
 
@@ -35,7 +32,6 @@ const Products = ({ products }) => {
   const [filteredProducts, setFilteredProducts] = useState(products);
 
   useEffect(() => {
-    console.log(filter);
     if (filter === "all") {
       setFilteredProducts(products);
     } else if (filter === "sale") {
@@ -87,20 +83,13 @@ const Products = ({ products }) => {
 
   const handleSelectedOption = (value) => {
     setSort(value);
-    // console.log(value);
   };
-  // ----------------------------------------------------------------------------
 
   return (
     <Container>
       <LabelBlock>
         <Label onClick={() => toggleBlock(0)}>Додати товар</Label>
-        <Label
-          onClick={() => {
-            toggleBlock(1);
-          }}>
-          Всі товари
-        </Label>
+        <Label onClick={() => toggleBlock(1)}>Всі товари</Label>
       </LabelBlock>
 
       {activeBlocks[0] && (
@@ -151,6 +140,7 @@ const Container = styled.div`
   background: grey;
   min-height: 100vh;
 `;
+
 const Block = styled.div`
   display: flex;
   flex-direction: column;
@@ -177,31 +167,15 @@ const LabelBlock = styled.div`
   margin-top: 10px;
   font-size: 24px;
 `;
+
 const Label = styled.button`
-  color: white;
   color: black;
   font-size: 24px;
+
   &:hover {
     color: #007bff;
   }
 `;
-
-// const Text = styled.p`
-//   color: black;
-//   text-decoration: none;
-//   display: block;
-//   &:hover {
-//     color: #007bff;
-//   }
-// `;
-
-// const Btn = styled.button`
-//   color: red;
-//   text-decoration: none;
-//   &:hover {
-//     color: #007bff;
-//   }
-// `;
 
 const Table = styled.table`
   display: flex;
@@ -224,11 +198,11 @@ const Th = styled.th`
 
   ${(props) =>
     props.isUnderlined &&
-    `
-    font-weight: 800;
-    text-decoration: underline;
-    color: red;
-  `}
+    css`
+      font-weight: 800;
+      text-decoration: underline;
+      color: red;
+    `}
 `;
 
 export default Products;

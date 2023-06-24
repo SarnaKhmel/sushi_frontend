@@ -7,6 +7,7 @@ import {
 } from "../../Redux/slices/products";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
+
 const ProductsTable = ({ products }) => {
   const dispatch = useDispatch();
 
@@ -18,11 +19,10 @@ const ProductsTable = ({ products }) => {
     if (confirmed) {
       const result = dispatch(fetchRemoveProduct(id));
       dispatch(fetchRemoveProductImage(imageName));
-      // dispatch(fetchRemoveProduct(id));
       console.log(result);
     }
   };
-  console.log(products);
+
   return (
     <>
       {products.length === 0 ? (
@@ -60,19 +60,19 @@ const ProductsTable = ({ products }) => {
                   <Td>{product.weight}</Td>
                   <Td>{product.price}</Td>
                   <Td>
-                    <button>
+                    <Button>
                       <Link to={`/admin/products/${product._id}`}>
                         Редагувати
                       </Link>
-                    </button>
+                    </Button>
                   </Td>
                   <Td>
-                    <button
+                    <Button
                       onClick={() => {
                         onHandleDeleteProduct(product._id, product.imageUrl);
                       }}>
                       Видалити
-                    </button>
+                    </Button>
                   </Td>
                 </Tr>
               ))}
@@ -91,17 +91,33 @@ const Image = styled.img`
 const Tr = styled.tr`
   display: flex;
   align-items: center;
+
+  @media (max-width: 767px) {
+    flex-direction: column;
+    align-items: flex-start;
+  }
 `;
+
 const TrHead = styled.tr`
   display: flex;
   align-items: center;
+
+  @media (max-width: 767px) {
+    flex-direction: column;
+    align-items: flex-start;
+  }
 `;
 
 const Td = styled.td`
   width: 150px;
+
+  @media (max-width: 767px) {
+    width: auto;
+    margin-bottom: 5px;
+  }
 `;
 
-const Btn = styled.button`
+const Button = styled.button`
   &:hover {
     color: #007bff;
   }

@@ -5,6 +5,7 @@ import toast, { Toaster } from "react-hot-toast";
 import styled, { css } from "styled-components";
 
 import { uploadProductImG, createProduct } from "../../Redux/slices/products";
+
 const AddProduct = () => {
   const [selectedFile, setSelectedFile] = useState(null);
   const [imageUrl, setImageUrl] = useState(null);
@@ -235,17 +236,18 @@ const AddProduct = () => {
 
 const AddProductBlock = styled.div`
   margin: 20px 50px;
+  @media (max-width: 768px) {
+    margin: 20px 20px;
+  }
 `;
 const AddProductImage = styled.div`
   display: flex;
-
   align-items: center;
   justify-content: center;
   flex-direction: column;
 `;
 const AddProductForm = styled.form`
   display: flex;
-
   align-items: center;
   justify-content: center;
   flex-direction: column;
@@ -257,6 +259,11 @@ const MiniBlock = styled.div`
   align-items: flex-start;
   justify-content: flex-start;
   width: 80vw;
+  @media (max-width: 768px) {
+    flex-direction: column;
+    width: 90vw;
+    margin: 10px 20px;
+  }
 `;
 
 const ProductImage = styled.img`
@@ -269,6 +276,9 @@ const Label = styled.label`
   width: 400px;
   min-width: 300px;
   margin-right: 10px;
+  @media (max-width: 768px) {
+    width: 100%;
+  }
 `;
 const Input = styled.input`
   width: 100%;

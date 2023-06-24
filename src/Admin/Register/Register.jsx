@@ -2,12 +2,12 @@ import React, { useState } from "react";
 import styled from "styled-components";
 import { fetchRegister, selectIsAuth } from "../../Redux/slices/auth";
 import { Navigate } from "react-router-dom";
-
 import { useDispatch, useSelector } from "react-redux";
+
 const Register = () => {
   const dispatch = useDispatch();
   const isAuth = useSelector(selectIsAuth);
-  const [fullName, setfullName] = useState("");
+  const [fullName, setFullName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [errors, setErrors] = useState({});
@@ -22,9 +22,9 @@ const Register = () => {
     dispatch(fetchRegister(formData));
   };
 
-  const handleNicknameChange = (e) => {
-    setfullName(e.target.value);
-    setErrors({ ...errors, nickname: "" });
+  const handleFullNameChange = (e) => {
+    setFullName(e.target.value);
+    setErrors({ ...errors, fullName: "" });
   };
 
   const handleEmailChange = (e) => {
@@ -46,14 +46,14 @@ const Register = () => {
       <FormTitle>Реєстрація користувача</FormTitle>
       <Form onSubmit={handleSubmit}>
         <FormField>
-          <label htmlFor="nickname">Ім'я</label>
+          <label htmlFor="fullName">Ім'я</label>
           <input
             type="text"
-            id="nickname"
+            id="fullName"
             value={fullName}
-            onChange={handleNicknameChange}
+            onChange={handleFullNameChange}
           />
-          {errors.nickname && <ErrorMessage>{errors.nickname}</ErrorMessage>}
+          {errors.fullName && <ErrorMessage>{errors.fullName}</ErrorMessage>}
         </FormField>
         <FormField>
           <label htmlFor="email">Email</label>

@@ -7,6 +7,7 @@ import {
 } from "../../Redux/slices/posts";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
+
 const PostTable = ({ posts }) => {
   const dispatch = useDispatch();
 
@@ -33,7 +34,7 @@ const PostTable = ({ posts }) => {
       <Table>
         <TableHeader>
           <TrHead>
-            <td>Пости</td>
+            <Th>Пости</Th>
           </TrHead>
         </TableHeader>
         <tbody>
@@ -56,12 +57,12 @@ const PostTable = ({ posts }) => {
               <Td>{item.text}</Td>
               <Td>{item.viewsCount}</Td>
               <Td>
-                <button
+                <Button
                   onClick={() => {
                     onHandleDeleteProduct(item._id, item.imageUrl);
                   }}>
                   Видалити
-                </button>
+                </Button>
               </Td>
             </Tr>
           ))}
@@ -77,6 +78,11 @@ const Table = styled.table`
   align-items: center;
   justify-content: center;
   background: lightGray;
+
+  /* Mobile styles */
+  @media (max-width: 768px) {
+    width: 100%;
+  }
 `;
 
 const TableHeader = styled.thead`
@@ -93,6 +99,7 @@ const Tr = styled.tr`
   align-items: center;
   margin-bottom: 10px;
 `;
+
 const TrHead = styled.tr`
   display: flex;
   align-items: center;
@@ -112,7 +119,7 @@ const Td = styled.td`
   height: 80px;
 `;
 
-const Btn = styled.button`
+const Button = styled.button`
   &:hover {
     color: #007bff;
   }

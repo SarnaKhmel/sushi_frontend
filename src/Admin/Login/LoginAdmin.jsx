@@ -77,6 +77,10 @@ const FormContainer = styled.div`
   justify-content: center;
   align-items: center;
   height: 100vh;
+
+  @media (max-width: 768px) {
+    padding: 20px;
+  }
 `;
 
 const FormTitle = styled.h1`
@@ -89,6 +93,10 @@ const Form = styled.form`
   padding: 2rem;
   border: 1px solid #ccc;
   border-radius: 4px;
+
+  @media (max-width: 768px) {
+    width: 100%;
+  }
 `;
 
 const FormField = styled.div`
@@ -113,6 +121,7 @@ const SubmitButton = styled.button`
   border: none;
   border-radius: 4px;
   cursor: pointer;
+
   &:hover {
     background-color: #0bbcf0;
   }
