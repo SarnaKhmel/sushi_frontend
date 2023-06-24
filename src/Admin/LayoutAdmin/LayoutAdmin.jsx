@@ -4,18 +4,25 @@ import { Link } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { logout } from "../../Redux/slices/auth";
 import { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 
 const LayoutAdmin = ({ children }) => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
+
   const [token, setToken] = useState("");
   useEffect(() => {
     setToken(localStorage.getItem("token"));
+    if (token === null || token === undefined) {
+      navigate("/admin/login");
+    }
   }, []);
 
   const onClickLogout = () => {
     if (window.confirm("Ви дійсно хочете вийти?")) {
       dispatch(logout());
       window.localStorage.removeItem("token");
+      navigate("/");
     }
   };
 

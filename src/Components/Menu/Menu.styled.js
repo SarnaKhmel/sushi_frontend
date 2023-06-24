@@ -21,7 +21,7 @@ export const Items = styled.div`
   overflow: show;
   overflow-x: auto;
 
-  @media (min-width: 340px) and (max-width: 700px) {
+  @media (min-width: 340px) and (max-width: 768px) {
     width: 90vw;
   }
 `;

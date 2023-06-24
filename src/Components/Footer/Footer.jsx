@@ -65,6 +65,7 @@ const Footer = () => {
         <div>
           <FooterBoxM>
             <FooterItem1M>
+              <Link to="/admin/login">Admin 1</Link>
               <FooterP>Про нас</FooterP>
               <FooterP>Акції</FooterP>
               <FooterP>Доставка та оплата</FooterP>
@@ -95,6 +96,7 @@ const Footer = () => {
             <FooterP>Розробка та дизайн сайтів </FooterP>
             <FooterLogoTitle src={sushiLogoTitle} alt="title" />
           </FooterItem3M>
+          <Link to="admin/login">Admin</Link>
         </div>
       </FooterBlock>
     </>

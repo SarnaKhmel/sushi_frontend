@@ -51,7 +51,7 @@ const Label = styled.label`
 
   color: #ffffff;
 
-  @media (max-width: 500px) {
+  @media (max-width: 768px) {
     margin-left: 0px;
     font-size: 32px;
     line-height: 39px;
@@ -64,7 +64,6 @@ const Text = styled.p`
   height: 95px;
   max-width: 1140px;
 
-  font-family: "Montserrat";
   font-style: normal;
   font-weight: 400;
   font-size: 24px;

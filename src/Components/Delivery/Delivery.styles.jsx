@@ -22,6 +22,12 @@ export const Block = styled.div`
   background: #151515;
   box-shadow: 0px 1px 7px rgba(255, 255, 255, 0.25);
   border-radius: 10px;
+
+  @media (max-width: 768px) {
+    width: 90vw;
+    height: 730px;
+  }
+
   @media (max-width: 500px) {
     margin-top: 150px;
     display: flex;

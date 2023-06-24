@@ -24,6 +24,8 @@ export const ImageBlock = styled.div`
   overflow: hidden;
   background: linear-gradient(104.51deg, #161515 0.89%, #313131 98.21%);
   @media (max-width: 500px) {
+    background: transparent;
+
     border-radius: 10px;
     height: 132px;
     width: 191px;
@@ -44,13 +46,15 @@ export const TitleBlock = styled.div`
   justify-content: space-between;
 
   @media (max-width: 500px) {
+    border-radius: 10px 10px 10px 10px;
+    box-shadow: -10px 10px 4px rgba(0, 0, 0, 0.25);
+
     background: transparent;
     display: flex;
     flex-direction: column;
     padding: 0px 0px;
     padding-left: 10px;
     ${"" /* justify-content: center; */}
-    ${"" /* border: 1px solid blue; */}
     height: 132px;
   }
 `;
