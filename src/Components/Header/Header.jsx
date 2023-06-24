@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import {
   HeaderBlock,
   HeaderItem,
@@ -70,6 +70,12 @@ const StyledScrollLink = styled(ScrollLink)`
 `;
 
 const Header = () => {
+  const [url, setUrl] = useState(false);
+  useEffect(() => {
+    const pathname = window.location.pathname;
+    setUrl(pathname === "/");
+  }, []);
+
   const [openContactsModal, setOpenContactsModal] = useState(false);
 
   const handleOpenContactsModal = () => {
@@ -103,12 +109,31 @@ const Header = () => {
 
           <LinkBlock>
             <StyledLink to="/about">Про нас</StyledLink>
-            <StyledScrollLink to="delivery" smooth={true} duration={1200}>
-              Доставка
-            </StyledScrollLink>
-            <StyledScrollLink to="menu" smooth={true} duration={700}>
-              Меню
-            </StyledScrollLink>
+
+            {url ? (
+              <>
+                <StyledScrollLink to="delivery" smooth={true} duration={1200}>
+                  Доставка
+                </StyledScrollLink>
+              </>
+            ) : (
+              <>
+                <StyledLink to="/delivery">Доставка</StyledLink>
+              </>
+            )}
+
+            {url ? (
+              <>
+                <StyledScrollLink to="menu" smooth={true} duration={700}>
+                  Меню
+                </StyledScrollLink>
+              </>
+            ) : (
+              <>
+                <StyledLink to="/">Меню</StyledLink>
+              </>
+            )}
+
             <LinkToElement onClick={handleOpenContactsModal}>
               Контакти
             </LinkToElement>
