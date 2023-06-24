@@ -1,36 +1,64 @@
 import React, { useState, useEffect } from "react";
 import LayoutAdmin from "../LayoutAdmin/LayoutAdmin";
-import styled from "styled-components";
 import { HiPlayPause } from "react-icons/hi2";
 import { FcPlus, FcStart } from "react-icons/fc";
 import { AiFillMinusCircle } from "react-icons/ai";
 
+import styled, { css } from "styled-components";
+
+import { useDispatch, useSelector } from "react-redux";
+import { fetchOrders } from "../../Redux/slices/orders";
+
+import OrdersTable from "../OrdersTable/OrdersTable";
+
 const AdminOrderPage = () => {
-  const [isActive, setIsActive] = useState(true);
-  const [seconds, setSeconds] = useState(10);
+  const [isActive, setIsActive] = useState(false);
+  const [seconds, setSeconds] = useState(0);
+
+  const dispatch = useDispatch();
+  let orders = useSelector((state) => state.orders.orders);
+  console.log("orders", orders);
+  useEffect(() => {
+    dispatch(fetchOrders());
+  }, [dispatch]);
 
   useEffect(() => {
-    let timerInterval;
-    if (isActive) {
-      timerInterval = setInterval(() => {
+    const interval = setInterval(() => {
+      if (isActive) {
         setSeconds((prevSeconds) => {
           if (prevSeconds === 0) {
-            return 10;
+            dispatch(fetchOrders());
+            return 60;
           } else {
             return prevSeconds - 1;
           }
         });
-      }, 1000);
-    }
+      }
+    }, 1000);
 
     return () => {
-      clearInterval(timerInterval);
+      clearInterval(interval);
     };
   }, [isActive]);
+
+  const [update, setUpdate] = useState(false);
 
   const handleToggle = () => {
     setIsActive(!isActive);
   };
+  const [activeBlocks, setActiveBlocks] = useState([true, false, false]);
+  const toggleBlock = (blockNumber) => {
+    setActiveBlocks((prevActiveBlocks) => {
+      const newActiveBlocks = [...prevActiveBlocks];
+      newActiveBlocks[blockNumber] = !prevActiveBlocks[blockNumber];
+      return newActiveBlocks;
+    });
+  };
+
+  const newOrders = orders.items.filter((item) => item.status === "new");
+  const sortedNewOrders = [...newOrders].sort(
+    (a, b) => b.orderNumber - a.orderNumber
+  );
 
   return (
     <LayoutAdmin>
@@ -45,6 +73,38 @@ const AdminOrderPage = () => {
         <TimerText>Залишилось секунд: {seconds}</TimerText>
         <HiPlayPause size={28} color="red" onClick={handleToggle} />
       </TimerContainer>
+      {orders && orders.status === "loaded" ? (
+        <>
+          <Container>
+            <LabelBlock>
+              <Label onClick={() => toggleBlock(0)}>Нові замовлення</Label>
+              <Label
+                onClick={() => {
+                  toggleBlock(1);
+                  setUpdate(!update);
+                }}>
+                Всі замовлення
+              </Label>
+            </LabelBlock>
+
+            {activeBlocks[0] && (
+              <Block $active={activeBlocks[0]}>
+                <>
+                  <OrdersTable newOrders={sortedNewOrders} />
+                </>
+              </Block>
+            )}
+
+            {activeBlocks[1] && (
+              <Block $active={activeBlocks[1]}>
+                {/* <PostTable posts={posts} /> */}
+              </Block>
+            )}
+          </Container>
+        </>
+      ) : (
+        <Element>hi3</Element>
+      )}
     </LayoutAdmin>
   );
 };
@@ -68,6 +128,57 @@ const IconWrapper = styled.div`
 
 const TimerText = styled.p`
   margin-right: 10px;
+`;
+
+const Container = styled.div`
+  margin-top: 130px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: start;
+  background: grey;
+  min-height: 100vh;
+  top: 300px;
+`;
+const Block = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: lightGray;
+  min-height: 50vh;
+  width: 100vw;
+  border-bottom: 1px solid black;
+  display: none;
+  opacity: 0;
+  transition: opacity 3s ease;
+
+  ${(props) =>
+    props.$active &&
+    css`
+      display: block;
+      transition: opacity 3s ease;
+      opacity: 1;
+    `}
+`;
+
+const LabelBlock = styled.div`
+  margin-top: 10px;
+  font-size: 24px;
+`;
+const Label = styled.button`
+  color: white;
+  color: black;
+  font-size: 24px;
+  &:hover {
+    color: #007bff;
+  }
+`;
+
+const Element = styled.div`
+  margin-top: 130px;
+  color: black;
+  border: 1px solid black;
 `;
 
 export default AdminOrderPage;

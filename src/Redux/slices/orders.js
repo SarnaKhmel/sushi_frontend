@@ -1,16 +1,6 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "../../Utils/axios";
 
-// export const fetchOrders = createAsyncThunk("orders/fetchPosts", async () => {
-//   const { data } = await axios.get("/orders");
-//   return data;
-// });
-
-// export const fetchRemovePost = createAsyncThunk(
-//   "orders/fetchRemovePost",
-//   async (id) => axios.delete(`/orders/${id}`)
-// );
-
 const initialState = {
   orders: {
     items: [],
@@ -23,29 +13,6 @@ const initialState = {
     status: "loading",
   },
 };
-
-// export const addOrderItem = createAsyncThunk(
-//   "order/addOrderItem",
-//   async (product, { getState }) => {
-//     const state = getState();
-
-//     const orderList = state.orders.order;
-//     // console.log(state.orders.order);
-//     console.log(orderList);
-//     const updatedItems = [...orderList.items, product];
-//     const updatedSum = parseFloat(orderList.sum) + parseFloat(product.price);
-//     const updatedWeight =
-//       parseFloat(orderList.weight) + parseFloat(product.weight);
-//     const orderState = {
-//       items: updatedItems,
-//       sum: updatedSum,
-//       weight: updatedWeight,
-//     };
-//     const stateJSON = JSON.stringify(orderState);
-//     localStorage.setItem("orderState", stateJSON);
-//     return { items: updatedItems, sum: updatedSum, weight: updatedWeight };
-//   }
-// );
 
 export const createOrder = createAsyncThunk(
   "auth/createOrder",
@@ -109,35 +76,23 @@ export const addOrderItem = createAsyncThunk(
   }
 );
 
-// export const removeOrderItem = createAsyncThunk(
-//   "order/removeOrderItem",
-//   async (productId, { getState }) => {
-//     const state = getState();
+export const finOrder = createAsyncThunk(
+  "products/finOrder",
+  async ({ id, updatedItem }) => {
+    console.log({ id, updatedItem });
 
-//     const orderList = state.orders.order;
-//     const existingItem = orderList.items.find((item) => item._id === productId);
+    const response = await axios.patch(`/order/${id}`, updatedItem);
+    return response.data;
+  }
+);
 
-//     if (existingItem) {
-//       const updatedItems = orderList.items.filter(
-//         (item) => item._id !== productId
-//       );
-//       const updatedSum = orderList.sum - parseFloat(existingItem.price);
-//       const updatedWeight = orderList.weight - parseFloat(existingItem.weight);
-
-//       const orderState = {
-//         items: updatedItems,
-//         sum: updatedSum,
-//         weight: updatedWeight,
-//       };
-//       const stateJSON = JSON.stringify(orderState);
-//       localStorage.setItem("orderState", stateJSON);
-
-//       return { items: updatedItems, sum: updatedSum, weight: updatedWeight };
-//     } else {
-//       return orderList;
-//     }
-//   }
-// );
+export const fetchOrders = createAsyncThunk(
+  "products/fetchOrders",
+  async () => {
+    const { data } = await axios.get("/order");
+    return data;
+  }
+);
 
 export const removeOrderItem = createAsyncThunk(
   "order/removeOrderItem",
@@ -199,6 +154,18 @@ const ordersSlice = createSlice({
     addOrderItem,
   },
   extraReducers: {
+    [fetchOrders.pending]: (state) => {
+      state.orders.items = [];
+      state.orders.status = "loading";
+    },
+    [fetchOrders.fulfilled]: (state, action) => {
+      state.orders.items = action.payload;
+      state.orders.status = "loaded";
+    },
+    [fetchOrders.rejected]: (state) => {
+      state.orders.items = [];
+      state.orders.status = "error";
+    },
     [addOrderItem.pending]: (state) => {
       state.order.status = "loading";
     },
@@ -252,6 +219,18 @@ const ordersSlice = createSlice({
     },
     [createOrder.rejected]: (state) => {
       state.status = "error";
+    },
+    [finOrder.pending]: (state) => {
+      state.order = [];
+      state.order.status = "loading";
+    },
+    [finOrder.fulfilled]: (state, action) => {
+      state.order = action.payload;
+      state.order.status = "loaded";
+    },
+    [finOrder.rejected]: (state) => {
+      state.order = [];
+      state.order.status = "error";
     },
   },
 });

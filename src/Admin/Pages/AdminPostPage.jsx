@@ -12,7 +12,6 @@ const AdminPostPage = () => {
   const [update, setUpdate] = useState(false);
 
   useEffect(() => {
-    // dispatch(fetchProducts());
     dispatch(fetchPosts());
   }, [dispatch, update]);
 

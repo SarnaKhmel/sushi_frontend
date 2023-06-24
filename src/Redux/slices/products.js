@@ -22,7 +22,6 @@ export const updateProduct = createAsyncThunk(
   "products/updateProduct",
   async ({ id, productData }) => {
     const response = await axios.patch(`/auth/products/${id}`, productData);
-    console.log(response.data);
     return response.data;
   }
 );

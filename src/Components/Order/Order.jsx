@@ -54,6 +54,7 @@ const Order = () => {
     changeAmount: "500",
     comment: "Hi",
     orderList: order,
+    status: "new",
   });
 
   const handleChange = (e) => {
