@@ -113,6 +113,9 @@ export const FooterP = styled.p`
     font-weight: 700;
     font-size: 14px;
     line-height: 17px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }
 `;
 

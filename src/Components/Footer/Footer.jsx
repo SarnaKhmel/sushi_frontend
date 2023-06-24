@@ -45,6 +45,9 @@ const StyledLink = styled(Link)`
     line-height: 17px;
     text-align: center;
   }
+  &:hover {
+    cursor: pointer;
+  }
 `;
 const Footer = () => {
   return (
@@ -76,7 +79,7 @@ const Footer = () => {
             <FooterTitle>Контакти та підтримка</FooterTitle>
             <FooterP>+38 (098) 952-03-01</FooterP>
             <FooterP>+38 (067) 159-88-15</FooterP>
-            <FooterEmail>ushizlyubovyu@gmail.com</FooterEmail>
+            <FooterEmail>sushizlyubovyu@gmail.com</FooterEmail>
           </FooterItem3>
           <FooterItem4>
             <StyledLink to="https://www.facebook.com/sushizlyubovyu">
@@ -126,7 +129,7 @@ const Footer = () => {
             <br />
             <FooterP>@ 2022 - 2023 “Cуші з любов’ю” </FooterP>
             <FooterP></FooterP>
-            <FooterP> </FooterP>
+            <FooterP></FooterP>
             <FooterP>Розробка та дизайн сайтів </FooterP>
             <FooterLogoTitle src={sushiLogoTitle} alt="title" />
           </FooterItem3M>

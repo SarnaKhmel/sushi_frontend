@@ -124,8 +124,8 @@ const Container = styled.div`
   margin-top: 500px;
 
   /* Mobile styles */
-  @media (max-width: 768px) {
-    margin-top: 200px;
+  @media (min-width: 340px) and (max-width: 767px) {
+    margin-top: 450px;
   }
 `;
 

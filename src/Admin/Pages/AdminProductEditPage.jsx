@@ -33,7 +33,7 @@ const Container = styled.div`
 
   /* Mobile styles */
   @media (max-width: 768px) {
-    margin-top: 50px;
+    margin-top: 450px;
     padding: 10px;
   }
 `;

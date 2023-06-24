@@ -172,6 +172,9 @@ const Container = styled.div`
   background: grey;
   min-height: 100vh;
   top: 300px;
+  @media (min-width: 340px) and (max-width: 767px) {
+    margin-top: 450px;
+  }
 `;
 
 const Block = styled.div`
