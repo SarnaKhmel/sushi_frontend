@@ -22,19 +22,18 @@ export const fetchAuthMe = createAsyncThunk(
   }
 );
 
-// apartment: "2";
-// changeAmount: "40000";
-// city: "lviv";
-// comment: "";
-// deliveryType: "quick";
-// email: "olsarnat@gmail.com";
-// entrance: "1";
-// floor: "1";
-// house: "62";
-// name: "qwe";
-// paymentMethod: "cash";
-// phone: "0932607352";
-// street: "Khmelnitskogo";
+export const changePassword = createAsyncThunk(
+  "auth/changePassword",
+  async (params) => {
+    const { oldPassword, newPassword, id } = params;
+    const { data } = await axios.patch("/auth/password", {
+      oldPassword,
+      newPassword,
+      id,
+    });
+    return data;
+  }
+);
 
 const initialState = {
   data: null,
@@ -83,6 +82,18 @@ const authSlice = createSlice({
       state.data = action.payload;
     },
     [fetchRegister.rejected]: (state) => {
+      state.status = "error";
+      state.data = null;
+    },
+    [changePassword.pending]: (state) => {
+      state.status = "loading";
+      state.data = null;
+    },
+    [changePassword.fulfilled]: (state, action) => {
+      state.status = "loaded";
+      state.data = action.payload;
+    },
+    [changePassword.rejected]: (state) => {
       state.status = "error";
       state.data = null;
     },
