@@ -5,6 +5,7 @@ import toast, { Toaster } from "react-hot-toast";
 import styled, { css } from "styled-components";
 
 import { uploadProductImG, createProduct } from "../../Redux/slices/products";
+
 const AddPost = () => {
   const [selectedFile, setSelectedFile] = useState(null);
   const [imageUrl, setImageUrl] = useState(null);
@@ -65,12 +66,10 @@ const AddPost = () => {
         title: formFields.title,
         text: formFields.text,
       };
-      //  console.log(productData);
-
       axios
         .post("/auth/posts", productData)
         .then((response) => {
-          console.log(response);
+          handleClearImage();
           notify("👍 Пост додано!");
         })
         .catch((error) => {
@@ -81,17 +80,20 @@ const AddPost = () => {
   const handleClearImage = () => {
     setSelectedFile(null);
     setImageUrl(null);
+    setImageProductUrl(null);
+    setCheckUpload(false);
     notify("Зображення відкріплено");
   };
   const handleClearForm = (e) => {
+    e.preventDefault();
     if (selectedFile !== null) {
       handleClearImage();
     }
-    formFields.imageUrl = "";
-    formFields.title = "";
-    formFields.text = "";
-
-    notify("Форму очищено");
+    setFormFields({
+      title: "",
+      text: "",
+    });
+    notify("Форму очищено ‼️");
   };
   return (
     <AddProductBlock>
@@ -102,8 +104,8 @@ const AddPost = () => {
           {imageUrl && <ProductImage src={imageUrl} alt="Uploaded" />}
         </MiniBlock>
         <MiniBlock>
-          {!checkUpload && <Btn onClick={handleFileUpload}>Upload</Btn>}
-          {imageUrl && <Btn onClick={handleClearImage}>Clear</Btn>}
+          {!checkUpload && <Btn onClick={handleFileUpload}>Завантажити</Btn>}
+          {imageUrl && <Btn onClick={handleClearImage}>Очистити</Btn>}
         </MiniBlock>
       </AddProductImage>
       <AddProductForm onSubmit={handleFormSubmit}>
@@ -114,7 +116,7 @@ const AddPost = () => {
             type="text"
             name="title"
             placeholder="Назва поста"
-            value={formFields.name}
+            value={formFields.title}
             onChange={handleFormFieldChange}
             required
           />

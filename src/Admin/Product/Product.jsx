@@ -100,7 +100,7 @@ const Product = ({ product, setUpdate, update }) => {
       weight: formFields.weight,
       week_sale: formFields.week_sale,
     };
-    // console.log({ id: product._id, productData: productData });
+    console.log({ id: product._id, productData: productData });
 
     dispatch(updateProduct({ id: productData._id, productData: productData }))
       .then((data) => {

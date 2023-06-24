@@ -5,10 +5,9 @@ import toast, { Toaster } from "react-hot-toast";
 
 import { useDispatch } from "react-redux";
 
-import { finOrder } from "../../Redux/slices/orders";
-import axios from "../../Utils/axios";
+import { fetchRemoveOrder } from "../../Redux/slices/orders";
 
-const OrderRow = ({ item }) => {
+const OrderRowFin = ({ item }) => {
   const [selectedOrder, setSelectedOrder] = useState(null);
   const notify = (text) => toast(text);
   const dispatch = useDispatch();
@@ -20,18 +19,20 @@ const OrderRow = ({ item }) => {
     }
   };
 
-  const handleFinishOrder = () => {
-    const updatedItem = { ...item, status: "fin" };
-    console.log({ id: item._id, item: updatedItem });
-    dispatch(finOrder({ id: item._id, updatedItem: updatedItem }))
-      .then((data) => {
-        console.log(data);
-        notify("👍 Замовлення виконано!");
-      })
-      .catch((error) => {
-        console.log(error);
-        notify("❌ Помилка ");
-      });
+  const handleFinishOrder = (id, number) => {
+    const question = +prompt(
+      "Ви хочете видалити замовлення? Введіть номер замовлення"
+    );
+    if (question === number)
+      dispatch(fetchRemoveOrder(id))
+        .then((data) => {
+          console.log(data);
+          notify("👍 Замовлення видалено!");
+        })
+        .catch((error) => {
+          console.log(error);
+          notify("❌ Помилка ");
+        });
     //{ id: item._id, updatedItem: updatedItem }
   };
 
@@ -114,7 +115,12 @@ const OrderRow = ({ item }) => {
             <Td></Td>
             <Td></Td>
             <Td>
-              <Button onClick={handleFinishOrder}>Закрити замовлення</Button>
+              <ButtonRed
+                onClick={() => {
+                  handleFinishOrder(item._id, item.orderNumber);
+                }}>
+                Видалити
+              </ButtonRed>
             </Td>
           </TrDetails>
         </>
@@ -196,4 +202,15 @@ const Button = styled.button`
     color: #007bff;
   }
 `;
-export default OrderRow;
+const ButtonRed = styled.button`
+  height: 40px;
+  font-size: 18px;
+  font-weight: bold;
+  background-color: red;
+  color: white;
+
+  &:hover {
+    color: #007bff;
+  }
+`;
+export default OrderRowFin;

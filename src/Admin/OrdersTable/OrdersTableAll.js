@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 import styled, { css } from "styled-components";
 import { baseUrl } from "../../Utils/baseUrl";
-import OrderRow from "./OrderRow";
+import OrderRowAll from "./OrderRowAll";
 
-const OrdersTable = ({ newOrders, title }) => {
+const OrdersTableAll = ({ newOrders, title }) => {
   return (
     <Table>
       <TableHeader>
@@ -22,7 +22,7 @@ const OrdersTable = ({ newOrders, title }) => {
           <Th></Th>
         </TrHead>
         {newOrders.map((item, index) => (
-          <OrderRow item={item} index={index} key={index} />
+          <OrderRowAll item={item} index={index} key={index} />
         ))}
       </tbody>
     </Table>
@@ -102,4 +102,4 @@ const Button = styled.button`
   }
 `;
 
-export default OrdersTable;
+export default OrdersTableAll;

@@ -83,13 +83,13 @@ const AddProduct = () => {
         weight: formFields.weight,
         week_sale: false,
       };
-      // console.log(productData);
 
       axios
         .post("/auth/products", productData)
         .then((response) => {
           // console.log(response);
           notify("👍 Товар додано!");
+          handleClearForm();
         })
         .catch((error) => {
           console.log(error);

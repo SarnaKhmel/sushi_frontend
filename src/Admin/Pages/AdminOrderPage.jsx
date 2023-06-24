@@ -10,11 +10,15 @@ import { useDispatch, useSelector } from "react-redux";
 import { fetchOrders } from "../../Redux/slices/orders";
 
 import OrdersTable from "../OrdersTable/OrdersTable";
+import OrdersTableAll from "../OrdersTable/OrdersTableAll";
+import OrdersTableFin from "../OrdersTable/OrdersTableFin";
 
+import ExelOrders from "../Exel/ExelOrders";
 const AdminOrderPage = () => {
   const [isActive, setIsActive] = useState(false);
   const [seconds, setSeconds] = useState(0);
 
+  const [updateIn, setUpdateIn] = useState(false);
   const dispatch = useDispatch();
   let orders = useSelector((state) => state.orders.orders);
   console.log("orders", orders);
@@ -60,6 +64,12 @@ const AdminOrderPage = () => {
     (a, b) => b.orderNumber - a.orderNumber
   );
 
+  const sortedNewOrdersAll = [...orders.items].sort(
+    (a, b) => b.orderNumber - a.orderNumber
+  );
+
+  const finishedOrders = orders.items.filter((item) => item.status === "fin");
+
   return (
     <LayoutAdmin>
       <TimerContainer>
@@ -85,25 +95,47 @@ const AdminOrderPage = () => {
                 }}>
                 Всі замовлення
               </Label>
+              <Label
+                onClick={() => {
+                  toggleBlock(2);
+                  setUpdate(!update);
+                }}>
+                Виконані замовлення
+              </Label>
             </LabelBlock>
 
             {activeBlocks[0] && (
               <Block $active={activeBlocks[0]}>
-                <>
-                  <OrdersTable newOrders={sortedNewOrders} />
-                </>
+                <ExelOrders products={sortedNewOrders} name={"Нові"} />
+                <OrdersTable
+                  newOrders={sortedNewOrders}
+                  title="Нові замовлення"
+                />
               </Block>
             )}
 
             {activeBlocks[1] && (
               <Block $active={activeBlocks[1]}>
-                {/* <PostTable posts={posts} /> */}
+                <ExelOrders products={sortedNewOrdersAll} name={"Всі"} />
+                <OrdersTableAll
+                  newOrders={sortedNewOrdersAll}
+                  title="Всі замовлення"
+                />
+              </Block>
+            )}
+            {activeBlocks[2] && (
+              <Block $active={activeBlocks[2]}>
+                <ExelOrders products={finishedOrders} name={"Завершені"} />
+                <OrdersTableFin
+                  newOrders={finishedOrders}
+                  title="Завершені замовлення"
+                />
               </Block>
             )}
           </Container>
         </>
       ) : (
-        <Element>hi3</Element>
+        <Element>Loading ... </Element>
       )}
     </LayoutAdmin>
   );

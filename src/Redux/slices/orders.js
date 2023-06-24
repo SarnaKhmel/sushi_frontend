@@ -14,6 +14,14 @@ const initialState = {
   },
 };
 
+export const fetchRemoveOrder = createAsyncThunk(
+  "products/fetchRemoveOrder",
+  async (id) => {
+    await axios.delete(`/order/${id}`);
+    return id;
+  }
+);
+
 export const createOrder = createAsyncThunk(
   "auth/createOrder",
   async (order) => {
@@ -79,8 +87,6 @@ export const addOrderItem = createAsyncThunk(
 export const finOrder = createAsyncThunk(
   "products/finOrder",
   async ({ id, updatedItem }) => {
-    console.log({ id, updatedItem });
-
     const response = await axios.patch(`/order/${id}`, updatedItem);
     return response.data;
   }
@@ -147,6 +153,7 @@ export const clearOrderState = createAsyncThunk(
     };
   }
 );
+
 const ordersSlice = createSlice({
   name: "orders",
   initialState,
@@ -231,6 +238,15 @@ const ordersSlice = createSlice({
     [finOrder.rejected]: (state) => {
       state.order = [];
       state.order.status = "error";
+    },
+    [fetchRemoveOrder.pending]: (state, action) => {
+      state.orders.items = state.orders.items.filter(
+        (obj) => obj._id !== action.meta.arg
+      );
+    },
+    [fetchRemoveOrder.fulfilled]: (state, action) => {
+      const id = action.payload;
+      state.orders.items = state.orders.items.filter((obj) => obj._id !== id);
     },
   },
 });
