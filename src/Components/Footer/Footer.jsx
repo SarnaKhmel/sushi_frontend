@@ -130,7 +130,15 @@ const Footer = () => {
             <FooterP>@ 2022 - 2023 “Cуші з любов’ю” </FooterP>
             <FooterP></FooterP>
             <FooterP></FooterP>
-            <FooterP>Розробка та дизайн сайтів </FooterP>
+            <FooterP>
+              <StyledLink to="https://www.linkedin.com/in/oleksa-sarnatskyi/">
+                Розробка
+              </StyledLink>
+              та
+              <StyledLink to="https://www.linkedin.com/in/designalex/">
+                дизайн
+              </StyledLink>
+            </FooterP>
             <FooterLogoTitle src={sushiLogoTitle} alt="title" />
           </FooterItem3M>
         </div>
