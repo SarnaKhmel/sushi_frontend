@@ -1,7 +1,6 @@
 {
   "name": "sushi",
   "version": "2.1.0",
-  "homepage": "https://sarnakhmel.github.io/sushi_frontend",
   "private": true,
   "dependencies": {
     "@redux-devtools/extension": "^3.2.5",
@@ -14,7 +13,6 @@
     "cors": "^2.8.5",
     "easymde": "^2.16.1",
     "formik": "^2.2.9",
-    "gh-pages": "^5.0.0",
     "modern-normalize": "^1.1.0",
     "nanoid": "^4.0.1",
     "nodemailer": "^6.9.3",
