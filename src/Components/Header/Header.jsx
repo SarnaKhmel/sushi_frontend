@@ -106,7 +106,16 @@ const Header = () => {
   const products = useSelector((state) => state.products.products);
   const weekProd = products.items.filter((item) => item.week_sale === true);
   const [showWeekModal, setShowWeekModal] = useState(false);
-  console.log(weekProd);
+  console.log(weekProd.length);
+  const checkWeekSale = () => {
+    if (weekProd.length === 0) {
+      setShowWeekModal(false);
+    } else {
+      setShowWeekModal(true);
+    }
+  };
+
+  console.log(weekProd[0]);
   // if (weekProd.length > 0) {
   //   setShowWeekModal(true);
   // }
