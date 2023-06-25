@@ -51,10 +51,10 @@ const Product = ({ product, setUpdate, update }) => {
     axios
       .post("/upload/products", formData)
       .then((response) => {
-        console.log(response);
         setImageUrl(response.data.imageUrl);
         setImageProductUrl(response.data.url);
         notify("Зображення звантажено");
+
         setCheckUpload(true);
       })
       .catch((error) => {
@@ -90,7 +90,7 @@ const Product = ({ product, setUpdate, update }) => {
 
     const productData = {
       _id: product._id,
-      imageUrl: product.imageUrl,
+      imageUrl: imageProductUrl,
       name: formFields.name,
       price: formFields.price,
       old_price: formFields.old_price,
