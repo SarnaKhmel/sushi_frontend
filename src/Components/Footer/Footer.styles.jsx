@@ -128,6 +128,10 @@ export const FooterEmail = styled.p`
   margin-top: 10px;
   margin-left: 20px;
   @media (min-width: 340px) and (max-width: 767px) {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
   }
 `;
 

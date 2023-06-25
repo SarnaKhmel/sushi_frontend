@@ -114,7 +114,9 @@ const Footer = () => {
               <FooterP>Контакти та підтримка</FooterP>
               <FooterP>+38 (098) 952-03-01</FooterP>
               <FooterP>+38 (067) 159-88-15</FooterP>
-              <FooterEmail>sushizlyubovyu@gmail.com</FooterEmail>
+              <FooterEmail>
+                <div>sushizlyubovyu@</div> <div>gmail.com</div>
+              </FooterEmail>
               <FooterItem4M>
                 <StyledLink to="https://www.facebook.com/sushizlyubovyu">
                   <Icons src={fb} alt="fb" />

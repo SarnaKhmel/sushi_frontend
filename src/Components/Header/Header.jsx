@@ -29,8 +29,6 @@ import OrderItem from "../OrderItem/OrderItem";
 
 import WeekSaleModal from "../Modals/WeekSaleModal/WeekSaleModal";
 
-import { useSelector } from "react-redux";
-
 const StyledLink = styled(Link)`
   color: blue;
   text-decoration: none;
@@ -103,23 +101,6 @@ const Header = () => {
 
   //weekSaleModal
 
-  const products = useSelector((state) => state.products.products);
-  const weekProd = products.items.filter((item) => item.week_sale === true);
-  const [showWeekModal, setShowWeekModal] = useState(false);
-  console.log(weekProd.length);
-  const checkWeekSale = () => {
-    if (weekProd.length === 0) {
-      setShowWeekModal(false);
-    } else {
-      setShowWeekModal(true);
-    }
-  };
-
-  console.log(weekProd[0]);
-  // if (weekProd.length > 0) {
-  //   setShowWeekModal(true);
-  // }
-
   return (
     <>
       <HeaderBlock>
@@ -188,7 +169,7 @@ const Header = () => {
         />
       ) : null}
 
-      {showWeekModal === true ? <WeekSaleModal product={weekProd[0]} /> : null}
+      <WeekSaleModal />
     </>
   );
 };
