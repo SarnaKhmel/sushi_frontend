@@ -25,10 +25,10 @@ const Product = ({ product, setUpdate, update }) => {
       setNewImage(reader.result);
     };
 
-    if (file) {
+    if (file && /\.(png|jpe?g)$/i.test(file.name)) {
       reader.readAsDataURL(file);
+      handleFileSelect(file);
     }
-    handleFileSelect(file);
   };
 
   const dispatch = useDispatch();
@@ -66,7 +66,6 @@ const Product = ({ product, setUpdate, update }) => {
 
   const [formFields, setFormFields] = useState({
     _id: product._id,
-
     name: product.name,
     text: product.text,
     type: product.type,
