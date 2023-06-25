@@ -29,6 +29,8 @@ import OrderItem from "../OrderItem/OrderItem";
 
 import WeekSaleModal from "../Modals/WeekSaleModal/WeekSaleModal";
 
+import { useSelector } from "react-redux";
+
 const StyledLink = styled(Link)`
   color: blue;
   text-decoration: none;
@@ -101,7 +103,12 @@ const Header = () => {
 
   //weekSaleModal
 
+  const products = useSelector((state) => state.products.products);
+  const weekProd = products.items.filter((item) => item.week_sale === true);
   const [showWeekModal, setShowWeekModal] = useState(false);
+  if (weekProd.length > 0) {
+    setShowWeekModal(true);
+  }
 
   return (
     <>
@@ -156,7 +163,7 @@ const Header = () => {
           <OrderItem></OrderItem>
         </HeaderItem>
       </HeaderBlock>
-      <BottomMenu />
+      {/* <BottomMenu /> */}
       {openContactsModal === true ? (
         <ContactModal
           isOpen={openContactsModal}
@@ -171,12 +178,7 @@ const Header = () => {
         />
       ) : null}
 
-      {showWeekModal === true ? (
-        <WeekSaleModal
-          showModal={showWeekModal}
-          setShowModal={setShowWeekModal}
-        />
-      ) : null}
+      {showWeekModal === true ? <WeekSaleModal product={weekProd[0]} /> : null}
     </>
   );
 };

@@ -9,6 +9,7 @@ export const HeaderBlock = styled.div`
   );
 
   color: white;
+  z-index: 50;
 
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
   min-height: 60px;
@@ -25,6 +26,8 @@ export const HeaderBlock = styled.div`
 
 export const HeaderItem = styled.div`
   display: flex;
+  z-index: 50;
+
   margin: 0 320px;
   justify-content: space-between;
   align-items: center;
