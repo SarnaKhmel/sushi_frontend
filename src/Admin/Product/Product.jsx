@@ -11,7 +11,7 @@ import { updateProduct } from "../../Redux/slices/products";
 const Product = ({ product, setUpdate, update }) => {
   const [selectedFile, setSelectedFile] = useState(null);
   const [imageUrl, setImageUrl] = useState(product.imageUrl);
-  const [imageProductUrl, setImageProductUrl] = useState(null);
+  const [imageProductUrl, setImageProductUrl] = useState(product.imageUrl);
   const [checkUpload, setCheckUpload] = useState(false);
 
   const [currentImage, setCurrentImage] = useState(product.imageUrl);
