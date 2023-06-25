@@ -132,7 +132,10 @@ const ProductBlock = styled.div`
 const ModalTongue = styled.div`
   width: 250px;
   height: 25px;
-  background-color: orange;
+  background-color: #ff4700;
+  font-size: 14px;
+  font-style: italic;
+  font-weight: 500;
   border-radius: 0 0 20px 20px;
   cursor: pointer;
 `;
