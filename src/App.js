@@ -37,7 +37,8 @@ function App() {
         <Route path="/post/:id" element={<PostPage />} />
 
         {/* Admins routes */}
-        <Route path="/admin/register" element={<RegisterPage />} />
+
+        {/* <Route path="/admin/register" element={<RegisterPage />} /> */}
         <Route path="/admin/login" element={<LoginAdmin />} />
 
         <Route path="/admin/home" element={<HomeAdminPage />} />
