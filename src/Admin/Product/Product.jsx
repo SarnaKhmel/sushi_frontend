@@ -40,6 +40,7 @@ const Product = ({ product, setUpdate, update }) => {
       const renamedFile = new File([file], newName, { type: file.type });
       setSelectedFile(renamedFile);
       setImageUrl(URL.createObjectURL(renamedFile));
+      setImageUrl(URL.createObjectURL(renamedFile));
       notify("Зображення вибрано");
     } else {
       notify("Please select a valid image file (png, jpg, jpeg)");
@@ -65,6 +66,7 @@ const Product = ({ product, setUpdate, update }) => {
 
   const [formFields, setFormFields] = useState({
     _id: product._id,
+    imageUrl: imageUrl,
     name: product.name,
     text: product.text,
     type: product.type,
@@ -90,7 +92,7 @@ const Product = ({ product, setUpdate, update }) => {
 
     const productData = {
       _id: product._id,
-      imageUrl: product.imageUrl,
+      imageUrl: imageUrl,
       name: formFields.name,
       price: formFields.price,
       old_price: formFields.old_price,
