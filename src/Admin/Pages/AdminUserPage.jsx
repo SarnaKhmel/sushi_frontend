@@ -78,7 +78,6 @@ const AdminUserPage = () => {
     <LayoutAdmin>
       <StylesToaster position="bottom-right" reverseOrder={false} />
       <Container>
-        <Label>Ім'я: {me._id}</Label>
         <Label>Ім'я: {me.fullName}</Label>
         <Label>Пошта: {me.email}</Label>
         <Block>

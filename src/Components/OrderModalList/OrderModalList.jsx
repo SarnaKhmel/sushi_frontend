@@ -36,36 +36,34 @@ const OrderModalList = () => {
   return (
     <List>
       {order.items.map((item) => (
-        <div key={item._id}>
-          <Block>
-            <ImageBlock>
-              <ProductImage src={`${baseUrl}${item.imageUrl}`} />
-            </ImageBlock>
-            <InfoBlock>
-              <Label1>
-                <Name>{item.name}</Name> <Weight>{item.weight}г.</Weight>
-              </Label1>
-              <Label2>
-                <IncrementBlock>
-                  <Icon
-                    onClick={() => {
-                      incrementItem(item);
-                    }}>
-                    <BsFillPlusCircleFill size={18} />
-                  </Icon>
+        <Block key={item._id}>
+          <ImageBlock>
+            <ProductImage src={`${baseUrl}${item.imageUrl}`} />
+          </ImageBlock>
+          <InfoBlock>
+            <Label1>
+              <Name>{item.name}</Name> <Weight>{item.weight}г.</Weight>
+            </Label1>
+            <Label2>
+              <IncrementBlock>
+                <Icon
+                  onClick={() => {
+                    incrementItem(item);
+                  }}>
+                  <BsFillPlusCircleFill size={18} />
+                </Icon>
 
-                  <InctrmenValue>{item.quantity}</InctrmenValue>
-                  <Icon onClick={() => decrementItem(item._id)}>
-                    <AiFillMinusCircle size={20} />
-                  </Icon>
-                </IncrementBlock>
-                <PriceBlock>
-                  <Price>{item.price}грн</Price>
-                </PriceBlock>
-              </Label2>
-            </InfoBlock>
-          </Block>
-        </div>
+                <InctrmenValue>{item.quantity}</InctrmenValue>
+                <Icon onClick={() => decrementItem(item._id)}>
+                  <AiFillMinusCircle size={20} />
+                </Icon>
+              </IncrementBlock>
+              <PriceBlock>
+                <Price>{item.price}грн</Price>
+              </PriceBlock>
+            </Label2>
+          </InfoBlock>
+        </Block>
       ))}
     </List>
   );
@@ -79,7 +77,7 @@ const List = styled.div`
   overflow-y: scroll;
   overflow-x: hidden;
   @media (max-width: 768px) {
-    width: 95%;
+    width: 90%;
   }
 `;
 
@@ -99,9 +97,13 @@ export const Block = styled.div`
   );
   border-radius: 6px;
   overflow: hidden;
+
   @media (max-width: 768px) {
-    width: 350px;
+    display: flex;
+    width: 95%;
     height: 90px;
+    justify-content: space-around;
+    margin-right: 5px;
   }
 `;
 
