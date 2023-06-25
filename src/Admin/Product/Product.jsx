@@ -54,6 +54,7 @@ const Product = ({ product, setUpdate, update }) => {
         console.log(response);
         setImageUrl(response.data.imageUrl);
         setImageProductUrl(response.data.url);
+
         notify("Зображення звантажено ！");
         setCheckUpload(true);
       })
@@ -91,7 +92,6 @@ const Product = ({ product, setUpdate, update }) => {
 
     const productData = {
       _id: product._id,
-      imageUrl: imageProductUrl,
       name: formFields.name,
       price: formFields.price,
       old_price: formFields.old_price,
@@ -100,6 +100,7 @@ const Product = ({ product, setUpdate, update }) => {
       type: formFields.type,
       weight: formFields.weight,
       week_sale: formFields.week_sale,
+      imageUrl: imageProductUrl,
     };
     console.log({ id: product._id, productData: productData });
 
