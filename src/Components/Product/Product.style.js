@@ -153,6 +153,7 @@ export const Title = styled.div`
   line-height: 17px;
 
   color: #ffffff;
+  height: 40px;
   overflow: hidden;
 `;
 export const PriceBlock = styled.div`
