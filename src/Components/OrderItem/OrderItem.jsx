@@ -145,6 +145,8 @@ export const OrderPrice = styled.div`
     font-weight: 700;
     font-size: 12px;
     line-height: 15px;
+    position: absolute;
+    top: 30px;
   }
 `;
 
