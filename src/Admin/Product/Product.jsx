@@ -66,7 +66,7 @@ const Product = ({ product, setUpdate, update }) => {
 
   const [formFields, setFormFields] = useState({
     _id: product._id,
-    imageUrl: imageUrl,
+    imageUrl: imageProductUrl,
     name: product.name,
     text: product.text,
     type: product.type,
