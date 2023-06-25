@@ -40,7 +40,6 @@ const Product = ({ product, setUpdate, update }) => {
       const renamedFile = new File([file], newName, { type: file.type });
       setSelectedFile(renamedFile);
       setImageUrl(URL.createObjectURL(renamedFile));
-      setImageUrl(URL.createObjectURL(renamedFile));
       notify("Зображення вибрано");
     } else {
       notify("Please select a valid image file (png, jpg, jpeg)");
@@ -55,18 +54,19 @@ const Product = ({ product, setUpdate, update }) => {
         console.log(response);
         setImageUrl(response.data.imageUrl);
         setImageProductUrl(response.data.url);
-        notify("Зображення звантажено");
+        notify("Зображення звантажено ！");
         setCheckUpload(true);
       })
       .catch((error) => {
         console.log(error);
+        notify("Зображення не звантажено ‼️ Розмір файлу до 5Мб");
         setCheckUpload(false);
       });
   };
 
   const [formFields, setFormFields] = useState({
     _id: product._id,
-    imageUrl: imageUrl,
+
     name: product.name,
     text: product.text,
     type: product.type,
