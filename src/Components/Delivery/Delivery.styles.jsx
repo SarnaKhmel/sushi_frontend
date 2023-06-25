@@ -55,6 +55,7 @@ export const InfoBlock = styled.div`
   @media (max-width: 500px) {
     padding-left: none;
     width: 100%;
+    max-width: 90vw;
   }
 `;
 

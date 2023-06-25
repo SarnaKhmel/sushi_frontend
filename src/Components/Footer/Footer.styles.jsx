@@ -119,7 +119,7 @@ export const FooterP = styled.p`
   }
 `;
 
-export const FooterEmail = styled.p`
+export const FooterEmail = styled.div`
   font-style: normal;
   font-weight: 700;
   font-size: 17px;

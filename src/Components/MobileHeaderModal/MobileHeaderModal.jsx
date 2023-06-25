@@ -1,11 +1,6 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import {
   ContactModalBlock,
-  Diamond,
-  ContactModalBody,
-  Header,
-  Block,
-  Text,
   CloseBlock,
   LinkToElement,
   Line,
@@ -33,7 +28,6 @@ const StyledLink = styled(Link)`
   font-weight: 600;
   font-size: 14px;
   line-height: 17px;
-  ${"" /* border: 1px solid #ff4700; */}
   border-radius: 10px;
   &:hover {
     text-decoration: underline;
@@ -61,7 +55,6 @@ const StyledScrollLink = styled(ScrollLink)`
   font-weight: 600;
   font-size: 14px;
   line-height: 17px;
-  ${"" /* border: 1px solid #ff4700; */}
   border-radius: 10px;
   &:hover {
     text-decoration: underline;
@@ -78,6 +71,11 @@ const StyledScrollLink = styled(ScrollLink)`
   }
 `;
 const MobileHeaderModal = ({ isOpen, onClose, handleOpenContactsModal }) => {
+  const [url, setUrl] = useState(false);
+  useEffect(() => {
+    const pathname = window.location.pathname;
+    setUrl(pathname === "/");
+  }, []);
   return (
     <ContactModalBlock>
       <Line>
@@ -89,20 +87,30 @@ const MobileHeaderModal = ({ isOpen, onClose, handleOpenContactsModal }) => {
       <StyledLink to="/about" onClick={onClose}>
         Про нас
       </StyledLink>
-      <StyledScrollLink
-        to="delivery"
-        smooth={true}
-        duration={1200}
-        onClick={onClose}>
-        Доставка
-      </StyledScrollLink>
-      <StyledScrollLink
-        to="menu"
-        smooth={true}
-        duration={700}
-        onClick={onClose}>
-        Меню
-      </StyledScrollLink>
+
+      {url ? (
+        <>
+          <StyledScrollLink to="delivery" smooth={true} duration={1200}>
+            Доставка
+          </StyledScrollLink>
+        </>
+      ) : (
+        <>
+          <StyledLink to="/delivery">Доставка</StyledLink>
+        </>
+      )}
+
+      {url ? (
+        <>
+          <StyledScrollLink to="menu" smooth={true} duration={700}>
+            Меню
+          </StyledScrollLink>
+        </>
+      ) : (
+        <>
+          <StyledLink to="/">Меню</StyledLink>
+        </>
+      )}
       <LinkToElement
         onClick={() => {
           handleOpenContactsModal();
