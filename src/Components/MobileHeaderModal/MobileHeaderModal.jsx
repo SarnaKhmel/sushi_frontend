@@ -119,10 +119,10 @@ const MobileHeaderModal = ({ isOpen, onClose, handleOpenContactsModal }) => {
         Контакти
       </LinkToElement>
       <FooterItem4M>
-        <Link>
+        <Link to="https://www.facebook.com/sushizlyubovyu">
           <Icons src={fb} alt="fb" />
         </Link>
-        <Link>
+        <Link to="https://www.instagram.com/sushizlyubovyu/">
           <Icons src={inst} alt="insagram" />
         </Link>
       </FooterItem4M>

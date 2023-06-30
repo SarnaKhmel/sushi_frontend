@@ -149,12 +149,12 @@ const Header = () => {
             <ContactsBlockTitle>Замовлення за телефоном:</ContactsBlockTitle>
             +38 (098) 952-03-01
             <br />
-            пн-нд: 10:00 - 21:00
+            пн-нд: 10:00 - 21:30
           </ContactsBlock>
           <OrderItem></OrderItem>
         </HeaderItem>
       </HeaderBlock>
-      {/* <BottomMenu /> */}
+      <BottomMenu />
       {openContactsModal === true ? (
         <ContactModal
           isOpen={openContactsModal}

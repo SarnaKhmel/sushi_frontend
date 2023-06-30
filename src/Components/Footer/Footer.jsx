@@ -78,7 +78,7 @@ const Footer = () => {
           <FooterItem3>
             <FooterTitle>Контакти та підтримка</FooterTitle>
             <FooterP>+38 (098) 952-03-01</FooterP>
-            <FooterP>+38 (067) 159-88-15</FooterP>
+            <FooterP></FooterP>
             <FooterEmail>sushizlyubovyu@gmail.com</FooterEmail>
           </FooterItem3>
           <FooterItem4>
@@ -113,7 +113,7 @@ const Footer = () => {
             <FooterItem2M>
               <FooterP>Контакти та підтримка</FooterP>
               <FooterP>+38 (098) 952-03-01</FooterP>
-              <FooterP>+38 (067) 159-88-15</FooterP>
+              <FooterP></FooterP>
               <FooterEmail>
                 <div>sushizlyubovyu@</div> <div>gmail.com</div>
               </FooterEmail>
