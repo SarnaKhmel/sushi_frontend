@@ -13,5 +13,6 @@ export const LayoutBlock = styled.div`
   z-index: 1;
   @media (max-width: 768px) {
     background-image: url(${bdMobile});
+    background-size: cover;
   }
 `;
