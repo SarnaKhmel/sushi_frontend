@@ -6,7 +6,10 @@ export const ProductItemBlock = styled.div`
   justify-content: center;
 
   height: 60vh;
+  margin-top: 180px;
+
   @media (max-width: 768px) {
+    margin-top: 180px;
     min-height: 60vh;
     margin-top: 70px;
     margin-bottom: 150px;
