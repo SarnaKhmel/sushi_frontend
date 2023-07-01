@@ -83,7 +83,7 @@ export const OrderBlock = styled.div`
   @media (min-width: 340px) and (max-width: 767px) {
     z-index: 1000;
     position: fixed;
-    top: 200px;
+    top: 75px;
     right: 10px;
     background: rgba(30, 28, 28, 0.5);
     border: 3.31364px solid #ff4700;
@@ -98,7 +98,7 @@ export const OrderBlock = styled.div`
   @media (min-width: 768px) and (max-width: 1023px) {
     z-index: 1000;
     position: fixed;
-    top: 400px;
+    top: 105px;
     right: 20px;
     background: linear-gradient(
       90.94deg,

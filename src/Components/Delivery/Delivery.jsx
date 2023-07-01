@@ -17,7 +17,7 @@ const Delivery = () => {
     <DeliveryBlock id="delivery">
       <Block>
         <InfoBlock>
-          <Header>Час доставки:</Header>
+          <Header>Зони доставки:</Header>
           <Line>
             <GreenBlock></GreenBlock>
             <Info>
@@ -40,9 +40,10 @@ const Delivery = () => {
             </Info>
           </Line>
           <Line>
-            Інформацію що-до доставки за межі зон уточнюйте в оператора
+            Також можлива доставка за межі червоної зони. Деталі уточнюйте у
+            оператора.
           </Line>
-          <Line>Час доставки за межі зон озвучує оператор</Line>
+          <Line></Line>
         </InfoBlock>
         <MapBlock>
           <Iframe src="https://www.google.com/maps/d/u/0/embed?mid=1stv2s4gZ0HnC7rfZz2FqxZxtB9fh0DE&ehbc=2E312F"></Iframe>
@@ -54,6 +55,12 @@ const Delivery = () => {
 
 export default Delivery;
 
+//Two
+// https://www.google.com/maps/d/u/0/embed?mid=1stv2s4gZ0HnC7rfZz2FqxZxtB9fh0DE&ehbc=2E312F
+//Syhiv
+//<iframe src="https://www.google.com/maps/d/u/0/embed?mid=1SGGs8ebV_XcL5DChLDEuLWi_CYdtjxU&ehbc=2E312F" width="640" height="480"></iframe>
+//Z.Voda
+//<iframe src="https://www.google.com/maps/d/u/0/embed?mid=1d7TzP07NBZtL_dcST3yPjK3JW2aws80&ehbc=2E312F" width="640" height="480"></iframe>
 // Доставка:
 
 // #Зелена зона

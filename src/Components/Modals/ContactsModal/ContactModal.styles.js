@@ -2,7 +2,7 @@ import styled, { css } from "styled-components";
 
 export const ContactModalBlock = styled.div`
   position: absolute;
-  top: 130px;
+  top: 180px;
   right: 39vw;
   width: 350px;
   height: 250px;
@@ -13,6 +13,7 @@ export const ContactModalBlock = styled.div`
   z-index: 1000;
   @media (max-width: 768px) {
     right: 0;
+    top: 180px;
   }
 `;
 

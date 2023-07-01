@@ -55,19 +55,19 @@ export const LogoBlock = styled.div`
 
   display: inline-flex;
   @media (min-width: 340px) and (max-width: 767px) {
-    height: 74px;
+    height: 90%;
     width: 160px;
   }
   @media (min-width: 768px) and (max-width: 1023px) {
-    height: 95px;
+    height: 90%;
     width: 160px;
   }
   @media (min-width: 1024px) and (max-width: 1919px) {
-    height: 95px;
-    width: 140px;
+    height: 90%;
+    width: 285px;
   }
   @media (min-width: 1919px) {
-    height: 116px;
+    height: 90%;
   }
 `;
 export const LinkBlock = styled.div`

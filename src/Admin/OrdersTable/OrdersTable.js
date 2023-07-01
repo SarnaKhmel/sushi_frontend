@@ -1,9 +1,32 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import styled, { css } from "styled-components";
 import { baseUrl } from "../../Utils/baseUrl";
 import OrderRow from "./OrderRow";
 
 const OrdersTable = ({ newOrders, title }) => {
+  const [isMobileView, setIsMobileView] = useState(false);
+
+  const handleResize = () => {
+    if (window.innerWidth <= 767) {
+      setIsMobileView(true);
+    } else {
+      setIsMobileView(false);
+    }
+  };
+
+  // Check window size on initial render
+  useState(() => {
+    handleResize();
+  }, []);
+
+  // Add event listener for window resize
+  useEffect(() => {
+    window.addEventListener("resize", handleResize);
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, []);
+
   return (
     <Table>
       <TableHeader>
@@ -16,13 +39,18 @@ const OrdersTable = ({ newOrders, title }) => {
           <Th>Номер</Th>
           <Th>Ім'я</Th>
           <Th>Телефон</Th>
-          <Th>Місто</Th>
-          <Th>Вулиця</Th>
-          <Th>Номер будинку</Th>
+          {isMobileView && <Th>Місто</Th>}
+          {isMobileView && <Th>Вулиця</Th>}
+          {isMobileView && <Th>Номер будинку</Th>}
           <Th></Th>
         </TrHead>
         {newOrders.map((item, index) => (
-          <OrderRow item={item} index={index} key={index} />
+          <OrderRow
+            item={item}
+            index={index}
+            key={index}
+            isMobileView={isMobileView}
+          />
         ))}
       </tbody>
     </Table>

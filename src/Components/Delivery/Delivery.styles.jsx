@@ -6,6 +6,10 @@ export const DeliveryBlock = styled.div`
   align-items: center;
   justify-content: center;
   margin-bottom: 50px;
+
+  @media (max-width: 768px) {
+    max-width: 98vw;
+  }
 `;
 
 export const Block = styled.div`
@@ -54,7 +58,7 @@ export const InfoBlock = styled.div`
   padding-left: 50px;
   @media (max-width: 500px) {
     padding-left: none;
-    width: 100%;
+    width: 90%;
     max-width: 90vw;
   }
 `;
@@ -76,6 +80,11 @@ export const MapBlock = styled.div`
 
 export const Header = styled.h2`
   @media (max-width: 500px) {
+    font-style: normal;
+    font-weight: 700;
+    font-size: 18px;
+    line-height: 24px;
+    color: #ffffff;
   }
 `;
 
@@ -89,7 +98,7 @@ export const Line = styled.div`
 
   font-style: normal;
   font-weight: 300;
-  font-size: 20px;
+  font-size: 18px;
   line-height: 36px;
 
   color: #ffffff;
@@ -131,7 +140,7 @@ export const RedBlock = styled.div`
 export const Info = styled.div`
   font-style: normal;
   font-weight: 400;
-  font-size: 20px;
+  font-size: 18px;
   line-height: 24px;
 
   color: #ffffff;

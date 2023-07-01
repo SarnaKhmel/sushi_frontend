@@ -88,10 +88,10 @@ const HomePage = () => {
     // console.log(type);
   };
 
-  const handleSelectedOption = (value) => {
-    setSort(value);
-    // console.log(value);
-  };
+  // const handleSelectedOption = (value) => {
+  //   setSort(value);
+  //   // console.log(value);
+  // };
 
   return (
     <div>
@@ -102,10 +102,10 @@ const HomePage = () => {
           options={options}
           setFilterOption={setFilterOption}
         />
-        <SelectBlock
+        {/* <SelectBlock
           selectOptions={selectOptions}
           handleSelectedOption={handleSelectedOption}
-        />
+        /> */}
         {products.status === "loading" && <>Loading...</>}
         {products.status === "loaded" && (
           <Products

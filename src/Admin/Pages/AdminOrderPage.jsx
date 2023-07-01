@@ -88,19 +88,23 @@ const AdminOrderPage = () => {
         <>
           <Container>
             <LabelBlock>
-              <Label onClick={() => toggleBlock(0)}>Нові замовлення</Label>
+              <Label onClick={() => toggleBlock(0)} $active={activeBlocks[0]}>
+                Нові замовлення
+              </Label>
               <Label
                 onClick={() => {
                   toggleBlock(1);
                   setUpdate(!update);
-                }}>
+                }}
+                $active={activeBlocks[1]}>
                 Всі замовлення
               </Label>
               <Label
                 onClick={() => {
                   toggleBlock(2);
                   setUpdate(!update);
-                }}>
+                }}
+                $active={activeBlocks[2]}>
                 Виконані замовлення
               </Label>
             </LabelBlock>
@@ -146,13 +150,9 @@ const TimerContainer = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  position: fixed;
-  top: 80px;
-  left: 0;
-  width: 100%;
-  height: 30px;
+  width: 100vw;
+  height: 40px;
   background-color: #f0f0f0;
-  padding: 10px;
 `;
 
 const IconWrapper = styled.div`
@@ -164,16 +164,14 @@ const TimerText = styled.p`
 `;
 
 const Container = styled.div`
-  margin-top: 130px;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: start;
   background: grey;
   min-height: 100vh;
-  top: 300px;
   @media (min-width: 340px) and (max-width: 767px) {
-    margin-top: 450px;
+    width: 100vw;
   }
 `;
 
@@ -197,11 +195,21 @@ const Block = styled.div`
       transition: opacity 3s ease;
       opacity: 1;
     `}
+  @media (min-width: 340px) and (max-width: 767px) {
+    min-height: 400px;
+  }
 `;
 
 const LabelBlock = styled.div`
   margin-top: 10px;
   font-size: 24px;
+  @media (min-width: 340px) and (max-width: 767px) {
+    display: flex;
+    flex-direction: column;
+    align-items: space-around;
+    justify-content: flex-start;
+    margin-bottom: 10px;
+  }
 `;
 
 const Label = styled.button`
@@ -210,6 +218,12 @@ const Label = styled.button`
   &:hover {
     color: #007bff;
   }
+  ${(props) =>
+    props.$active &&
+    css`
+      color: #007bff;
+      text-decoration: underline dotted #007bff;
+    `}
 `;
 
 const Element = styled.div`

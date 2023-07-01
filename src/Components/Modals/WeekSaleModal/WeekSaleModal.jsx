@@ -67,7 +67,7 @@ const WeekSaleModal = () => {
           </ModalContent>
           <ModalTongue isOpen={isModalOpen} onClick={toggleModal}>
             <ModalTongueContent>
-              Акційна пропозиція
+              Акційна пропозиція тижня!
               {isModalOpen ? <IoIosArrowUp /> : <IoIosArrowDown />}
             </ModalTongueContent>
           </ModalTongue>
@@ -145,6 +145,8 @@ const ModalTongueContent = styled.div`
   display: flex;
   justify-content: space-around;
   align-items: center;
+  font-style: italic;
+  color: white;
 `;
 
 const ImageBlock = styled.div`
