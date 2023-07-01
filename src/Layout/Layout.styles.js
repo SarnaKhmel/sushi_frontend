@@ -8,5 +8,6 @@ export const LayoutBlock = styled.div`
   background-repeat: repeat;
   background-size: cover;
   overflow: auto;
+  overflow-y: scroll;
   z-index: 1;
 `;

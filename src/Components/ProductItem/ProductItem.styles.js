@@ -39,7 +39,6 @@ export const ImageBlock = styled.div`
 
   width: 40%;
   height: 100%;
-  border: 1px solid yellow;
 
   @media (max-width: 768px) {
     margin-top: 180px;
