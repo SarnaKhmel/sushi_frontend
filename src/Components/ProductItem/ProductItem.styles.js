@@ -7,11 +7,8 @@ export const ProductItemBlock = styled.div`
 
   height: 60vh;
   margin-top: 180px;
-  border: 1px solid red;
 
   @media (max-width: 768px) {
-    border: 1px solid red;
-
     margin-top: 180px;
     min-height: 60vh;
     margin-top: 70px;
@@ -27,11 +24,7 @@ export const Block = styled.div`
   width: 80vw;
   height: 40vh;
 
-  border: 1px solid orange;
-
   @media (max-width: 768px) {
-    border: 1px solid orange;
-
     display: flex;
     flex-direction: column;
     width: 90vw;
@@ -49,16 +42,13 @@ export const ImageBlock = styled.div`
   border: 1px solid yellow;
 
   @media (max-width: 768px) {
-    border: 1px solid yellow;
-
+    margin-top: 180px;
     max-height: 250px;
     width: 90vw;
     height: 100%;
   }
 `;
 export const InfoBlock = styled.div`
-  border: 1px solid green;
-
   display: flex;
 
   flex-direction: column;
