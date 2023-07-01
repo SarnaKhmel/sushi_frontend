@@ -13,5 +13,6 @@ export const LayoutBlock = styled.div`
   @media (max-width: 768px) {
     height: 100vh;
     background-size: contain;
+    background-repeat: repeat;
   }
 `;
