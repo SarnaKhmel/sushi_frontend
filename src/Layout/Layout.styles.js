@@ -6,8 +6,7 @@ export const LayoutBlock = styled.div`
   background-image: url(${bg});
   min-height: 80vh;
   height: 100vh - 334px;
-  background-repeat: no-repeat;
-  background-size: cover;
+  background-repeat: repeat;
   overflow: auto;
   overflow-y: scroll;
   z-index: 1;
