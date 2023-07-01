@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 export const MenuBlock = styled.div`
   color: #fff;
-  width: 100wv;
+  width: 95wv;
   margin: 100px 20px 10px 10px;
   display: flex;
   flex-direction: column;
