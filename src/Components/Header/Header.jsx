@@ -30,7 +30,6 @@ import OrderItem from "../OrderItem/OrderItem";
 import WeekSaleModal from "../Modals/WeekSaleModal/WeekSaleModal";
 
 const StyledLink = styled(Link)`
-  color: blue;
   text-decoration: none;
   color: white;
   margin-right: 50px;
