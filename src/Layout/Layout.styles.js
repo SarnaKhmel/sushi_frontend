@@ -5,9 +5,13 @@ export const LayoutBlock = styled.div`
   background-image: url(${bg});
   min-height: 80vh;
   height: 100vh - 334px;
-  background-repeat: repeat;
+  background-repeat: no-repeat;
   background-size: cover;
   overflow: auto;
   overflow-y: scroll;
   z-index: 1;
+  @media (max-width: 768px) {
+    height: 100vh;
+    background-size: contain;
+  }
 `;
