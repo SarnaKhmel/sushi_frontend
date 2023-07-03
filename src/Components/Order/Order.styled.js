@@ -22,6 +22,8 @@ export const Block = styled.div`
   align-items: center;
   justify-content: center;
 
+  border: 1px solid #ff4700;
+
   background: #151515;
   box-shadow: 0px 1px 7px rgba(255, 255, 255, 0.25);
   border-radius: 10px;
@@ -34,6 +36,7 @@ export const Block = styled.div`
     box-shadow: none;
     height: 100%;
     width: 90vw;
+    margin-bottom: 30px;
   }
   @media (max-width: 768px) {
     display: flex;
@@ -75,6 +78,8 @@ export const Label = styled.label`
   line-height: 20px;
 
   color: #ffffff;
+
+  margin-left: 10px;
 
   @media (max-width: 768px) {
     color: #fff;

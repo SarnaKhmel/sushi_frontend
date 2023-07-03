@@ -149,50 +149,10 @@ const Order = () => {
                     <InputLabel>Будинок*</InputLabel>
                   </InputItem>
                 </InputBlock>
-                <InputBlock>
-                  <InputItem>
-                    <Input
-                      type="text"
-                      name="floor"
-                      value={formData.floor}
-                      onChange={handleChange}
-                    />
-                    <InputLabel>Поверх</InputLabel>
-                  </InputItem>
-                  <InputItem>
-                    <Input
-                      type="text"
-                      name="apartment"
-                      value={formData.apartment}
-                      onChange={handleChange}
-                    />
-                    <InputLabel>Квартира</InputLabel>
-                  </InputItem>
-                  <InputItem>
-                    <Input
-                      type="text"
-                      name="entrance"
-                      value={formData.entrance}
-                      onChange={handleChange}
-                    />
-                    <InputLabel>Під'їзд</InputLabel>
-                  </InputItem>
-                </InputBlock>
               </InfoBlock>
               <InfoBlock>
                 <Label>Деталі доставки</Label>
                 <InputBlock>
-                  <InputItem>
-                    <Select
-                      name="deliveryType"
-                      value={formData.deliveryType}
-                      onChange={handleChange}>
-                      <Option value="quick">40-59хв.</Option>
-                      <Option value="slow">1-1:30год.</Option>
-                      <Option value="operator">Уторчнити з оператором</Option>
-                    </Select>
-                    <InputLabel>Тип доставки*</InputLabel>
-                  </InputItem>
                   <InputItem>
                     <Select
                       name="paymentMethod"
@@ -212,9 +172,7 @@ const Order = () => {
                     />
                     <InputLabel>Підготувати решту з</InputLabel>
                   </InputItem>
-                </InputBlock>
-                <InputBlock>
-                  <InputItemComent>
+                  <InputItem>
                     <InputComent
                       type="text"
                       name="comment"
@@ -222,7 +180,10 @@ const Order = () => {
                       onChange={handleChange}
                     />
                     <InputLabel>Коментар до замовлення</InputLabel>
-                  </InputItemComent>
+                  </InputItem>
+                </InputBlock>
+                <InputBlock>
+                  <InputItemComent></InputItemComent>
                 </InputBlock>
               </InfoBlock>
             </Form>
