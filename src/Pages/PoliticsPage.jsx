@@ -172,6 +172,8 @@ const PoliticsBlock = styled.div`
 `;
 const PoliticsInfo = styled.div`
   width: 80vw;
+  margin-top: 40px;
+  margin-bottom: 30px;
 `;
 const H2 = styled.h2`
   font-style: normal;
