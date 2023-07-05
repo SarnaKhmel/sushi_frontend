@@ -20,7 +20,7 @@ const Posts = ({ posts }) => {
   useEffect(() => {
     const interval = setInterval(() => {
       setActiveIndex((prevIndex) => (prevIndex + 1) % posts.length);
-    }, 20000);
+    }, 3000);
 
     return () => {
       clearInterval(interval);
