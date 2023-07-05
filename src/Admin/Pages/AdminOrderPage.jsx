@@ -15,6 +15,9 @@ import OrdersTableFin from "../OrdersTable/OrdersTableFin";
 
 import ExelOrders from "../Exel/ExelOrders";
 
+import { useRef } from "react";
+import orderBell from "../../Sounds/orderBell.mp3";
+
 const AdminOrderPage = () => {
   const [isActive, setIsActive] = useState(false);
   const [seconds, setSeconds] = useState(0);
@@ -22,7 +25,6 @@ const AdminOrderPage = () => {
   const [updateIn, setUpdateIn] = useState(false);
   const dispatch = useDispatch();
   let orders = useSelector((state) => state.orders.orders);
-  console.log("orders", orders);
   useEffect(() => {
     dispatch(fetchOrders());
   }, [dispatch]);
@@ -45,6 +47,16 @@ const AdminOrderPage = () => {
       clearInterval(interval);
     };
   }, [isActive]);
+
+  const audioRef = useRef(null);
+  useEffect(() => {
+    if (orders && orders.status === "loaded") {
+      const prevOrderCount = orders.items.length;
+      if (prevOrderCount < orders.items.length) {
+        audioRef.current.play();
+      }
+    }
+  }, [orders]);
 
   const [update, setUpdate] = useState(false);
 
@@ -83,6 +95,7 @@ const AdminOrderPage = () => {
         </IconWrapper>
         <TimerText>Залишилось секунд: {seconds}</TimerText>
         <HiPlayPause size={28} color="red" onClick={handleToggle} />
+        <audio ref={audioRef} src={orderBell} preload="auto" />
       </TimerContainer>
       {orders && orders.status === "loaded" ? (
         <>
