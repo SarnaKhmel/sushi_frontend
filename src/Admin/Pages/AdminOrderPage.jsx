@@ -27,6 +27,7 @@ const AdminOrderPage = () => {
   let orders = useSelector((state) => state.orders.orders);
   useEffect(() => {
     dispatch(fetchOrders());
+    console.log(orders);
   }, [dispatch]);
 
   useEffect(() => {
