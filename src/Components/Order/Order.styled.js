@@ -124,7 +124,7 @@ export const Input = styled.input`
   border: none;
   background: transparent;
   border-bottom: 1px solid white;
-  width: 160px;
+  width: 150px;
   color: white;
   @media (max-width: 768px) {
     width: 100%;
