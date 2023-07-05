@@ -25,6 +25,7 @@ const AdminOrderPage = () => {
   const [updateIn, setUpdateIn] = useState(false);
   const dispatch = useDispatch();
   let orders = useSelector((state) => state.orders.orders);
+  console.log("orders", orders);
   useEffect(() => {
     dispatch(fetchOrders());
   }, [dispatch]);
@@ -49,6 +50,7 @@ const AdminOrderPage = () => {
   }, [isActive]);
 
   const audioRef = useRef(null);
+
   useEffect(() => {
     if (orders && orders.status === "loaded") {
       const prevOrderCount = orders.items.length;
