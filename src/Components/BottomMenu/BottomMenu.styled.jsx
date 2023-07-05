@@ -24,7 +24,19 @@ export const BottomMenuBlock = styled.div`
   }
 `;
 
-export const LinkIcon = styled.img``;
+export const LinkIcon = styled.img`
+  max-height: 50px;
+  max-width: 50px;
+
+  @media (min-width: 340px) and (max-width: 767px) {
+    height: 35px;
+    width: 35px;
+  }
+  @media (min-width: 768px) and (max-width: 1023px) {
+    height: 45px;
+    width: 45px;
+  }
+`;
 
 export const LinkIconTitle = styled.div`
   display: none;

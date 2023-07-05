@@ -19,7 +19,6 @@ import sushiLogo from "../../Images/sushi-logo.svg";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 
-import BottomMenu from "../BottomMenu/BottomMenu";
 import ContactModal from "../Modals/ContactsModal/ContactModal";
 
 import MobileHeaderModal from "../MobileHeaderModal/MobileHeaderModal";
@@ -50,7 +49,6 @@ const StyledLink = styled(Link)`
   }
 `;
 const StyledScrollLink = styled(ScrollLink)`
-  color: blue;
   text-decoration: none;
   color: white;
   margin-right: 50px;
@@ -153,7 +151,6 @@ const Header = () => {
           <OrderItem></OrderItem>
         </HeaderItem>
       </HeaderBlock>
-      <BottomMenu />
       {openContactsModal === true ? (
         <ContactModal
           isOpen={openContactsModal}
