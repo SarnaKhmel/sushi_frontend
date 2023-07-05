@@ -21,6 +21,8 @@ import { useDispatch, useSelector } from "react-redux";
 
 import Delivery from "../Components/Delivery/Delivery";
 
+import BottomMenu from "../Components/BottomMenu/BottomMenu";
+
 const HomePage = () => {
   const [filter, setFilter] = useState("");
   const [sort, setSort] = useState("");
@@ -115,6 +117,7 @@ const HomePage = () => {
           />
         )}
         <Delivery></Delivery>
+        <BottomMenu setFilterOption={setFilterOption} />
       </Layout>
     </div>
   );
