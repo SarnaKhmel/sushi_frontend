@@ -82,6 +82,7 @@ const Order = () => {
     return (
       formData.name.trim().length >= 3 &&
       formData.phone.trim().length === 10 &&
+      !isNaN(formData.phone.trim()) &&
       formData.street.trim().length > 0 &&
       formData.house.trim().length > 0
     );
