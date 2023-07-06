@@ -23,20 +23,23 @@ import {
   OrderBtnDis,
 } from "./Order.styled";
 
+import toast, { Toaster } from "react-hot-toast";
+
 import { createOrder, clearOrderState } from "../../Redux/slices/orders";
 import { useDispatch, useSelector } from "react-redux";
 
 import OrderModalList from "../OrderModalList/OrderModalList";
 
 import OrderCompleteModal from "../OrderCompleteModal/OrderCompleteModal";
+
 const Order = () => {
   const dispatch = useDispatch();
   const order = useSelector((state) => state.orders.order);
 
-  const [openModal, closeModal] = useState(false);
+  const [openModal, setOpenModal] = useState(false);
 
   const openFinModal = () => {
-    closeModal(true);
+    setOpenModal(true);
   };
 
   const [formData, setFormData] = useState({
@@ -46,10 +49,6 @@ const Order = () => {
     city: "lviv",
     street: "",
     house: "",
-    floor: "",
-    apartment: "",
-    entrance: "",
-    deliveryType: "quick",
     paymentMethod: "cash",
     changeAmount: "",
     comment: "",
@@ -67,15 +66,36 @@ const Order = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log("Form Data:", formData);
+    if (!isFormValid()) {
+      // notify("Заповніть обов'язкові поля!");
+      toast.error("Заповніть обов'язкові поля!");
+
+      return;
+    }
+    // console.log("Form Data:", formData);
     dispatch(createOrder(formData));
     dispatch(clearOrderState());
     openFinModal();
   };
 
+  const isFormValid = () => {
+    return (
+      formData.name.trim().length >= 3 &&
+      formData.phone.trim().length === 10 &&
+      formData.street.trim().length > 0 &&
+      formData.house.trim().length > 0
+    );
+  };
+
+  const notify = (text) => {
+    // console.log("Order fail");
+    alert(text);
+  };
+
   return (
     <>
       <OrderBox>
+        <Toaster position="top-center" reverseOrder={false} />
         <Block onSubmit={handleSubmit}>
           <FormBlock>
             <Form>
@@ -110,7 +130,7 @@ const Order = () => {
                       value={formData.email}
                       onChange={handleChange}
                     />
-                    <InputLabel>Ел. скринька</InputLabel>
+                    <InputLabel> Ел. скринька</InputLabel>
                   </InputItem>
                 </InputBlock>
               </InfoBlock>
@@ -205,7 +225,7 @@ const Order = () => {
                     </OrderBtn>
                   </>
                 ) : (
-                  <OrderBtnDis disabled>ЗАМОВИТИ</OrderBtnDis>
+                  <OrderBtnDis>ЗАМОВИТИ</OrderBtnDis>
                 )}
               </OrderBtnBlock>
             </OrderListBlock>

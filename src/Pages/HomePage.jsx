@@ -23,6 +23,7 @@ import Delivery from "../Components/Delivery/Delivery";
 
 import BottomMenu from "../Components/BottomMenu/BottomMenu";
 
+import Loader from "../Components/Loader/Loader";
 const HomePage = () => {
   const [filter, setFilter] = useState("");
   const [sort, setSort] = useState("");
@@ -108,7 +109,7 @@ const HomePage = () => {
           selectOptions={selectOptions}
           handleSelectedOption={handleSelectedOption}
         /> */}
-        {products.status === "loading" && <>Loading...</>}
+        {products.status === "loading" && <Loader />}
         {products.status === "loaded" && (
           <Products
             categories={filter}
