@@ -22,10 +22,13 @@ const LoginAdmin = () => {
 
     const response = await dispatch(fetchAuth(formData));
     const data = await response;
-    if ("token" in data.payload) {
+    if (data.payload === undefined) {
+      alert("Помилковий пароль");
+      return;
+    } else if ("token" in data.payload) {
       window.localStorage.setItem("token", data.payload.token);
     }
-    console.log(data.payload.token);
+    //console.log(data.payload.token);
   };
 
   const handleEmailChange = (e) => {

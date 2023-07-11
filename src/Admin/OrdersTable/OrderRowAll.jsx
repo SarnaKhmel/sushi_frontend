@@ -57,29 +57,29 @@ const OrderRow = ({ item }) => {
       {selectedOrder === item.orderNumber && (
         <>
           <TrDetails>
-            <Td>Тип доставки</Td>
+            {/* <Td>Тип доставки</Td> */}
             <Td>Ел. пошта</Td>
             <Td>Метод оплати</Td>
             <Td>Решта</Td>
-            <Td>Підїзд</Td>
-            <Td>Поверх</Td>
-            <Td>Квартира</Td>
+            {/* <Td>Підїзд</Td> */}
+            {/* <Td>Поверх</Td> */}
+            {/* <Td>Квартира</Td> */}
           </TrDetails>
           <TrDetails>
-            <Td>
+            {/* <Td>
               {item.deliveryType === "quick" && <>до 59хв.</>}
               {item.deliveryType === "slow" && <>до 1:30год.</>}
               {item.deliveryType === "operator" && <>уточнити</>}
-            </Td>
+            </Td> */}
             <Td>{item.email}</Td>
             <Td>
               {item.paymentMethod === "card" && <>Карткою</>}
               {item.paymentMethod === "cash" && <>Готівкою</>}
             </Td>
             <Td>{item.changeAmount}</Td>
-            <Td>{item.entrance}</Td>
-            <Td>{item.floor}</Td>
-            <Td>{item.apartment}</Td>
+            {/* <Td>{item.entrance}</Td> */}
+            {/* <Td>{item.floor}</Td> */}
+            {/* <Td>{item.apartment}</Td> */}
           </TrDetails>
 
           <TrDetails>
@@ -162,7 +162,7 @@ const Tr = styled.tr`
 const TrDetails = styled.tr`
   display: flex;
   align-items: center;
-  background-color: lightGreen;
+  background-color: lightBlue;
   text-align: center;
 `;
 

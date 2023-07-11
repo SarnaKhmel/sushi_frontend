@@ -12,6 +12,7 @@ const LayoutAdmin = ({ children }) => {
 
   const [token, setToken] = useState("");
   useEffect(() => {
+    console.log(localStorage.getItem("token"));
     setToken(localStorage.getItem("token"));
     if (token === null || token === undefined) {
       navigate("/admin/login");
