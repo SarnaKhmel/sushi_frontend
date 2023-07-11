@@ -72,7 +72,7 @@ const Order = () => {
 
       return;
     }
-    // console.log("Form Data:", formData);
+    console.log("Form Data:", formData);
     dispatch(createOrder(formData));
     dispatch(clearOrderState());
     openFinModal();
@@ -89,7 +89,7 @@ const Order = () => {
   };
 
   const notify = (text) => {
-    // console.log("Order fail");
+    console.log("Order fail");
     alert(text);
   };
 
