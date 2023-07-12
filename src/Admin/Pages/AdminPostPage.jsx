@@ -72,9 +72,7 @@ const Container = styled.div`
   justify-content: start;
   background: grey;
   min-height: 100vh;
-  @media (min-width: 340px) and (max-width: 767px) {
-    margin-top: 450px;
-  }
+  width: 100vw;
 `;
 
 const Block = styled.div`

@@ -7,6 +7,9 @@ import { useDispatch } from "react-redux";
 
 import { fetchRemoveOrder } from "../../Redux/slices/orders";
 
+import { Table, Thead, Tbody, Tr, Th, Td } from "react-super-responsive-table";
+import "react-super-responsive-table/dist/SuperResponsiveTableStyle.css";
+
 const OrderRowFin = ({ item }) => {
   const [selectedOrder, setSelectedOrder] = useState(null);
   const notify = (text) => toast(text);
@@ -33,164 +36,117 @@ const OrderRowFin = ({ item }) => {
           console.log(error);
           notify("❌ Помилка ");
         });
-    //{ id: item._id, updatedItem: updatedItem }
   };
 
   return (
     <React.Fragment>
-      <Tr>
-        <Td>{item.orderNumber}.</Td>
-        <Td>{item.name}</Td>
-        <Td>{item.phone}</Td>
-        <Td>
-          {item.city === "lviv" && <>Львів</>}
-          {item.city === "z-voda" && <>З. Вода</>}
-          {item.city === "operator" && <>Інше</>}
-        </Td>
-        <Td>{item.street}</Td>
-        <Td>{item.house}</Td>
-        <Td>
-          <Button onClick={() => handleViewOrder(item.orderNumber)}>
-            Переглянути
-          </Button>
-        </Td>
-      </Tr>
+      <Table>
+        <Thead>
+          <Tr>
+            <Th>Номер</Th>
+            <Th>Ім'я</Th>
+            <Th>Телефон</Th>
+            <Th>Місто</Th>
+            <Th>Вулиця</Th>
+            <Th>Будинок</Th>
+            <Th>Дії</Th>
+          </Tr>
+        </Thead>
+        <Tbody>
+          <Tr>
+            <TdStyled>{item.orderNumber}.</TdStyled>
+            <TdStyled>{item.name}</TdStyled>
+            <TdStyled>{item.phone}</TdStyled>
+            <TdStyled>
+              {item.city === "lviv" && <>Львів</>}
+              {item.city === "z-voda" && <>З. Вода</>}
+              {item.city === "operator" && <>Інше</>}
+            </TdStyled>
+            <TdStyled>{item.street}</TdStyled>
+            <TdStyled>{item.house}</TdStyled>
+            <TdStyled>
+              <Button onClick={() => handleViewOrder(item.orderNumber)}>
+                Переглянути
+              </Button>
+            </TdStyled>
+          </Tr>
+        </Tbody>
+      </Table>
       {selectedOrder === item.orderNumber && (
-        <>
-          <TrDetails>
-            {/* <Td>Тип доставки</Td> */}
-            <Td>Ел. пошта</Td>
-            <Td>Метод оплати</Td>
-            <Td>Решта</Td>
-            {/* <Td>Підїзд</Td>
-            <Td>Поверх</Td>
-            <Td>Квартира</Td> */}
-          </TrDetails>
-          <TrDetails>
-            {/* <Td>
-              {item.deliveryType === "quick" && <>до 59хв.</>}
-              {item.deliveryType === "slow" && <>до 1:30год.</>}
-              {item.deliveryType === "operator" && <>уточнити</>}
-            </Td> */}
-            <Td>{item.email}</Td>
-            <Td>
-              {item.paymentMethod === "card" && <>Карткою</>}
-              {item.paymentMethod === "cash" && <>Готівкою</>}
-            </Td>
-            <Td>{item.changeAmount}</Td>
-            {/* <Td>{item.entrance}</Td>
-            <Td>{item.floor}</Td>
-            <Td>{item.apartment}</Td> */}
-          </TrDetails>
-
-          <TrDetails>
-            <Td>№</Td>
-            <Td>Зображення</Td>
-            <Td>Назва</Td>
-            <Td>Вага</Td>
-            <Td>Ціна</Td>
-            <Td>Кількість</Td>
-          </TrDetails>
-          {item.orderList.items.map((product, index) => (
-            <TrDetails key={index}>
-              <Td>{index + 1}</Td>
-              <Td>
-                <Image src={`${baseUrl}${product.imageUrl}`} />
-              </Td>
-              <Td>{product.name}</Td>
-              <Td>{product.weight}</Td>
-              <Td>{product.price}</Td>
-              <Td>{product.quantity}</Td>
-            </TrDetails>
-          ))}
-          <TrDetails>
-            <Td>
-              <b>Сума:</b>
-            </Td>
-            <Td>
-              <b>{item.orderList.sum}</b>
-            </Td>
-            <Td></Td>
-            <Td></Td>
-            <Td></Td>
-            <Td></Td>
-            <Td>
-              <ButtonRed
-                onClick={() => {
-                  handleFinishOrder(item._id, item.orderNumber);
-                }}>
-                Видалити
-              </ButtonRed>
-            </Td>
-          </TrDetails>
-        </>
+        <OpenTable>
+          <Table>
+            <Thead>
+              <Tr>
+                {/* <Td>Тип доставки</Td> */}
+                <Th>Ел. пошта:</Th>
+                <Th>Метод оплати:</Th>
+                <Th>Решта з:</Th>
+                <Th>Сума:</Th>
+                {/* <Td>Підїзд</Td>
+                <Td>Поверх</Td>
+                <Td>Квартира</Td> */}
+              </Tr>
+            </Thead>
+            <Tbody>
+              <Tr>
+                <TdStyled>{item.email}</TdStyled>
+                <TdStyled>
+                  {item.paymentMethod === "card" && <>Карткою</>}
+                  {item.paymentMethod === "cash" && <>Готівкою</>}
+                </TdStyled>
+                <TdStyled>{item.changeAmount} </TdStyled>
+                <TdStyled
+                  style={{
+                    color: "red",
+                    fontWeight: "bold",
+                    backgroundColor: "white",
+                  }}>
+                  {item.orderList.sum}
+                </TdStyled>
+              </Tr>
+            </Tbody>
+          </Table>
+          <Table>
+            <Thead>
+              <Tr>
+                <Th>№</Th>
+                <Th>Зображення</Th>
+                <Th>Назва</Th>
+                <Th>Вага</Th>
+                <Th>Ціна</Th>
+                <Th>Кількість</Th>
+              </Tr>
+            </Thead>
+            <Tbody>
+              {item.orderList.items.map((product, index) => (
+                <Tr key={index}>
+                  <TdStyled>{index + 1}</TdStyled>
+                  <TdStyled>
+                    <Image src={`${baseUrl}${product.imageUrl}`} />
+                  </TdStyled>
+                  <TdStyled>{product.name}</TdStyled>
+                  <TdStyled>{product.weight}</TdStyled>
+                  <TdStyled>{product.price}</TdStyled>
+                  <TdStyled>{product.quantity}</TdStyled>
+                </Tr>
+              ))}
+            </Tbody>
+          </Table>
+          <BtnBlock>
+            <ButtonRed onClick={handleFinishOrder}>
+              Видалити замовлення
+            </ButtonRed>
+          </BtnBlock>
+        </OpenTable>
       )}
       <Toaster position="bottom-right" reverseOrder={false} />
     </React.Fragment>
   );
 };
 
-const Table = styled.table`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  background: lightGray;
-`;
-
-const TableHeader = styled.thead`
-  margin: 20px 0px;
-`;
-
 const Image = styled.img`
   height: 80px;
   width: 80px;
-`;
-
-const Tr = styled.tr`
-  display: flex;
-  align-items: center;
-  margin-bottom: 5px;
-  background-color: white;
-  border-radius: 10px;
-  text-align: center;
-
-  &:nth-child(even) {
-    background-color: lightGray;
-  }
-`;
-
-const TrDetails = styled.tr`
-  display: flex;
-  align-items: center;
-  background-color: lightBlue;
-  text-align: center;
-`;
-
-const TrHead = styled.tr`
-  display: flex;
-  align-items: center;
-`;
-
-const Th = styled.th`
-  font-size: 16px;
-  font-weight: bold;
-  width: 200px;
-  overflow-x: scroll;
-  font-size: 1.2rem;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-`;
-
-const Td = styled.td`
-  width: 200px;
-  overflow-x: scroll;
-  height: 80px;
-  font-size: 1.2rem;
-  display: flex;
-  align-items: center;
-  justify-content: center;
 `;
 
 const Button = styled.button`
@@ -202,63 +158,36 @@ const Button = styled.button`
     color: #007bff;
   }
 `;
+const OpenTable = styled.div`
+  background-color: lightBlue;
+  height: 100%;
+  overflow: scroll;
+`;
+
+const BtnBlock = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  @media (min-width: 768px) {
+    justify-content: flex-end;
+  }
+`;
+
 const ButtonRed = styled.button`
   height: 40px;
   font-size: 18px;
   font-weight: bold;
   background-color: red;
+  border-radius: 5px;
   color: white;
-
+  margin-right: 50px;
   &:hover {
     color: #007bff;
   }
 `;
 
-// Media queries for mobile devices
-const mediaQuery = "@media (max-width: 767px)";
-
-const TrResponsive = styled(Tr)`
-  flex-direction: column;
-
-  ${mediaQuery} {
-    align-items: flex-start;
-    padding: 10px;
-  }
-`;
-
-const TdResponsive = styled(Td)`
-  ${mediaQuery} {
-    height: auto;
-    font-size: 1rem;
-  }
-`;
-
-const TrDetailsResponsive = styled(TrDetails)`
-  flex-direction: column;
-
-  ${mediaQuery} {
-    align-items: flex-start;
-    padding: 10px;
-  }
-`;
-
-const TdDetailsResponsive = styled(Td)`
-  ${mediaQuery} {
-    height: auto;
-    font-size: 1rem;
-  }
-`;
-
-const ThResponsive = styled(Th)`
-  ${mediaQuery} {
-    font-size: 1rem;
-  }
-`;
-
-const TdButtonResponsive = styled(Td)`
-  ${mediaQuery} {
-    flex-basis: 100%;
-  }
+const TdStyled = styled(Td)`
+  text-align: center;
 `;
 
 export default OrderRowFin;

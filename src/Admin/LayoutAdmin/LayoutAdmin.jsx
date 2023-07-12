@@ -100,7 +100,7 @@ const Container = styled.div`
 const Header = styled.header`
   width: 100vw;
   height: 80px;
-  position: fixed;
+  position: absolute;
   top: 0;
   background-color: #f0f0f0;
   display: flex;
@@ -141,6 +141,7 @@ const MenuLink = styled.button`
 
     display: contents;
     flex-direction: column;
+    z-index: 9999;
   }
 `;
 

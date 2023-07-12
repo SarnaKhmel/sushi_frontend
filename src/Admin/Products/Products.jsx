@@ -8,6 +8,9 @@ import { useDispatch } from "react-redux";
 import SelectBlock from "../Select/Select";
 import selectOptions from "../../testData/selectOptions.json";
 
+import { Thead, Tbody, Tr, Th, Td } from "react-super-responsive-table";
+import "react-super-responsive-table/dist/SuperResponsiveTableStyle.css";
+
 const Products = ({ products }) => {
   const [activeBlocks, setActiveBlocks] = useState([false, false, false]);
   const [filter, setFilter] = useState("all");
@@ -105,26 +108,26 @@ const Products = ({ products }) => {
             selectOptions={selectOptions}
             handleSelectedOption={handleSelectedOption}
           />
+          <Header>
+            {adminMenuOptions.map((option, index) => (
+              <Link
+                key={index}
+                isUnderlined={index === underlined}
+                onClick={() => {
+                  handlerUnderlined(index, option);
+                }}>
+                {option.name}
+              </Link>
+            ))}
+          </Header>
           <Table>
-            <TableHeader>
-              <tr>
-                {adminMenuOptions.map((option, index) => (
-                  <Th
-                    key={index}
-                    isUnderlined={index === underlined}
-                    onClick={() => {
-                      handlerUnderlined(index, option);
-                    }}>
-                    {option.name} |
-                  </Th>
-                ))}
-              </tr>
-            </TableHeader>
+            <Thead>
+              <Tr>
+                <Th>Продукти</Th>
+              </Tr>
+            </Thead>
 
-            <ProductsTable
-              options={adminMenuOptions}
-              products={filteredProducts}
-            />
+            <ProductsTable products={filteredProducts} />
           </Table>
         </Block>
       )}
@@ -189,8 +192,18 @@ const TableHeader = styled.thead`
   margin: 20px 0px;
 `;
 
-const Th = styled.th`
+const Header = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: scroll;
+  width: 100vw;
+  padding: 0 10px;
+`;
+
+const Link = styled.div`
   margin: 30px;
+  font-weight: bold;
 
   &:hover {
     color: #007bff;
