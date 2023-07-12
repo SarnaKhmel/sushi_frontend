@@ -31,7 +31,6 @@ const AdminProductEditPage = () => {
 const Container = styled.div`
   margin-top: 100px;
 
-  /* Mobile styles */
   @media (max-width: 768px) {
     margin-top: 450px;
     padding: 10px;

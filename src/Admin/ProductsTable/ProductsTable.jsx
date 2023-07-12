@@ -1,12 +1,15 @@
 import React from "react";
-import styled, { css } from "styled-components";
+import styled from "styled-components";
 import { baseUrl } from "../../Utils/baseUrl";
 import {
   fetchRemoveProduct,
   fetchRemoveProductImage,
 } from "../../Redux/slices/products";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
+
+import { Table, Thead, Tbody, Tr, Th, Td } from "react-super-responsive-table";
+import "react-super-responsive-table/dist/SuperResponsiveTableStyle.css";
 
 const ProductsTable = ({ products }) => {
   const dispatch = useDispatch();
@@ -24,27 +27,25 @@ const ProductsTable = ({ products }) => {
   };
 
   return (
-    <>
-      {products.length === 0 ? (
-        <>
-          <tbody>
-            <TrHead>
-              <Td>Товарів даної категорії немає</Td>
-            </TrHead>
-          </tbody>
-        </>
-      ) : (
-        <tbody>
-          <TrHead>
-            <Td>Номер</Td>
-            <Td>Зображення</Td>
-            <Td>Назва</Td>
-            <Td>Вага</Td>
-            <Td>Ціна</Td>
-            <Td>Редагувати</Td>
-            <Td>Видалити</Td>
-          </TrHead>
+    <Table>
+      <Thead>
+        <Tr>
+          <Td>Номер</Td>
+          <Td>Зображення</Td>
+          <Td>Назва</Td>
+          <Td>Вага</Td>
+          <Td>Ціна</Td>
+          <Td>Редагувати</Td>
+          <Td>Видалити</Td>
+        </Tr>
+      </Thead>
 
+      <Tbody>
+        {products.length === 0 ? (
+          <Tr>
+            <Th>Товарів даної категорії немає</Th>
+          </Tr>
+        ) : (
           <>
             {products &&
               products.map((product, index) => (
@@ -77,44 +78,15 @@ const ProductsTable = ({ products }) => {
                 </Tr>
               ))}
           </>
-        </tbody>
-      )}
-    </>
+        )}
+      </Tbody>
+    </Table>
   );
 };
 
 const Image = styled.img`
   height: 80px;
   width: 80px;
-`;
-
-const Tr = styled.tr`
-  display: flex;
-  align-items: center;
-
-  @media (max-width: 767px) {
-    flex-direction: column;
-    align-items: flex-start;
-  }
-`;
-
-const TrHead = styled.tr`
-  display: flex;
-  align-items: center;
-
-  @media (max-width: 767px) {
-    flex-direction: column;
-    align-items: flex-start;
-  }
-`;
-
-const Td = styled.td`
-  width: 150px;
-
-  @media (max-width: 767px) {
-    width: auto;
-    margin-bottom: 5px;
-  }
 `;
 
 const Button = styled.button`

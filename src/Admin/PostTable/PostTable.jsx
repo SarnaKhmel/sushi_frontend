@@ -1,12 +1,14 @@
 import React, { useEffect, useState } from "react";
-import styled, { css } from "styled-components";
+import styled from "styled-components";
 import { baseUrl } from "../../Utils/baseUrl";
 import {
   fetchRemovePost,
   fetchRemovePostImage,
 } from "../../Redux/slices/posts";
 import { useDispatch, useSelector } from "react-redux";
-import { Link } from "react-router-dom";
+
+import { Table, Thead, Tbody, Tr, Th, Td } from "react-super-responsive-table";
+import "react-super-responsive-table/dist/SuperResponsiveTableStyle.css";
 
 const PostTable = ({ posts }) => {
   const dispatch = useDispatch();
@@ -32,20 +34,17 @@ const PostTable = ({ posts }) => {
   return (
     <>
       <Table>
-        <TableHeader>
-          <TrHead>
-            <Th>Пости</Th>
-          </TrHead>
-        </TableHeader>
-        <tbody>
-          <TrHead>
-            <Td>Номер</Td>
-            <Td>Зображення</Td>
-            <Td>Назва</Td>
-            <Td>Текст</Td>
-            <Td>Кількість переглядів</Td>
-            <Td>Видалити</Td>
-          </TrHead>
+        <Thead>
+          <Tr>
+            <Th>Номер</Th>
+            <Th>Зображення</Th>
+            <Th>Назва</Th>
+            <Th>Текст</Th>
+            <Th>Кількість переглядів</Th>
+            <Th>Видалити</Th>
+          </Tr>
+        </Thead>
+        <Tbody>
           {items.map((item, index) => (
             <Tr key={index}>
               <Td>{index + 1}.</Td>
@@ -66,24 +65,24 @@ const PostTable = ({ posts }) => {
               </Td>
             </Tr>
           ))}
-        </tbody>
+        </Tbody>
       </Table>
     </>
   );
 };
 
-const Table = styled.table`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  background: lightGray;
+// const Table = styled.table`
+//   display: flex;
+//   flex-direction: column;
+//   align-items: center;
+//   justify-content: center;
+//   background: lightGray;
 
-  /* Mobile styles */
-  @media (max-width: 768px) {
-    width: 100%;
-  }
-`;
+//   /* Mobile styles */
+//   @media (max-width: 768px) {
+//     width: 100%;
+//   }
+// `;
 
 const TableHeader = styled.thead`
   margin: 20px 0px;
@@ -94,30 +93,30 @@ const Image = styled.img`
   width: 80px;
 `;
 
-const Tr = styled.tr`
-  display: flex;
-  align-items: center;
-  margin-bottom: 10px;
-`;
+// const Tr = styled.tr`
+//   display: flex;
+//   align-items: center;
+//   margin-bottom: 10px;
+// `;
 
-const TrHead = styled.tr`
-  display: flex;
-  align-items: center;
-`;
+// const TrHead = styled.tr`
+//   display: flex;
+//   align-items: center;
+// `;
 
-const Th = styled.th`
-  border: 1px solid violet;
-  margin: 20px;
-  &:hover {
-    color: #007bff;
-  }
-`;
+// const Th = styled.th`
+//   border: 1px solid violet;
+//   margin: 20px;
+//   &:hover {
+//     color: #007bff;
+//   }
+// `;
 
-const Td = styled.td`
-  width: 150px;
-  overflow-x: scroll;
-  height: 80px;
-`;
+// const Td = styled.td`
+//   width: 150px;
+//   overflow-x: scroll;
+//   height: 80px;
+// `;
 
 const Button = styled.button`
   &:hover {
