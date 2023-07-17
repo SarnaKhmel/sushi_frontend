@@ -23,7 +23,7 @@ export const PostBlock = styled.div`
 `;
 
 export const Image = styled.img`
-  border-radius: 10px 10px 10px 10px;
+  border-radius: 10px;
   width: 600px;
   height: 300px;
   object-fit: cover;
@@ -36,9 +36,21 @@ export const Image = styled.img`
     transform: scale(1.2);
     cursor: pointer;
   }
-
-  @media (max-width: 500px) {
-    border-radius: 10px;
+  @media (min-width: 340px) and (max-width: 767px) {
+    width: 340px;
+    height: 170px;
+  }
+  @media (min-width: 768px) and (max-width: 1023px) {
+    width: 452px;
+    height: 226px;
+  }
+  @media (min-width: 1024px) and (max-width: 1919px) {
+    width: 750px;
+    height: 333px;
+  }
+  @media (min-width: 1920px) {
+    width: 1000px;
+    height: 500px;
   }
 `;
 
