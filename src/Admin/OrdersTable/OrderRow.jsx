@@ -28,7 +28,7 @@ const OrderRow = ({ item }) => {
     dispatch(finOrder({ id: item._id, updatedItem: updatedItem }))
       .then((data) => {
         console.log(data);
-        notify("👍 Замовлення відхилено!");
+        notify("🥲 Замовлення відхилено!");
       })
       .catch((error) => {
         console.log(error);
@@ -48,7 +48,6 @@ const OrderRow = ({ item }) => {
         console.log(error);
         notify("❌ Помилка ");
       });
-    //{ id: item._id, updatedItem: updatedItem }
   };
 
   return (
