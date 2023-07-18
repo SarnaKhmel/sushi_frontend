@@ -26,8 +26,7 @@ import { baseUrl } from "../../Utils/baseUrl";
 
 import InBasket from "../InBasket/InBasket";
 const ProductItem = ({ product }) => {
-  //const product
-  console.log(product);
+  //console.log(product);
 
   return (
     <ProductItemBlock>

@@ -42,7 +42,9 @@ const Product = ({ product }) => {
           </SaleBlock>
         </Label1>
         <Label2>
-          <Name>{product.name}</Name>
+          <Link to={`/product/${product._id}`}>
+            <Name>{product.name}</Name>
+          </Link>
         </Label2>
         <Label3>
           <Title>{product.text}</Title>

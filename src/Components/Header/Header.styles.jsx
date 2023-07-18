@@ -1,4 +1,4 @@
-import styled, { css } from "styled-components";
+import styled from "styled-components";
 
 export const HeaderBlock = styled.div`
   background: linear-gradient(
@@ -10,6 +10,10 @@ export const HeaderBlock = styled.div`
 
   color: white;
   z-index: 50;
+
+  position: fixed;
+  top: 0;
+  width: 100%;
 
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
   min-height: 60px;

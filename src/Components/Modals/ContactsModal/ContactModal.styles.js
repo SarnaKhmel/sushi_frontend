@@ -1,7 +1,7 @@
 import styled, { css } from "styled-components";
 
 export const ContactModalBlock = styled.div`
-  position: absolute;
+  position: fixed;
   top: 180px;
   right: 39vw;
   width: 350px;

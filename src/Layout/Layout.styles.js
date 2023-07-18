@@ -1,6 +1,5 @@
 import styled from "styled-components";
 import bg from "../Images/fon.png";
-import bdMobile from "../Images/bd-mobile.svg";
 
 export const LayoutBlock = styled.div`
   background-image: url(${bg});
@@ -11,8 +10,4 @@ export const LayoutBlock = styled.div`
   overflow: auto;
   ${"" /* overflow-y: scroll; */}
   z-index: 1;
-  @media (max-width: 768px) {
-    background-image: url(${bdMobile});
-    background-size: cover;
-  }
 `;

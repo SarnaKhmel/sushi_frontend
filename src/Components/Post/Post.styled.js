@@ -33,7 +33,7 @@ export const Image = styled.img`
   max-width: 100%;
 
   &:hover {
-    transform: scale(1.2);
+    transform: scale(1.1);
     cursor: pointer;
   }
   @media (min-width: 340px) and (max-width: 767px) {

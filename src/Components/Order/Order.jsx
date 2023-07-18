@@ -44,9 +44,9 @@ const Order = () => {
 
   const [formData, setFormData] = useState({
     name: "",
-    phone: "",
+    phone: "0",
     email: "",
-    city: "lviv",
+    city: "",
     street: "",
     house: "",
     paymentMethod: "cash",
@@ -67,25 +67,51 @@ const Order = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     if (!isFormValid()) {
-      // notify("Заповніть обов'язкові поля!");
-      toast.error("Заповніть обов'язкові поля!");
-
       return;
     }
-    console.log("Form Data:", formData);
+    //console.log("Form Data:", formData);
     dispatch(createOrder(formData));
     dispatch(clearOrderState());
     openFinModal();
   };
 
   const isFormValid = () => {
-    return (
-      formData.name.trim().length >= 3 &&
-      formData.phone.trim().length === 10 &&
-      !isNaN(formData.phone.trim()) &&
-      formData.street.trim().length > 0 &&
-      formData.house.trim().length > 0
-    );
+    if (formData.name.trim().length < 3) {
+      toast.error("Ім'я повинно бути більше 3 символів!");
+      return false;
+    }
+
+    if (!/^\d+$/.test(formData.phone.trim())) {
+      toast.error(
+        "Некоректний формат номеру телефону. Введіть номер телефону у форматі 098 11 22 333."
+      );
+      return false;
+    }
+
+    const phoneNumber = formData.phone.replace(/\s/g, "");
+    if (phoneNumber.length !== 10) {
+      toast.error(
+        "Не коректний номер телефону. Введіть номер телефону у форматі 098 11 22 333."
+      );
+      return false;
+    }
+
+    if (formData.city.trim().length === 0) {
+      toast.error("Оберіть місто");
+      return false;
+    }
+
+    if (formData.street.trim().length === 0) {
+      toast.error("Не коректна вулиця");
+      return false;
+    }
+
+    if (formData.house.trim().length === 0) {
+      toast.error("Не коректний номер будинку");
+      return false;
+    }
+
+    return true;
   };
 
   const notify = (text) => {
@@ -143,6 +169,7 @@ const Order = () => {
                       name="city"
                       value={formData.city}
                       onChange={handleChange}>
+                      <Option value=""></Option>
                       <Option value="lviv">Львів</Option>
                       <Option value="z-voda">Зимна Вода</Option>
                       <Option value="operator">Уторчнити з оператором</Option>

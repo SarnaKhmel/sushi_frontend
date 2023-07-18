@@ -78,30 +78,30 @@ const WeekSaleModal = () => {
 };
 
 const ModalBox = styled.div`
-  position: absolute;
+  position: fixed;
+  left: 15vw;
+  top: 105px;
 
   width: 290px;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  left: 10vw;
-  top: 105px;
+
   z-index: 1000;
-  position: absolute;
 
   @media (min-width: 340px) and (max-width: 767px) {
-    position: absolute;
+    position: fixed;
 
     top: 74px;
   }
   @media (min-width: 768px) and (max-width: 1023px) {
-    position: absolute;
+    position: fixed;
 
     top: 95px;
   }
   @media (min-width: 1919px) {
-    position: absolute;
+    position: fixed;
 
     top: 116px;
   }

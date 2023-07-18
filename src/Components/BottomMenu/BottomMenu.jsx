@@ -41,7 +41,7 @@ const BottomMenu = ({ setFilterOption }) => {
     setFilterOption(option);
   };
 
-  console.log(bottomMenuList);
+  // console.log(bottomMenuList);
 
   return (
     <>
