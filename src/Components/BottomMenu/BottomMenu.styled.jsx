@@ -41,9 +41,19 @@ export const LinkIcon = styled.img`
 export const LinkIconTitle = styled.div`
   display: none;
 
+  @media (min-width: 340px) and (max-width: 767px) {
+    display: block;
+    text-decoration: none;
+    color: white;
+    text-align: center;
+    font-size: 12px;
+  }
   @media (min-width: 768px) and (max-width: 1023px) {
     display: block;
     text-decoration: none;
     color: white;
+    margin-top: 5px;
+    font-size: 14px;
+    text-align: center;
   }
 `;
