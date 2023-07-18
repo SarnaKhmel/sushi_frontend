@@ -13,5 +13,13 @@ export const LayoutBlock = styled.div`
 `;
 
 export const ChildrenBlock = styled.div`
-  margin-top: 100px;
+  @media (min-width: 340px) and (max-width: 767px) {
+    margin-top: 74px;
+  }
+  @media (min-width: 768px) and (max-width: 1023px) {
+    margin-top: 95px;
+  }
+  @media (min-width: 1919px) {
+    margin-top: 116px;
+  }
 `;
