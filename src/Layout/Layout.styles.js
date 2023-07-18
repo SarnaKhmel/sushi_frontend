@@ -8,16 +8,15 @@ export const LayoutBlock = styled.div`
   background-repeat: repeat-y;
   background-size: 100% auto;
   overflow: auto;
-  ${"" /* overflow-y: scroll; */}
   z-index: 1;
 `;
 
 export const ChildrenBlock = styled.div`
   @media (min-width: 340px) and (max-width: 767px) {
-    margin-top: 74px;
+    margin-top: 95px;
   }
   @media (min-width: 768px) and (max-width: 1023px) {
-    margin-top: 95px;
+    margin-top: 115px;
   }
   @media (min-width: 1919px) {
     margin-top: 116px;
