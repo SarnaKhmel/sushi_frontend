@@ -83,7 +83,7 @@ export const OrderBlock = styled.div`
   @media (min-width: 340px) and (max-width: 767px) {
     z-index: 1000;
     position: fixed;
-    top: 75px;
+    top: 105px;
     right: 10px;
     background: rgba(30, 28, 28, 0.5);
     border: 3.31364px solid #ff4700;

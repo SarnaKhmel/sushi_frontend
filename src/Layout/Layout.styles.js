@@ -11,3 +11,7 @@ export const LayoutBlock = styled.div`
   ${"" /* overflow-y: scroll; */}
   z-index: 1;
 `;
+
+export const ChildrenBlock = styled.div`
+  margin-top: 100px;
+`;

@@ -1,6 +1,6 @@
 import Footer from "../Components/Footer/Footer";
 import Header from "../Components/Header/Header";
-import { LayoutBlock } from "./Layout.styles";
+import { LayoutBlock, ChildrenBlock } from "./Layout.styles";
 import Loader from "../Components/Loader/Loader";
 const Layout = ({ children, status }) => {
   return (
@@ -8,7 +8,7 @@ const Layout = ({ children, status }) => {
       <LayoutBlock>
         <Header />
         {status === "loading" && <Loader>Loading...</Loader>}
-        <>{children}</>
+        <ChildrenBlock>{children}</ChildrenBlock>
       </LayoutBlock>
       <Footer />
     </>
