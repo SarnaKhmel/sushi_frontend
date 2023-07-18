@@ -13,7 +13,7 @@ export const LayoutBlock = styled.div`
 
 export const ChildrenBlock = styled.div`
   @media (min-width: 340px) and (max-width: 767px) {
-    margin-top: 95px;
+    margin-top: 105px;
   }
   @media (min-width: 768px) and (max-width: 1023px) {
     margin-top: 115px;
