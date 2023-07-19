@@ -25,65 +25,56 @@ const CustomSelectBox = styled.div`
 `;
 
 const CustomSelect = styled(Select)`
-  /* Ваші стилі для Select */
-  .react-select__control {
-    border-radius: 15px;
-    background-color: transparent;
-  }
-
-  .react-select__single-value {
-    color: white;
-    font-size: 14px;
-  }
-
-  .react-select__value-container {
-    .react-select__menu {
+  &&& {
+    .react-select__control {
+      border-radius: 15px;
       background-color: transparent;
-      color: white;
     }
 
-    .react-select__menu-list {
-      background-color: transparent;
+    .react-select__single-value {
       color: white;
+      font-size: 14px;
+    }
 
-      .react-select__option {
+    .react-select__value-container {
+      .react-select__menu {
         background-color: transparent;
         color: white;
       }
 
-      .react-select__option:hover {
-        color: #ff4700;
-      }
+      .react-select__menu-list {
+        background-color: transparent;
+        color: white;
 
-      .react-select__option:focus {
-        color: #ff4700;
+        .react-select__option {
+          margin-top: 2px;
+          border-radius: 5px;
+          background: linear-gradient(
+            145.99deg,
+            rgba(22, 21, 21, 0.9) -0.09%,
+            rgba(46, 46, 46, 0.9) 98.66%
+          );
+          color: white;
+        }
+
+        && .react-select__option:hover {
+          color: #ff4700;
+        }
+
+        && .react-select__option:focus {
+          color: #ff4700;
+        }
       }
     }
-  }
 
-  .react-select__menu {
-    border-radius: 5px;
-    padding: 5px;
-    background: linear-gradient(
-      145.99deg,
-      rgba(22, 21, 21, 0.9) -0.09%,
-      rgba(46, 46, 46, 0.9) 98.66%
-    );
-
-    .react-select__menu-list {
-      color: white;
-
-      .react-select__option {
-        margin-top: 2px;
-        border-radius: 5px;
-        background: linear-gradient(
-          145.99deg,
-          rgba(22, 21, 21, 0.9) -0.09%,
-          rgba(46, 46, 46, 0.9) 98.66%
-        );
-
-        color: white;
-      }
+    .react-select__menu {
+      border-radius: 5px;
+      padding: 5px;
+      background: linear-gradient(
+        145.99deg,
+        rgba(22, 21, 21, 0.9) -0.09%,
+        rgba(46, 46, 46, 0.9) 98.66%
+      );
     }
   }
 `;
