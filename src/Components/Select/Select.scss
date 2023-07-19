@@ -112,3 +112,14 @@
 .react-select__option:focus {
   color: #ff4700;
 }
+
+.react-select-container
+  .react-select__control
+  .react-select__value-container
+  .react-select__indicators
+  .react-select__value-container
+  .react-select__menu
+  .react-select__menu-list
+  .react-select__option {
+  background-color: red;
+}
