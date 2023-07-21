@@ -6,6 +6,8 @@ import { useEffect } from "react";
 import { fetchOneProduct } from "../Redux/slices/products";
 
 const ProductPage = () => {
+  window.scrollTo({ top: 0, behavior: "smooth" });
+
   const dispatch = useDispatch();
   const product = useSelector((state) => state.products.product);
 

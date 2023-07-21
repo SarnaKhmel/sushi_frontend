@@ -27,6 +27,7 @@ export const Block = styled.div`
   background: #151515;
   box-shadow: 0px 1px 7px rgba(255, 255, 255, 0.25);
   border-radius: 10px;
+  overflow: hidden;
   @media (max-width: 1280px) {
     display: flex;
     flex-direction: column;

@@ -7,18 +7,19 @@ export const LayoutBlock = styled.div`
   height: 100vh - 334px;
   background-repeat: repeat-y;
   background-size: 100% auto;
-  overflow: auto;
+  ${"" /* overflow: auto; */}
   z-index: 1;
 `;
 
 export const ChildrenBlock = styled.div`
+  padding-bottom: 50px;
   @media (min-width: 340px) and (max-width: 767px) {
-    margin-top: 105px;
+    padding-top: 105px;
   }
   @media (min-width: 768px) and (max-width: 1023px) {
-    margin-top: 115px;
+    padding-top: 115px;
   }
   @media (min-width: 1919px) {
-    margin-top: 116px;
+    padding-top: 116px;
   }
 `;

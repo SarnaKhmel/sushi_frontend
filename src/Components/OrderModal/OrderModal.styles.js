@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 export const OrderModalBlock = styled.div`
-  position: absolute;
+  position: fixed;
   width: 700px;
   height: 558px;
   right: 10px;
@@ -24,7 +24,6 @@ export const OrderModalBlock = styled.div`
 export const CloseBlock = styled.div`
   width: 35px;
   height: 35px;
-  ${"" /* margin-left: 90%; */}
   background: rgba(255, 255, 255, 0.1);
   border-radius: 5px;
   cursor: pointer;
