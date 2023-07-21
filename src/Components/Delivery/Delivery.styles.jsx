@@ -5,7 +5,6 @@ export const DeliveryBlock = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-bottom: 50px;
 
   @media (max-width: 768px) {
     max-width: 98vw;

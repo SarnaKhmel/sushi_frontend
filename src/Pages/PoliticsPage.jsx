@@ -2,6 +2,7 @@ import React from "react";
 import Layout from "../Layout/Layout";
 import styled from "styled-components";
 const OfertaPage = () => {
+  window.scrollTo({ top: 0, behavior: "smooth" });
   return (
     <Layout>
       <PoliticsBlock>

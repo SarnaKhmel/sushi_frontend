@@ -74,8 +74,7 @@ const List = styled.div`
   margin: 0px 30px;
   display: flex;
   flex-direction: column;
-  overflow-y: scroll;
-  overflow-x: hidden;
+  overflow: scroll;
   @media (max-width: 768px) {
     width: 90%;
   }
@@ -96,7 +95,6 @@ export const Block = styled.div`
     rgba(47, 47, 47, 0.75) 99.8%
   );
   border-radius: 6px;
-  overflow: hidden;
 
   @media (max-width: 768px) {
     display: flex;

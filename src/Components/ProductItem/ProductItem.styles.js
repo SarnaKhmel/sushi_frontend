@@ -19,8 +19,8 @@ export const ProductItemBlock = styled.div`
 export const Block = styled.div`
   display: flex;
   justify-content: center;
-  align-items: center;
-
+  align-items: flex-start;
+  gap: 20px;
   width: 80vw;
   height: 40vh;
 
@@ -39,6 +39,8 @@ export const ImageBlock = styled.div`
 
   width: 40%;
   height: 100%;
+  max-height: 250px;
+  max-width: 500px;
 
   @media (max-width: 768px) {
     margin-top: 180px;

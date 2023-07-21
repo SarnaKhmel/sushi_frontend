@@ -70,6 +70,7 @@ const Product = ({ product, setUpdate, update }) => {
     name: product.name,
     text: product.text,
     type: product.type,
+    subType: product.subType,
     sale: product.sale,
     weight: product.weight,
     price: product.price,
@@ -98,6 +99,7 @@ const Product = ({ product, setUpdate, update }) => {
       sale: formFields.sale,
       text: formFields.text,
       type: formFields.type,
+      subType: formFields.subType,
       weight: formFields.weight,
       week_sale: formFields.week_sale,
       imageUrl: imageProductUrl,
@@ -183,7 +185,7 @@ const Product = ({ product, setUpdate, update }) => {
         </MiniBlock>
 
         <MiniBlock>
-          <Label htmlFor="type">3. Тип селектор зроби продукту:</Label>
+          <Label htmlFor="type">3. Тип продукту:</Label>
           <Select
             name="type"
             value={formFields.type}
@@ -198,7 +200,32 @@ const Product = ({ product, setUpdate, update }) => {
         </MiniBlock>
 
         <MiniBlock>
-          <Label htmlFor="weight">4. Вага продукту:</Label>
+          <Label htmlFor="type">
+            4. Підтип <u>для ролів</u>:
+          </Label>
+          <Select
+            name="type"
+            value={formFields.subType}
+            onChange={handleFormFieldChange}>
+            <option value=""> - </option>
+            <option value="philadelphia">Філадельфії</option>
+            <option value="california">Каліфорнії</option>
+            <option value="inkuri">Інкури</option>
+            <option value="firm">Фірмові</option>
+            <option value="futomaki">Футомакі</option>
+            <option value="dragons">Дракони</option>
+            <option value="maki">Макі</option>
+            <option value="backed">Запечені</option>
+            <option value="alaska">Аляска</option>
+            <option value="tempura">Темпура</option>
+            <option value="cheese">Сирні</option>
+            <option value="nigiri">Нігірі</option>
+            <option value="gunkans">Гункани</option>
+          </Select>
+        </MiniBlock>
+
+        <MiniBlock>
+          <Label htmlFor="weight">5. Вага продукту:</Label>
           <Input
             type="number"
             name="weight"
@@ -209,7 +236,7 @@ const Product = ({ product, setUpdate, update }) => {
         </MiniBlock>
 
         <MiniBlock>
-          <Label htmlFor="price">5. Ціна продукту:</Label>
+          <Label htmlFor="price">6. Ціна продукту:</Label>
           <Input
             type="number"
             name="price"
@@ -222,7 +249,7 @@ const Product = ({ product, setUpdate, update }) => {
         <br />
         <br />
         <MiniBlock>
-          <Label htmlFor="sale">6. Акція на продукт:</Label>
+          <Label htmlFor="sale">7. Акція на продукт:</Label>
 
           <Input
             type="checkbox"
@@ -233,7 +260,7 @@ const Product = ({ product, setUpdate, update }) => {
         </MiniBlock>
 
         <MiniBlock>
-          <Label htmlFor="old_price">7. Акційна ціна продукту:</Label>
+          <Label htmlFor="old_price">8. Акційна ціна продукту:</Label>
           <Input
             type="number"
             name="old_price"
@@ -249,7 +276,7 @@ const Product = ({ product, setUpdate, update }) => {
         <br />
         <br />
         <MiniBlockRed>
-          <Label htmlFor="week_sale">8. Товар тижня:</Label>
+          <Label htmlFor="week_sale">9. Товар тижня:</Label>
 
           <Input
             type="checkbox"

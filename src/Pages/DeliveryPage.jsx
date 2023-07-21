@@ -4,6 +4,7 @@ import Delivery from "../Components/Delivery/Delivery";
 import styled, { css } from "styled-components";
 
 const DeliveryPage = () => {
+  window.scrollTo({ top: 0, behavior: "smooth" });
   return (
     <Layout>
       <DeliveryPageBlock>

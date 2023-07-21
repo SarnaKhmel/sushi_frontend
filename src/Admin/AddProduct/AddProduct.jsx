@@ -13,6 +13,8 @@ const AddProduct = () => {
   const [checkUpload, setCheckUpload] = useState(false);
   const [checkUploadPost, setCheckUploadPost] = useState(false);
 
+  const [subBlockOpen, setSubBlockOpen] = useState(false);
+
   const [isCheckedSale, setIsCheckedSale] = useState(false);
   const handleInputChange = () => {
     setIsCheckedSale(!isCheckedSale);
@@ -53,6 +55,7 @@ const AddProduct = () => {
     name: "",
     text: "",
     type: "set",
+    sub_type: "no",
     sale: isCheckedSale,
     weight: "",
     price: "",
@@ -62,7 +65,8 @@ const AddProduct = () => {
   const handleFormFieldChange = (event) => {
     const fieldName = event.target.name;
     const fieldValue = event.target.value;
-    // if (fieldName === "sale") console.log(fieldValue);
+    if (fieldName === "type" && fieldValue === "rolls") setSubBlockOpen(true);
+    if (fieldName === "type" && fieldValue !== "rolls") setSubBlockOpen(false);
     setFormFields((prevFormFields) => ({
       ...prevFormFields,
       [fieldName]: fieldValue,
@@ -81,6 +85,7 @@ const AddProduct = () => {
         sale: isCheckedSale,
         text: formFields.text,
         type: formFields.type,
+        sub_type: formFields.sub_type,
         weight: formFields.weight,
         week_sale: false,
       };
@@ -88,7 +93,7 @@ const AddProduct = () => {
       axios
         .post("/auth/products", productData)
         .then((response) => {
-          // console.log(response);
+          console.log(response);
           notify("👍 Товар додано!");
           handleClearForm();
         })
@@ -110,6 +115,7 @@ const AddProduct = () => {
     formFields.name = "";
     formFields.text = "";
     formFields.type = "set";
+    formFields.sub_type = "no";
     formFields.sale = setIsCheckedSale(false);
     formFields.weight = "";
     formFields.price = "";
@@ -174,8 +180,35 @@ const AddProduct = () => {
           </Select>
         </MiniBlock>
 
+        {subBlockOpen && (
+          <MiniBlock>
+            <Label htmlFor="sub_type">
+              4. Підтип <u>для ролів</u>:
+            </Label>
+            <Select
+              name="sub_type"
+              value={formFields.sub_type}
+              onChange={handleFormFieldChange}>
+              <option value="no"> - </option>
+              <option value="philadelphia">Філадельфії</option>
+              <option value="california">Каліфорнії</option>
+              <option value="inkuri">Інкури</option>
+              <option value="firm">Фірмові</option>
+              <option value="futomaki">Футомакі</option>
+              <option value="dragons">Дракони</option>
+              <option value="maki">Макі</option>
+              <option value="backed">Запечені</option>
+              <option value="alaska">Аляска</option>
+              <option value="tempura">Темпура</option>
+              <option value="cheese">Сирні</option>
+              <option value="nigiri">Нігірі</option>
+              <option value="gunkans">Гункани</option>
+            </Select>
+          </MiniBlock>
+        )}
+
         <MiniBlock>
-          <Label htmlFor="weight">4. Вага продукту:</Label>
+          <Label htmlFor="weight">5. Вага продукту:</Label>
           <Input
             type="number"
             name="weight"
@@ -187,7 +220,7 @@ const AddProduct = () => {
         </MiniBlock>
 
         <MiniBlock>
-          <Label htmlFor="price">5. Ціна продукту:</Label>
+          <Label htmlFor="price">6. Ціна продукту:</Label>
           <Input
             type="number"
             name="price"
@@ -201,7 +234,7 @@ const AddProduct = () => {
         <br />
         <br />
         <MiniBlock>
-          <Label htmlFor="sale">6. Акція на продукт:</Label>
+          <Label htmlFor="sale">7. Акція на продукт:</Label>
           <Input
             type="checkbox"
             name="sale"
@@ -213,7 +246,7 @@ const AddProduct = () => {
         </MiniBlock>
 
         <MiniBlock>
-          <Label htmlFor="old_price">7. Акційна ціна продукту:</Label>
+          <Label htmlFor="old_price">8. Акційна ціна продукту:</Label>
           <Input
             type="number"
             name="old_price"

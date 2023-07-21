@@ -1,0 +1,54 @@
+[
+  {
+    "name": "Філадельфії",
+    "type": "philadelphia"
+  },
+  {
+    "name": "Каліфорнії",
+    "type": "california"
+  },
+  {
+    "name": "Інкури",
+    "type": "inkuri"
+  },
+  {
+    "name": "Фірмові",
+    "type": "firm"
+  },
+  {
+    "name": "Футомакі",
+    "type": "futomaki"
+  },
+  {
+    "name": "Дракони",
+    "type": "dragons"
+  },
+  {
+    "name": "Макі",
+    "type": "maki"
+  },
+  {
+    "name": "Запечені",
+    "type": "backed"
+  },
+  {
+    "name": "Аляска",
+    "type": "alaska"
+  },
+  {
+    "name": "Темпура",
+    "type": "tempura"
+  },
+  {
+    "name": "Сирні",
+    "type": "cheese"
+  },
+  {
+    "name": "Нігірі",
+    "type": "nigiri"
+  },
+  {
+    "name": "Гункани",
+    "type": "gunkans"
+  }
+]
