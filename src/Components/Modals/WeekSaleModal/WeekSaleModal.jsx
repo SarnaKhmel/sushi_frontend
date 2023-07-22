@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import styled from "styled-components";
 import { IoIosArrowUp, IoIosArrowDown } from "react-icons/io";
 import { Link } from "react-router-dom";
@@ -11,6 +11,8 @@ const WeekSaleModal = () => {
   const [filteredProducts, setFilteredProducts] = useState([]);
   const [isModalOpen, setIsModalOpen] = useState(false);
 
+  const startY = useRef(0);
+
   useEffect(() => {
     const filteredItems = products.items.filter(
       (item) => item.week_sale === true
@@ -22,11 +24,25 @@ const WeekSaleModal = () => {
     setIsModalOpen(!isModalOpen);
   };
 
+  const handleTouchStart = (event) => {
+    startY.current = event.touches[0].clientY;
+  };
+
+  const handleTouchEnd = (event) => {
+    const deltaY = event.changedTouches[0].clientY - startY.current;
+    if (deltaY < -50) {
+      // Згортаємо компонент, якщо свайп вгору більше ніж на 50 пікселів
+      setIsModalOpen(false);
+    }
+  };
   return (
     <>
       {filteredProducts.length > 0 && (
         <ModalBox>
-          <ModalContent isOpen={isModalOpen}>
+          <ModalContent
+            isOpen={isModalOpen}
+            onTouchStart={handleTouchStart}
+            onTouchEnd={handleTouchEnd}>
             {isModalOpen && (
               <ModalContentInner>
                 <ProductBlock>

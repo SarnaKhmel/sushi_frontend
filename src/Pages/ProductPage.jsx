@@ -4,6 +4,7 @@ import ProductItem from "../Components/ProductItem/ProductItem";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import { fetchOneProduct } from "../Redux/slices/products";
+import { saveScrollPosition } from "../Redux/slices/position";
 
 const ProductPage = () => {
   window.scrollTo({ top: 0, behavior: "smooth" });
@@ -15,6 +16,14 @@ const ProductPage = () => {
     const currentURL = window.location.href;
     const id = currentURL.split("/").pop();
     dispatch(fetchOneProduct(id));
+  }, [dispatch]);
+
+  useEffect(() => {
+    return () => {
+      dispatch(
+        saveScrollPosition({ scrollX: window.scrollX, scrollY: window.scrollY })
+      );
+    };
   }, [dispatch]);
   const status = product.status;
 

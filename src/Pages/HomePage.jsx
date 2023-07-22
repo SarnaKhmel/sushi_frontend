@@ -1,51 +1,72 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import Layout from "../Layout/Layout";
-
 import Posts from "../Components/Posts/Posts";
-// import images from "../testData/posts.json";
-
 import options from "../testData/menuOptions.json";
 import subOptions from "../testData/subMenuOptions.json";
-
 import Menu from "../Components/Menu/Menu";
-
-// import selectOptions from "../testData/selectOptions.json";
-// import SelectBlock from "../Components/Select/Select";
-
 import Products from "../Components/Products/Products";
-
-import { useState, useEffect } from "react";
-
 import { fetchProducts } from "../Redux/slices/products";
 import { fetchPosts } from "../Redux/slices/posts";
-
 import { useDispatch, useSelector } from "react-redux";
-
 import Delivery from "../Components/Delivery/Delivery";
-
 import BottomMenu from "../Components/BottomMenu/BottomMenu";
-
 import Loader from "../Components/Loader/Loader";
-
 import styled from "styled-components";
-
 import SubMenu from "../Components/SubMenu/SubMenu";
 
+import { saveScrollPosition } from "../Redux/slices/position";
+
 const HomePage = () => {
-  const [filter, setFilter] = useState("");
-  // Сортування залишено якщо Тарас захоче його повернути.
+  const [filter, setFilter] = useState(localStorage.getItem("filter") || "");
   const [sort, setSort] = useState("");
-
   const dispatch = useDispatch();
-  let products = useSelector((state) => state.products.products);
-  let posts = useSelector((state) => state.posts.posts);
-
-  const [searchQuery, setSearchQuery] = useState("");
-
+  const products = useSelector((state) => state.products.products);
+  const posts = useSelector((state) => state.posts.posts);
+  const [searchQuery, setSearchQuery] = useState(
+    localStorage.getItem("searchQuery") || ""
+  );
   const [filteredProducts, setFilteredProducts] = useState([]);
-
   const [showSubMenu, setShowSubMenu] = useState(false);
-  const [subFilter, setSubFilter] = useState("");
+  const [subFilter, setSubFilter] = useState(
+    localStorage.getItem("sub_filter") || ""
+  );
+
+  const { scrollX, scrollY } = useSelector((state) => state.position); // Використовуємо дані про позицію прокрутки з Redux
+  const [isScrolledRestored, setIsScrolledRestored] = useState(false);
+
+  useEffect(() => {
+    if (!isScrolledRestored) {
+      // Відновити скрол тільки один раз після переходу
+      window.scrollTo(scrollX, scrollY);
+      setIsScrolledRestored(true);
+    }
+  }, [isScrolledRestored, scrollX, scrollY]);
+  useEffect(() => {
+    const handleScroll = () => {
+      dispatch(
+        saveScrollPosition({ scrollX: window.scrollX, scrollY: window.scrollY })
+      );
+    };
+    window.addEventListener("scroll", handleScroll);
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, [dispatch]);
+
+  useEffect(() => {
+    if (scrollX !== undefined && scrollY !== undefined) {
+      window.scrollTo(scrollX, scrollY);
+    }
+  }, [scrollX, scrollY]);
+
+  useEffect(() => {
+    // Збережіть позицію прокрутки при покиданні сторінки
+    return () => {
+      dispatch(
+        saveScrollPosition({ scrollX: window.scrollX, scrollY: window.scrollY })
+      );
+    };
+  }, [dispatch]);
 
   useEffect(() => {
     dispatch(fetchPosts());
@@ -53,16 +74,20 @@ const HomePage = () => {
   }, [dispatch]);
 
   useEffect(() => {
+    setFilter(localStorage.getItem("filter") || "");
+    setSubFilter(localStorage.getItem("sub_filter") || "");
+    setSearchQuery(localStorage.getItem("searchQuery") || "");
+  }, []);
+
+  useEffect(() => {
     if (filter === "rolls") {
       setShowSubMenu(true);
       const filteredItems = products.items.filter(
         (item) => item.type === filter
       );
-      console.log(filteredItems);
       const subFilteredItems = filteredItems.filter(
         (item) => item.sub_type === subFilter
       );
-      console.log(subFilteredItems);
       setFilteredProducts(subFilteredItems);
     } else if (filter === "sale") {
       setShowSubMenu(false);
@@ -70,6 +95,8 @@ const HomePage = () => {
       setFilteredProducts(filteredItems);
     } else if (filter !== "sale" && filter !== "") {
       setShowSubMenu(false);
+      // Оновлюємо subFilter відповідно до типу фільтрації
+      setSubFilter("");
       const filteredItems = products.items.filter(
         (item) => item.type === filter
       );
@@ -78,39 +105,6 @@ const HomePage = () => {
       setFilteredProducts(products.items);
     }
   }, [products, filter, subFilter]);
-
-  // useEffect(() => {
-  //   switch (sort) {
-  //     case "price-up":
-  //       setFilteredProducts(
-  //         [...filteredProducts].sort((a, b) => a.price - b.price)
-  //       );
-  //       break;
-  //     case "price-down":
-  //       setFilteredProducts(
-  //         [...filteredProducts].sort((a, b) => b.price - a.price)
-  //       );
-  //       break;
-  //     case "popular-up":
-  //       setFilteredProducts(
-  //         [...filteredProducts].sort((a, b) => b.viewsCount - a.viewsCount)
-  //       );
-  //       break;
-  //     case "weight-up":
-  //       setFilteredProducts(
-  //         [...filteredProducts].sort((a, b) => a.weight - b.weight)
-  //       );
-  //       break;
-  //     case "weight-down":
-  //       setFilteredProducts(
-  //         [...filteredProducts].sort((a, b) => b.weight - a.weight)
-  //       );
-  //       break;
-  //     default:
-  //       setFilteredProducts(filteredProducts);
-  //       break;
-  //   }
-  // }, [sort]);
 
   useEffect(() => {
     if (searchQuery === "") {
@@ -123,19 +117,19 @@ const HomePage = () => {
     }
   }, [searchQuery, products.items]);
 
+  useEffect(() => {
+    localStorage.setItem("filter", filter);
+    localStorage.setItem("sub_filter", subFilter);
+    localStorage.setItem("searchQuery", searchQuery);
+  }, [filter, searchQuery, subFilter]);
+
   const setFilterOption = (type) => {
     setFilter(type);
-    // console.log(type);
-  };
-  const setSubFilterOption = (type) => {
-    setSubFilter(type);
-    // console.log(type);
   };
 
-  // const handleSelectedOption = (value) => {
-  //   setSort(value);
-  //   // console.log(value);
-  // };
+  const setSubFilterOption = (type) => {
+    setSubFilter(type);
+  };
 
   return (
     <div>
@@ -155,10 +149,6 @@ const HomePage = () => {
           />
         )}
 
-        {/* <SelectBlock
-          selectOptions={selectOptions}
-          handleSelectedOption={handleSelectedOption}
-        /> */}
         <SearchBlock>
           <Input
             type="text"

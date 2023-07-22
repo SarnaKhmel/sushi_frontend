@@ -19,7 +19,10 @@ export const ChildrenBlock = styled.div`
   @media (min-width: 768px) and (max-width: 1023px) {
     padding-top: 115px;
   }
-  @media (min-width: 1919px) {
-    padding-top: 116px;
+  @media (min-width: 1024px) and (max-width: 1919px) {
+    padding-top: 115px;
+  }
+  @media (min-width: 1920px) {
+    padding-top: 130px;
   }
 `;

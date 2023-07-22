@@ -136,9 +136,9 @@ const Footer = () => {
               <StyledLink to="https://www.linkedin.com/in/oleksa-sarnatskyi/">
                 Розробка
               </StyledLink>
-              та
+
               <StyledLink to="https://www.linkedin.com/in/designalex/">
-                дизайн
+                Дизайн
               </StyledLink>
             </FooterP>
             <FooterLogoTitle src={sushiLogoTitle} alt="title" />
