@@ -67,6 +67,7 @@ const AddProduct = () => {
     const fieldValue = event.target.value;
     if (fieldName === "type" && fieldValue === "rolls") setSubBlockOpen(true);
     if (fieldName === "type" && fieldValue !== "rolls") setSubBlockOpen(false);
+
     setFormFields((prevFormFields) => ({
       ...prevFormFields,
       [fieldName]: fieldValue,
@@ -74,11 +75,12 @@ const AddProduct = () => {
   };
   const handleFormSubmit = (event) => {
     event.preventDefault();
+
     if (imageProductUrl === null) {
       return notify("‼ Завантажте зображення!");
     } else {
       const productData = {
-        imageUrl: imageProductUrl,
+        imageUrl: "no",
         name: formFields.name,
         price: formFields.price,
         old_price: formFields.old_price,
@@ -89,8 +91,6 @@ const AddProduct = () => {
         weight: formFields.weight,
         week_sale: false,
       };
-      console.log(formFields.sub_type);
-      console.log(productData);
 
       axios
         .post("/auth/products", productData)
