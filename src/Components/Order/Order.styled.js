@@ -151,6 +151,7 @@ export const Select = styled.select`
   border: none;
   background: rgba(49, 49, 49, 0.2);
   border-bottom: 1px solid white;
+  border-radius: 10px;
   width: 160px;
   color: rgba(255, 255, 255, 0.8);
   @media (max-width: 1280px) {
@@ -160,6 +161,7 @@ export const Select = styled.select`
 export const Option = styled.option`
   border: none;
   background: rgba(49, 49, 49, 0.2);
+  border-radius: 10px;
   border-bottom: 1px solid white;
   width: 160px;
   color: rgba(255, 255, 255, 0.8);
