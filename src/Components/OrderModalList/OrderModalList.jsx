@@ -74,7 +74,10 @@ const List = styled.div`
   margin: 0px 30px;
   display: flex;
   flex-direction: column;
-  overflow: scroll;
+  overflow-y: auto;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+
   @media (max-width: 768px) {
     width: 90%;
   }
