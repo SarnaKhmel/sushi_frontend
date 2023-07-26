@@ -204,7 +204,7 @@ const Product = ({ product, setUpdate, update }) => {
             4. Підтип <u>для ролів</u>:
           </Label>
           <Select
-            name="type"
+            name="sub_type"
             value={formFields.sub_type}
             onChange={handleFormFieldChange}>
             <option value="no"> - </option>
