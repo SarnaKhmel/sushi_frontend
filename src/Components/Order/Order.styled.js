@@ -154,6 +154,8 @@ export const Select = styled.select`
   border-radius: 10px;
   width: 160px;
   color: rgba(255, 255, 255, 0.8);
+  opacity: 0.8;
+  border-radius: 10px;
   @media (max-width: 1280px) {
     width: 100%;
   }
