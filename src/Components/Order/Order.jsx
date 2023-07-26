@@ -227,13 +227,18 @@ const Order = () => {
                 <Label>Деталі доставки</Label>
                 <InputBlock>
                   <InputItem>
-                    <Select
+                    <select
+                      style={styles.select}
                       name="paymentMethod"
                       value={formData.paymentMethod}
                       onChange={handleChange}>
-                      <Option value="cash">Готівкою.</Option>
-                      <Option value="card">Карткою.</Option>
-                    </Select>
+                      <option style={styles.option} value="cash">
+                        Готівкою.
+                      </option>
+                      <option style={styles.option} value="card">
+                        Карткою.
+                      </option>
+                    </select>
                     <InputLabel>Форма оплати*</InputLabel>
                   </InputItem>
                   <InputItem>
