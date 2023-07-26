@@ -80,7 +80,7 @@ const AddProduct = () => {
       return notify("‼ Завантажте зображення!");
     } else {
       const productData = {
-        imageUrl: "no",
+        imageUrl: imageProductUrl,
         name: formFields.name,
         price: formFields.price,
         old_price: formFields.old_price,
