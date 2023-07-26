@@ -119,6 +119,24 @@ const Order = () => {
     alert(text);
   };
 
+  const styles = {
+    select: {
+      border: "none",
+      background: "rgba(49, 49, 49, 0.2)",
+      borderBottom: "1px solid white",
+      width: "160px",
+      color: "rgba(255, 255, 255, 0.8)",
+      opacity: "0.8",
+    },
+    option: {
+      border: "none",
+      background: "rgba(49, 49, 49, 0.2)",
+      borderBottom: "1px solid white",
+      width: "160px",
+      color: "rgba(255, 255, 255, 0.8)",
+    },
+  };
+
   return (
     <>
       <OrderBox>
@@ -165,15 +183,22 @@ const Order = () => {
                 <Label>Кур’єрська доставка</Label>
                 <InputBlock>
                   <InputItem>
-                    <Select
+                    <select
+                      style={styles.select}
                       name="city"
                       value={formData.city}
                       onChange={handleChange}>
-                      <Option value=""></Option>
-                      <Option value="lviv">Львів</Option>
-                      <Option value="z-voda">Зимна Вода</Option>
-                      <Option value="operator">Уторчнити з оператором</Option>
-                    </Select>
+                      <option style={styles.option} value=""></option>
+                      <option style={styles.option} value="lviv">
+                        Львів
+                      </option>
+                      <option style={styles.option} value="z-voda">
+                        Зимна Вода
+                      </option>
+                      <option style={styles.option} value="operator">
+                        Уторчнити з оператором
+                      </option>
+                    </select>
                     <InputLabel>Місто*</InputLabel>
                   </InputItem>
                   <InputItem>
