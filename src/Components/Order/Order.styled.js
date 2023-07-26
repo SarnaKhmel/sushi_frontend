@@ -149,7 +149,7 @@ export const InputComent = styled.input`
 
 export const Select = styled.select`
   border: none;
-  background: transparent;
+  background: transparent !important;
   border-bottom: 1px solid white;
   width: 160px;
   color: rgba(255, 255, 255, 0.8);
@@ -159,7 +159,7 @@ export const Select = styled.select`
 `;
 export const Option = styled.option`
   border: none;
-  background: transparent;
+  background: transparent !important;
   border-bottom: 1px solid white;
   width: 160px;
   color: rgba(255, 255, 255, 0.8);
