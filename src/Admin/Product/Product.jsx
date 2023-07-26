@@ -70,7 +70,7 @@ const Product = ({ product, setUpdate, update }) => {
     name: product.name,
     text: product.text,
     type: product.type,
-    subType: product.subType,
+    sub_type: product.sub_type,
     sale: product.sale,
     weight: product.weight,
     price: product.price,
@@ -99,7 +99,7 @@ const Product = ({ product, setUpdate, update }) => {
       sale: formFields.sale,
       text: formFields.text,
       type: formFields.type,
-      subType: formFields.subType,
+      sub_type: formFields.sub_type,
       weight: formFields.weight,
       week_sale: formFields.week_sale,
       imageUrl: imageProductUrl,
@@ -200,14 +200,14 @@ const Product = ({ product, setUpdate, update }) => {
         </MiniBlock>
 
         <MiniBlock>
-          <Label htmlFor="type">
+          <Label htmlFor="sub_type">
             4. Підтип <u>для ролів</u>:
           </Label>
           <Select
             name="type"
-            value={formFields.subType}
+            value={formFields.sub_type}
             onChange={handleFormFieldChange}>
-            <option value=""> - </option>
+            <option value="no"> - </option>
             <option value="philadelphia">Філадельфії</option>
             <option value="california">Каліфорнії</option>
             <option value="inkuri">Інкури</option>

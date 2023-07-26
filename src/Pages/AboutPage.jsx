@@ -10,7 +10,6 @@ import img5 from "../Images/about/sushi5.jpg";
 import styled from "styled-components";
 
 const AboutPage = () => {
-  window.scrollTo({ top: 0, behavior: "smooth" });
   return (
     <Layout>
       <LayoutBlock>

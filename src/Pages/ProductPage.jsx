@@ -7,8 +7,6 @@ import { fetchOneProduct } from "../Redux/slices/products";
 import { saveScrollPosition } from "../Redux/slices/position";
 
 const ProductPage = () => {
-  window.scrollTo({ top: 0, behavior: "smooth" });
-
   const dispatch = useDispatch();
   const product = useSelector((state) => state.products.product);
 

@@ -6,7 +6,6 @@ import { useDispatch, useSelector } from "react-redux";
 import { fetchOnePosts } from "../Redux/slices/posts";
 
 const PostPage = () => {
-  window.scrollTo({ top: 0, behavior: "smooth" });
   const dispatch = useDispatch();
   const post = useSelector((state) => state.posts.post);
   useEffect(() => {

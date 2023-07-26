@@ -89,6 +89,8 @@ const AddProduct = () => {
         weight: formFields.weight,
         week_sale: false,
       };
+      console.log(formFields.sub_type);
+      console.log(productData);
 
       axios
         .post("/auth/products", productData)

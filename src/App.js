@@ -20,12 +20,92 @@ import DeliveryPage from "./Pages/DeliveryPage";
 import PoliticsPage from "./Pages/PoliticsPage";
 import OrderPage from "./Pages/OrderPage";
 import OfertaPage from "./Pages/OfertaPage";
+import { useContext, useEffect, useLayoutEffect, useState } from "react";
+import { useLocation } from "react-router-dom";
+
+import { yScrollContext } from "./Utils/yScroll";
+import { history } from "./Utils/CustomRouter";
 
 function App() {
+  const { yScroll, setYscroll } = useContext(yScrollContext);
+  const location = useLocation();
+  const [currHist, setCurrHist] = useState({
+    action: "",
+    location: {},
+    currentKey: "",
+  });
+
+  useEffect(() => {
+    sessionStorage.setItem("key", location.key);
+  }, [location]);
+
+  useState(() => {
+    const scrolled = () => setYscroll((prev) => window.scrollY);
+    window.addEventListener("scroll", scrolled);
+    return () => {
+      window.removeEventListener("scroll", scrolled);
+    };
+  }, []);
+
+  useEffect(() => {
+    return () => {
+      sessionStorage.setItem("yvalue", JSON.stringify(yScroll));
+    };
+  }, [yScroll]);
+
+  useEffect(() => {
+    return history.listen(({ location, action }) => {
+      if (action === "POP") {
+        const fwdKey = sessionStorage.getItem("key");
+        const yscroll = sessionStorage.getItem("yvalue");
+        location = {
+          ...location,
+          state: {
+            forward: {
+              key: fwdKey,
+              yscroll: yscroll,
+            },
+            ...location.state,
+          },
+        };
+      }
+      setCurrHist({
+        ...currHist,
+        action: action,
+        location: {
+          ...location,
+        },
+        currentKey: location.key,
+      });
+      console.log(action, location.pathname, location.state, location.key);
+    });
+  }, []);
+
+  useLayoutEffect(() => {
+    const { action, location, currentKey } = currHist;
+    if (action && action === "POP") {
+      if (location.state.hasOwnProperty("forward")) {
+        if (currentKey === location.state.forward.key) {
+          console.log(`forward ${location.state.forward.yscroll}`);
+        }
+      } else if (location.state.hasOwnProperty("backward")) {
+        if (currentKey === location.state.backward.key) {
+          console.log(`backward ${location.state.backward.yscroll}`);
+          window.scrollTo(0, parseFloat(location.state.backward.yscroll));
+        }
+      } else {
+        window.scrollTo(0, 0);
+      }
+    } else {
+      window.scrollTo(0, 0);
+    }
+    console.log(location);
+  }, [currHist]);
   return (
     <>
       <Routes>
         <Route path="/" element={<HomePage />} />
+
         <Route path="/about" element={<AboutPage />} />
         <Route path="/product/:id" element={<ProductPage />} />
         <Route path="/delivery" element={<DeliveryPage />} />

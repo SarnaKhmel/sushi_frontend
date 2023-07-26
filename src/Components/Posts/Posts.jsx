@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import {
+  PostsBlock,
   CarouselContainer,
   DotContainer,
   DotElement,
@@ -36,6 +37,11 @@ const Posts = ({ posts }) => {
     onSwipedRight: () => handleSwipe("right"),
   });
 
+  const handleSlideClick = (index) => (e) => {
+    e.preventDefault(); // Запобігаємо стандартному поведінці браузера
+    setActiveIndex(index);
+  };
+
   const handleSwipe = (direction) => {
     if (direction === "left") {
       setActiveIndex((prevIndex) => (prevIndex + 1) % posts.length);
@@ -47,32 +53,34 @@ const Posts = ({ posts }) => {
   };
 
   return (
-    <div {...handlers}>
-      <CarouselContainer>
+    <PostsBlock>
+      <CarouselContainer className="carousel" {...handlers}>
         {posts.map((post, index) => (
           <SlideContainer key={post._id} active={index === activeIndex}>
-            <Link to={`/post/${post._id}`}>
+            <Link to={`/post/${post._id}`} onClick={handleSlideClick(index)}>
               <Slide
                 src={`${baseUrl}${post.imageUrl}`}
                 alt={`Slide ${index}`}
                 onClick={() => handleDotClick(index)}
-                style={{ display: index === activeIndex ? "block" : "none" }}
+                style={{
+                  display: index === activeIndex ? "block" : "none",
+                }}
               />
             </Link>
           </SlideContainer>
         ))}
-
-        <DotContainer>
-          {posts.map((_, index) => (
-            <Dot
-              key={index}
-              active={index === activeIndex}
-              onClick={() => handleDotClick(index)}
-            />
-          ))}
-        </DotContainer>
       </CarouselContainer>
-    </div>
+
+      <DotContainer>
+        {posts.map((_, index) => (
+          <Dot
+            key={index}
+            active={index === activeIndex}
+            onClick={() => handleDotClick(index)}
+          />
+        ))}
+      </DotContainer>
+    </PostsBlock>
   );
 };
 

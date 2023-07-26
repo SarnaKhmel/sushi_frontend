@@ -1,19 +1,23 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { SubMenuBlock, Items, Item } from "./SubMenu.styled";
-import { useState, useEffect } from "react";
+
 const SubMenu = ({ title, options, setFilterOption }) => {
   const [underlined, setUnderlined] = useState(0);
+  const [subFilter, setSubFilter] = useState(
+    localStorage.getItem("sub_filter") || ""
+  );
+
+  useEffect(() => {
+    // При завантаженні сторінки встановлюємо підкреслення відповідно до збереженого значення `sub_filter`
+    const index = options.findIndex((option) => option.type === subFilter);
+    setUnderlined(index >= 0 ? index : 0);
+  }, [options, subFilter]);
 
   const handlerUnderlined = (index, type) => {
     setUnderlined(index);
-    setFilterOption(underlined);
     setFilterOption(type);
   };
 
-  useEffect(() => {
-    setUnderlined(0);
-    setFilterOption("philadelphia");
-  }, []);
   return (
     <SubMenuBlock>
       {title}

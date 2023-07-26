@@ -1,16 +1,29 @@
 import styled, { keyframes } from "styled-components";
 
-export const CarouselContainer = styled.div`
-  display: flex;
+export const PostsBlock = styled.div`
+  display: grid;
+  grid-template-rows: repeat(auto-fill, min(170px, 1fr));
+  grid-gap: 20px;
+  justify-items: center;
   align-items: center;
-  justify-content: center;
-  position: relative;
-`;
 
-// export const SlideContainer = styled.div`
-//   display: flex;
-//   transition: transform 0.5s ease;
-// `;
+  @media (min-width: 340px) and (max-width: 767px) {
+    height: 200px;
+  }
+  @media (min-width: 768px) and (max-width: 1023px) {
+    height: 300px;
+  }
+  @media (min-width: 1024px) and (max-width: 1919px) {
+    height: 400px;
+  }
+  @media (min-width: 1920px) {
+    height: 600px;
+  }
+`;
+export const CarouselContainer = styled.div`
+  position: relative;
+  ${"" /* margin: 0 auto; */}
+`;
 
 export const Slide = styled.img`
   @media (min-width: 340px) and (max-width: 767px) {
@@ -35,8 +48,6 @@ export const DotContainer = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  position: absolute;
-  bottom: -16px;
   width: 100%;
 `;
 

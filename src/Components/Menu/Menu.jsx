@@ -1,19 +1,21 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { MenuBlock, Items, Item } from "./Menu.styled";
-import { useState, useEffect } from "react";
+
 const Menu = ({ title, options, setFilterOption }) => {
   const [underlined, setUnderlined] = useState(0);
+  const [filter, setFilter] = useState(localStorage.getItem("filter") || "");
+
+  useEffect(() => {
+    // При завантаженні сторінки встановлюємо підкреслення відповідно до збереженого значення `filter`
+    const index = options.findIndex((option) => option.type === filter);
+    setUnderlined(index >= 0 ? index : 0);
+  }, [options, filter]);
 
   const handlerUnderlined = (index, type) => {
     setUnderlined(index);
-    setFilterOption(underlined);
     setFilterOption(type);
   };
 
-  useEffect(() => {
-    setUnderlined(0);
-    setFilterOption("sale");
-  }, []);
   return (
     <MenuBlock id="menu">
       {title}
