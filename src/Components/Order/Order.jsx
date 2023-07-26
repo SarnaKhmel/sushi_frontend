@@ -122,7 +122,7 @@ const Order = () => {
   const styles = {
     select: {
       border: "none",
-      background: "rgba(49, 49, 49, 0.2)",
+      background: "rgb(49, 49, 49)",
       borderBottom: "1px solid white",
       width: "160px",
       color: "rgba(255, 255, 255, 0.8)",
@@ -130,7 +130,7 @@ const Order = () => {
     },
     option: {
       border: "none",
-      background: "rgba(49, 49, 49, 0.2)",
+      background: "rgb(49, 49, 49)",
       borderBottom: "1px solid white",
       width: "160px",
       color: "rgba(255, 255, 255, 0.8)",
