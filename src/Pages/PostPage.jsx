@@ -4,6 +4,7 @@ import Layout from "../Layout/Layout";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchOnePosts } from "../Redux/slices/posts";
+import Loader from "../Components/Loader/Loader";
 
 const PostPage = () => {
   const dispatch = useDispatch();
@@ -18,7 +19,7 @@ const PostPage = () => {
 
   return (
     <Layout>
-      {status === "loading" && <>Loading...</>}
+      {status === "loading" && <Loader />}
       {status === "loaded" && <Post post={post} />}
     </Layout>
   );

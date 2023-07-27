@@ -22,7 +22,20 @@ export const PostsBlock = styled.div`
 `;
 export const CarouselContainer = styled.div`
   position: relative;
-  ${"" /* margin: 0 auto; */}
+  height: 500px; /* Фіксована висота */
+  overflow: hidden; /* Щоб приховати вміст, що перевищує висоту */
+  @media (min-width: 340px) and (max-width: 767px) {
+    height: 200px;
+  }
+  @media (min-width: 768px) and (max-width: 1023px) {
+    height: 300px;
+  }
+  @media (min-width: 1024px) and (max-width: 1919px) {
+    height: 400px;
+  }
+  @media (min-width: 1920px) {
+    height: 600px;
+  }
 `;
 
 export const Slide = styled.img`
@@ -65,25 +78,30 @@ export const DotElement = styled.span`
 const fadeInAnimation = keyframes`
   from {
     opacity: 0;
+    height: 0%;
   }
   to {
     opacity: 1;
+    height: 100%;
   }
 `;
 
 const fadeOutAnimation = keyframes`
   from {
     opacity: 1;
+    height: 100%;
   }
   to {
     opacity: 0;
+    height: 0%;
   }
 `;
-
 export const SlideContainer = styled.div`
   animation-duration: 0.5s;
   animation-timing-function: ease;
   opacity: ${({ active }) => (active ? 1 : 0)};
   animation-name: ${({ active }) =>
     active ? fadeInAnimation : fadeOutAnimation};
+  overflow: hidden;
+  height: ${({ active }) => (active ? "100%" : "0%")};
 `;

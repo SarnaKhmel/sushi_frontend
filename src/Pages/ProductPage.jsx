@@ -5,6 +5,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import { fetchOneProduct } from "../Redux/slices/products";
 import { saveScrollPosition } from "../Redux/slices/position";
+import Loader from "../Components/Loader/Loader";
 
 const ProductPage = () => {
   const dispatch = useDispatch();
@@ -27,7 +28,7 @@ const ProductPage = () => {
 
   return (
     <Layout>
-      {status === "loading" && <>Loading...</>}
+      {status === "loading" && <Loader />}
       {status === "loaded" && <ProductItem product={product} />}
     </Layout>
   );

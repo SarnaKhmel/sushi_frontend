@@ -38,7 +38,7 @@
     "redux": "^4.2.1",
     "redux-persist": "^6.0.0",
     "sass": "^1.52.1",
-    "styled-components": "^5.3.6",
+    "styled-components": "^5.3.11",
     "web-vitals": "^2.1.4",
     "xlsx": "^0.18.5",
     "yup": "^1.0.0"

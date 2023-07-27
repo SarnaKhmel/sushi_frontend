@@ -1,6 +1,7 @@
 import styled from "styled-components";
 
 export const Block = styled.div`
+  height: 65vh;
   display: flex;
   align-items: center;
   justify-content: center;
