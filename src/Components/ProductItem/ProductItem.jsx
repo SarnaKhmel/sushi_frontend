@@ -27,6 +27,7 @@ import { baseUrl } from "../../Utils/baseUrl";
 import InBasket from "../InBasket/InBasket";
 const ProductItem = ({ product }) => {
   //console.log(product);
+  const formattedText = product.text.replace(/\n/g, "<br>");
 
   return (
     <ProductItemBlock>
@@ -88,7 +89,7 @@ const ProductItem = ({ product }) => {
           <Label3>
             <Title>
               <b>Склад: </b>
-              {product.text}
+              <div dangerouslySetInnerHTML={{ __html: formattedText }} />
             </Title>
           </Label3>
           <Label4>
