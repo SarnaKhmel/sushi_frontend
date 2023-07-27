@@ -26,6 +26,9 @@ const OrderRowFin = ({ item }) => {
     const question = +prompt(
       "Ви хочете видалити замовлення? Введіть номер замовлення"
     );
+
+    console.log(id, number, question);
+
     if (question === number)
       dispatch(fetchRemoveOrder(id))
         .then((data) => {
@@ -133,7 +136,8 @@ const OrderRowFin = ({ item }) => {
             </Tbody>
           </Table>
           <BtnBlock>
-            <ButtonRed onClick={handleFinishOrder}>
+            <ButtonRed
+              onClick={() => handleFinishOrder(item._id, item.orderNumber)}>
               Видалити замовлення
             </ButtonRed>
           </BtnBlock>

@@ -18,6 +18,7 @@ const OrderPage = () => {
 };
 
 const OrderPageBlock = styled.div`
+  min-height: 65vh;
   color: white;
   display: flex;
   flex-direction: column;

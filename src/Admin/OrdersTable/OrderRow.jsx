@@ -101,7 +101,7 @@ const OrderRow = ({ item }) => {
             </Thead>
             <Tbody>
               <Tr>
-                <TdStyled>{item.email}</TdStyled>
+                <TdStyled>{item.email === "" ? " - " : item.email}</TdStyled>
                 <TdStyled>
                   {item.paymentMethod === "card" && <>Карткою</>}
                   {item.paymentMethod === "cash" && <>Готівкою</>}
