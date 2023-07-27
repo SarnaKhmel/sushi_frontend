@@ -61,7 +61,7 @@ const ProductItem = ({ product }) => {
           <Label4>
             <Title>
               <b>Склад: </b>
-              {product.text}
+              <div dangerouslySetInnerHTML={{ __html: formattedText }} />
             </Title>
           </Label4>
         </InfoBlock>
