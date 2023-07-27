@@ -57,11 +57,11 @@ const Posts = ({ posts }) => {
       <CarouselContainer className="carousel" {...handlers}>
         {posts.map((post, index) => (
           <SlideContainer key={post._id} active={index === activeIndex}>
-            <Link to={`/post/${post._id}`} onClick={handleSlideClick(index)}>
+            <Link to={`/post/${post._id}`}>
               <Slide
                 src={`${baseUrl}${post.imageUrl}`}
                 alt={`Slide ${index}`}
-                onClick={() => handleDotClick(index)}
+                onClick={handleSlideClick(index)}
                 style={{
                   display: index === activeIndex ? "block" : "none",
                 }}
