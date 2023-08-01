@@ -6,7 +6,6 @@ const Menu = ({ title, options, setFilterOption }) => {
   const [filter, setFilter] = useState(localStorage.getItem("filter") || "");
 
   useEffect(() => {
-    // При завантаженні сторінки встановлюємо підкреслення відповідно до збереженого значення `filter`
     const index = options.findIndex((option) => option.type === filter);
     setUnderlined(index >= 0 ? index : 0);
   }, [options, filter]);
@@ -14,6 +13,7 @@ const Menu = ({ title, options, setFilterOption }) => {
   const handlerUnderlined = (index, type) => {
     setUnderlined(index);
     setFilterOption(type);
+    localStorage.setItem("sub_filter", "philadelphia");
   };
 
   return (
