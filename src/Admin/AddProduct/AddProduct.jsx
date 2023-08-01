@@ -194,17 +194,17 @@ const AddProduct = () => {
               <option value="no"> - </option>
               <option value="philadelphia">Філадельфії</option>
               <option value="california">Каліфорнії</option>
-              <option value="inkuri">Інкури</option>
+              <option value="inkuri">Ікури</option>
               <option value="firm">Фірмові</option>
-              <option value="futomaki">Футомакі</option>
               <option value="dragons">Дракони</option>
-              <option value="maki">Макі</option>
-              <option value="backed">Запечені</option>
               <option value="alaska">Аляска</option>
-              <option value="tempura">Темпура</option>
+              <option value="backed">Запечені</option>
+              <option value="futomaki">Футомакі</option>
+              <option value="maki">Макі</option>
+              {/* <option value="tempura">Темпура</option>
               <option value="cheese">Сирні</option>
               <option value="nigiri">Нігірі</option>
-              <option value="gunkans">Гункани</option>
+              <option value="gunkans">Гункани</option> */}
             </Select>
           </MiniBlock>
         )}

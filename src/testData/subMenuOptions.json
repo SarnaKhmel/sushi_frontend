@@ -8,7 +8,7 @@
     "type": "california"
   },
   {
-    "name": "Інкури",
+    "name": "Ікури",
     "type": "inkuri"
   },
   {
@@ -16,39 +16,19 @@
     "type": "firm"
   },
   {
-    "name": "Футомакі",
-    "type": "futomaki"
-  },
-  {
     "name": "Дракони",
     "type": "dragons"
-  },
-  {
-    "name": "Макі",
-    "type": "maki"
-  },
-  {
-    "name": "Запечені",
-    "type": "backed"
   },
   {
     "name": "Аляска",
     "type": "alaska"
   },
   {
-    "name": "Темпура",
-    "type": "tempura"
+    "name": "Футомакі",
+    "type": "futomaki"
   },
   {
-    "name": "Сирні",
-    "type": "cheese"
-  },
-  {
-    "name": "Нігірі",
-    "type": "nigiri"
-  },
-  {
-    "name": "Гункани",
-    "type": "gunkans"
+    "name": "Макі",
+    "type": "maki"
   }
 ]

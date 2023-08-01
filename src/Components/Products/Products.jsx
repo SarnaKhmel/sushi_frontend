@@ -17,7 +17,6 @@ const Products = ({ products }) => {
     };
   }, []);
 
-  // При монтажі компонента, прокрутити до збереженої позиції
   useEffect(() => {
     window.scrollTo(0, scrollPosition);
   }, [scrollPosition]);
