@@ -8,7 +8,10 @@ const SubMenu = ({ title, options, setFilterOption }) => {
   );
 
   useEffect(() => {
-    // При завантаженні сторінки встановлюємо підкреслення відповідно до збереженого значення `sub_filter`
+    localStorage.setItem("sub_filter", "philadelphia");
+  }, []);
+
+  useEffect(() => {
     const index = options.findIndex((option) => option.type === subFilter);
     setUnderlined(index >= 0 ? index : 0);
   }, [options, subFilter]);
