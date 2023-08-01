@@ -214,7 +214,6 @@ const Product = ({ product, setUpdate, update }) => {
             <option value="firm">Фірмові</option>
             <option value="dragons">Дракони</option>
             <option value="alaska">Аляска</option>
-            <option value="backed">Запечені</option>
             <option value="futomaki">Футомакі</option>
             <option value="maki">Макі</option>
           </Select>
