@@ -201,10 +201,6 @@ const AddProduct = () => {
               <option value="backed">Запечені</option>
               <option value="futomaki">Футомакі</option>
               <option value="maki">Макі</option>
-              {/* <option value="tempura">Темпура</option>
-              <option value="cheese">Сирні</option>
-              <option value="nigiri">Нігірі</option>
-              <option value="gunkans">Гункани</option> */}
             </Select>
           </MiniBlock>
         )}
