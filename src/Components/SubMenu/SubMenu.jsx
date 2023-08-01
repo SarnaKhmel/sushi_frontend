@@ -12,7 +12,9 @@ const SubMenu = ({ title, options, setFilterOption }) => {
     setUnderlined(index >= 0 ? index : 0);
     console.log(subFilter);
     setFilterOption(
-      subFilter === undefined || subFilter === null ? subFilter : "philadelphia"
+      subFilter === undefined || subFilter === null || subFilter === ""
+        ? subFilter
+        : "philadelphia"
     );
   }, [options, subFilter]);
 
