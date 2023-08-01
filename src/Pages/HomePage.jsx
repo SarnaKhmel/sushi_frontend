@@ -126,6 +126,7 @@ const HomePage = () => {
             title=""
             options={subOptions}
             setFilterOption={setSubFilterOption}
+            showSubMenu={showSubMenu}
           />
         )}
 

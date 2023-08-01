@@ -13,7 +13,6 @@ const Menu = ({ title, options, setFilterOption }) => {
   const handlerUnderlined = (index, type) => {
     setUnderlined(index);
     setFilterOption(type);
-    localStorage.setItem("sub_filter", "philadelphia");
   };
 
   return (

@@ -8,12 +8,12 @@ const SubMenu = ({ title, options, setFilterOption }) => {
   );
 
   useEffect(() => {
-    localStorage.setItem("sub_filter", "philadelphia");
-  }, []);
-
-  useEffect(() => {
     const index = options.findIndex((option) => option.type === subFilter);
     setUnderlined(index >= 0 ? index : 0);
+    console.log(subFilter);
+    setFilterOption(
+      subFilter === undefined || subFilter === null ? subFilter : "philadelphia"
+    );
   }, [options, subFilter]);
 
   const handlerUnderlined = (index, type) => {
