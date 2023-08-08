@@ -191,7 +191,6 @@ const Product = ({ product, setUpdate, update }) => {
             value={formFields.type}
             onChange={handleFormFieldChange}>
             <option value="set">Cет</option> <option value="rolls">Рол</option>
-            <option value="sushi">Суші</option>{" "}
             <option value="soup">Суп</option>
             <option value="hot">Гарячий</option>
             <option value="drinks">Напій</option>

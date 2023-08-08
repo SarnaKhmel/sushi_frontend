@@ -4,7 +4,7 @@ import { SubMenuBlock, Items, Item } from "./SubMenu.styled";
 const SubMenu = ({ title, options, setFilterOption }) => {
   const [underlined, setUnderlined] = useState(0);
   const [subFilter, setSubFilter] = useState(
-    localStorage.getItem("sub_filter") || ""
+    localStorage.getItem("sub_filter") || "philadelphia"
   );
 
   useEffect(() => {

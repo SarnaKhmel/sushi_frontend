@@ -173,7 +173,6 @@ const AddProduct = () => {
             onChange={handleFormFieldChange}>
             <option value="set">Cет</option>
             <option value="rolls">Рол</option>
-            <option value="sushi">Суші</option>
             <option value="soup">Суп</option>
             <option value="hot">Гарячий</option>
             <option value="drink">Напій</option>

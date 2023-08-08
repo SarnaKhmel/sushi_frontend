@@ -173,7 +173,7 @@ const Input = styled.input`
   &:hover {
     border: none;
     cursor: pointer;
-    border-bottom: 1px solid orange;
+    border-bottom: 1px solid #ff4700;
   }
 
   &:active {
