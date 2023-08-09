@@ -161,7 +161,6 @@ const AddProduct = () => {
             placeholder="Опис продукту"
             value={formFields.text}
             onChange={handleFormFieldChange}
-            required
           />
         </MiniBlock>
 

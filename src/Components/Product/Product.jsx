@@ -47,7 +47,9 @@ const Product = ({ product }) => {
           </Link>
         </Label2>
         <Label3>
-          <Title>{product.text}</Title>
+          <Title>
+            {product.type !== "drink" ? <>{product.text}</> : <></>}
+          </Title>
         </Label3>
         <Label4>
           <PriceBlock>

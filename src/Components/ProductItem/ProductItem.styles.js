@@ -177,14 +177,14 @@ export const Label4 = styled.div`
 `;
 export const Weight = styled.div`
   font-style: normal;
-  font-weight: 300;
-  font-size: 16px;
+  font-weight: 500;
+  font-size: 18px;
   line-height: 20px;
 
   color: #ffffff;
   @media (max-width: 768px) {
     font-style: normal;
-    font-weight: 400;
+    font-weight: 500;
     font-size: 14px;
     line-height: 17px;
   }
