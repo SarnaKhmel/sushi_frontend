@@ -43,7 +43,9 @@ const ProductItem = ({ product }) => {
             </SaleBlock>
           </Label1>
           <Label2>
-            <Weight>{product.weight}г.</Weight>
+            <Weight>
+              {product.weight} {product.type === "drink" ? <>л.</> : <> г.</>}
+            </Weight>
           </Label2>
           <Label3>
             <PriceBlock>
