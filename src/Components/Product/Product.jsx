@@ -35,7 +35,9 @@ const Product = ({ product }) => {
       </ImageBlock>
       <TitleBlock>
         <Label1>
-          <Weight>{product.weight}г.</Weight>
+          <Weight>
+            {product.weight} {product.type === "drink" ? <>л.</> : <> г.</>}
+          </Weight>
 
           <SaleBlock>
             {product.sale === true ? <Sale>Акція</Sale> : <></>}
