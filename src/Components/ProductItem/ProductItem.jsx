@@ -71,7 +71,7 @@ const ProductItem = ({ product }) => {
         <MobileInfoBlock>
           <Label1>
             <Weight>
-              {product.weight} {product.type !== "drink" ? <>г.</> : <> л.</>}
+              {product.weight} {product.type === "drink" ? <>л.</> : <> г.</>}
             </Weight>
             <SaleBlock>
               {product.sale === true ? <Sale>Акція</Sale> : <></>}
