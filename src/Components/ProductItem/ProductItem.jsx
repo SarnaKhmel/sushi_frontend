@@ -60,14 +60,19 @@ const ProductItem = ({ product }) => {
           </Label3>
           <Label4>
             <Title>
-              <b>Склад: </b>
-              <div dangerouslySetInnerHTML={{ __html: formattedText }} />
+              {product.type !== "drink" ? (
+                <div dangerouslySetInnerHTML={{ __html: formattedText }} />
+              ) : (
+                <></>
+              )}
             </Title>
           </Label4>
         </InfoBlock>
         <MobileInfoBlock>
           <Label1>
-            <Weight>{product.weight}г.</Weight>
+            <Weight>
+              {product.weight} {product.type !== "drink" ? <>г.</> : <> л.</>}
+            </Weight>
             <SaleBlock>
               {product.sale === true ? <Sale>Акція</Sale> : <></>}
             </SaleBlock>
@@ -88,8 +93,11 @@ const ProductItem = ({ product }) => {
           </Label2>
           <Label3>
             <Title>
-              <b>Склад: </b>
-              <div dangerouslySetInnerHTML={{ __html: formattedText }} />
+              {product.type !== "drink" ? (
+                <div dangerouslySetInnerHTML={{ __html: formattedText }} />
+              ) : (
+                <></>
+              )}
             </Title>
           </Label3>
           <Label4>
