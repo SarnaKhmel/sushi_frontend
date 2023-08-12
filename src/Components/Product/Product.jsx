@@ -26,6 +26,8 @@ import InBasket from "../InBasket/InBasket";
 
 const Product = ({ product }) => {
   // console.log(product);
+  const formattedText = product.text.replace(/\n/g, "<br>");
+
   return (
     <ProductBlock>
       <ImageBlock>
@@ -50,7 +52,11 @@ const Product = ({ product }) => {
         </Label2>
         <Label3>
           <Title>
-            {product.type !== "drink" ? <>{product.text}</> : <></>}
+            {product.type !== "drink" ? (
+              <div dangerouslySetInnerHTML={{ __html: formattedText }} />
+            ) : (
+              <></>
+            )}
           </Title>
         </Label3>
         <Label4>
