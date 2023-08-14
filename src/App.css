@@ -1,6 +1,11 @@
+/* Імпорт шрифту */
 @import url("https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+
+/* Імпорт стилів для компонента Select */
 @import "./Components/Select/Select.scss";
 
+/* Стилі для прокрутки */
+/* Chrome та Safari */
 ::-webkit-scrollbar {
   width: 8px;
   background-color: #2e2e2e;
@@ -13,4 +18,31 @@
 
 ::-webkit-scrollbar-track {
   background-color: #2e2e2e;
+}
+
+/* Firefox */
+/* Ширина полоски прокрутки */
+::-webkit-scrollbar {
+  width: 8px;
+  background-color: #2e2e2e;
+  scrollbar-width: thin; /* "thin" або "auto" */
+}
+
+/* Колір фону полоски прокрутки */
+::-webkit-scrollbar-thumb {
+  background-color: #000000;
+  border-radius: 4px;
+  scrollbar-color: #2e2e2e #2e2e2e; /* колір доріжки і кінця полоски */
+}
+
+/* Стиль доріжки прокрутки */
+::-webkit-scrollbar-track {
+  background-color: #2e2e2e;
+  scrollbar-track-color: #2e2e2e;
+}
+
+/* Стиль кінця полоски прокрутки */
+::-webkit-scrollbar-thumb {
+  scrollbar-thumb-color: #000000;
+  scrollbar-thumb-radius: 4px;
 }
