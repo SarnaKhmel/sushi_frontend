@@ -84,22 +84,6 @@ const MobileHeaderModal = ({ isOpen, onClose, handleOpenContactsModal }) => {
           <AiOutlineClose size={30} />
         </CloseBlock>
       </Line>
-      <StyledLink to="/about" onClick={onClose}>
-        Про нас
-      </StyledLink>
-
-      {url ? (
-        <>
-          <StyledScrollLink to="delivery" smooth={true} duration={1200}>
-            Доставка
-          </StyledScrollLink>
-        </>
-      ) : (
-        <>
-          <StyledLink to="/delivery">Доставка</StyledLink>
-        </>
-      )}
-
       {url ? (
         <>
           <StyledScrollLink to="menu" smooth={true} duration={700}>
@@ -111,6 +95,17 @@ const MobileHeaderModal = ({ isOpen, onClose, handleOpenContactsModal }) => {
           <StyledLink to="/">Меню</StyledLink>
         </>
       )}
+      {url ? (
+        <>
+          <StyledScrollLink to="delivery" smooth={true} duration={1200}>
+            Доставка
+          </StyledScrollLink>
+        </>
+      ) : (
+        <>
+          <StyledLink to="/delivery">Доставка</StyledLink>
+        </>
+      )}
       <LinkToElement
         onClick={() => {
           handleOpenContactsModal();
@@ -118,6 +113,9 @@ const MobileHeaderModal = ({ isOpen, onClose, handleOpenContactsModal }) => {
         }}>
         Контакти
       </LinkToElement>
+      <StyledLink to="/about" onClick={onClose}>
+        Про нас
+      </StyledLink>
       <FooterItem4M>
         <Link to="https://www.facebook.com/sushizlyubovyu">
           <Icons src={fb} alt="fb" />

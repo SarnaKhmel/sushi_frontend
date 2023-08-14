@@ -110,20 +110,6 @@ const Header = () => {
           </StyledLink>
 
           <LinkBlock>
-            <StyledLink to="/about">Про нас</StyledLink>
-
-            {url ? (
-              <>
-                <StyledScrollLink to="delivery" smooth={true} duration={1200}>
-                  Доставка
-                </StyledScrollLink>
-              </>
-            ) : (
-              <>
-                <StyledLink to="/delivery">Доставка</StyledLink>
-              </>
-            )}
-
             {url ? (
               <>
                 <StyledScrollLink to="menu" smooth={true} duration={700}>
@@ -133,6 +119,17 @@ const Header = () => {
             ) : (
               <>
                 <StyledLink to="/">Меню</StyledLink>
+              </>
+            )}
+            {url ? (
+              <>
+                <StyledScrollLink to="delivery" smooth={true} duration={1200}>
+                  Доставка
+                </StyledScrollLink>
+              </>
+            ) : (
+              <>
+                <StyledLink to="/delivery">Доставка</StyledLink>
               </>
             )}
             <LinkToElement onClick={handleOpenContactsModal}>
@@ -164,6 +161,7 @@ const Header = () => {
           handleOpenContactsModal={handleOpenContactsModal}
         />
       ) : null}
+      <StyledLink to="/about">Про нас</StyledLink>
 
       <WeekSaleModal />
     </>
