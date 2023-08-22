@@ -33,7 +33,11 @@ const ProductItem = ({ product }) => {
     <ProductItemBlock>
       <Block>
         <ImageBlock>
-          <ProductImage src={`${baseUrl}${product.imageUrl}`} />
+          <ProductImage
+            src={`${baseUrl}${product.imageUrl}`}
+            alt={product.name}
+            loading="lazy"
+          />
         </ImageBlock>
         <InfoBlock>
           <Label1>
