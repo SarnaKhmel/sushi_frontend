@@ -32,7 +32,11 @@ const Product = ({ product }) => {
     <ProductBlock>
       <ImageBlock>
         <Link to={`/product/${product._id}`}>
-          <ProductImage src={`${baseUrl}${product.imageUrl}`} />
+          <ProductImage
+            src={`${baseUrl}${product.imageUrl}`}
+            alt={product.name}
+            loading="lazy"
+          />
         </Link>
       </ImageBlock>
       <TitleBlock>

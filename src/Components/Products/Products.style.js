@@ -5,7 +5,6 @@ export const ProductsBlock = styled.div`
   align-items: center;
   justify-content: center;
   margin-top: 20px;
-
   margin-bottom: 100px;
 `;
 
