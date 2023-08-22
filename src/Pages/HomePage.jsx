@@ -14,14 +14,15 @@ import Loader from "../Components/Loader/Loader";
 import styled from "styled-components";
 import SubMenu from "../Components/SubMenu/SubMenu";
 
-import Test from "../Components/Test";
-
 const HomePage = () => {
   const [filter, setFilter] = useState(localStorage.getItem("filter") || "");
   const [sort, setSort] = useState("");
   const dispatch = useDispatch();
   const products = useSelector((state) => state.products.products);
+  console.log(products);
   const posts = useSelector((state) => state.posts.posts);
+  console.log(posts);
+
   const [searchQuery, setSearchQuery] = useState(
     localStorage.getItem("searchQuery") || ""
   );
