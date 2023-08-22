@@ -15,7 +15,9 @@ import styled from "styled-components";
 import SubMenu from "../Components/SubMenu/SubMenu";
 
 const HomePage = () => {
-  const [filter, setFilter] = useState(localStorage.getItem("filter") || "");
+  const [filter, setFilter] = useState(
+    localStorage.getItem("filter") || "sale"
+  );
   const [sort, setSort] = useState("");
   const dispatch = useDispatch();
 
@@ -37,7 +39,7 @@ const HomePage = () => {
   }, [dispatch]);
 
   useEffect(() => {
-    setFilter(localStorage.getItem("filter") || "");
+    setFilter(localStorage.getItem("filter") || "sale");
     setSubFilter(localStorage.getItem("sub_filter") || "");
     setSearchQuery(localStorage.getItem("searchQuery") || "");
   }, []);
