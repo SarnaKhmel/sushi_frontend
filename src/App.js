@@ -45,7 +45,7 @@ function App() {
 
       const newScrollTimeout = setTimeout(() => {
         sessionStorage.setItem("yvalue", JSON.stringify(window.scrollY));
-      }, 1000);
+      }, 0);
 
       setScrollTimeout(newScrollTimeout);
     };
