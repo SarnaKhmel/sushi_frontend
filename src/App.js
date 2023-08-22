@@ -32,7 +32,7 @@ function App() {
   const [scrollTimeout, setScrollTimeout] = useState(null);
   const [isScrolling, setIsScrolling] = useState(false);
 
-  const scrollSpeed = 10;
+  const scrollSpeed = 5;
 
   useEffect(() => {
     sessionStorage.setItem("key", location.key);
@@ -61,7 +61,7 @@ function App() {
         sessionStorage.setItem("yvalue", JSON.stringify(window.scrollY));
         unblockPage();
         setIsScrolling(false);
-      }, 200); // Змініть на потрібне значення
+      }, 300); // Змініть на потрібне значення
 
       setScrollTimeout(newScrollTimeout);
     };
