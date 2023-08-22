@@ -31,8 +31,8 @@ function App() {
   const location = useLocation();
   const [scrollTimeout, setScrollTimeout] = useState(null);
 
-  // Визначте швидкість прокрутки
-  const scrollSpeed = 10; // Змініть на потрібне значення
+  // Визначте швидкість прокрутки тут
+  const scrollSpeed = 5; // Змініть на потрібне значення
 
   useEffect(() => {
     sessionStorage.setItem("key", location.key);
@@ -42,7 +42,11 @@ function App() {
     const scrolled = (e) => {
       e.preventDefault(); // Запобігаємо стандартній прокрутці сторінки
 
-      setYscroll((prev) => window.scrollY);
+      setYscroll((prev) => {
+        const newScrollY = prev + e.deltaY / scrollSpeed;
+        window.scrollTo(0, newScrollY);
+        return newScrollY;
+      });
 
       if (scrollTimeout) {
         clearTimeout(scrollTimeout);
