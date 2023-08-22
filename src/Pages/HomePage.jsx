@@ -143,8 +143,11 @@ const HomePage = () => {
         {/* <Test></Test> */}
         {products.status === "loading" && <Loader />}
         {products.status === "loaded" && (
-          <Products products={filteredProducts} />
+          <Products
+            products={Array.isArray(filteredProducts) ? filteredProducts : []}
+          />
         )}
+
         <Delivery></Delivery>
 
         <BottomMenu setFilterOption={setFilterOption} />
