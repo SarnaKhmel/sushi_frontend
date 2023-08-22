@@ -29,78 +29,38 @@ import { history } from "./Utils/CustomRouter";
 function App() {
   const { yScroll, setYscroll } = useContext(yScrollContext);
   const location = useLocation();
-  const [currHist, setCurrHist] = useState({
-    action: "",
-    location: {},
-    currentKey: "",
-  });
+  const [scrollTimeout, setScrollTimeout] = useState(null);
 
   useEffect(() => {
     sessionStorage.setItem("key", location.key);
   }, [location]);
 
-  useState(() => {
-    const scrolled = () => setYscroll((prev) => window.scrollY);
+  useEffect(() => {
+    const scrolled = () => {
+      setYscroll((prev) => window.scrollY);
+
+      if (scrollTimeout) {
+        clearTimeout(scrollTimeout);
+      }
+
+      const newScrollTimeout = setTimeout(() => {
+        sessionStorage.setItem("yvalue", JSON.stringify(window.scrollY));
+      }, 1000);
+
+      setScrollTimeout(newScrollTimeout);
+    };
+
     window.addEventListener("scroll", scrolled);
     return () => {
       window.removeEventListener("scroll", scrolled);
     };
-  }, []);
+  }, [setYscroll, scrollTimeout]);
 
   useEffect(() => {
     return () => {
       sessionStorage.setItem("yvalue", JSON.stringify(yScroll));
     };
   }, [yScroll]);
-
-  useEffect(() => {
-    return history.listen(({ location, action }) => {
-      if (action === "POP") {
-        const fwdKey = sessionStorage.getItem("key");
-        const yscroll = sessionStorage.getItem("yvalue");
-        location = {
-          ...location,
-          state: {
-            forward: {
-              key: fwdKey,
-              yscroll: yscroll,
-            },
-            ...location.state,
-          },
-        };
-      }
-      setCurrHist({
-        ...currHist,
-        action: action,
-        location: {
-          ...location,
-        },
-        currentKey: location.key,
-      });
-      // console.log(action, location.pathname, location.state, location.key);
-    });
-  }, []);
-
-  useLayoutEffect(() => {
-    const { action, location, currentKey } = currHist;
-    if (action && action === "POP") {
-      if (location.state.hasOwnProperty("forward")) {
-        if (currentKey === location.state.forward.key) {
-          // console.log(`forward ${location.state.forward.yscroll}`);
-        }
-      } else if (location.state.hasOwnProperty("backward")) {
-        if (currentKey === location.state.backward.key) {
-          console.log(`backward ${location.state.backward.yscroll}`);
-          window.scrollTo(0, parseFloat(location.state.backward.yscroll));
-        }
-      } else {
-        window.scrollTo(0, 0);
-      }
-    } else {
-      window.scrollTo(0, 0);
-    }
-    // console.log(location);
-  }, [currHist]);
   return (
     <>
       <Routes>
