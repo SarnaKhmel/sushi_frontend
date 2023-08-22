@@ -145,11 +145,9 @@ const HomePage = () => {
         </SearchBlock>
         {/* <Test></Test> */}
         {products.status === "loading" && <Loader />}
-        {/* {products.status === "loaded" && (
-          <Products
-            products={Array.isArray(filteredProducts) ? filteredProducts : []}
-          />
-        )} */}
+        {products.status === "loaded" && (
+          <Products products={filteredProducts} />
+        )}
 
         <Delivery></Delivery>
 
