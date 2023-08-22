@@ -27,40 +27,40 @@ import { yScrollContext } from "./Utils/yScroll";
 import { history } from "./Utils/CustomRouter";
 
 function App() {
-  const { yScroll, setYscroll } = useContext(yScrollContext);
-  const location = useLocation();
-  const [scrollTimeout, setScrollTimeout] = useState(null);
+  // const { yScroll, setYscroll } = useContext(yScrollContext);
+  // const location = useLocation();
+  // const [scrollTimeout, setScrollTimeout] = useState(null);
 
-  useEffect(() => {
-    sessionStorage.setItem("key", location.key);
-  }, [location]);
+  // useEffect(() => {
+  //   sessionStorage.setItem("key", location.key);
+  // }, [location]);
 
-  useEffect(() => {
-    const scrolled = () => {
-      setYscroll((prev) => window.scrollY);
+  // useEffect(() => {
+  //   const scrolled = () => {
+  //     setYscroll((prev) => window.scrollY);
 
-      if (scrollTimeout) {
-        clearTimeout(scrollTimeout);
-      }
+  //     if (scrollTimeout) {
+  //       clearTimeout(scrollTimeout);
+  //     }
 
-      const newScrollTimeout = setTimeout(() => {
-        sessionStorage.setItem("yvalue", JSON.stringify(window.scrollY));
-      }, 0);
+  //     const newScrollTimeout = setTimeout(() => {
+  //       sessionStorage.setItem("yvalue", JSON.stringify(window.scrollY));
+  //     }, 0);
 
-      setScrollTimeout(newScrollTimeout);
-    };
+  //     setScrollTimeout(newScrollTimeout);
+  //   };
 
-    window.addEventListener("scroll", scrolled);
-    return () => {
-      window.removeEventListener("scroll", scrolled);
-    };
-  }, [setYscroll, scrollTimeout]);
+  //   window.addEventListener("scroll", scrolled);
+  //   return () => {
+  //     window.removeEventListener("scroll", scrolled);
+  //   };
+  // }, [setYscroll, scrollTimeout]);
 
-  useEffect(() => {
-    return () => {
-      sessionStorage.setItem("yvalue", JSON.stringify(yScroll));
-    };
-  }, [yScroll]);
+  // useEffect(() => {
+  //   return () => {
+  //     sessionStorage.setItem("yvalue", JSON.stringify(yScroll));
+  //   };
+  // }, [yScroll]);
   return (
     <>
       <Routes>
