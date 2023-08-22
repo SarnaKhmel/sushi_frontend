@@ -22,10 +22,6 @@ const HomePage = () => {
   const products = useSelector((state) => state.products.products);
   const posts = useSelector((state) => state.posts.posts);
 
-  console.log("posts", posts);
-  console.log("posts", posts.items);
-
-  console.log("products", products);
   const [searchQuery, setSearchQuery] = useState(
     localStorage.getItem("searchQuery") || ""
   );
