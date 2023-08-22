@@ -13,12 +13,12 @@ const WeekSaleModal = () => {
 
   const startY = useRef(0);
 
-  // useEffect(() => {
-  //   const filteredItems = products.items.filter(
-  //     (item) => item.week_sale === true
-  //   );
-  //   setFilteredProducts(filteredItems);
-  // }, [products.items]);
+  useEffect(() => {
+    const filteredItems = products.items.filter(
+      (item) => item.week_sale === true
+    );
+    setFilteredProducts(filteredItems);
+  }, [products.items]);
 
   const toggleModal = () => {
     setIsModalOpen(!isModalOpen);
