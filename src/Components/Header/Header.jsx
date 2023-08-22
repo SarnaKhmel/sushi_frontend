@@ -164,7 +164,7 @@ const Header = () => {
         />
       ) : null}
 
-      {/* <WeekSaleModal /> */}
+      <WeekSaleModal />
     </>
   );
 };
