@@ -132,7 +132,7 @@ const Posts = ({ posts }) => {
     <PostsBlock>
       <SlideContainer {...handlers}>
         <SlideList activeIndex={activeIndex}>
-          {posts.map((post, index) => (
+          {/* {posts.map((post, index) => (
             <SlideItem key={post._id} active={index === activeIndex}>
               <Link to={`/post/${post._id}`}>
                 <SlideImage
@@ -141,7 +141,7 @@ const Posts = ({ posts }) => {
                 />
               </Link>
             </SlideItem>
-          ))}
+          ))} */}
         </SlideList>
       </SlideContainer>
 
