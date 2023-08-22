@@ -18,7 +18,10 @@ const HomePage = () => {
   const [filter, setFilter] = useState(localStorage.getItem("filter") || "");
   const [sort, setSort] = useState("");
   const dispatch = useDispatch();
+
   const products = useSelector((state) => state.products.products);
+  const stateTest = useSelector((state) => state);
+  console.log(stateTest);
   console.log(products);
   const posts = useSelector((state) => state.posts.posts);
   console.log(posts);
@@ -116,7 +119,7 @@ const HomePage = () => {
     <>
       <Layout>
         {products.status === "loaded" && (
-          <Posts posts={Array.isArray(posts) ? posts : []} />
+          <Posts posts={Array.isArray(posts) && posts} />
         )}
         <Menu
           title="Меню"
