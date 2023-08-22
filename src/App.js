@@ -30,9 +30,9 @@ function App() {
   const { yScroll, setYscroll } = useContext(yScrollContext);
   const location = useLocation();
   const [scrollTimeout, setScrollTimeout] = useState(null);
+  const [isScrolling, setIsScrolling] = useState(false);
 
-  // Визначте швидкість прокрутки тут
-  const scrollSpeed = 5; // Змініть на потрібне значення
+  const scrollSpeed = 10;
 
   useEffect(() => {
     sessionStorage.setItem("key", location.key);
@@ -40,7 +40,12 @@ function App() {
 
   useEffect(() => {
     const scrolled = (e) => {
-      e.preventDefault(); // Запобігаємо стандартній прокрутці сторінки
+      e.preventDefault();
+
+      if (!isScrolling) {
+        setIsScrolling(true);
+        blockPage();
+      }
 
       setYscroll((prev) => {
         const newScrollY = prev + e.deltaY / scrollSpeed;
@@ -54,9 +59,23 @@ function App() {
 
       const newScrollTimeout = setTimeout(() => {
         sessionStorage.setItem("yvalue", JSON.stringify(window.scrollY));
-      }, 0);
+        unblockPage();
+        setIsScrolling(false);
+      }, 200); // Змініть на потрібне значення
 
       setScrollTimeout(newScrollTimeout);
+    };
+
+    const blockPage = () => {
+      document.querySelectorAll("*").forEach((el) => {
+        el.style.pointerEvents = "none";
+      });
+    };
+
+    const unblockPage = () => {
+      document.querySelectorAll("*").forEach((el) => {
+        el.style.pointerEvents = "auto";
+      });
     };
 
     window.addEventListener("wheel", scrolled);
@@ -64,7 +83,7 @@ function App() {
     return () => {
       window.removeEventListener("wheel", scrolled);
     };
-  }, [setYscroll, scrollTimeout]);
+  }, [setYscroll, scrollTimeout, isScrolling]);
 
   useEffect(() => {
     return () => {
