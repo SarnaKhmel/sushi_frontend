@@ -114,7 +114,9 @@ const HomePage = () => {
   return (
     <>
       <Layout>
-        <Posts posts={posts.items} />
+        {products.status === "loaded" && (
+          <Posts posts={Array.isArray(posts) ? posts : []} />
+        )}
         <Menu
           title="Меню"
           options={options}
