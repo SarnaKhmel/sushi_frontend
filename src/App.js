@@ -27,40 +27,47 @@ import { yScrollContext } from "./Utils/yScroll";
 import { history } from "./Utils/CustomRouter";
 
 function App() {
-  // const { yScroll, setYscroll } = useContext(yScrollContext);
-  // const location = useLocation();
-  // const [scrollTimeout, setScrollTimeout] = useState(null);
+  const { yScroll, setYscroll } = useContext(yScrollContext);
+  const location = useLocation();
+  const [scrollTimeout, setScrollTimeout] = useState(null);
 
-  // useEffect(() => {
-  //   sessionStorage.setItem("key", location.key);
-  // }, [location]);
+  // Визначте швидкість прокрутки
+  const scrollSpeed = 10; // Змініть на потрібне значення
 
-  // useEffect(() => {
-  //   const scrolled = () => {
-  //     setYscroll((prev) => window.scrollY);
+  useEffect(() => {
+    sessionStorage.setItem("key", location.key);
+  }, [location]);
 
-  //     if (scrollTimeout) {
-  //       clearTimeout(scrollTimeout);
-  //     }
+  useEffect(() => {
+    const scrolled = (e) => {
+      e.preventDefault(); // Запобігаємо стандартній прокрутці сторінки
 
-  //     const newScrollTimeout = setTimeout(() => {
-  //       sessionStorage.setItem("yvalue", JSON.stringify(window.scrollY));
-  //     }, 0);
+      setYscroll((prev) => window.scrollY);
 
-  //     setScrollTimeout(newScrollTimeout);
-  //   };
+      if (scrollTimeout) {
+        clearTimeout(scrollTimeout);
+      }
 
-  //   window.addEventListener("scroll", scrolled);
-  //   return () => {
-  //     window.removeEventListener("scroll", scrolled);
-  //   };
-  // }, [setYscroll, scrollTimeout]);
+      const newScrollTimeout = setTimeout(() => {
+        sessionStorage.setItem("yvalue", JSON.stringify(window.scrollY));
+      }, 0);
 
-  // useEffect(() => {
-  //   return () => {
-  //     sessionStorage.setItem("yvalue", JSON.stringify(yScroll));
-  //   };
-  // }, [yScroll]);
+      setScrollTimeout(newScrollTimeout);
+    };
+
+    window.addEventListener("wheel", scrolled);
+
+    return () => {
+      window.removeEventListener("wheel", scrolled);
+    };
+  }, [setYscroll, scrollTimeout]);
+
+  useEffect(() => {
+    return () => {
+      sessionStorage.setItem("yvalue", JSON.stringify(yScroll));
+    };
+  }, [yScroll]);
+
   return (
     <>
       <Routes>

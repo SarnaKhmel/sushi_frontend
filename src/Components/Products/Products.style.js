@@ -16,6 +16,7 @@ export const ProductsList = styled.div`
   align-items: center;
   justify-content: center;
   width: 90vw;
+
   @media (max-width: 500px) {
     width: 100vw;
     margin: 20px;
