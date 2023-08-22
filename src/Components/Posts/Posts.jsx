@@ -101,7 +101,7 @@ const Posts = ({ posts }) => {
 
   useEffect(() => {
     const interval = setInterval(() => {
-      setActiveIndex((prevIndex) => (prevIndex + 1) % posts.length);
+      setActiveIndex((prevIndex) => (prevIndex + 1) % (posts.length || 1));
     }, 5500);
 
     return () => {
