@@ -118,7 +118,7 @@ const HomePage = () => {
   return (
     <>
       <Layout>
-        {/* <Posts posts={posts} /> */}
+        <Posts posts={posts.items} />
 
         <Menu
           title="Меню"
