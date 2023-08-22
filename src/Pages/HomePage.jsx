@@ -22,6 +22,8 @@ const HomePage = () => {
   const products = useSelector((state) => state.products.products);
   const posts = useSelector((state) => state.posts.posts);
 
+  console.log("posts", posts);
+  console.log("products", products);
   const [searchQuery, setSearchQuery] = useState(
     localStorage.getItem("searchQuery") || ""
   );
@@ -114,7 +116,9 @@ const HomePage = () => {
   return (
     <>
       <Layout>
-        {products.status === "loaded" && <Posts posts={posts} />}
+        {/* {products.status === "loaded" && (
+          <Posts posts={Array.isArray(posts) && posts} />
+        )} */}
         <Menu
           title="Меню"
           options={options}
@@ -140,9 +144,11 @@ const HomePage = () => {
         </SearchBlock>
         {/* <Test></Test> */}
         {products.status === "loading" && <Loader />}
-        {products.status === "loaded" && (
-          <Products products={filteredProducts} />
-        )}
+        {/* {products.status === "loaded" && (
+          <Products
+            products={Array.isArray(filteredProducts) ? filteredProducts : []}
+          />
+        )} */}
 
         <Delivery></Delivery>
 
