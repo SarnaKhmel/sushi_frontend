@@ -20,11 +20,7 @@ const HomePage = () => {
   const dispatch = useDispatch();
 
   const products = useSelector((state) => state.products.products);
-  const stateTest = useSelector((state) => state);
-  console.log(stateTest);
-  console.log(products);
   const posts = useSelector((state) => state.posts.posts);
-  console.log(posts);
 
   const [searchQuery, setSearchQuery] = useState(
     localStorage.getItem("searchQuery") || ""
@@ -118,9 +114,7 @@ const HomePage = () => {
   return (
     <>
       <Layout>
-        {products.status === "loaded" && (
-          <Posts posts={Array.isArray(posts) && posts} />
-        )}
+        {products.status === "loaded" && <Posts posts={posts} />}
         <Menu
           title="Меню"
           options={options}
@@ -147,9 +141,7 @@ const HomePage = () => {
         {/* <Test></Test> */}
         {products.status === "loading" && <Loader />}
         {products.status === "loaded" && (
-          <Products
-            products={Array.isArray(filteredProducts) ? filteredProducts : []}
-          />
+          <Products products={filteredProducts} />
         )}
 
         <Delivery></Delivery>
