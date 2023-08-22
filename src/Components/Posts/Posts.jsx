@@ -146,13 +146,13 @@ const Posts = ({ posts }) => {
       </SlideContainer>
 
       <DotContainer>
-        {posts.map((_, index) => (
+        {/* {posts.map((_, index) => (
           <Dot
             key={index}
             active={index === activeIndex}
             onClick={() => handleDotClick(index)}
           />
-        ))}
+        ))} */}
       </DotContainer>
     </PostsBlock>
   );
