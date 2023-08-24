@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { ProductsBlock, ProductsList, InfoBlock } from "./Products.style";
 import Product from "../Product/Product";
+import { List } from "react-virtualized";
 
 const Products = ({ products }) => {
   const [scrollPosition, setScrollPosition] = useState(0);
@@ -23,11 +24,13 @@ const Products = ({ products }) => {
   return (
     <ProductsBlock>
       {products.length !== 0 ? (
-        <ProductsList>
-          {products.map((product) => (
-            <Product key={product._id} product={product} />
-          ))}
-        </ProductsList>
+        <List>
+          <ProductsList>
+            {products.map((product) => (
+              <Product key={product._id} product={product} />
+            ))}
+          </ProductsList>
+        </List>
       ) : (
         <InfoBlock> Пошук не дав результату.</InfoBlock>
       )}

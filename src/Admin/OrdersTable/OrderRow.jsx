@@ -5,7 +5,7 @@ import toast, { Toaster } from "react-hot-toast";
 
 import { useDispatch } from "react-redux";
 
-import { finOrder } from "../../Redux/slices/orders";
+import { fetchOrders, finOrder } from "../../Redux/slices/orders";
 
 import { Table, Thead, Tbody, Tr, Th, Td } from "react-super-responsive-table";
 import "react-super-responsive-table/dist/SuperResponsiveTableStyle.css";
@@ -41,8 +41,8 @@ const OrderRow = ({ item }) => {
     console.log({ id: item._id, item: updatedItem });
     dispatch(finOrder({ id: item._id, updatedItem: updatedItem }))
       .then((data) => {
-        console.log(data);
         notify("👍 Замовлення виконано!");
+        dispatch(fetchOrders());
       })
       .catch((error) => {
         console.log(error);
@@ -50,12 +50,33 @@ const OrderRow = ({ item }) => {
       });
   };
 
+  const utcTimeStr = item.createdAt;
+  const utcTime = new Date(utcTimeStr);
+
+  const ukraineTimezone = "Europe/Kiev";
+  const options = {
+    timeZone: ukraineTimezone,
+    hour12: false,
+    hour: "2-digit",
+    minute: "2-digit",
+    day: "2-digit",
+    month: "2-digit",
+    year: "numeric",
+  };
+
+  const formattedTime = new Intl.DateTimeFormat("uk-UA", options).format(
+    utcTime
+  );
+
+  console.log(formattedTime);
+
   return (
     <React.Fragment>
       <Table>
         <Thead>
           <Tr>
             <Th>Номер</Th>
+            <Th>Час замовлення</Th>
             <Th>Ім'я</Th>
             <Th>Телефон</Th>
             <Th>Місто</Th>
@@ -67,6 +88,7 @@ const OrderRow = ({ item }) => {
         <Tbody>
           <Tr>
             <TdStyled>{item.orderNumber}.</TdStyled>
+            <TdStyled>{formattedTime}</TdStyled>
             <TdStyled>{item.name}</TdStyled>
             <TdStyled>{item.phone}</TdStyled>
             <TdStyled>
