@@ -53,7 +53,6 @@ const OrderRow = ({ item }) => {
   const utcTimeStr = item.createdAt;
   const utcTime = new Date(utcTimeStr);
 
-  // Встановлюємо часовий пояс України (Kyiv)
   const ukraineTimezone = "Europe/Kiev";
   const options = {
     timeZone: ukraineTimezone,
@@ -65,7 +64,6 @@ const OrderRow = ({ item }) => {
     year: "numeric",
   };
 
-  // Форматуємо отриманий час у вигляді "година:хвилина день.місяць.рік"
   const formattedTime = new Intl.DateTimeFormat("uk-UA", options).format(
     utcTime
   );
