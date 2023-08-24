@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-import styled from "styled-components";
 import OrderRow from "./OrderRow";
 
 import { Table, Thead, Tbody, Tr, Th, Td } from "react-super-responsive-table";
