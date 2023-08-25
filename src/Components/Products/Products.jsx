@@ -24,13 +24,11 @@ const Products = ({ products }) => {
   return (
     <ProductsBlock>
       {products.length !== 0 ? (
-        <List>
-          <ProductsList>
-            {products.map((product) => (
-              <Product key={product._id} product={product} />
-            ))}
-          </ProductsList>
-        </List>
+        <ProductsList>
+          {products.map((product) => (
+            <Product key={product._id} product={product} />
+          ))}
+        </ProductsList>
       ) : (
         <InfoBlock> Пошук не дав результату.</InfoBlock>
       )}
