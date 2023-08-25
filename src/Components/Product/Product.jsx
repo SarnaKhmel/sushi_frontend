@@ -36,13 +36,13 @@ const Product = ({ product }) => {
   return (
     <ProductBlock>
       <ImageBlock>
-        <Link to={`/product/${product._id}`}>
+        <StyledLink to={`/product/${product._id}`}>
           <ProductImage
             src={`${baseUrl}${product.imageUrl}`}
             alt={product.name}
             loading="lazy"
           />
-        </Link>
+        </StyledLink>
       </ImageBlock>
       <TitleBlock>
         <Label1>
