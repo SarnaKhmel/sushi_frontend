@@ -68,8 +68,6 @@ const OrderRow = ({ item }) => {
     utcTime
   );
 
-  console.log(formattedTime);
-
   return (
     <React.Fragment>
       <Table>
