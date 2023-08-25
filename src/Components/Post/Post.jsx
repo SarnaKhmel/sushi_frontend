@@ -6,7 +6,7 @@ const Post = ({ post }) => {
   return (
     <Block>
       <PostBlock>
-        <Image src={`${baseUrl}${imageUrl}`} alt={title} />
+        <Image src={`${baseUrl}${imageUrl}`} alt={title} loading="lazy" />
         <TitleBlock>
           <h2>{title}</h2>
           <p>{text}</p>

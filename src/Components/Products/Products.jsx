@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { ProductsBlock, ProductsList, InfoBlock } from "./Products.style";
 import Product from "../Product/Product";
-import { List } from "react-virtualized";
 
 const Products = ({ products }) => {
   const [scrollPosition, setScrollPosition] = useState(0);

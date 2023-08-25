@@ -55,6 +55,7 @@ const ProductsTable = ({ products }) => {
                     <Image
                       src={`${baseUrl}${product.imageUrl}`}
                       alt={product.name}
+                      loading="lazy"
                     />
                   </Td>
                   <Td>{product.name}</Td>

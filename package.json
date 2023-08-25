@@ -36,6 +36,7 @@
     "react-super-responsive-table": "^5.2.1",
     "react-swipeable": "^7.0.1",
     "react-virtualized": "^9.22.5",
+    "react-window": "^1.8.9",
     "redux": "^4.2.1",
     "redux-persist": "^6.0.0",
     "sass": "^1.52.1",

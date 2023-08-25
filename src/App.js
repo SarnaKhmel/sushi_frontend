@@ -61,7 +61,7 @@ function App() {
         sessionStorage.setItem("yvalue", JSON.stringify(window.scrollY));
         unblockPage();
         setIsScrolling(false);
-      }, 300); // Змініть на потрібне значення
+      }, 100); // Змініть на потрібне значення
 
       setScrollTimeout(newScrollTimeout);
     };
