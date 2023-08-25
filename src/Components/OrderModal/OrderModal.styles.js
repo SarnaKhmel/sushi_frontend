@@ -18,7 +18,7 @@ export const OrderModalBlock = styled.div`
     top: 100px;
     width: 95vw;
     right: 10px;
-    max-height: 90vh;
+    max-height: 70vh;
   }
 `;
 
