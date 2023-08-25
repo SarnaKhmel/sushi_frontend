@@ -55,9 +55,9 @@ const Product = ({ product }) => {
           </SaleBlock>
         </Label1>
         <Label2>
-          <Link to={`/product/${product._id}`}>
+          <StyledLink to={`/product/${product._id}`}>
             <Name>{product.name}</Name>
-          </Link>
+          </StyledLink>
         </Label2>
         <Label3>
           <Title>
