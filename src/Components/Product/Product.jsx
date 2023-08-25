@@ -19,6 +19,7 @@ import {
   Basket,
 } from "./Product.style";
 import { Link } from "react-router-dom";
+import styled from "styled-components";
 
 import { baseUrl } from "../../Utils/baseUrl";
 
@@ -28,6 +29,10 @@ const Product = ({ product }) => {
   // console.log(product);
   const formattedText = product.text.replace(/\n/g, "<br>");
 
+  const StyledLink = styled(Link)`
+    text-decoration: none;
+    color: white;
+  `;
   return (
     <ProductBlock>
       <ImageBlock>
