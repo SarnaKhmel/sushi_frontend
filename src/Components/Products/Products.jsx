@@ -24,19 +24,13 @@ const Products = ({ products }) => {
   return (
     <ProductsBlock>
       {products.length !== 0 ? (
-        <ProductsList>
-          <List
-            width={500}
-            height={900}
-            rowCount={products.length}
-            rowHeight={100}
-            rowRenderer={({ index, key, style }) => (
-              <div key={key} style={style}>
-                <Product product={products[index]} />
-              </div>
-            )}
-          />
-        </ProductsList>
+        <List>
+          <ProductsList>
+            {products.map((product) => (
+              <Product key={product._id} product={product} />
+            ))}
+          </ProductsList>
+        </List>
       ) : (
         <InfoBlock> Пошук не дав результату.</InfoBlock>
       )}

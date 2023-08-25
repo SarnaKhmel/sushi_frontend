@@ -57,7 +57,6 @@ export const ClearBtn = styled.button`
   font-weight: 400;
   font-size: 14px;
   line-height: 17px;
-  /* identical to box height */
 
   background-color: transparent;
   border: none;
@@ -112,16 +111,6 @@ export const OrderBtn = styled.button`
   line-height: 24px;
   border: none;
 
-  ${
-    "" /* @media (max-width: 768px) {
-    margin-right: 10px;
-    width: 132px;
-    height: 24px;
-    font-size: 12px;
-    font-family: Montserrat;
-    font-weight: 600;
-  } */
-  }
 `;
 
 export const Info = styled.div`
