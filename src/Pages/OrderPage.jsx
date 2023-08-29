@@ -5,7 +5,6 @@ import Order from "../Components/Order/Order";
 import styled from "styled-components";
 
 const OrderPage = () => {
-  window.scrollTo(0);
   return (
     <Layout>
       <OrderPageBlock>
