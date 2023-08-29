@@ -19,7 +19,7 @@ const Products = ({ products }) => {
 
   useEffect(() => {
     window.scrollTo(0, setScrollPosition.current);
-  }, [setScrollPosition]);
+  }, [setScrollPosition.current]);
 
   return (
     <ProductsBlock>
