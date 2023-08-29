@@ -3,23 +3,23 @@ import { ProductsBlock, ProductsList, InfoBlock } from "./Products.style";
 import Product from "../Product/Product";
 
 const Products = ({ products }) => {
-  const [scrollPosition, setScrollPosition] = useState(0);
+  // const [scrollPosition, setScrollPosition] = useState(0);
 
-  useEffect(() => {
-    const handleScroll = () => {
-      setScrollPosition(window.scrollY);
-    };
+  // useEffect(() => {
+  //   const handleScroll = () => {
+  //     setScrollPosition(window.scrollY);
+  //   };
 
-    window.addEventListener("scroll", handleScroll);
+  //   window.addEventListener("scroll", handleScroll);
 
-    return () => {
-      window.removeEventListener("scroll", handleScroll);
-    };
-  }, []);
+  //   return () => {
+  //     window.removeEventListener("scroll", handleScroll);
+  //   };
+  // }, []);
 
-  useEffect(() => {
-    window.scrollTo(0, scrollPosition);
-  }, [scrollPosition]);
+  // useEffect(() => {
+  //   window.scrollTo(0, scrollPosition);
+  // }, [scrollPosition]);
   return (
     <ProductsBlock>
       {products.length !== 0 ? (
