@@ -25,7 +25,7 @@ import { baseUrl } from "../../Utils/baseUrl";
 
 import InBasket from "../InBasket/InBasket";
 
-const Product = ({ product }) => {
+const Product = ({ product, handleScrollPosition }) => {
   // console.log(product);
   const formattedText = product.text.replace(/\n/g, "<br>");
 
@@ -36,7 +36,9 @@ const Product = ({ product }) => {
   return (
     <ProductBlock>
       <ImageBlock>
-        <StyledLink to={`/product/${product._id}`}>
+        <StyledLink
+          to={`/product/${product._id}`}
+          onClick={handleScrollPosition}>
           <ProductImage
             src={`${baseUrl}${product.imageUrl}`}
             alt={product.name}

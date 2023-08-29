@@ -23,20 +23,12 @@ const Products = ({ products }) => {
   // }, [setScrollPosition.current]);
 
   // useEffect(() => {
-  //   const handleScroll = () => {
-  //     window.localStorage.setItem("scrollPosition", window.scrollY);
-  //   };
-
+  //
   //   window.addEventListener("scroll", handleScroll);
 
   //   return () => {
   //     window.removeEventListener("scroll", handleScroll);
   //   };
-  // }, []);
-
-  // useEffect(() => {
-  //   const scrollPosition = window.localStorage.getItem("scrollPosition") || 0;
-  //   window.scrollTo(0, parseInt(scrollPosition));
   // }, []);
 
   // const scrollPositionRef = useRef(0);
@@ -77,24 +69,33 @@ const Products = ({ products }) => {
 
   //__________
 
-  const [scrollPosition, setScrollPosition] = useState(0);
+  // const [scrollPosition, setScrollPosition] = useState(0);
+
+  // useEffect(() => {
+  //   const handleScroll = () => {
+  //     setScrollPosition(window.scrollY);
+  //     console.log("Scroll");
+  //   };
+
+  //   window.addEventListener("scroll", handleScroll);
+
+  //   return () => {
+  //     window.removeEventListener("scroll", handleScroll);
+  //   };
+  // }, []);
+
+  // useEffect(() => {
+  //   window.scrollTo(0, scrollPosition);
+  // }, [scrollPosition]);
+
+  const handleScrollPosition = () => {
+    window.localStorage.setItem("scrollPosition", window.scrollY);
+  };
 
   useEffect(() => {
-    const handleScroll = () => {
-      setScrollPosition(window.scrollY);
-      console.log("Scroll");
-    };
-
-    window.addEventListener("scroll", handleScroll);
-
-    return () => {
-      window.removeEventListener("scroll", handleScroll);
-    };
+    const scrollPosition = window.localStorage.getItem("scrollPosition") || 0;
+    window.scrollTo(0, parseInt(scrollPosition));
   }, []);
-
-  useEffect(() => {
-    window.scrollTo(0, scrollPosition);
-  }, [scrollPosition]);
 
   return (
     <>
@@ -102,7 +103,11 @@ const Products = ({ products }) => {
         {products.length !== 0 ? (
           <ProductsList>
             {products.map((product) => (
-              <Product key={product._id} product={product} />
+              <Product
+                key={product._id}
+                product={product}
+                handleScrollPosition={handleScrollPosition}
+              />
             ))}
           </ProductsList>
         ) : (
