@@ -94,6 +94,8 @@ const Products = ({ products }) => {
 
   useEffect(() => {
     const scrollPosition = window.localStorage.getItem("scrollPosition") || 0;
+    console.log(scrollPosition);
+
     window.scrollTo(0, parseInt(scrollPosition));
   }, []);
 
