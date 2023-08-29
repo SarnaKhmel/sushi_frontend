@@ -38,11 +38,29 @@ const Products = ({ products }) => {
   //   window.scrollTo(0, parseInt(scrollPosition));
   // }, []);
 
-  const scrollPositionRef = useRef(0);
+  // const scrollPositionRef = useRef(0);
+
+  // useEffect(() => {
+  //   const handleScroll = () => {
+  //     scrollPositionRef.current = window.scrollY;
+  //   };
+
+  //   window.addEventListener("scroll", handleScroll);
+
+  //   return () => {
+  //     window.removeEventListener("scroll", handleScroll);
+  //   };
+  // }, []);
+
+  // useEffect(() => {
+  //   window.scrollTo(0, scrollPositionRef.current);
+  // }, []);
+
+  let scrollPosition = 0;
 
   useEffect(() => {
     const handleScroll = () => {
-      scrollPositionRef.current = window.scrollY;
+      scrollPosition = window.scrollY;
     };
 
     window.addEventListener("scroll", handleScroll);
@@ -53,7 +71,7 @@ const Products = ({ products }) => {
   }, []);
 
   useEffect(() => {
-    window.scrollTo(0, scrollPositionRef.current);
+    window.scrollTo(0, scrollPosition);
   }, []);
 
   return (
