@@ -96,7 +96,9 @@ const Products = ({ products }) => {
     const scrollPosition = window.localStorage.getItem("scrollPosition") || 0;
     console.log(scrollPosition);
 
-    window.scrollTo(0, parseInt(scrollPosition));
+    setTimeout(() => {
+      window.scrollTo(0, parseInt(scrollPosition));
+    }, 0);
   }, []);
 
   return (
