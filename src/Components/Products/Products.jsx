@@ -17,9 +17,9 @@ const Products = ({ products }) => {
   //   };
   // }, []);
 
-  // useEffect(() => {
-  //   window.scrollTo(0, scrollPosition);
-  // }, [scrollPosition]);
+  useEffect(() => {
+    window.scrollTo(0, window.scrollY);
+  }, []);
   return (
     <ProductsBlock>
       {products.length !== 0 ? (

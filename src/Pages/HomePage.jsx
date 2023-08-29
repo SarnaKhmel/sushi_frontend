@@ -15,23 +15,23 @@ import styled from "styled-components";
 import SubMenu from "../Components/SubMenu/SubMenu";
 
 const HomePage = () => {
-  const [scrollPosition, setScrollPosition] = useState(0);
+  // const [scrollPosition, setScrollPosition] = useState(0);
 
-  useEffect(() => {
-    const handleScroll = () => {
-      setScrollPosition(window.scrollY);
-    };
+  // useEffect(() => {
+  //   const handleScroll = () => {
+  //     setScrollPosition(window.scrollY);
+  //   };
 
-    window.addEventListener("scroll", handleScroll);
+  //   window.addEventListener("scroll", handleScroll);
 
-    return () => {
-      window.removeEventListener("scroll", handleScroll);
-    };
-  }, []);
+  //   return () => {
+  //     window.removeEventListener("scroll", handleScroll);
+  //   };
+  // }, []);
 
-  useEffect(() => {
-    window.scrollTo(0, scrollPosition);
-  }, [scrollPosition]);
+  // useEffect(() => {
+  //   window.scrollTo(0, scrollPosition);
+  // }, [scrollPosition]);
 
   const [filter, setFilter] = useState(
     localStorage.getItem("filter") || "sale"
