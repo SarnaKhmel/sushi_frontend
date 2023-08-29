@@ -3,11 +3,27 @@ import { ProductsBlock, ProductsList, InfoBlock } from "./Products.style";
 import Product from "../Product/Product";
 
 const Products = ({ products }) => {
-  const setScrollPosition = useRef(0);
+  // const setScrollPosition = useRef(0);
+
+  // useEffect(() => {
+  //   const handleScroll = () => {
+  //     setScrollPosition.current = window.scrollY;
+  //   };
+
+  //   window.addEventListener("scroll", handleScroll);
+
+  //   return () => {
+  //     window.removeEventListener("scroll", handleScroll);
+  //   };
+  // }, []);
+
+  // useEffect(() => {
+  //   window.scrollTo(0, setScrollPosition.current);
+  // }, [setScrollPosition.current]);
 
   useEffect(() => {
     const handleScroll = () => {
-      setScrollPosition.current = window.scrollY;
+      window.localStorage.setItem("scrollPosition", window.scrollY);
     };
 
     window.addEventListener("scroll", handleScroll);
@@ -18,8 +34,9 @@ const Products = ({ products }) => {
   }, []);
 
   useEffect(() => {
-    window.scrollTo(0, setScrollPosition.current);
-  }, [setScrollPosition.current]);
+    const scrollPosition = window.localStorage.getItem("scrollPosition") || 0;
+    window.scrollTo(0, parseInt(scrollPosition));
+  }, []);
 
   return (
     <ProductsBlock>
