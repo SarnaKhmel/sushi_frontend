@@ -80,8 +80,22 @@ const SlideItem = styled.div`
 `;
 
 const SlideImage = styled.img`
-  width: 100%;
-  height: 100%;
+  @media (min-width: 340px) and (max-width: 767px) {
+    width: 340px;
+    height: 170px;
+  }
+  @media (min-width: 768px) and (max-width: 1023px) {
+    width: 452px;
+    height: 226px;
+  }
+  @media (min-width: 1024px) and (max-width: 1919px) {
+    width: 750px;
+    height: 333px;
+  }
+  @media (min-width: 1920px) {
+    width: 1000px;
+    height: 500px;
+  }
 `;
 
 const PostsBlock = styled.div`
