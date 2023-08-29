@@ -11,21 +11,15 @@ import {
   ContactsBlockTitle,
   LinkToElement,
 } from "./Header.styles";
-
 import { IoMenu } from "react-icons/io5";
-
 import sushiTitle from "../../Images/sushi-title.svg";
 import sushiLogo from "../../Images/sushi-logo.svg";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
-
 import ContactModal from "../Modals/ContactsModal/ContactModal";
-
 import MobileHeaderModal from "../MobileHeaderModal/MobileHeaderModal";
 import { Link as ScrollLink } from "react-scroll";
-
 import OrderItem from "../OrderItem/OrderItem";
-
 import WeekSaleModal from "../Modals/WeekSaleModal/WeekSaleModal";
 
 const StyledLink = styled(Link)`

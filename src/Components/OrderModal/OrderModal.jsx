@@ -30,10 +30,10 @@ const StyledLink = styled(Link)`
 
   border-radius: 9px;
   font-style: normal;
-  font-weight: 600;
+  font-weight: 900;
   font-size: 20px;
   line-height: 44px;
-
+  letter-spacing: 2px;
   border: none;
   color: #000000;
 

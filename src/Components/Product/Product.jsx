@@ -16,17 +16,12 @@ import {
   PriceBlock,
   Price,
   FakePrice,
-  Basket,
 } from "./Product.style";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
-
 import { baseUrl } from "../../Utils/baseUrl";
-
 import InBasket from "../InBasket/InBasket";
-
 const Product = ({ product, handleScrollPosition }) => {
-  // console.log(product);
   const formattedText = product.text.replace(/\n/g, "<br>");
 
   const StyledLink = styled(Link)`
@@ -57,7 +52,9 @@ const Product = ({ product, handleScrollPosition }) => {
           </SaleBlock>
         </Label1>
         <Label2>
-          <StyledLink to={`/product/${product._id}`}>
+          <StyledLink
+            to={`/product/${product._id}`}
+            onClick={handleScrollPosition}>
             <Name>{product.name}</Name>
           </StyledLink>
         </Label2>
