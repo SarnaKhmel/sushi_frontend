@@ -1,6 +1,7 @@
 import React, { useRef, useEffect } from "react";
 import { ProductsBlock, ProductsList, InfoBlock } from "./Products.style";
 import Product from "../Product/Product";
+import { ScrollRestoration } from "react-router-dom";
 
 const Products = ({ products }) => {
   // const setScrollPosition = useRef(0);
@@ -56,36 +57,39 @@ const Products = ({ products }) => {
   //   window.scrollTo(0, scrollPositionRef.current);
   // }, []);
 
-  let scrollPosition = 0;
+  // let scrollPosition = 0;
 
-  useEffect(() => {
-    const handleScroll = () => {
-      scrollPosition = window.scrollY;
-    };
+  // useEffect(() => {
+  //   const handleScroll = () => {
+  //     scrollPosition = window.scrollY;
+  //   };
 
-    window.addEventListener("scroll", handleScroll);
+  //   window.addEventListener("scroll", handleScroll);
 
-    return () => {
-      window.removeEventListener("scroll", handleScroll);
-    };
-  }, []);
+  //   return () => {
+  //     window.removeEventListener("scroll", handleScroll);
+  //   };
+  // }, []);
 
-  useEffect(() => {
-    window.scrollTo(0, scrollPosition);
-  }, []);
+  // useEffect(() => {
+  //   window.scrollTo(0, scrollPosition);
+  // }, []);
 
   return (
-    <ProductsBlock>
-      {products.length !== 0 ? (
-        <ProductsList>
-          {products.map((product) => (
-            <Product key={product._id} product={product} />
-          ))}
-        </ProductsList>
-      ) : (
-        <InfoBlock> Пошук не дав результату.</InfoBlock>
-      )}
-    </ProductsBlock>
+    <>
+      <ProductsBlock>
+        {products.length !== 0 ? (
+          <ProductsList>
+            {products.map((product) => (
+              <Product key={product._id} product={product} />
+            ))}
+          </ProductsList>
+        ) : (
+          <InfoBlock> Пошук не дав результату.</InfoBlock>
+        )}
+      </ProductsBlock>
+      <ScrollRestoration />
+    </>
   );
 };
 
