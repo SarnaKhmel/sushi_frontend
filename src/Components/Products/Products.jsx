@@ -1,7 +1,7 @@
 import React, { useRef, useEffect } from "react";
 import { ProductsBlock, ProductsList, InfoBlock } from "./Products.style";
 import Product from "../Product/Product";
-import { ScrollRestoration } from "react-router-dom";
+// import { ScrollRestoration } from "react-router-dom";
 
 const Products = ({ products }) => {
   // const setScrollPosition = useRef(0);
@@ -88,7 +88,7 @@ const Products = ({ products }) => {
           <InfoBlock> Пошук не дав результату.</InfoBlock>
         )}
       </ProductsBlock>
-      <ScrollRestoration />
+      {/* <ScrollRestoration /> */}
     </>
   );
 };
