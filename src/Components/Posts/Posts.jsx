@@ -152,7 +152,7 @@ const Posts = ({ posts }) => {
                 <SlideImage
                   src={`${baseUrl}${post.imageUrl}`}
                   alt={`Slide ${index}`}
-                  loading="lazy"
+                  loading="auto"
                 />
               </Link>
             </SlideItem>
