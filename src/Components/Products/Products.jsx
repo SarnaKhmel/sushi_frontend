@@ -21,9 +21,28 @@ const Products = ({ products }) => {
   //   window.scrollTo(0, setScrollPosition.current);
   // }, [setScrollPosition.current]);
 
+  // useEffect(() => {
+  //   const handleScroll = () => {
+  //     window.localStorage.setItem("scrollPosition", window.scrollY);
+  //   };
+
+  //   window.addEventListener("scroll", handleScroll);
+
+  //   return () => {
+  //     window.removeEventListener("scroll", handleScroll);
+  //   };
+  // }, []);
+
+  // useEffect(() => {
+  //   const scrollPosition = window.localStorage.getItem("scrollPosition") || 0;
+  //   window.scrollTo(0, parseInt(scrollPosition));
+  // }, []);
+
+  const scrollPositionRef = useRef(0);
+
   useEffect(() => {
     const handleScroll = () => {
-      window.localStorage.setItem("scrollPosition", window.scrollY);
+      scrollPositionRef.current = window.scrollY;
     };
 
     window.addEventListener("scroll", handleScroll);
@@ -34,8 +53,7 @@ const Products = ({ products }) => {
   }, []);
 
   useEffect(() => {
-    const scrollPosition = window.localStorage.getItem("scrollPosition") || 0;
-    window.scrollTo(0, parseInt(scrollPosition));
+    window.scrollTo(0, scrollPositionRef.current);
   }, []);
 
   return (
