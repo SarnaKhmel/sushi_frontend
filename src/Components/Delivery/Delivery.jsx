@@ -46,7 +46,9 @@ const Delivery = () => {
           <Line></Line>
         </InfoBlock>
         <MapBlock>
-          <Iframe src="https://www.google.com/maps/d/u/0/embed?mid=1stv2s4gZ0HnC7rfZz2FqxZxtB9fh0DE&ehbc=2E312F"></Iframe>
+          <Iframe
+            src="https://www.google.com/maps/d/u/0/embed?mid=1stv2s4gZ0HnC7rfZz2FqxZxtB9fh0DE&ehbc=2E312F"
+            title="map"></Iframe>
         </MapBlock>
       </Block>
     </DeliveryBlock>

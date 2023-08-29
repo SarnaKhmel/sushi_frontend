@@ -27,8 +27,8 @@ export const Basket = styled.button`
   border: none;
 
   font-style: normal;
-  font-weight: 600;
-  font-size: 14px;
+  font-weight: 700;
+  font-size: 15px;
   line-height: 17px;
 
   color: #ffffff;

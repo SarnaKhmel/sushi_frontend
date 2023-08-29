@@ -35,7 +35,7 @@ const OrderItem = () => {
           <OrderCount>{order.items.length}</OrderCount>
           <OrderPrice>
             {order.sum}грн.
-            <Basket src={basket} />
+            <Basket src={basket} alt="basket" loading="lazy" />
           </OrderPrice>
         </OrderBlock>
       </OrderItemBlock>

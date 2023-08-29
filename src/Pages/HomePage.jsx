@@ -6,7 +6,7 @@ import subOptions from "../testData/subMenuOptions.json";
 import Menu from "../Components/Menu/Menu";
 import Products from "../Components/Products/Products";
 import { fetchProducts } from "../Redux/slices/products";
-import { fetchPosts } from "../Redux/slices/posts"; // Замініть цей імпорт на ваш Redux slice, який містить функцію saveScrollPosition
+import { fetchPosts } from "../Redux/slices/posts";
 import { useDispatch, useSelector } from "react-redux";
 import Delivery from "../Components/Delivery/Delivery";
 import BottomMenu from "../Components/BottomMenu/BottomMenu";
@@ -141,7 +141,6 @@ const HomePage = () => {
             placeholder="Пошук за назвою та складом"
           />
         </SearchBlock>
-        {/* <Test></Test> */}
         {products.status === "loading" && <Loader />}
         {products.status === "loaded" && (
           <Products products={filteredProducts} />

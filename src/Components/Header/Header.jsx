@@ -104,8 +104,11 @@ const Header = () => {
         <HeaderItem>
           <StyledLink to="/">
             <LogoBlock>
-              <ImageLogo src={sushiLogo}></ImageLogo>
-              <ImageTitle src={sushiTitle}></ImageTitle>
+              <ImageLogo src={sushiLogo} alt="logo" loading="lazy"></ImageLogo>
+              <ImageTitle
+                src={sushiTitle}
+                alt="logo"
+                loading="lazy"></ImageTitle>
             </LogoBlock>
           </StyledLink>
 

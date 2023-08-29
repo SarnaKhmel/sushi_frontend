@@ -58,7 +58,11 @@ const BottomMenu = ({ setFilterOption }) => {
                 onClick={() => {
                   setProduct(item.type);
                 }}>
-                <LinkIcon src={imagesSVG[index]} />
+                <LinkIcon
+                  src={imagesSVG[index]}
+                  alt={item.name}
+                  loading="lazy"
+                />
                 <LinkIconTitle>{item.name}</LinkIconTitle>
               </StyledScrollLink>
             ))}
