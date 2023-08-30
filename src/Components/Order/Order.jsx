@@ -68,7 +68,7 @@ const Order = () => {
     if (!isFormValid()) {
       return;
     }
-    //console.log("Form Data:", formData);
+    console.log("Form Data:", formData);
     dispatch(createOrder(formData));
     dispatch(clearOrderState());
     openFinModal();
