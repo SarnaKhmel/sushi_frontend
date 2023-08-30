@@ -18,7 +18,7 @@ const HomePage = () => {
   const [filter, setFilter] = useState(
     localStorage.getItem("filter") || "sale"
   );
-  const [sort, setSort] = useState("");
+  // const [sort, setSort] = useState("");
   const dispatch = useDispatch();
 
   const products = useSelector((state) => state.products.products);

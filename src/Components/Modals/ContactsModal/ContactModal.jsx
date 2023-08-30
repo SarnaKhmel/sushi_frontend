@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from "react";
+import React from "react";
 import {
   ContactModalBlock,
   Diamond,
@@ -11,7 +11,7 @@ import {
 import { AiOutlineClose } from "react-icons/ai";
 
 import { Link } from "react-router-dom";
-import styled, { css } from "styled-components";
+import styled from "styled-components";
 
 const StyledLink = styled(Link)`
   text-decoration: none;

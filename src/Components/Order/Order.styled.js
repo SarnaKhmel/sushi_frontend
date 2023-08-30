@@ -139,13 +139,24 @@ export const Input = styled.input`
     width: 100%;
   }
 `;
-export const InputComent = styled.input`
+export const InputComment = styled.input`
   border: none;
   background: transparent;
   border-bottom: 1px solid white;
-  width: 100%;
+  width: 250px;
   color: white;
+  @media (max-width: 1280px) {
+    width: 100%;
+  }
 `;
+// export const InputComment = styled.input`
+//   border: none;
+//   background: transparent;
+//   border-bottom: 1px solid white;
+//   width: 200px;
+
+//   color: white;
+// `;
 
 export const Select = styled.select`
   border: none;
@@ -200,9 +211,13 @@ export const InputItem = styled.div`
   }
 `;
 
-export const InputItemComent = styled.div`
-  width: 560px;
+export const InputItemComment = styled.div`
+  width: 100%;
   color: white;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
   @media (max-width: 1280px) {
     display: flex;
     flex-direction: column;

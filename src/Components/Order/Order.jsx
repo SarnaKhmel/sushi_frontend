@@ -9,14 +9,12 @@ import {
   InfoBlock,
   InputBlock,
   Input,
+  InputComment,
+  InputItemComment,
   InputLabel,
   InputItem,
-  Select,
-  Option,
   OrderListBlock,
   OrderBtnBlock,
-  InputComent,
-  InputItemComent,
   OrderBtnInfoBlock,
   Info,
   OrderBtn,
@@ -54,6 +52,7 @@ const Order = () => {
     comment: "",
     orderList: order,
     status: "new",
+    device: 1,
   });
 
   const handleChange = (e) => {
@@ -112,11 +111,6 @@ const Order = () => {
     }
 
     return true;
-  };
-
-  const notify = (text) => {
-    console.log("Order fail");
-    alert(text);
   };
 
   const styles = {
@@ -250,18 +244,32 @@ const Order = () => {
                     />
                     <InputLabel>Підготувати решту з</InputLabel>
                   </InputItem>
+
                   <InputItem>
-                    <InputComent
+                    <Input
+                      type="number"
+                      name="device"
+                      min="0"
+                      step="1"
+                      max="100"
+                      value={formData.device}
+                      onChange={handleChange}
+                    />
+                    <InputLabel>Кількість приборів</InputLabel>
+                  </InputItem>
+                </InputBlock>
+              </InfoBlock>
+              <InfoBlock>
+                <InputBlock>
+                  <InputItemComment>
+                    <InputComment
                       type="text"
                       name="comment"
                       value={formData.comment}
                       onChange={handleChange}
                     />
                     <InputLabel>Коментар до замовлення</InputLabel>
-                  </InputItem>
-                </InputBlock>
-                <InputBlock>
-                  <InputItemComent></InputItemComent>
+                  </InputItemComment>
                 </InputBlock>
               </InfoBlock>
             </Form>
