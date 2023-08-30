@@ -1,18 +1,18 @@
 import { useState } from "react";
-import { useDispatch } from "react-redux";
+// import { useDispatch } from "react-redux";
 import axios from "../../../src/Utils/axios";
 import toast, { Toaster } from "react-hot-toast";
-import styled, { css } from "styled-components";
+import styled from "styled-components";
 
-import { uploadProductImG, createProduct } from "../../Redux/slices/products";
+// import { uploadProductImG, createProduct } from "../../Redux/slices/products";
 
 const AddPost = () => {
   const [selectedFile, setSelectedFile] = useState(null);
   const [imageUrl, setImageUrl] = useState(null);
   const [imageProductUrl, setImageProductUrl] = useState(null);
   const [checkUpload, setCheckUpload] = useState(false);
-  const [checkUploadPost, setCheckUploadPost] = useState(false);
-  const dispatch = useDispatch();
+  // const [checkUploadPost, setCheckUploadPost] = useState(false);
+  // const dispatch = useDispatch();
   const notify = (text) => toast(text);
 
   const handleFileSelect = (event) => {

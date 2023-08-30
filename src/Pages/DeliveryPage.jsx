@@ -1,7 +1,7 @@
 import React from "react";
 import Layout from "../Layout/Layout";
 import Delivery from "../Components/Delivery/Delivery";
-import styled, { css } from "styled-components";
+import styled from "styled-components";
 
 const DeliveryPage = () => {
   return (

@@ -114,6 +114,7 @@ const OrderRow = ({ item }) => {
                 <Th>Метод оплати:</Th>
                 <Th>Решта з:</Th>
                 <Th>Сума:</Th>
+                <Th>К-ть приборів:</Th>
                 {/* <Td>Підїзд</Td>
                 <Td>Поверх</Td>
                 <Td>Квартира</Td> */}
@@ -135,6 +136,7 @@ const OrderRow = ({ item }) => {
                   }}>
                   {item.orderList.sum}
                 </TdStyled>
+                <TdStyled>{item.device}</TdStyled>
               </Tr>
             </Tbody>
           </Table>

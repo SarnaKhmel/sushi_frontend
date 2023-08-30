@@ -129,16 +129,16 @@ const Footer = () => {
           </FooterBoxM>
           <FooterItem3M>
             <br />
-            <FooterP>@ 2022 - 2023 “Cуші з любов’ю” </FooterP>
+            <FooterP>@ 2022 “Cуші з любов’ю” </FooterP>
             <FooterP></FooterP>
-            <FooterP></FooterP>
+            <FooterP>
+              <StyledLink to="https://www.linkedin.com/in/designalex/">
+                Дизайн
+              </StyledLink>
+            </FooterP>
             <FooterP>
               <StyledLink to="https://www.linkedin.com/in/oleksa-sarnatskyi/">
                 Розробка
-              </StyledLink>
-
-              <StyledLink to="https://www.linkedin.com/in/designalex/">
-                Дизайн
               </StyledLink>
             </FooterP>
             <FooterLogoTitle src={sushiLogoTitle} alt="title" />

@@ -3,7 +3,7 @@ import Layout from "../Layout/Layout";
 
 import img1 from "../Images/about/sushi1.jpg";
 import img2 from "../Images/about/sushi2.jpg";
-import img3 from "../Images/about/sushi3.jpg";
+// import img3 from "../Images/about/sushi3.jpg";
 import img4 from "../Images/about/sushi4.jpg";
 import img5 from "../Images/about/sushi5.jpg";
 

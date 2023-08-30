@@ -248,12 +248,12 @@ const Name = styled.div`
   color: #ffffff;
 `;
 
-const Title = styled.div`
-  font-weight: 300;
-  font-size: 12px;
-  line-height: 14px;
-  color: #ffffff;
-`;
+// const Title = styled.div`
+//   font-weight: 300;
+//   font-size: 12px;
+//   line-height: 14px;
+//   color: #ffffff;
+// `;
 
 const PriceBlock = styled.div`
   display: flex;

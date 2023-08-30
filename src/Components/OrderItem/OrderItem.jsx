@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import { useDispatch, useSelector } from "react-redux";
-import { addOrderItem } from "../../Redux/slices/orders";
+// import { addOrderItem } from "../../Redux/slices/orders";
 
 import basket from "../../Images/basket.svg";
 import OrderModal from "../OrderModal/OrderModal";
