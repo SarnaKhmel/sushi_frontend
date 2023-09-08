@@ -67,3 +67,29 @@ export const TitleBlock = styled.div`
     margin-top: 20px;
   }
 `;
+
+export const ArrowBlock = styled.div`
+  height: 50px;
+  width: 50px;
+  background-color: #c74716;
+  color: #ffffff;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.5s;
+  max-width: 100%;
+  &:hover {
+    transform: scale(1.1);
+    cursor: pointer;
+  }
+`;
+
+export const ImageBlock = styled.div`
+  margin-top: 50px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 50px;
+`;

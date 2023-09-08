@@ -10,7 +10,6 @@ const SubMenu = ({ title, options, setFilterOption }) => {
   useEffect(() => {
     const index = options.findIndex((option) => option.type === subFilter);
     setUnderlined(index >= 0 ? index : 0);
-    console.log(subFilter);
     setFilterOption(
       subFilter === undefined || subFilter === null || subFilter === ""
         ? subFilter

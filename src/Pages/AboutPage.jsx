@@ -66,6 +66,7 @@ export const H21 = styled.h2`
   font-size: 24px;
   width: 50vw;
   margin-bottom: 50px;
+  font-family: "Trebuchet MS", sans-serif;
 
   @media (max-width: 768px) {
     width: 90vw;
@@ -78,8 +79,10 @@ export const H2 = styled.h2`
   color: white;
   text-align: left;
   font-size: 24px;
+
   width: 50vw;
   margin-bottom: 50px;
+  font-family: "Trebuchet MS", sans-serif;
 
   @media (max-width: 768px) {
     width: 90vw;
@@ -89,7 +92,8 @@ export const H2 = styled.h2`
 
 export const Img1 = styled.img`
   width: 50vw;
-  height: 50vw;
+  height: auto;
+
   display: block;
 `;
 
