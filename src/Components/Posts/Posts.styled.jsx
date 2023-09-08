@@ -79,9 +79,11 @@ const fadeInAnimation = keyframes`
   from {
     opacity: 0;
     height: 0%;
+    z-index: 0;
   }
   to {
     opacity: 1;
+    z-index: 1000;
     height: 100%;
   }
 `;
@@ -90,9 +92,11 @@ const fadeOutAnimation = keyframes`
   from {
     opacity: 1;
     height: 100%;
+    z-index: 1000;
   }
   to {
     opacity: 0;
+    z-index: 0;
     height: 0%;
   }
 `;
@@ -100,6 +104,8 @@ export const SlideContainer = styled.div`
   animation-duration: 0.5s;
   animation-timing-function: ease;
   opacity: ${({ active }) => (active ? 1 : 0)};
+  z-index: ${({ active }) => (active ? 100 : 1)};
+
   animation-name: ${({ active }) =>
     active ? fadeInAnimation : fadeOutAnimation};
   overflow: hidden;

@@ -75,6 +75,7 @@ const SlideItem = styled.div`
   top: 0;
   left: 0;
   opacity: ${({ active }) => (active ? 1 : 0)};
+  z-index: ${({ active }) => (active ? 100 : 1)};
   animation-name: ${({ active }) =>
     active ? fadeInAnimation : fadeOutAnimation};
 `;
