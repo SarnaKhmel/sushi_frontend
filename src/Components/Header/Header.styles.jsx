@@ -9,7 +9,7 @@ export const HeaderBlock = styled.div`
   );
 
   color: white;
-  z-index: 50;
+  z-index: 2000;
 
   position: fixed;
   top: 0;
