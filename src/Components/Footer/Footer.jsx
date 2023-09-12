@@ -49,6 +49,16 @@ const StyledLink = styled(Link)`
     cursor: pointer;
   }
 `;
+
+const Phone = styled.a`
+  text-decoration: none;
+  color: white;
+  white-space: nowrap;
+  &:hover {
+    text-decoration: underline;
+    cursor: pointer;
+  }
+`;
 const Footer = () => {
   return (
     <>
@@ -77,7 +87,9 @@ const Footer = () => {
           </FooterItem2>
           <FooterItem3>
             <FooterTitle>Контакти та підтримка</FooterTitle>
-            <FooterP>+38 (098) 952-03-01</FooterP>
+            <FooterP>
+              <Phone href={`tel:+38 (098) 952-03-01`}>+38 098 952-03-01</Phone>
+            </FooterP>
             <FooterP></FooterP>
             <FooterEmail>sushizlyubovyu@gmail.com</FooterEmail>
           </FooterItem3>
@@ -112,7 +124,11 @@ const Footer = () => {
             </FooterItem1M>
             <FooterItem2M>
               <FooterP>Контакти та підтримка</FooterP>
-              <FooterP>+38 (098) 952-03-01</FooterP>
+              <FooterP>
+                <Phone href={`tel:+38 (098) 952-03-01`}>
+                  +38 098 952-03-01
+                </Phone>
+              </FooterP>
               <FooterP></FooterP>
               <FooterEmail>
                 <div>sushizlyubovyu@</div> <div>gmail.com</div>

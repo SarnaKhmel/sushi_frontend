@@ -22,6 +22,15 @@ const StyledLink = styled(Link)`
     cursor: pointer;
   }
 `;
+const Phone = styled.a`
+  text-decoration: none;
+  color: white;
+  white-space: nowrap;
+  &:hover {
+    text-decoration: underline;
+    cursor: pointer;
+  }
+`;
 
 const ContactModal = ({ isOpen, onClose }) => {
   console.log(isOpen);
@@ -43,7 +52,11 @@ const ContactModal = ({ isOpen, onClose }) => {
                   м.Львів, <br /> вул.Сихівська,19
                 </StyledLink>
               </Text>
-              <Text>+38 (098) 952-03-01</Text>
+              <Text>
+                <Phone href={`tel:+38 (098) 952-03-01`}>
+                  +38 098 952-03-01
+                </Phone>
+              </Text>
             </Block>
             <Header>Доставка та самовивіз:</Header>
             <Block>
@@ -53,7 +66,11 @@ const ContactModal = ({ isOpen, onClose }) => {
                   вул. М.Заньковецької. 8б
                 </StyledLink>
               </Text>
-              <Text>+38 (098) 952-03-01</Text>
+              <Text>
+                <Phone href={`tel:+38 (098) 952-03-01`}>
+                  +38 098 952-03-01
+                </Phone>
+              </Text>
             </Block>
             <Header>Скарги та пропозиції:</Header>
             <Block>
