@@ -96,7 +96,7 @@ export const OrderBlock = styled.div`
     width: 69px;
     height: 69px;
   }
-  @media (min-width: 768px) and (max-width: 1023px) {
+  4 @media (min-width: 768px) and (max-width: 1023px) {
     z-index: 1500;
     position: fixed;
     top: 105px;
