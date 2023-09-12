@@ -10,7 +10,7 @@ export const ContactModalBlock = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  z-index: 1600;
+  z-index: 2500;
   @media (max-width: 768px) {
     right: 0;
     top: 180px;
