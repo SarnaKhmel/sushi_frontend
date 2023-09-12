@@ -71,13 +71,11 @@ const Order = () => {
     try {
       const response = await dispatch(createOrder(formData));
       console.log(response);
-      if (response.meta.requestStatus === "fullfiled") {
-        // console.log("Success! Status 200 received.");
+      if (response.meta.requestStatus === "fulfilled") {
         dispatch(clearOrderState());
         openFinModal();
       } else {
         toast.error("Помилка. Спробуйте ще раз.");
-        //console.log("Error! Status:", response.meta.requestStatus);
       }
     } catch (error) {
       console.error("An error occurred:", error);
