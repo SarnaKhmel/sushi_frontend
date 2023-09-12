@@ -11,7 +11,7 @@ export const LoaderBlock = styled.div`
   align-items: center;
   background: rgba(24, 24, 24, 0.9);
   backdrop-filter: blur(2px);
-  z-index: 1000;
+  z-index: 3000;
 `;
 
 export const Block = styled.div``;
