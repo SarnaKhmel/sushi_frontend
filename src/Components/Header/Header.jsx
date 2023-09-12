@@ -140,7 +140,7 @@ const Header = () => {
           </LinkBlockModal>
           <ContactsBlock>
             <ContactsBlockTitle>Замовлення за телефоном:</ContactsBlockTitle>
-            +38 (098) 952-03-01
+            <a href={`tel:+38 (098) 952-03-01`}>+38 098 952-03-01</a>
             <br />
             пн-нд: 10:00 - 21:30
           </ContactsBlock>

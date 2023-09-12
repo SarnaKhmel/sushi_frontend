@@ -22,15 +22,6 @@ const StyledLink = styled(Link)`
     cursor: pointer;
   }
 `;
-const Phone = styled.a`
-  text-decoration: none;
-  color: white;
-  white-space: nowrap;
-  &:hover {
-    text-decoration: underline;
-    cursor: pointer;
-  }
-`;
 
 const ContactModal = ({ isOpen, onClose }) => {
   console.log(isOpen);
@@ -53,9 +44,7 @@ const ContactModal = ({ isOpen, onClose }) => {
                 </StyledLink>
               </Text>
               <Text>
-                <Phone href={`tel:+38 (098) 952-03-01`}>
-                  +38 098 952-03-01
-                </Phone>
+                <a href={`tel:+38 (098) 952-03-01`}>+38 098 952-03-01</a>
               </Text>
             </Block>
             <Header>Доставка та самовивіз:</Header>
@@ -67,9 +56,7 @@ const ContactModal = ({ isOpen, onClose }) => {
                 </StyledLink>
               </Text>
               <Text>
-                <Phone href={`tel:+38 (098) 952-03-01`}>
-                  +38 098 952-03-01
-                </Phone>
+                <a href={`tel:+38 (098) 952-03-01`}>+38 098 952-03-01</a>
               </Text>
             </Block>
             <Header>Скарги та пропозиції:</Header>
