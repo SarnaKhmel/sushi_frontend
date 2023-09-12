@@ -63,15 +63,37 @@ const Order = () => {
     }));
   };
 
-  const handleSubmit = (e) => {
+  // const handleSubmit = (e) => {
+  //   e.preventDefault();
+  //   if (!isFormValid()) {
+  //     return;
+  //   }
+  //   console.log("Form Data:", formData);
+  //   dispatch(createOrder(formData));
+  //   dispatch(clearOrderState());
+  //   openFinModal();
+  // };
+  const handleSubmit = async (e) => {
     e.preventDefault();
     if (!isFormValid()) {
       return;
     }
-    console.log("Form Data:", formData);
-    dispatch(createOrder(formData));
-    dispatch(clearOrderState());
-    openFinModal();
+
+    try {
+      // console.log("Form Data:", formData);
+      const response = await dispatch(createOrder(formData));
+      console.log(response);
+      if (response.meta.requestStatus === "fullfiled") {
+        // console.log("Success! Status 200 received.");
+        dispatch(clearOrderState());
+        openFinModal();
+      } else {
+        toast.error("Помилка. Спробуйте ще раз.");
+        //console.log("Error! Status:", response.meta.requestStatus);
+      }
+    } catch (error) {
+      console.error("An error occurred:", error);
+    }
   };
 
   const isFormValid = () => {
