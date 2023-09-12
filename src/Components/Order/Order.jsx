@@ -63,24 +63,12 @@ const Order = () => {
     }));
   };
 
-  // const handleSubmit = (e) => {
-  //   e.preventDefault();
-  //   if (!isFormValid()) {
-  //     return;
-  //   }
-  //   console.log("Form Data:", formData);
-  //   dispatch(createOrder(formData));
-  //   dispatch(clearOrderState());
-  //   openFinModal();
-  // };
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (!isFormValid()) {
       return;
     }
-
     try {
-      // console.log("Form Data:", formData);
       const response = await dispatch(createOrder(formData));
       console.log(response);
       if (response.meta.requestStatus === "fullfiled") {
