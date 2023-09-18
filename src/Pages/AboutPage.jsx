@@ -9,6 +9,8 @@ import img5 from "../Images/about/sushi5.jpg";
 
 import styled from "styled-components";
 
+import "./fonts/fonts.css";
+
 const AboutPage = () => {
   return (
     <Layout>
@@ -57,6 +59,10 @@ export const LayoutBlock = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: center;
+
+  font-family: RuteniaItalic;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 `;
 
 export const H21 = styled.h2`
@@ -66,7 +72,10 @@ export const H21 = styled.h2`
   font-size: 24px;
   width: 50vw;
   margin-bottom: 50px;
-  font-family: "Trebuchet MS", sans-serif;
+  ${"" /* font-family: "Trebuchet MS", sans-serif; */}
+  font-family: RuteniaItalic;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 
   @media (max-width: 768px) {
     width: 90vw;
@@ -80,9 +89,12 @@ export const H2 = styled.h2`
   text-align: left;
   font-size: 24px;
 
+  font-family: RuteniaItalic;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+
   width: 50vw;
   margin-bottom: 50px;
-  font-family: "Trebuchet MS", sans-serif;
 
   @media (max-width: 768px) {
     width: 90vw;
