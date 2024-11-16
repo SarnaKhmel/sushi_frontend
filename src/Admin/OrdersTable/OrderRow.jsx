@@ -1,222 +1,220 @@
-import React, { useState } from "react";
-import styled from "styled-components";
-import { baseUrl } from "../../Utils/baseUrl";
-import toast, { Toaster } from "react-hot-toast";
-
-import { useDispatch } from "react-redux";
-
-import { fetchOrders, finOrder } from "../../Redux/slices/orders";
-
-import { Table, Thead, Tbody, Tr, Th, Td } from "react-super-responsive-table";
-import "react-super-responsive-table/dist/SuperResponsiveTableStyle.css";
+import React, { useState } from 'react';
+import {
+  TableCell,
+  TableRow,
+  Collapse,
+  Box,
+  Typography,
+  IconButton,
+  Chip,
+  Table,
+  TableHead,
+  TableBody,
+  Alert,
+  Button,
+  Stack
+} from '@mui/material';
+import { KeyboardArrowDown, KeyboardArrowUp } from '@mui/icons-material';
+import { useDispatch } from 'react-redux';
+import { fetchOrders, finOrder } from '../../Redux/slices/orders';
+import { toast } from 'react-hot-toast';
+import { baseUrl } from '../../Utils/baseUrl';
 
 const OrderRow = ({ item }) => {
-  const [selectedOrder, setSelectedOrder] = useState(null);
-  const notify = (text) => toast(text);
+  const [open, setOpen] = useState(false);
   const dispatch = useDispatch();
-  const handleViewOrder = (orderNumber) => {
-    if (selectedOrder === orderNumber) {
-      setSelectedOrder(null);
-    } else {
-      setSelectedOrder(orderNumber);
-    }
-  };
 
   const handleCancelOrder = () => {
     const updatedItem = { ...item, status: "cancel" };
-    console.log({ id: item._id, item: updatedItem });
-    dispatch(finOrder({ id: item._id, updatedItem: updatedItem }))
-      .then((data) => {
-        notify("🥲 Замовлення відхилено!");
-        dispatch(fetchOrders());
-      })
-      .catch((error) => {
-        console.log(error);
-        notify("❌ Помилка");
-      });
+    dispatch(finOrder({ id: item._id, updatedItem }))
+        .then(() => {
+          toast.error("🥲 Замовлення відхилено!");
+          dispatch(fetchOrders());
+        })
+        .catch(() => {
+          toast.error("❌ Помилка");
+        });
   };
 
   const handleFinishOrder = () => {
     const updatedItem = { ...item, status: "fin" };
-    console.log({ id: item._id, item: updatedItem });
-    dispatch(finOrder({ id: item._id, updatedItem: updatedItem }))
-      .then((data) => {
-        notify("👍 Замовлення виконано!");
-        dispatch(fetchOrders());
-      })
-      .catch((error) => {
-        console.log(error);
-        notify("❌ Помилка ");
-      });
+    dispatch(finOrder({ id: item._id, updatedItem }))
+        .then(() => {
+          toast.success("👍 Замовлення виконано!");
+          dispatch(fetchOrders());
+        })
+        .catch(() => {
+          toast.error("❌ Помилка");
+        });
   };
 
-  const utcTimeStr = item.createdAt;
-  const utcTime = new Date(utcTimeStr);
-
-  const ukraineTimezone = "Europe/Kiev";
-  const options = {
-    timeZone: ukraineTimezone,
-    hour12: false,
-    hour: "2-digit",
-    minute: "2-digit",
-    day: "2-digit",
-    month: "2-digit",
-    year: "numeric",
+  const formatDate = (dateString) => {
+    const utcTime = new Date(dateString);
+    const options = {
+      timeZone: 'Europe/Kiev',
+      hour12: false,
+      hour: '2-digit',
+      minute: '2-digit',
+      day: '2-digit',
+      month: '2-digit',
+      year: 'numeric'
+    };
+    return new Intl.DateTimeFormat('uk-UA', options).format(utcTime);
   };
 
-  const formattedTime = new Intl.DateTimeFormat("uk-UA", options).format(
-    utcTime
-  );
+  const getCityName = (city) => {
+    const cities = {
+      'lviv': 'Львів',
+      'z-voda': 'З. Вода',
+      'operator': 'Інше'
+    };
+    return cities[city] || city;
+  };
 
   return (
-    <React.Fragment>
-      <Table>
-        <Thead>
-          <Tr>
-            <Th>Номер</Th>
-            <Th>Час замовлення</Th>
-            <Th>Ім'я</Th>
-            <Th>Телефон</Th>
-            <Th>Місто</Th>
-            <Th>Вулиця</Th>
-            <Th>Будинок</Th>
-            <Th>Дії</Th>
-          </Tr>
-        </Thead>
-        <Tbody>
-          <Tr>
-            <TdStyled>{item.orderNumber}.</TdStyled>
-            <TdStyled>{formattedTime}</TdStyled>
-            <TdStyled>{item.name}</TdStyled>
-            <TdStyled>{item.phone}</TdStyled>
-            <TdStyled>
-              {item.city === "lviv" && <>Львів</>}
-              {item.city === "z-voda" && <>З. Вода</>}
-              {item.city === "operator" && <>Інше</>}
-            </TdStyled>
-            <TdStyled>{item.street}</TdStyled>
-            <TdStyled>{item.house}</TdStyled>
-            <TdStyled>
-              <Button onClick={() => handleViewOrder(item.orderNumber)}>
-                Переглянути
-              </Button>
-            </TdStyled>
-          </Tr>
-        </Tbody>
-      </Table>
-      {selectedOrder === item.orderNumber && (
-        <OpenTable>
-          <Table>
-            <Thead>
-              <Tr>
-                {/* <Td>Тип доставки</Td> */}
-                <Th>Ел. пошта:</Th>
-                <Th>Метод оплати:</Th>
-                <Th>Решта з:</Th>
-                <Th>Сума:</Th>
-                <Th>К-ть приборів:</Th>
-                {/* <Td>Підїзд</Td>
-                <Td>Поверх</Td>
-                <Td>Квартира</Td> */}
-              </Tr>
-            </Thead>
-            <Tbody>
-              <Tr>
-                <TdStyled>{item.email === "" ? " - " : item.email}</TdStyled>
-                <TdStyled>
-                  {item.paymentMethod === "card" && <>Карткою</>}
-                  {item.paymentMethod === "cash" && <>Готівкою</>}
-                </TdStyled>
-                <TdStyled>{item.changeAmount} </TdStyled>
-                <TdStyled
-                  style={{
-                    color: "red",
-                    fontWeight: "bold",
-                    backgroundColor: "white",
-                  }}>
-                  {item.orderList.sum}
-                </TdStyled>
-                <TdStyled>{item.device}</TdStyled>
-              </Tr>
-            </Tbody>
-          </Table>
-          <Table>
-            <Thead>
-              <Tr>
-                <Th>№</Th>
-                <Th>Зображення</Th>
-                <Th>Назва</Th>
-                <Th>Вага</Th>
-                <Th>Ціна</Th>
-                <Th>Кількість</Th>
-              </Tr>
-            </Thead>
-            <Tbody>
-              {item.orderList.items.map((product, index) => (
-                <Tr key={index}>
-                  <TdStyled>{index + 1}</TdStyled>
-                  <TdStyled>
-                    <Image src={`${baseUrl}${product.imageUrl}`} />
-                  </TdStyled>
-                  <TdStyled>{product.name}</TdStyled>
-                  <TdStyled>{product.weight}</TdStyled>
-                  <TdStyled>{product.price}</TdStyled>
-                  <TdStyled>{product.quantity}</TdStyled>
-                </Tr>
-              ))}
-            </Tbody>
-          </Table>
-          <BtnBlock>
-            <Button
-              style={{ color: "red", marginRight: "50px" }}
-              onClick={handleCancelOrder}>
-              Відхилити
-            </Button>
+      <>
+        <TableRow
+            sx={{
+              '& > *': { borderBottom: 'unset' },
+              '&:hover': { backgroundColor: 'rgba(0, 0, 0, 0.04)' }
+            }}
+        >
+          <TableCell>
+            <IconButton size="small" onClick={() => setOpen(!open)}>
+              {open ? <KeyboardArrowUp /> : <KeyboardArrowDown />}
+            </IconButton>
+          </TableCell>
+          <TableCell>{item.orderNumber}</TableCell>
+          <TableCell>{formatDate(item.createdAt)}</TableCell>
+          <TableCell>{item.name}</TableCell>
+          <TableCell>{item.phone}</TableCell>
+          <TableCell>{getCityName(item.city)}</TableCell>
+          <TableCell>{item.street}</TableCell>
+          <TableCell>{item.house}</TableCell>
+        </TableRow>
 
-            <Button
-              style={{ color: "green", marginRight: "50px" }}
-              onClick={handleFinishOrder}>
-              Прийняти
-            </Button>
-          </BtnBlock>
-        </OpenTable>
-      )}
-      <Toaster position="bottom-right" reverseOrder={false} />
-    </React.Fragment>
+        <TableRow>
+          <TableCell style={{ paddingBottom: 0, paddingTop: 0 }} colSpan={9}>
+            <Collapse in={open} timeout="auto" unmountOnExit>
+              <Box sx={{ margin: 1 }}>
+                <Typography variant="h6" gutterBottom component="div" sx={{ color: 'primary.main' }}>
+                  Деталі замовлення
+                </Typography>
+
+                {/* Comment Section */}
+                {item.comment && item.comment !== "" && (
+                    <Alert
+                        severity="info"
+                        sx={{ mb: 2 }}
+                    >
+                      <Typography variant="subtitle2" gutterBottom>
+                        Коментар клієнта:
+                      </Typography>
+                      <Typography variant="body2">
+                        {item.comment}
+                      </Typography>
+                    </Alert>
+                )}
+
+                {/* Customer Details */}
+                <Table size="small" sx={{ mb: 2, backgroundColor: 'background.paper' }}>
+                  <TableHead>
+                    <TableRow>
+                      <TableCell>Ел. пошта</TableCell>
+                      <TableCell>Метод оплати</TableCell>
+                      <TableCell>Решта з</TableCell>
+                      <TableCell>Сума</TableCell>
+                      <TableCell>К-ть приборів</TableCell>
+                    </TableRow>
+                  </TableHead>
+                  <TableBody>
+                    <TableRow>
+                      <TableCell>{item.email || " - "}</TableCell>
+                      <TableCell>
+                        {item.paymentMethod === 'card' ? 'Карткою' : 'Готівкою'}
+                      </TableCell>
+                      <TableCell>{item.changeAmount}</TableCell>
+                      <TableCell sx={{ color: 'error.main', fontWeight: 'bold' }}>
+                        {item.orderList.sum}
+                      </TableCell>
+                      <TableCell>{item.device}</TableCell>
+                    </TableRow>
+                  </TableBody>
+                </Table>
+
+                {/* Order Items */}
+                <Table size="small" sx={{ backgroundColor: 'background.paper', mb: 2 }}>
+                  <TableHead>
+                    <TableRow>
+                      <TableCell>№</TableCell>
+                      <TableCell>Зображення</TableCell>
+                      <TableCell>Назва</TableCell>
+                      <TableCell>Вага</TableCell>
+                      <TableCell>Ціна</TableCell>
+                      <TableCell>Кількість</TableCell>
+                    </TableRow>
+                  </TableHead>
+                  <TableBody>
+                    {item.orderList.items.map((product, index) => (
+                        <TableRow key={index}>
+                          <TableCell>{index + 1}</TableCell>
+                          <TableCell>
+                            <Box
+                                component="img"
+                                src={`${baseUrl}${product.imageUrl}`}
+                                sx={{
+                                  height: 80,
+                                  width: 80,
+                                  objectFit: 'cover',
+                                  borderRadius: 1
+                                }}
+                            />
+                          </TableCell>
+                          <TableCell>{product.name}</TableCell>
+                          <TableCell>{product.weight}</TableCell>
+                          <TableCell>{product.price}</TableCell>
+                          <TableCell>{product.quantity}</TableCell>
+                        </TableRow>
+                    ))}
+                  </TableBody>
+                </Table>
+
+                {/* Action Buttons */}
+                <Stack
+                    direction="row"
+                    spacing={2}
+                    justifyContent="flex-end"
+                    sx={{ mt: 2 }}
+                >
+                  <Button
+                      variant="outlined"
+                      color="error"
+                      onClick={handleCancelOrder}
+                      sx={{
+                        minWidth: 120,
+                        '&:hover': { backgroundColor: 'error.light', color: 'white' }
+                      }}
+                  >
+                    Відхилити
+                  </Button>
+                  <Button
+                      variant="outlined"
+                      color="success"
+                      onClick={handleFinishOrder}
+                      sx={{
+                        minWidth: 120,
+                        '&:hover': { backgroundColor: 'success.light', color: 'white' }
+                      }}
+                  >
+                    Прийняти
+                  </Button>
+                </Stack>
+              </Box>
+            </Collapse>
+          </TableCell>
+        </TableRow>
+      </>
   );
 };
 
-const Image = styled.img`
-  height: 80px;
-  width: 80px;
-`;
-
-const OpenTable = styled.div`
-  background-color: lightBlue;
-  height: 100%;
-  overflow: scroll;
-`;
-
-const BtnBlock = styled.div`
-  display: flex;
-  align-items: center;
-  justify-content: space-around;
-  @media (min-width: 768px) {
-    justify-content: flex-end;
-  }
-`;
-
-const TdStyled = styled(Td)`
-  text-align: center;
-`;
-
-const Button = styled.button`
-  height: 40px;
-  font-size: 16px;
-  font-weight: bold;
-
-  &:hover {
-    color: #007bff;
-  }
-`;
 export default OrderRow;

@@ -1,197 +1,198 @@
-import React, { useState } from "react";
-import styled, { css } from "styled-components";
-import { baseUrl } from "../../Utils/baseUrl";
-import toast, { Toaster } from "react-hot-toast";
-
-import { useDispatch } from "react-redux";
-
-import { fetchRemoveOrder } from "../../Redux/slices/orders";
-
-import { Table, Thead, Tbody, Tr, Th, Td } from "react-super-responsive-table";
-import "react-super-responsive-table/dist/SuperResponsiveTableStyle.css";
+import React, { useState } from 'react';
+import {
+  TableCell,
+  TableRow,
+  Collapse,
+  Box,
+  Typography,
+  IconButton,
+  Table,
+  TableHead,
+  TableBody,
+  Button,
+  Dialog,
+  DialogTitle,
+  DialogContent,
+  DialogActions,
+  TextField,
+  Stack
+} from '@mui/material';
+import { KeyboardArrowDown, KeyboardArrowUp } from '@mui/icons-material';
+import { useDispatch } from 'react-redux';
+import { fetchRemoveOrder } from '../../Redux/slices/orders';
+import { toast } from 'react-hot-toast';
+import { baseUrl } from '../../Utils/baseUrl';
 
 const OrderRowFin = ({ item }) => {
-  const [selectedOrder, setSelectedOrder] = useState(null);
-  const notify = (text) => toast(text);
+  const [open, setOpen] = useState(false);
+  const [dialogOpen, setDialogOpen] = useState(false);
+  const [orderNumberInput, setOrderNumberInput] = useState('');
   const dispatch = useDispatch();
-  const handleViewOrder = (orderNumber) => {
-    if (selectedOrder === orderNumber) {
-      setSelectedOrder(null);
+
+  const handleDeleteOrder = () => {
+    if (parseInt(orderNumberInput) === item.orderNumber) {
+      dispatch(fetchRemoveOrder(item._id))
+          .then(() => {
+            toast.success("👍 Замовлення видалено!");
+            setDialogOpen(false);
+          })
+          .catch(() => {
+            toast.error("❌ Помилка");
+          });
     } else {
-      setSelectedOrder(orderNumber);
+      toast.error("❌ Невірний номер замовлення");
     }
   };
 
-  const handleFinishOrder = (id, number) => {
-    const question = +prompt(
-      "Ви хочете видалити замовлення? Введіть номер замовлення"
-    );
-
-    console.log(id, number, question);
-
-    if (question === number)
-      dispatch(fetchRemoveOrder(id))
-        .then((data) => {
-          console.log(data);
-          notify("👍 Замовлення видалено!");
-        })
-        .catch((error) => {
-          console.log(error);
-          notify("❌ Помилка ");
-        });
+  const getCityName = (city) => {
+    const cities = {
+      'lviv': 'Львів',
+      'z-voda': 'З. Вода',
+      'operator': 'Інше'
+    };
+    return cities[city] || city;
   };
 
   return (
-    <React.Fragment>
-      <Table>
-        <Thead>
-          <Tr>
-            <Th>Номер</Th>
-            <Th>Ім'я</Th>
-            <Th>Телефон</Th>
-            <Th>Місто</Th>
-            <Th>Вулиця</Th>
-            <Th>Будинок</Th>
-            <Th>Дії</Th>
-          </Tr>
-        </Thead>
-        <Tbody>
-          <Tr>
-            <TdStyled>{item.orderNumber}.</TdStyled>
-            <TdStyled>{item.name}</TdStyled>
-            <TdStyled>{item.phone}</TdStyled>
-            <TdStyled>
-              {item.city === "lviv" && <>Львів</>}
-              {item.city === "z-voda" && <>З. Вода</>}
-              {item.city === "operator" && <>Інше</>}
-            </TdStyled>
-            <TdStyled>{item.street}</TdStyled>
-            <TdStyled>{item.house}</TdStyled>
-            <TdStyled>
-              <Button onClick={() => handleViewOrder(item.orderNumber)}>
-                Переглянути
-              </Button>
-            </TdStyled>
-          </Tr>
-        </Tbody>
-      </Table>
-      {selectedOrder === item.orderNumber && (
-        <OpenTable>
-          <Table>
-            <Thead>
-              <Tr>
-                {/* <Td>Тип доставки</Td> */}
-                <Th>Ел. пошта:</Th>
-                <Th>Метод оплати:</Th>
-                <Th>Решта з:</Th>
-                <Th>Сума:</Th>
-                {/* <Td>Підїзд</Td>
-                <Td>Поверх</Td>
-                <Td>Квартира</Td> */}
-              </Tr>
-            </Thead>
-            <Tbody>
-              <Tr>
-                <TdStyled>{item.email}</TdStyled>
-                <TdStyled>
-                  {item.paymentMethod === "card" && <>Карткою</>}
-                  {item.paymentMethod === "cash" && <>Готівкою</>}
-                </TdStyled>
-                <TdStyled>{item.changeAmount} </TdStyled>
-                <TdStyled
-                  style={{
-                    color: "red",
-                    fontWeight: "bold",
-                    backgroundColor: "white",
-                  }}>
-                  {item.orderList.sum}
-                </TdStyled>
-              </Tr>
-            </Tbody>
-          </Table>
-          <Table>
-            <Thead>
-              <Tr>
-                <Th>№</Th>
-                <Th>Зображення</Th>
-                <Th>Назва</Th>
-                <Th>Вага</Th>
-                <Th>Ціна</Th>
-                <Th>Кількість</Th>
-              </Tr>
-            </Thead>
-            <Tbody>
-              {item.orderList.items.map((product, index) => (
-                <Tr key={index}>
-                  <TdStyled>{index + 1}</TdStyled>
-                  <TdStyled>
-                    <Image src={`${baseUrl}${product.imageUrl}`} />
-                  </TdStyled>
-                  <TdStyled>{product.name}</TdStyled>
-                  <TdStyled>{product.weight}</TdStyled>
-                  <TdStyled>{product.price}</TdStyled>
-                  <TdStyled>{product.quantity}</TdStyled>
-                </Tr>
-              ))}
-            </Tbody>
-          </Table>
-          <BtnBlock>
-            <ButtonRed
-              onClick={() => handleFinishOrder(item._id, item.orderNumber)}>
-              Видалити замовлення
-            </ButtonRed>
-          </BtnBlock>
-        </OpenTable>
-      )}
-      <Toaster position="bottom-right" reverseOrder={false} />
-    </React.Fragment>
+      <>
+        <TableRow
+            sx={{
+              '& > *': { borderBottom: 'unset' },
+              '&:hover': { backgroundColor: 'rgba(0, 0, 0, 0.04)' }
+            }}
+        >
+          <TableCell>
+            <IconButton size="small" onClick={() => setOpen(!open)}>
+              {open ? <KeyboardArrowUp /> : <KeyboardArrowDown />}
+            </IconButton>
+          </TableCell>
+          <TableCell>{item.orderNumber}</TableCell>
+          <TableCell>{item.name}</TableCell>
+          <TableCell>{item.phone}</TableCell>
+          <TableCell>{getCityName(item.city)}</TableCell>
+          <TableCell>{item.street}</TableCell>
+          <TableCell>{item.house}</TableCell>
+        </TableRow>
+
+        <TableRow>
+          <TableCell style={{ paddingBottom: 0, paddingTop: 0 }} colSpan={8}>
+            <Collapse in={open} timeout="auto" unmountOnExit>
+              <Box sx={{ margin: 1 }}>
+                <Typography variant="h6" gutterBottom component="div" sx={{ color: 'primary.main' }}>
+                  Деталі замовлення
+                </Typography>
+
+                {/* Customer Details */}
+                <Table size="small" sx={{ mb: 2, backgroundColor: 'background.paper' }}>
+                  <TableHead>
+                    <TableRow>
+                      <TableCell>Ел. пошта</TableCell>
+                      <TableCell>Метод оплати</TableCell>
+                      <TableCell>Решта з</TableCell>
+                      <TableCell>Сума</TableCell>
+                    </TableRow>
+                  </TableHead>
+                  <TableBody>
+                    <TableRow>
+                      <TableCell>{item.email || " - "}</TableCell>
+                      <TableCell>
+                        {item.paymentMethod === 'card' ? 'Карткою' : 'Готівкою'}
+                      </TableCell>
+                      <TableCell>{item.changeAmount}</TableCell>
+                      <TableCell sx={{ color: 'error.main', fontWeight: 'bold' }}>
+                        {item.orderList.sum}
+                      </TableCell>
+                    </TableRow>
+                  </TableBody>
+                </Table>
+
+                {/* Order Items */}
+                <Table size="small" sx={{ backgroundColor: 'background.paper', mb: 2 }}>
+                  <TableHead>
+                    <TableRow>
+                      <TableCell>№</TableCell>
+                      <TableCell>Зображення</TableCell>
+                      <TableCell>Назва</TableCell>
+                      <TableCell>Вага</TableCell>
+                      <TableCell>Ціна</TableCell>
+                      <TableCell>Кількість</TableCell>
+                    </TableRow>
+                  </TableHead>
+                  <TableBody>
+                    {item.orderList.items.map((product, index) => (
+                        <TableRow key={index}>
+                          <TableCell>{index + 1}</TableCell>
+                          <TableCell>
+                            <Box
+                                component="img"
+                                src={`${baseUrl}${product.imageUrl}`}
+                                sx={{
+                                  height: 80,
+                                  width: 80,
+                                  objectFit: 'cover',
+                                  borderRadius: 1
+                                }}
+                            />
+                          </TableCell>
+                          <TableCell>{product.name}</TableCell>
+                          <TableCell>{product.weight}</TableCell>
+                          <TableCell>{product.price}</TableCell>
+                          <TableCell>{product.quantity}</TableCell>
+                        </TableRow>
+                    ))}
+                  </TableBody>
+                </Table>
+
+                {/* Action Button */}
+                <Stack
+                    direction="row"
+                    spacing={2}
+                    justifyContent="flex-end"
+                    sx={{ mt: 2 }}
+                >
+                  <Button
+                      variant="contained"
+                      color="error"
+                      onClick={() => setDialogOpen(true)}
+                      sx={{
+                        minWidth: 120,
+                        '&:hover': { backgroundColor: 'error.dark' }
+                      }}
+                  >
+                    Видалити замовлення
+                  </Button>
+                </Stack>
+              </Box>
+            </Collapse>
+          </TableCell>
+        </TableRow>
+
+        {/* Confirmation Dialog */}
+        <Dialog open={dialogOpen} onClose={() => setDialogOpen(false)}>
+          <DialogTitle>Підтвердження видалення</DialogTitle>
+          <DialogContent>
+            <Typography sx={{ mb: 2 }}>
+              Для підтвердження видалення введіть номер замовлення: {item.orderNumber}
+            </Typography>
+            <TextField
+                fullWidth
+                type="number"
+                value={orderNumberInput}
+                onChange={(e) => setOrderNumberInput(e.target.value)}
+                label="Номер замовлення"
+            />
+          </DialogContent>
+          <DialogActions>
+            <Button onClick={() => setDialogOpen(false)} color="primary">
+              Скасувати
+            </Button>
+            <Button onClick={handleDeleteOrder} color="error" variant="contained">
+              Видалити
+            </Button>
+          </DialogActions>
+        </Dialog>
+      </>
   );
 };
-
-const Image = styled.img`
-  height: 80px;
-  width: 80px;
-`;
-
-const Button = styled.button`
-  height: 40px;
-  font-size: 16px;
-  font-weight: bold;
-
-  &:hover {
-    color: #007bff;
-  }
-`;
-const OpenTable = styled.div`
-  background-color: lightBlue;
-  height: 100%;
-  overflow: scroll;
-`;
-
-const BtnBlock = styled.div`
-  display: flex;
-  align-items: center;
-  justify-content: space-around;
-  @media (min-width: 768px) {
-    justify-content: flex-end;
-  }
-`;
-
-const ButtonRed = styled.button`
-  height: 40px;
-  font-size: 18px;
-  font-weight: bold;
-  background-color: red;
-  border-radius: 5px;
-  color: white;
-  margin-right: 50px;
-  &:hover {
-    color: #007bff;
-  }
-`;
-
-const TdStyled = styled(Td)`
-  text-align: center;
-`;
 
 export default OrderRowFin;
