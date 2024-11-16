@@ -188,7 +188,7 @@ const Order = () => {
                     <Input
                         type="text"
                         name="city"
-                        value={formData.street}
+                        value={formData.city}
                         onChange={handleChange}
                         required
                     />
