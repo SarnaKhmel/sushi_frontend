@@ -53,14 +53,14 @@ const AdminOrderPage = () => {
   }, [orders, prevOrderCount]);
 
   useEffect(() => {
-    if (isPlaying && isFirstInteraction) {
+    if (isPlaying) {
       const audio = new Audio(orderBell);
       audio.play();
       audio.onended = () => {
         setIsPlaying(false);
       };
     }
-  }, [isPlaying, isFirstInteraction]);
+  }, [isPlaying]);
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -158,7 +158,7 @@ const AdminOrderPage = () => {
                   {activeTab === 0 && (
                       <Box>
                         <ExelOrders products={sortedNewOrders} name="Нові" />
-                        <OrdersTable newOrders={sortedNewOrders}/>
+                        <OrdersTable newOrders={sortedNewOrders} title="Нові замовлення" />
                       </Box>
                   )}
 
