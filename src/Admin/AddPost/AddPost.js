@@ -1,19 +1,32 @@
 import { useState } from "react";
-// import { useDispatch } from "react-redux";
 import axios from "../../../src/Utils/axios";
 import toast, { Toaster } from "react-hot-toast";
-import styled from "styled-components";
-
-// import { uploadProductImG, createProduct } from "../../Redux/slices/products";
+import {
+  Box,
+  Typography,
+  Button,
+  TextField,
+  Paper,
+  Container,
+  Input as MuiInput,
+  styled
+} from "@mui/material";
+import CloudUploadIcon from '@mui/icons-material/CloudUpload';
+import DeleteIcon from '@mui/icons-material/Delete';
+import SaveIcon from '@mui/icons-material/Save';
+import ClearIcon from '@mui/icons-material/Clear';
 
 const AddPost = () => {
   const [selectedFile, setSelectedFile] = useState(null);
   const [imageUrl, setImageUrl] = useState(null);
   const [imageProductUrl, setImageProductUrl] = useState(null);
   const [checkUpload, setCheckUpload] = useState(false);
-  // const [checkUploadPost, setCheckUploadPost] = useState(false);
-  // const dispatch = useDispatch();
   const notify = (text) => toast(text);
+
+  const [formFields, setFormFields] = useState({
+    title: "",
+    text: "",
+  });
 
   const handleFileSelect = (event) => {
     const file = event.target.files[0];
@@ -27,56 +40,55 @@ const AddPost = () => {
       notify("Please select a valid image file (png, jpg, jpeg)");
     }
   };
+
   const handleFileUpload = () => {
     const formData = new FormData();
     formData.append("image", selectedFile);
 
     axios
-      .post("/upload/posts", formData)
-      .then((response) => {
-        // console.log(response);
-        setImageUrl(response.data.imageUrl);
-        setImageProductUrl(response.data.url);
-        setCheckUpload(true);
-      })
-      .catch((error) => {
-        console.log(error);
-        setCheckUpload(false);
-      });
+        .post("/upload/posts", formData)
+        .then((response) => {
+          setImageUrl(response.data.imageUrl);
+          setImageProductUrl(response.data.url);
+          setCheckUpload(true);
+        })
+        .catch((error) => {
+          console.log(error);
+          setCheckUpload(false);
+        });
   };
-  const [formFields, setFormFields] = useState({
-    title: "",
-    text: "",
-  });
+
   const handleFormFieldChange = (event) => {
-    const fieldName = event.target.name;
-    const fieldValue = event.target.value;
-    setFormFields((prevFormFields) => ({
-      ...prevFormFields,
-      [fieldName]: fieldValue,
+    const { name, value } = event.target;
+    setFormFields((prev) => ({
+      ...prev,
+      [name]: value,
     }));
   };
+
   const handleFormSubmit = (event) => {
     event.preventDefault();
     if (imageProductUrl === null) {
       return notify("‼ Завантажте зображення!");
-    } else {
-      const productData = {
-        imageUrl: imageProductUrl,
-        title: formFields.title,
-        text: formFields.text,
-      };
-      axios
+    }
+
+    const productData = {
+      imageUrl: imageProductUrl,
+      title: formFields.title,
+      text: formFields.text,
+    };
+
+    axios
         .post("/auth/posts", productData)
-        .then((response) => {
+        .then(() => {
           handleClearImage();
           notify("👍 Пост додано!");
         })
         .catch((error) => {
           console.log(error);
         });
-    }
   };
+
   const handleClearImage = () => {
     setSelectedFile(null);
     setImageUrl(null);
@@ -84,6 +96,7 @@ const AddPost = () => {
     setCheckUpload(false);
     notify("Зображення відкріплено");
   };
+
   const handleClearForm = (e) => {
     e.preventDefault();
     if (selectedFile !== null) {
@@ -95,123 +108,138 @@ const AddPost = () => {
     });
     notify("Форму очищено ‼️");
   };
-  return (
-    <AddProductBlock>
-      <AddProductImage>
-        <h3>Крок 1 завантажити зображення:</h3>
-        <MiniBlock>
-          <input type="file" onChange={handleFileSelect} />
-          {imageUrl && <ProductImage src={imageUrl} alt="Uploaded" />}
-        </MiniBlock>
-        <MiniBlock>
-          {!checkUpload && <Btn onClick={handleFileUpload}>Завантажити</Btn>}
-          {imageUrl && <Btn onClick={handleClearImage}>Очистити</Btn>}
-        </MiniBlock>
-      </AddProductImage>
-      <AddProductForm onSubmit={handleFormSubmit}>
-        <h3>Крок 2 завантажити поля:</h3>
-        <MiniBlock>
-          <Label htmlFor="name">1. Назва поста:</Label>
-          <Input
-            type="text"
-            name="title"
-            placeholder="Назва поста"
-            value={formFields.title}
-            onChange={handleFormFieldChange}
-            required
-          />
-        </MiniBlock>
 
-        <MiniBlock>
-          <Label htmlFor="text">2. Текст поста:</Label>
-          <Input
-            type="text"
-            name="text"
-            placeholder="Опис поста"
-            value={formFields.text}
-            onChange={handleFormFieldChange}
-            required
-          />
-        </MiniBlock>
-        <MiniBlock>
-          <Btn className="btn-create">Створити</Btn>
-          <Btn className="btn-del" type="reset" onClick={handleClearForm}>
-            Очистити
-          </Btn>
-        </MiniBlock>
-      </AddProductForm>
-      <Toaster position="bottom-right" reverseOrder={false} />
-    </AddProductBlock>
+  return (
+      <Container maxWidth="lg">
+        <Paper elevation={3} sx={{ p: 3, my: 2 }}>
+          {/* Image Upload Section */}
+          <Box sx={{ mb: 4 }}>
+            <Typography variant="h6" gutterBottom>
+              Крок 1: завантажити зображення
+            </Typography>
+
+            <Box sx={{ display: 'flex', flexDirection: 'column', gap: 2 }}>
+              <VisuallyHiddenInput
+                  type="file"
+                  id="file-upload"
+                  onChange={handleFileSelect}
+              />
+              <Box sx={{ display: 'flex', gap: 2, flexWrap: 'wrap' }}>
+                <label htmlFor="file-upload">
+                  <Button
+                      variant="contained"
+                      component="span"
+                      startIcon={<CloudUploadIcon />}
+                  >
+                    Вибрати файл
+                  </Button>
+                </label>
+
+                {!checkUpload && selectedFile && (
+                    <Button
+                        variant="contained"
+                        onClick={handleFileUpload}
+                        startIcon={<SaveIcon />}
+                    >
+                      Завантажити
+                    </Button>
+                )}
+
+                {imageUrl && (
+                    <Button
+                        variant="outlined"
+                        color="error"
+                        onClick={handleClearImage}
+                        startIcon={<DeleteIcon />}
+                    >
+                      Очистити
+                    </Button>
+                )}
+              </Box>
+
+              {imageUrl && (
+                  <Box
+                      component="img"
+                      src={imageUrl}
+                      alt="Uploaded"
+                      sx={{
+                        width: 200,
+                        height: 200,
+                        objectFit: 'cover',
+                        borderRadius: 1
+                      }}
+                  />
+              )}
+            </Box>
+          </Box>
+
+          {/* Form Section */}
+          <Box component="form" onSubmit={handleFormSubmit}>
+            <Typography variant="h6" gutterBottom>
+              Крок 2: заповнити поля
+            </Typography>
+
+            <Box sx={{ display: 'flex', flexDirection: 'column', gap: 3 }}>
+              <TextField
+                  fullWidth
+                  label="Назва поста"
+                  name="title"
+                  value={formFields.title}
+                  onChange={handleFormFieldChange}
+                  required
+                  variant="outlined"
+              />
+
+              <TextField
+                  fullWidth
+                  label="Текст поста"
+                  name="text"
+                  value={formFields.text}
+                  onChange={handleFormFieldChange}
+                  required
+                  variant="outlined"
+                  multiline
+                  rows={4}
+              />
+
+              <Box sx={{ display: 'flex', gap: 2, justifyContent: 'flex-start' }}>
+                <Button
+                    type="submit"
+                    variant="contained"
+                    color="primary"
+                    startIcon={<SaveIcon />}
+                >
+                  Створити
+                </Button>
+
+                <Button
+                    type="button"
+                    variant="outlined"
+                    color="error"
+                    onClick={handleClearForm}
+                    startIcon={<ClearIcon />}
+                >
+                  Очистити
+                </Button>
+              </Box>
+            </Box>
+          </Box>
+        </Paper>
+        <Toaster position="bottom-right" reverseOrder={false} />
+      </Container>
   );
 };
 
-const AddProductBlock = styled.div`
-  margin: 20px 50px;
-
-  @media (max-width: 768px) {
-    margin: 20px;
-  }
-`;
-
-const AddProductImage = styled.div`
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-direction: column;
-
-  @media (max-width: 768px) {
-    margin-bottom: 20px;
-  }
-`;
-
-const AddProductForm = styled.form`
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-direction: column;
-
-  @media (max-width: 768px) {
-    margin-top: 20px;
-  }
-`;
-
-const MiniBlock = styled.div`
-  display: flex;
-  margin: 10px 50px;
-  align-items: flex-start;
-  justify-content: flex-start;
-  width: 80vw;
-
-  @media (max-width: 768px) {
-    flex-direction: column;
-    margin: 10px;
-    width: 100%;
-  }
-`;
-
-const ProductImage = styled.img`
-  height: 200px;
-  width: 200px;
-`;
-
-const LabelBlock = styled.div``;
-const Label = styled.label`
-  width: 400px;
-  min-width: 300px;
-  margin-right: 10px;
-`;
-const Input = styled.input`
-  width: 100%;
-`;
-const Select = styled.select`
-  width: 100%;
-`;
-
-const Text = styled.p``;
-const Btn = styled.button`
-  &:hover {
-    color: #007bff;
-  }
-`;
+const VisuallyHiddenInput = styled('input')({
+  clip: 'rect(0 0 0 0)',
+  clipPath: 'inset(50%)',
+  height: 1,
+  overflow: 'hidden',
+  position: 'absolute',
+  bottom: 0,
+  left: 0,
+  whiteSpace: 'nowrap',
+  width: 1,
+});
 
 export default AddPost;
