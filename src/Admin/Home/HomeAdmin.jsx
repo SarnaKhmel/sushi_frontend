@@ -1,22 +1,18 @@
 import React from "react";
-import styled from "styled-components";
+import { Box, Button } from "@mui/material";
 
 const HomeAdmin = () => {
-  return <Container></Container>;
+  return (
+      <Box
+          sx={{
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+            minHeight: "100vh",
+          }}
+      >
+      </Box>
+  );
 };
-
-const Container = styled.div`
-  display: flex;
-  align-items: center;
-  justify-content: center;
-`;
-
-const Btn = styled.button`
-  color: red;
-  text-decoration: none;
-  &:hover {
-    color: #007bff;
-  }
-`;
 
 export default HomeAdmin;
