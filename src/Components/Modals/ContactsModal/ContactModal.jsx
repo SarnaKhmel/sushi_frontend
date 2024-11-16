@@ -51,8 +51,8 @@ const ContactModal = ({ isOpen, onClose }) => {
             <Block>
               <Text>
                 <StyledLink to="https://www.google.com/maps/d/u/0/viewer?mid=1d7TzP07NBZtL_dcST3yPjK3JW2aws80&ll=49.818294130689196%2C23.914791475755084&z=12">
-                  с.Зимна Вода, <br />
-                  вул. М.Заньковецької. 8б
+                  с. Рудно, <br />
+                  вул. Шептицького 1
                 </StyledLink>
               </Text>
               <Text>
