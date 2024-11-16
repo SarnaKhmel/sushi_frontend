@@ -1,23 +1,57 @@
-import React from "react";
-import styled from "styled-components";
-import { Link } from "react-router-dom";
+import React, { useState, useEffect } from "react";
+import { Link, useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { logout } from "../../Redux/slices/auth";
-import { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+import {
+  AppBar,
+  Box,
+  Button,
+  Container,
+  CssBaseline,
+  IconButton,
+  Switch,
+  Toolbar,
+  Typography,
+  Drawer,
+  List,
+  ListItem,
+  ListItemText,
+} from "@mui/material";
+import { ThemeProvider, createTheme } from "@mui/material/styles";
+import MenuIcon from "@mui/icons-material/Menu";
+import Brightness4Icon from "@mui/icons-material/Brightness4";
+import Brightness7Icon from "@mui/icons-material/Brightness7";
 
 const LayoutAdmin = ({ children }) => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
   const [token, setToken] = useState("");
+  const [menuOpen, setMenuOpen] = useState(false);
+  // Отримуємо початковий стан теми з localStorage
+  const [darkMode, setDarkMode] = useState(() => {
+    const savedTheme = localStorage.getItem("theme");
+    return savedTheme ? savedTheme === "dark" : false;
+  });
+
+  const theme = createTheme({
+    palette: {
+      mode: darkMode ? "dark" : "light",
+    },
+  });
+
   useEffect(() => {
-    console.log(localStorage.getItem("token"));
-    setToken(localStorage.getItem("token"));
-    if (token === null || token === undefined) {
+    const storedToken = localStorage.getItem("token");
+    setToken(storedToken);
+    if (!storedToken) {
       navigate("/admin/login");
     }
-  }, []);
+  }, [navigate]);
+
+  // Зберігаємо тему в localStorage при кожній зміні
+  useEffect(() => {
+    localStorage.setItem("theme", darkMode ? "dark" : "light");
+  }, [darkMode]);
 
   const onClickLogout = () => {
     if (window.confirm("Ви дійсно хочете вийти?")) {
@@ -27,188 +61,107 @@ const LayoutAdmin = ({ children }) => {
     }
   };
 
-  const [menuOpen, setMenuOpen] = useState(false);
+  const toggleMenu = () => setMenuOpen(!menuOpen);
 
-  const toggleMenu = () => {
-    setMenuOpen(!menuOpen);
-  };
+  const handleThemeToggle = () => setDarkMode(!darkMode);
+
+  const links = [
+    { to: "/admin/home", text: "Головна" },
+    { to: "/admin/products", text: "Продукти" },
+    { to: "/admin/posts", text: "Пости" },
+    { to: "/admin/orders", text: "Замовлення" },
+    { to: "/admin/me", text: "Про мене" },
+    {
+      href: "https://www.google.com/maps/d/u/0/viewer?mid=1stv2s4gZ0HnC7rfZz2FqxZxtB9fh0DE&ll=49.8184077019921%2C23.938815850000026&z=12",
+      text: "Мапа",
+      external: true,
+    },
+  ];
 
   return (
-    <Container>
-      <Header>
-        <Logo>Admin Panel</Logo>
-        {token ? (
-          <>
-            <Links>
-              <StyledLink to="/admin/home">Головна</StyledLink>
-              <StyledLink to="/admin/products">Продукти</StyledLink>
-              <StyledLink to="/admin/posts">Пости</StyledLink>
-              <StyledLink to="/admin/orders">Замовлення</StyledLink>
-              {/* <StyledLink to="/admin/statistics">Статистика</StyledLink> */}
-              <StyledLink to="/admin/me">Про мене</StyledLink>
-              <StyledLink
-                as="a"
-                href="https://www.google.com/maps/d/u/0/viewer?mid=1stv2s4gZ0HnC7rfZz2FqxZxtB9fh0DE&ll=49.8184077019921%2C23.938815850000026&z=12"
-                target="_blank"
-                rel="noopener noreferrer">
-                Мапа
-              </StyledLink>
-              <Button onClick={onClickLogout} variant="contained" color="error">
-                Вийти
-              </Button>
-            </Links>
-            <MenuLink onClick={toggleMenu}>Меню</MenuLink>
-            {menuOpen && (
-              <LinksMobile>
-                <StyledLink to="/admin/home">Головна</StyledLink>
-                <StyledLink to="/admin/products">Продукти</StyledLink>
-                <StyledLink to="/admin/posts">Пости</StyledLink>
-                <StyledLink to="/admin/orders">Замовлення</StyledLink>
-                {/* <StyledLink to="/admin/statistics">Статистика</StyledLink> */}
-                <StyledLink to="/admin/me">Про мене</StyledLink>
-                <StyledLink
-                  as="a"
-                  href="https://www.google.com/maps/d/u/0/viewer?mid=1stv2s4gZ0HnC7rfZz2FqxZxtB9fh0DE&ll=49.8184077019921%2C23.938815850000026&z=12"
-                  target="_blank"
-                  rel="noopener noreferrer">
-                  Мапа
-                </StyledLink>
-                <Button
-                  onClick={onClickLogout}
-                  variant="contained"
-                  color="error">
-                  Вийти
-                </Button>
-              </LinksMobile>
+      <ThemeProvider theme={theme}>
+        <CssBaseline />
+        <AppBar position="fixed">
+          <Toolbar>
+            <Typography variant="h6" sx={{ flexGrow: 1 }}>
+              Admin Panel
+            </Typography>
+            <IconButton color="inherit" onClick={handleThemeToggle}>
+              {darkMode ? <Brightness7Icon /> : <Brightness4Icon />}
+            </IconButton>
+            {token && (
+                <>
+                  <Box sx={{ display: { xs: "none", sm: "flex" }, gap: 2 }}>
+                    {links.map((link, index) =>
+                        link.external ? (
+                            <Button
+                                key={index}
+                                color="inherit"
+                                component="a"
+                                href={link.href}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                            >
+                              {link.text}
+                            </Button>
+                        ) : (
+                            <Button key={index} color="inherit" component={Link} to={link.to}>
+                              {link.text}
+                            </Button>
+                        )
+                    )}
+                    <Button color="error" variant="outlined" onClick={onClickLogout}>
+                      Вийти
+                    </Button>
+                  </Box>
+                  <IconButton
+                      color="inherit"
+                      edge="end"
+                      sx={{ display: { sm: "none" } }}
+                      onClick={toggleMenu}
+                  >
+                    <MenuIcon />
+                  </IconButton>
+                </>
             )}
-          </>
-        ) : (
-          <>
-            <StyledLink to="/admin/login">Авторизація</StyledLink>
-          </>
-        )}
-      </Header>
-      <Content>{children}</Content>
-    </Container>
+          </Toolbar>
+        </AppBar>
+        <Drawer anchor="right" open={menuOpen} onClose={toggleMenu}>
+          <List>
+            {links.map((link, index) =>
+                link.external ? (
+                    <ListItem
+                        button
+                        key={index}
+                        component="a"
+                        href={link.href}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                    >
+                      <ListItemText primary={link.text} />
+                    </ListItem>
+                ) : (
+                    <ListItem
+                        button
+                        key={index}
+                        component={Link}
+                        to={link.to}
+                        onClick={toggleMenu}
+                    >
+                      <ListItemText primary={link.text} />
+                    </ListItem>
+                )
+            )}
+            <ListItem button onClick={onClickLogout}>
+              <ListItemText primary="Вийти" sx={{ color: "error.main" }} />
+            </ListItem>
+          </List>
+        </Drawer>
+        <Box component="main" sx={{ mt: 8, p: 2 }}>
+          {children}
+        </Box>
+      </ThemeProvider>
   );
 };
-
-const Container = styled.div`
-  width: 100vw;
-`;
-
-const Header = styled.header`
-  width: 100vw;
-  height: 80px;
-  position: absolute;
-  top: 0;
-  background-color: #f0f0f0;
-  display: flex;
-  align-items: center;
-  justify-content: space-around;
-  padding: 0 20px;
-
-  @media (max-width: 768px) {
-    flex-direction: column;
-    height: auto;
-    padding: 10px;
-  }
-`;
-
-const Logo = styled.h1`
-  font-size: 24px;
-  font-weight: bold;
-
-  @media (max-width: 768px) {
-    margin-bottom: 10px;
-  }
-`;
-
-const MenuLink = styled.button`
-  color: #000;
-  background: none;
-  border: none;
-  cursor: pointer;
-  margin-right: 10px;
-
-  &:hover {
-    color: #007bff;
-  }
-
-  display: none;
-  @media (max-width: 768px) {
-    margin-bottom: 10px;
-
-    display: contents;
-    flex-direction: column;
-    z-index: 9999;
-  }
-`;
-
-const Links = styled.nav`
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  display: contents;
-  width: 300px;
-  @media (max-width: 768px) {
-    display: none;
-  }
-`;
-
-const LinksMobile = styled.nav`
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-
-  display: none;
-  @media (max-width: 768px) {
-    display: contents;
-    flex-direction: column;
-  }
-`;
-
-const StyledLink = styled(Link)`
-  color: #000;
-  text-decoration: none;
-  margin-right: 10px;
-
-  &:hover {
-    color: #007bff;
-  }
-
-  @media (max-width: 768px) {
-    margin-bottom: 10px;
-  }
-`;
-
-const Button = styled.button`
-  margin-left: 10px;
-  color: #000;
-  text-decoration: none;
-
-  &:hover {
-    background-color: red;
-    color: #fff;
-    font-weight: bold;
-  }
-
-  @media (max-width: 768px) {
-    width: 100%;
-  }
-`;
-
-const Content = styled.div`
-  margin-top: 80px;
-  min-height: 90vh;
-  @media (max-width: 768px) {
-    margin-top: 100px;
-    width: 100vw;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-  }
-`;
 
 export default LayoutAdmin;
