@@ -185,22 +185,13 @@ const Order = () => {
                 <Label>Кур’єрська доставка</Label>
                 <InputBlock>
                   <InputItem>
-                    <select
-                      style={styles.select}
-                      name="city"
-                      value={formData.city}
-                      onChange={handleChange}>
-                      <option style={styles.option} value=""></option>
-                      <option style={styles.option} value="lviv">
-                        Львів
-                      </option>
-                      <option style={styles.option} value="z-voda">
-                        Зимна Вода
-                      </option>
-                      <option style={styles.option} value="operator">
-                        Уторчнити з оператором
-                      </option>
-                    </select>
+                    <Input
+                        type="text"
+                        name="city"
+                        value={formData.street}
+                        onChange={handleChange}
+                        required
+                    />
                     <InputLabel>Місто*</InputLabel>
                   </InputItem>
                   <InputItem>
