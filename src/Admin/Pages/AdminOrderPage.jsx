@@ -158,28 +158,28 @@ const AdminOrderPage = () => {
                   {activeTab === 0 && (
                       <Box>
                         <ExelOrders products={sortedNewOrders} name="Нові" />
-                        <OrdersTable newOrders={sortedNewOrders} title="Нові замовлення" />
+                        <OrdersTable newOrders={sortedNewOrders}/>
                       </Box>
                   )}
 
                   {activeTab === 1 && (
                       <Box>
                         <ExelOrders products={sortedNewOrdersAll} name="Всі" />
-                        <OrdersTableAll newOrders={sortedNewOrdersAll} title="Всі замовлення" />
+                        <OrdersTableAll newOrders={sortedNewOrdersAll}/>
                       </Box>
                   )}
 
                   {activeTab === 2 && (
                       <Box>
                         <ExelOrders products={finishedOrders} name="Завершені" />
-                        <OrdersTableFin newOrders={finishedOrders} title="Завершені замовлення" />
+                        <OrdersTableFin newOrders={finishedOrders}/>
                       </Box>
                   )}
 
                   {activeTab === 3 && (
                       <Box>
                         <ExelOrders products={rejectedOrders} name="Відхилені" />
-                        <OrdersTableFin newOrders={rejectedOrders} title="Відхилені замовлення" />
+                        <OrdersTableFin newOrders={rejectedOrders} />
                       </Box>
                   )}
                 </Box>
