@@ -1,40 +1,42 @@
-import React, { useState } from "react";
-import Product from "../Product/Product";
+import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchOneProduct } from "../../Redux/slices/products";
-import { useEffect } from "react";
 import LayoutAdmin from "../LayoutAdmin/LayoutAdmin";
-import styled from "styled-components";
+import Product from "../Product/Product";
+import { Box, CircularProgress, Typography } from "@mui/material";
 
 const AdminProductEditPage = () => {
   const dispatch = useDispatch();
   const product = useSelector((state) => state.products.product);
   const [update, setUpdate] = useState(true);
+
   useEffect(() => {
     const currentURL = window.location.href;
     const id = currentURL.split("/").pop();
     dispatch(fetchOneProduct(id));
   }, [dispatch, update]);
+
   const status = product.status;
+
   return (
-    <LayoutAdmin>
-      <Container>
-        {status === "loading" && <>Loading...</>}
-        {status === "loaded" && (
-          <Product product={product} update={update} setUpdate={setUpdate} />
-        )}
-      </Container>
-    </LayoutAdmin>
+      <LayoutAdmin>
+        <Box
+            sx={{
+              marginTop: { xs: "450px", md: "100px" },
+              padding: { xs: "10px", md: "0" },
+              textAlign: "center",
+            }}
+        >
+          {status === "loading" ? (
+              <CircularProgress />
+          ) : status === "loaded" ? (
+              <Product product={product} update={update} setUpdate={setUpdate} />
+          ) : (
+              <Typography variant="h6">Помилка завантаження</Typography>
+          )}
+        </Box>
+      </LayoutAdmin>
   );
 };
-
-const Container = styled.div`
-  margin-top: 100px;
-
-  @media (max-width: 768px) {
-    margin-top: 450px;
-    padding: 10px;
-  }
-`;
 
 export default AdminProductEditPage;

@@ -1,9 +1,17 @@
 import React, { useState, useEffect } from "react";
 import LayoutAdmin from "../LayoutAdmin/LayoutAdmin";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { fetchAuthMe, changePassword } from "../../Redux/slices/auth";
-import styled from "styled-components";
 import toast, { Toaster } from "react-hot-toast";
+import {
+  Box,
+  Button,
+  CircularProgress,
+  Container,
+  TextField,
+  Typography,
+  Stack,
+} from "@mui/material";
 
 const AdminUserPage = () => {
   const [me, setMe] = useState(null);
@@ -12,13 +20,13 @@ const AdminUserPage = () => {
   const dispatch = useDispatch();
 
   const notify = (text) =>
-    toast(text, {
-      style: {
-        borderRadius: "5px",
-        background: "#333",
-        color: "#fff",
-      },
-    });
+      toast(text, {
+        style: {
+          borderRadius: "5px",
+          background: "#333",
+          color: "#fff",
+        },
+      });
 
   useEffect(() => {
     const fetchMe = async () => {
@@ -51,120 +59,86 @@ const AdminUserPage = () => {
     }
 
     dispatch(changePassword({ currentPassword, newPassword, id: me._id }))
-      .unwrap()
-      .then((response) => {
-        notify("Пароль змінено успішно!");
-        setCurrentPassword("");
-        setNewPassword("");
-      })
-      .catch((error) => {
-        notify("Сталася помилка при зміні пароля");
-        console.error("Error:", error);
-      });
+        .unwrap()
+        .then(() => {
+          notify("Пароль змінено успішно!");
+          setCurrentPassword("");
+          setNewPassword("");
+        })
+        .catch((error) => {
+          notify("Сталася помилка при зміні пароля");
+          console.error("Error:", error);
+        });
   };
 
   if (!me) {
     return (
-      <LayoutAdmin>
-        <StylesToaster position="bottom-right" reverseOrder={false} />
-        <LoadingContainer>
-          <LoadingText>Завантаження...</LoadingText>
-        </LoadingContainer>
-      </LayoutAdmin>
+        <LayoutAdmin>
+          <Toaster position="bottom-right" reverseOrder={false} />
+          <Box
+              display="flex"
+              alignItems="center"
+              justifyContent="center"
+              height="300px"
+          >
+            <CircularProgress />
+          </Box>
+        </LayoutAdmin>
     );
   }
 
   return (
-    <LayoutAdmin>
-      <StylesToaster position="bottom-right" reverseOrder={false} />
-      <Container>
-        <Label>Ім'я: {me.fullName}</Label>
-        <Label>Пошта: {me.email}</Label>
-        <Block>
-          <Label>Змінити пароль</Label>
-          <Input
-            type="password"
-            minLength={6}
-            placeholder="Поточний пароль"
-            value={currentPassword}
-            onChange={handleCurrentPasswordChange}
-          />
-          <Input
-            type="password"
-            minLength={6}
-            placeholder="Новий пароль"
-            value={newPassword}
-            onChange={handleNewPasswordChange}
-          />
-          <Button onClick={handleChangePassword}>Змінити</Button>
-        </Block>
-      </Container>
-    </LayoutAdmin>
+      <LayoutAdmin>
+        <Toaster position="bottom-right" reverseOrder={false} />
+        <Container maxWidth="sm" sx={{ mt: 10 }}>
+          <Typography variant="h5" component="h1" gutterBottom>
+            Профіль користувача
+          </Typography>
+          <Stack spacing={2}>
+            <Typography variant="body1">Ім'я: {me.fullName}</Typography>
+            <Typography variant="body1">Пошта: {me.email}</Typography>
+            <Box
+                sx={{
+                  border: "1px solid red",
+                  borderRadius: 2,
+                  p: 2,
+                  mt: 2,
+                }}
+            >
+              <Typography variant="h6" gutterBottom>
+                Змінити пароль
+              </Typography>
+              <TextField
+                  type="password"
+                  label="Поточний пароль"
+                  variant="outlined"
+                  fullWidth
+                  value={currentPassword}
+                  onChange={handleCurrentPasswordChange}
+                  sx={{ mb: 2 }}
+              />
+              <TextField
+                  type="password"
+                  label="Новий пароль"
+                  variant="outlined"
+                  fullWidth
+                  value={newPassword}
+                  onChange={handleNewPasswordChange}
+                  sx={{ mb: 2 }}
+              />
+              <Button
+                  variant="contained"
+                  color="primary"
+                  fullWidth
+                  onClick={handleChangePassword}
+              >
+                Змінити
+              </Button>
+            </Box>
+          </Stack>
+        </Container>
+      </LayoutAdmin>
   );
 };
-
-const LoadingContainer = styled.div`
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  height: 300px;
-`;
-
-const LoadingText = styled.p`
-  font-size: 16px;
-  font-weight: bold;
-`;
-
-const Container = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  margin-top: 500px;
-
-  /* Mobile styles */
-  @media (min-width: 340px) and (max-width: 767px) {
-    margin-top: 450px;
-  }
-`;
-
-const Label = styled.p`
-  color: black;
-  text-decoration: none;
-  &:hover {
-    color: #007bff;
-  }
-`;
-
-const Block = styled.div`
-  border-radius: 10px;
-  border: 1px solid red;
-  padding: 10px;
-  margin-top: 20px;
-`;
-
-const Input = styled.input`
-  color: darkGray;
-  text-decoration: none;
-  &:hover {
-    color: #007bff;
-  }
-  margin: 5px 0;
-  padding: 5px;
-  border-radius: 5px;
-  border: 1px solid #ccc;
-`;
-
-const Button = styled.button`
-  border-radius: 10px;
-  border: 1px solid red;
-  cursor: pointer;
-  margin-top: 10px;
-`;
-
-const StylesToaster = styled(Toaster)`
-  background-color: lightGrey;
-  color: #007bff;
-`;
 
 export default AdminUserPage;

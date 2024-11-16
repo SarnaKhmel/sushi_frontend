@@ -1,113 +1,128 @@
-import React from "react";
-import LayoutAdmin from "../LayoutAdmin/LayoutAdmin";
 import { useState, useEffect } from "react";
+import {
+  Box,
+  Paper,
+  Typography,
+  Tabs,
+  Tab,
+  TableContainer,
+  TableHead,
+  TableRow,
+  TableCell,
+  Table,
+  useTheme
+} from "@mui/material";
 import { useDispatch, useSelector } from "react-redux";
+import LayoutAdmin from "../LayoutAdmin/LayoutAdmin";
 import AddPost from "../AddPost/AddPost";
-import styled, { css } from "styled-components";
 import { fetchPosts } from "../../Redux/slices/posts";
 import PostTable from "../PostTable/PostTable";
 
 const AdminPostPage = () => {
+  const theme = useTheme();
   const dispatch = useDispatch();
-  let posts = useSelector((state) => state.posts.posts);
+  const posts = useSelector((state) => state.posts.posts);
+  const [activeTab, setActiveTab] = useState(0);
   const [update, setUpdate] = useState(false);
 
   useEffect(() => {
     dispatch(fetchPosts());
   }, [dispatch, update]);
 
-  const [activeBlocks, setActiveBlocks] = useState([false, false, false]);
-  const toggleBlock = (blockNumber) => {
-    setActiveBlocks((prevActiveBlocks) => {
-      const newActiveBlocks = [...prevActiveBlocks];
-      newActiveBlocks[blockNumber] = !prevActiveBlocks[blockNumber];
-      return newActiveBlocks;
-    });
+  const handleTabChange = (event, newValue) => {
+    setActiveTab(newValue);
+    if (newValue === 1) {
+      setUpdate(!update);
+    }
   };
 
   return (
-    <>
       <LayoutAdmin>
-        {posts.status === "loaded" ? (
-          <>
-            <Container>
-              <LabelBlock>
-                <Label onClick={() => toggleBlock(0)}>Додати пост</Label>
-                <Label
-                  onClick={() => {
-                    toggleBlock(1);
-                    setUpdate(!update);
-                  }}>
-                  Всі пости
-                </Label>
-              </LabelBlock>
+        <Box sx={{ width: '100%', p: 2 }}>
+          {posts.status === "loaded" ? (
+              <Paper sx={{ mt: 2, mb: 4 }}>
+                <Tabs
+                    value={activeTab}
+                    onChange={handleTabChange}
+                    variant="fullWidth"
+                    sx={{ borderBottom: 1, borderColor: 'divider' }}
+                >
+                  <Tab
+                      label="Додати пост"
+                      sx={{
+                        fontSize: { xs: '0.875rem', sm: '1.125rem' },
+                        '&:hover': { color: 'primary.main' }
+                      }}
+                  />
+                  <Tab
+                      label="Всі пости"
+                      sx={{
+                        fontSize: { xs: '0.875rem', sm: '1.125rem' },
+                        '&:hover': { color: 'primary.main' }
+                      }}
+                  />
+                </Tabs>
 
-              {activeBlocks[0] && (
-                <Block $active={activeBlocks[0]}>
+                {/* Add Post Tab Panel */}
+                <TabPanel value={activeTab} index={0}>
                   <AddPost />
-                </Block>
-              )}
+                </TabPanel>
 
-              {activeBlocks[1] && (
-                <Block $active={activeBlocks[1]}>
-                  <PostTable posts={posts} />
-                </Block>
-              )}
-            </Container>
-          </>
-        ) : (
-          <Container>
-            <Block>Loading ....</Block>
-          </Container>
-        )}
+                {/* All Posts Tab Panel */}
+                <TabPanel value={activeTab} index={1}>
+                  <Box sx={{ width: '100%', p: 2 }}>
+                    {/* Posts Table */}
+                    <TableContainer component={Paper}>
+                      <Table>
+                        <TableHead>
+                          <TableRow>
+                            <TableCell>
+                              <Typography variant="h6">Пости</Typography>
+                            </TableCell>
+                          </TableRow>
+                        </TableHead>
+                        <PostTable posts={posts} />
+                      </Table>
+                    </TableContainer>
+                  </Box>
+                </TabPanel>
+              </Paper>
+          ) : (
+              <Box
+                  display="flex"
+                  justifyContent="center"
+                  alignItems="center"
+                  minHeight="50vh"
+              >
+                <Typography variant="h6">
+                  Loading...
+                </Typography>
+              </Box>
+          )}
+        </Box>
       </LayoutAdmin>
-    </>
   );
 };
 
-const Container = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: start;
-  background: grey;
-  min-height: 100vh;
-  width: 100vw;
-`;
-
-const Block = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  background: lightGray;
-  min-height: 50vh;
-  width: 100vw;
-  border-bottom: 1px solid black;
-  display: none;
-  opacity: 0;
-  transition: opacity 3s ease;
-
-  ${(props) =>
-    props.$active &&
-    css`
-      display: block;
-      transition: opacity 3s ease;
-      opacity: 1;
-    `}
-`;
-
-const LabelBlock = styled.div`
-  margin-top: 10px;
-  font-size: 24px;
-`;
-
-const Label = styled.button`
-  color: black;
-  font-size: 24px;
-  &:hover {
-    color: #007bff;
-  }
-`;
+// Tab Panel Component
+const TabPanel = ({ children, value, index, ...other }) => {
+  return (
+      <Box
+          role="tabpanel"
+          hidden={value !== index}
+          id={`tabpanel-${index}`}
+          aria-labelledby={`tab-${index}`}
+          {...other}
+          sx={{
+            p: 3,
+            display: value !== index ? 'none' : 'block',
+            opacity: value !== index ? 0 : 1,
+            transition: 'opacity 0.3s ease-in-out'
+          }}
+      >
+        {value === index && children}
+      </Box>
+  );
+};
 
 export default AdminPostPage;
