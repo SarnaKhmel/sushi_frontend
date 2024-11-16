@@ -158,7 +158,7 @@ const AdminOrderPage = () => {
                   {activeTab === 0 && (
                       <Box>
                         <ExelOrders products={sortedNewOrders} name="Нові" />
-                        <OrdersTable newOrders={sortedNewOrders} title="Нові замовлення" />
+                        <OrdersTable newOrders={sortedNewOrders} />
                       </Box>
                   )}
 

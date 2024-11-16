@@ -110,7 +110,7 @@ const LayoutAdmin = ({ children }) => {
                             </Button>
                         )
                     )}
-                    <Button color="error" variant="outlined" onClick={onClickLogout}>
+                    <Button color="error" variant="contained" onClick={onClickLogout}>
                       Вийти
                     </Button>
                   </Box>
