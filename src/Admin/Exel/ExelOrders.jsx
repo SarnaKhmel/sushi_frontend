@@ -1,6 +1,6 @@
 import React from "react";
 import * as XLSX from "xlsx";
-import styled from "styled-components";
+import {Button} from "@mui/material";
 
 const ExelOrders = ({ products, name }) => {
   const handleDownload = () => {
@@ -28,14 +28,13 @@ const ExelOrders = ({ products, name }) => {
 
   return (
     <>
-      <Btn onClick={handleDownload}>Завантажити таблицю товарів - {name}</Btn>
+      <Button
+          variant="contained"
+          component="label"
+          onClick={handleDownload}>Завантажити таблицю товарів - {name}
+      </Button>
     </>
   );
 };
 
-const Btn = styled.button`
-  width: 260px;
-  height: 50px;
-  margin-bottom: 50px;
-`;
 export default ExelOrders;
