@@ -72,7 +72,7 @@ const LayoutAdmin = ({ children }) => {
     { to: "/admin/orders", text: "Замовлення" },
     { to: "/admin/me", text: "Про мене" },
     {
-      href: "https://www.google.com/maps/d/u/0/viewer?mid=1stv2s4gZ0HnC7rfZz2FqxZxtB9fh0DE&ll=49.8184077019921%2C23.938815850000026&z=12",
+      href: "https://www.google.com/maps/d/edit?mid=1nfbGMQRsiJ_u540DNb56mfzaiuYZ3nw",
       text: "Мапа",
       external: true,
     },

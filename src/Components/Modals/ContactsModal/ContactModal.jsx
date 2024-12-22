@@ -39,7 +39,7 @@ const ContactModal = ({ isOpen, onClose }) => {
             <Header>Суші-бар:</Header>
             <Block>
               <Text>
-                <StyledLink to="https://www.google.com/maps/d/u/0/viewer?mid=1SGGs8ebV_XcL5DChLDEuLWi_CYdtjxU&ll=49.81045026269655%2C24.097867269378742&z=13">
+                <StyledLink to="https://www.google.com/maps/d/edit?mid=1nfbGMQRsiJ_u540DNb56mfzaiuYZ3nw">
                   м.Львів, <br /> вул.Сихівська,19
                 </StyledLink>
               </Text>
@@ -50,7 +50,7 @@ const ContactModal = ({ isOpen, onClose }) => {
             <Header>Доставка та самовивіз:</Header>
             <Block>
               <Text>
-                <StyledLink to="https://www.google.com/maps/d/u/0/viewer?mid=1d7TzP07NBZtL_dcST3yPjK3JW2aws80&ll=49.818294130689196%2C23.914791475755084&z=12">
+                <StyledLink to="https://www.google.com/maps/d/edit?mid=1nfbGMQRsiJ_u540DNb56mfzaiuYZ3nw">
                   с. Рудно, <br />
                   вул. Шептицького 1
                 </StyledLink>
