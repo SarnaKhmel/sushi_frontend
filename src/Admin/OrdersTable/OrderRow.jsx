@@ -125,6 +125,7 @@ const OrderRow = ({ item }) => {
                       <TableCell>Решта з</TableCell>
                       <TableCell>Сума</TableCell>
                       <TableCell>К-ть приборів</TableCell>
+                      <TableCell>К-ть фіксаторів</TableCell>
                     </TableRow>
                   </TableHead>
                   <TableBody>
@@ -138,6 +139,7 @@ const OrderRow = ({ item }) => {
                         {item.orderList.sum}
                       </TableCell>
                       <TableCell>{item.device}</TableCell>
+                      <TableCell>{item.fixators}</TableCell>
                     </TableRow>
                   </TableBody>
                 </Table>
